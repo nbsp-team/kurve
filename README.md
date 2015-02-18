@@ -6,5 +6,5 @@ CompileJS: public_html/js/index.js
 
 ### Styles
 DevScss: public_html/scss/*.scss<br/>
-CompileCss: public_html/css/style.css
+CompileCss: public_html/css/*.css
 
