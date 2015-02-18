@@ -1,0 +1,14 @@
+{
+  "name": "test-grunt-project",
+  "version": "0.0.1",
+  "devDependencies": {
+    "grunt": "latest",
+    "grunt-concat-css": "^0.3.1",
+    "grunt-concurrent": "^1.0.0",
+    "grunt-contrib-cssmin": "^0.12.1",
+    "grunt-contrib-sass": "^0.9.2",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-fest": "^0.1.5",
+    "grunt-shell": "^1.1.1"
+  }
+}
