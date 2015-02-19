@@ -1,0 +1,6 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
+    <div id="container">
+        <h1>Рейтинги</h1>
+        <a href="#" class="btn red"> Назад </a>
+    </div>
+</fest:template>
