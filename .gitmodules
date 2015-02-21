@@ -1,0 +1,3 @@
+[submodule "kurve-server"]
+	path = kurve-server
+	url = https://github.com/lukaville/kurve-server.git
