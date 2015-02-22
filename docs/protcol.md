@@ -90,7 +90,7 @@ ws://servername:port/
 ws.binaryType = "arraybuffer";
 ```
 
-Затем, чтобы отправить данные необходима сделать следующее:
+Затем, чтобы отправить данные необходимо сделать следующее:
 ```js
 ws.send(BSON.serialize(object));
 ```
