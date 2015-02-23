@@ -12,7 +12,7 @@ define([
         template: tmpl,
 
         events: {
-            'click .login' : 'login'
+            'click #login' : 'login'
         },
 
         input_login: '[type=login]',
