@@ -20,8 +20,7 @@ POST /api/v1/auth/signup
     error: null,
     response: {
         user: {
-            firstName: "Ivan",
-            lastName: "Ivanov",
+            username: "ivan333",
             email: "ivan@gmail.com",
             global_rating: 0
         }
@@ -55,8 +54,7 @@ POST /api/v1/auth/signin
     error: null,
     response: {
         user: {
-            firstName: "Ivan",
-            lastName: "Ivanov",
+            username: "ivan333",
             email: "ivan@gmail.com",
             global_rating: 0
         }
@@ -80,9 +78,10 @@ POST /api/v1/auth/signin
 ws://servername:port/
 ```
 Клиент может быть отключен от сервера с указанием причины:
-  - Код закрытия **0**. Клиент не авторизован (не имеет cookie с идентификатором активной сессии)
-  - Код закрытия **1**. Нет свободных комнат.
-  - Код закрытия **2**. Клиент отключен из-за долгого бездействия.
+  - Код закрытия **0**. Окончание игры.
+  - Код закрытия **1**. Клиент не авторизован (не имеет cookie с идентификатором активной сессии)
+  - Код закрытия **2**. Нет свободных комнат.
+  - Код закрытия **3**. Клиент отключен из-за долгого бездействия.
 
 Общение происходит в формате BSON. Для работы с этим форматом на клиенте можно использовать [js-bson](https://github.com/schteppe/js-bson). Сначала требуется выставить правильный тип данных для соединения:
 
@@ -116,8 +115,7 @@ ws.onmessage = function (e) {
     players: [
         {
             playerId: 399,
-            firstName: "Ivan",
-            lastName: "Ivanov",
+            username: "ivan333",
             global_rating: 0,
             color: "#abcdef",
             isReady: false
@@ -154,8 +152,7 @@ ws.onmessage = function (e) {
     players: [
         {
             playerId: 399,
-            firstName: "Ivan",
-            lastName: "Ivanov",
+            username: "ivan333",
             rating: 0,
             color: "#abcdef",
             snake: {
@@ -298,8 +295,7 @@ ws.onmessage = function (e) {
     players: [
         {
             playerId: 399,
-            firstName: "Ivan",
-            lastName: "Ivanov",
+            username: "ivan333",
             rating: 3,
             color: "#abcdef",
             snake: {
@@ -328,8 +324,7 @@ ws.onmessage = function (e) {
     players: [
         {
             playerId: 399,
-            firstName: "Ivan",
-            lastName: "Ivanov",
+            username: "ivan333",
             rating: 3,
             color: "#abcdef",
         }
