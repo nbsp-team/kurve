@@ -20,8 +20,7 @@ POST /api/v1/auth/signup
     error: null,
     response: {
         user: {
-            firstName: "Ivan",
-            lastName: "Ivanov",
+            username: "ivan333",
             email: "ivan@gmail.com",
             global_rating: 0
         }
@@ -55,8 +54,7 @@ POST /api/v1/auth/signin
     error: null,
     response: {
         user: {
-            firstName: "Ivan",
-            lastName: "Ivanov",
+            username: "ivan333",
             email: "ivan@gmail.com",
             global_rating: 0
         }
@@ -116,8 +114,7 @@ ws.onmessage = function (e) {
     players: [
         {
             playerId: 399,
-            firstName: "Ivan",
-            lastName: "Ivanov",
+            username: "ivan333",
             global_rating: 0,
             color: "#abcdef",
             isReady: false
@@ -154,8 +151,7 @@ ws.onmessage = function (e) {
     players: [
         {
             playerId: 399,
-            firstName: "Ivan",
-            lastName: "Ivanov",
+            username: "ivan333",
             rating: 0,
             color: "#abcdef",
             snake: {
@@ -298,8 +294,7 @@ ws.onmessage = function (e) {
     players: [
         {
             playerId: 399,
-            firstName: "Ivan",
-            lastName: "Ivanov",
+            username: "ivan333",
             rating: 3,
             color: "#abcdef",
             snake: {
@@ -328,8 +323,7 @@ ws.onmessage = function (e) {
     players: [
         {
             playerId: 399,
-            firstName: "Ivan",
-            lastName: "Ivanov",
+            username: "ivan333",
             rating: 3,
             color: "#abcdef",
         }
