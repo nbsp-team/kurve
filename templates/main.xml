@@ -1,8 +1,18 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
     <div id="container">
         <div class="title"> Меню </div>
-        <a href="#game" class="btn btn__main blue"> Начать </a>
-        <a href="#login" class="btn btn__main blue"> Войти </a>
-        <a href="#scoreboard" class="btn btn__main blue"> Рейтинги </a>
+
+        <fest:if test="json.isLogin">
+            <a href="#game" class="btn btn__main blue"> Начать </a>
+            <a href="#scoreboard" class="btn btn__main blue"> Рейтинги </a>
+            <a href="#logout" class="btn btn__main blue"> Выйти </a>
+        </fest:if>
+
+        <fest:if test="!json.isLogin">
+            <a href="#login" class="btn btn__main blue"> Войти </a>
+            <a href="#register" class="btn btn__main blue"> Регистрация </a>
+            <a href="#scoreboard" class="btn btn__main blue"> Рейтинги </a>
+        </fest:if>
+
     </div>
 </fest:template>

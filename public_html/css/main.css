@@ -105,14 +105,16 @@ body {
     box-shadow: 0px 5px 0px 0px #CE3323;
 }
 
-.btn__main, .btn__login, .btn_rating {
+.btn__main, .btn__login, .btn__rating, .btn__reg {
     margin: 15px auto;
     width: 70%;
 }
 
 /* =======================  Buttons ========================= */
 
-.login__input {
+/* =======================  Field ========================= */
+
+.input-field {
     margin: 20px auto;
     display: block;
     width: 75%;
@@ -125,6 +127,8 @@ body {
     font-size: 95%;
     color: #555;
 }
+
+/* =======================  Field ========================= */
 
 .login__input:focus {
     outline: none;

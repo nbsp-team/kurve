@@ -4,7 +4,8 @@ require.config({
     paths: {
         jquery: "lib/jquery",
         underscore: "lib/underscore",
-        backbone: "lib/backbone"
+        backbone: "lib/backbone",
+        notify: "lib/notify.min"
     },
     shim: {
         'backbone': {
@@ -13,6 +14,10 @@ require.config({
         },
         'underscore': {
             exports: '_'
+        },
+        'notify': {
+            deps: ['jquery'],
+            exports: '$'
         }
     }
 });
@@ -27,6 +32,4 @@ require([
     api
 ) {
     Backbone.history.start();
-
-    console.log(api_auth);
 });

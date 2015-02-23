@@ -12,8 +12,16 @@ define([
         var SIGNIN_URL = '/api/v1/auth/signin'; // Авторизация
 
         return {
-            signup: function(data, callback) {
-                $.post(SIGNUP_URL, data, callback, callback);
+            signup: function(userModel, data) {
+                var post = $.post(SIGNUP_URL, data);
+
+                post.done(function(data) {
+                    userModel.signupResponse($.parseJSON(data));
+                });
+
+                post.fail(function() {
+                    userModel.connectionError();
+                })
             },
 
             signin: function(data, callback) {

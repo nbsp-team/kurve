@@ -1,9 +1,11 @@
 define([
     'backbone',
-    'tmpl/main'
+    'tmpl/main',
+    'models/user'
 ], function(
     Backbone,
-    tmpl
+    tmpl,
+    User
 ){
 
     var View = Backbone.View.extend({
@@ -15,7 +17,7 @@ define([
             // TODO
         },
         render: function () {
-            $(this.el).html(this.template());
+            $(this.el).html(this.template({'isLogin': User.get("isLogin")}));
         },
         show: function () {
             // TODO

@@ -1,8 +1,10 @@
 define([
     'backbone',
+    'notify',
     'tmpl/login'
 ], function(
     Backbone,
+    Notify,
     tmpl
 ){
 
@@ -19,10 +21,7 @@ define([
         input_password: '[type=password]',
 
         login: function() {
-            alert("We try to login with: \n" +
-                "Login: " + $(this.input_login).val() + "\n" +
-                "Password: " + $(this.input_password).val()
-            );
+
         },
 
         initialize: function () {
