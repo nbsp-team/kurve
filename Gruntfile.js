@@ -36,15 +36,6 @@ module.exports = function (grunt) {
                     interrupt: true,
                     atBegin: true
                 }
-            },
-            server: {
-                files: [
-                    'public_html/js/**/*.js',
-                    'public_html/css/**/*.css'
-                ],
-                options: {
-                    livereload: true
-                }
             }
         },
         concurrent: {

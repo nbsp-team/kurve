@@ -17,12 +17,16 @@ require.config({
     }
 });
 
-define([
+require([
     'backbone',
-    'router'
+    'router',
+    'utils/api_auth'
 ], function(
     Backbone,
-    router
-){
+    Router,
+    api
+) {
     Backbone.history.start();
+
+    console.log(api_auth);
 });

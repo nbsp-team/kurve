@@ -4,7 +4,7 @@ define([
     'views/game',
     'views/scoreboard',
     'views/login'
-], function( /* Задай вопрос, все ли ок, что я тут подрубаю */
+], function(
     Backbone,
     Main,
     Game,
