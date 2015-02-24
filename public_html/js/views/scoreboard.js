@@ -1,29 +1,38 @@
 define([
     'backbone',
-    'tmpl/scoreboard'
+    'tmpl/scoreboard',
+    'models/user'
 ], function(
     Backbone,
-    tmpl
+    tmpl,
+    User
 ){
 
     var View = Backbone.View.extend({
 
-        el: 'body',
+        el: '#rating',
         template: tmpl,
 
         initialize: function () {
-            // TODO
-        },
-        render: function () {
-            $(this.el).html(this.template());
-        },
-        show: function () {
-            // TODO
-        },
-        hide: function () {
-            // TODO
-        }
 
+        },
+
+        dispose: function() {
+            this.hide();
+        },
+
+        render: function () {
+            $(this.el).html(this.template({'user': User}));
+            this.show();
+        },
+
+        show: function() {
+            $(this.el).show();
+        },
+
+        hide: function() {
+            $(this.el).hide();
+        }
     });
 
     return new View();

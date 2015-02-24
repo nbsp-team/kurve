@@ -22,20 +22,32 @@ define([
             'register': 'registerAction',
             '*default': 'defaultActions'
         },
+
+        currentView: null,
+
         defaultActions: function () {
-            Main.render();
+            this.setView(Main);
         },
         scoreboardAction: function () {
-            Score.render();
+            this.setView(Score);
         },
         gameAction: function () {
-            Game.render();
+            this.setView(Game);
         },
         loginAction: function () {
-            Login.render();
+            this.setView(Login);
         },
         registerAction: function () {
-            Register.render();
+            this.setView(Register);
+        },
+
+        setView: function(model) {
+
+            if(this.currentView) {
+                this.currentView.dispose();
+            }
+            this.currentView = model;
+            model.render();
         }
     });
 

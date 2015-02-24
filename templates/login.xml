@@ -1,9 +1,14 @@
-<fest:template xmlns:fest="http://fest.mail.ru">
-    <div id="container">
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
+    <div class="wrapper">
         <div class="title"> Вход </div>
         <input class="input-field" type="login" placeholder="Логин" />
         <input class="input-field" type="password" placeholder="Пароль" />
         <div class="btn btn__login blue" id="login"> Войти </div>
         <a href="#" class="btn btn__login red"> Назад </a>
     </div>
+
+    <fest:if test="json.user.get('isLogin')">
+        <fest:include context="json" src="components/userinfo.xml"/>
+    </fest:if>
+
 </fest:template>

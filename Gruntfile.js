@@ -31,7 +31,7 @@ module.exports = function (grunt) {
         },
         watch: {
             fest: {
-                files: ['templates/*.xml'],
+                files: ['templates/*.xml', 'templates/components/*.xml'],
                 tasks: ['fest'],
                 options: {
                     interrupt: true,

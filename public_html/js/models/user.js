@@ -48,6 +48,22 @@ define([
             }
         },
 
+        signinResponse: function(data) {
+            if(data['error'] === null) {
+                var user = data['response']['user'];
+
+                this.set("isLogin", true);
+                this.set("username", user['username']);
+                this.set("email", user['email']);
+                this.set("rating", user['global_rating']);
+
+                this.trigger("signup:ok");
+
+            } else {
+                this.trigger("signup:error", data['message']);
+            }
+        },
+
         login: function(username, password) {
 
             var userObject = {
@@ -55,9 +71,7 @@ define([
                 "password": password
             };
 
-            Api.signin(userObject, function(data) {
-                // TODO: login callback
-            });
+            Api.signin(this, userObject);
         }
 
     });

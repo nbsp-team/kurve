@@ -1,20 +1,16 @@
 define([
     'backbone',
-    'notify',
     'tmpl/register',
-    'models/user',
-    'router'
+    'models/user'
 ], function(
     Backbone,
-    Notify,
     tmpl,
-    User,
-    Router
+    User
 ){
 
     var View = Backbone.View.extend({
 
-        el: 'body',
+        el: '#register',
         template: tmpl,
         model: User,
 
@@ -26,33 +22,30 @@ define([
         input_email: '[type=email]',
         input_password: '[type=password]',
 
-        register: function() {
-            User.register($(this.input_username).val(),
-                $(this.input_email).val(),
-                $(this.input_username).val());
-        },
+        initialize: function () {},
 
-        initialize: function () {
-            this.listenTo(this.model, 'signup:ok', this.renderSignupOk);
-            this.listenTo(this.model, 'signup:error', this.renderSignupError);
-        },
-
-        renderSignupOk: function(message) {
-            $.notify("Готово", {
-                position: 'bottom',
-                className: 'success'
-            });
-        },
-
-        renderSignupError: function(message) {
-            $.notify(message, {
-                position: 'bottom',
-                className: 'error'
-            });
+        dispose: function() {
+            this.hide();
+            this.stopListening();
         },
 
         render: function () {
-            $(this.el).html(this.template());
+            $(this.el).html(this.template({'user': this.model}));
+            this.show();
+        },
+
+        show: function() {
+            $(this.el).show();
+        },
+
+        hide: function() {
+            $(this.el).hide();
+        },
+
+        register: function() {
+            this.model.register($(this.input_username).val(),
+                $(this.input_email).val(),
+                $(this.input_username).val());
         }
     });
 

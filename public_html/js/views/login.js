@@ -1,17 +1,18 @@
 define([
     'backbone',
-    'notify',
-    'tmpl/login'
+    'tmpl/login',
+    'models/user'
 ], function(
     Backbone,
-    Notify,
-    tmpl
+    tmpl,
+    User
 ){
 
     var View = Backbone.View.extend({
 
-        el: 'body',
+        el: '#login',
         template: tmpl,
+        model: User,
 
         events: {
             'click #login' : 'login'
@@ -20,16 +21,42 @@ define([
         input_login: '[type=login]',
         input_password: '[type=password]',
 
-        login: function() {
-
-        },
-
-        initialize: function () {
-            // TODO
-        },
+        initialize: function () {},
 
         render: function () {
-            $(this.el).html(this.template());
+            $(this.el).html(this.template({'user': this.model}));
+            this.show();
+        },
+
+        dispose: function() {
+            this.hide();
+        },
+
+        show: function() {
+            $(this.el).show();
+        },
+
+        hide: function() {
+            $(this.el).hide();
+        },
+
+        login: function() {
+            this.model.login($(this.input_login).val(),
+                $(this.input_password).val());
+        },
+
+        renderSignupOk: function(message) {
+            $.notify("Готово", {
+                position: 'bottom',
+                className: 'success'
+            });
+        },
+
+        renderSignupError: function(message) {
+            $.notify(message, {
+                position: 'bottom',
+                className: 'error'
+            });
         }
     });
 

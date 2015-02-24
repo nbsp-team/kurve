@@ -1,31 +1,55 @@
 define([
     'backbone',
     'tmpl/main',
-    'models/user'
+    'notify',
+    'models/user',
 ], function(
     Backbone,
     tmpl,
+    Notify,
     User
 ){
-
     var View = Backbone.View.extend({
 
-        el: 'body',
+        el: '#menu',
         template: tmpl,
+        model: User,
 
         initialize: function () {
-            // TODO
+            this.listenTo(this.model, 'signup:ok', this.renderSignupOk);
+            this.listenTo(this.model, 'signup:error', this.renderSignupError);
         },
-        render: function () {
-            $(this.el).html(this.template({'isLogin': User.get("isLogin")}));
-        },
-        show: function () {
-            // TODO
-        },
-        hide: function () {
-            // TODO
-        }
 
+        dispose: function() {
+            this.hide();
+        },
+
+        render: function () {
+            $(this.el).html(this.template({'user': this.model}));
+            this.show();
+        },
+
+        show: function () {
+            $(this.el).show();
+        },
+
+        hide: function () {
+            $(this.el).hide();
+        },
+
+        renderSignupOk: function(message) {
+            $.notify("Готово", {
+                position: 'bottom',
+                className: 'success'
+            });
+        },
+
+        renderSignupError: function(message) {
+            $.notify(message, {
+                position: 'bottom',
+                className: 'error'
+            });
+        }
     });
 
     return new View();

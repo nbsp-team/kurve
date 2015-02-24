@@ -24,12 +24,10 @@ require.config({
 
 require([
     'backbone',
-    'router',
-    'utils/api_auth'
+    'router'
 ], function(
     Backbone,
-    Router,
-    api
+    Router
 ) {
     Backbone.history.start();
 });

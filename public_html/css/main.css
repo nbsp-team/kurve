@@ -7,8 +7,7 @@ body {
     background-color: #eeeeee;
 }
 
-
-#container {
+.wrapper {
     margin-top: 30px;
     position: absolute;
     background-color: white;
@@ -20,7 +19,7 @@ body {
     padding-bottom: 27px;    
 }
 
-#container:before {
+.wrapper:before {
     content: '';
     position: absolute;
     z-index: -1;
@@ -30,6 +29,11 @@ body {
     bottom: 5px;
     right: 5px;    
 }
+
+.container {
+    overflow: hidden;
+}
+
 
 #container__ingame {
     margin-top: 30px;
@@ -41,7 +45,7 @@ body {
     left: -500px;
     border-radius: 5px;
     z-index: 0;
-    padding-bottom: 10px;    
+    padding-bottom: 10px;
 }
 
 #container__ingame:before {
@@ -52,10 +56,8 @@ body {
     top: 5px;
     left: 5px;
     bottom: 5px;
-    right: 5px;    
+    right: 5px;
 }
-
-
 
 .title {
     text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0px 2px 0 rgba(0, 0, 0, .5);
@@ -133,3 +135,40 @@ body {
 .login__input:focus {
     outline: none;
 }
+
+/* =======================  Field ========================= */
+
+/* ====================  User-block ======================= */
+
+#user-block {
+    position: absolute;
+    top: 315px;
+    margin-left: 50%;
+    left: -150px;
+    z-index: 0;
+    height: 100px;
+    width: 300px;
+    border-radius: 3px;
+    background-color: white;
+}
+#user-block:before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    border: 1px dashed #ccc;
+    top: 5px;
+    left: 5px;
+    bottom: 5px;
+    right: 5px;
+}
+
+#user-block__ava {
+    float: left;
+    margin: 15px;
+    margin-left: 20px;
+    border-radius: 50%;
+    height: 70px;
+    width: 70px;
+}
+
+/* ====================  User-block ======================= */

@@ -1,0 +1,18 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="user">
+    <div id="user-block">
+        <img src="" id="user-block__ava"/>
+        <div id="user-block__right-block">
+            <div id="user-block__name">
+                <fest:value output="text">user.get('username')</fest:value>
+            </div>
+
+            <div id="user-block__email">
+                <fest:value output="text">user.get('email')</fest:value>
+            </div>
+
+            <div id="user-block__rating">
+                <fest:value output="text"> rating </fest:value>
+            </div>
+        </div>
+    </div>
+</fest:template>

@@ -21,11 +21,19 @@ define([
 
                 post.fail(function() {
                     userModel.connectionError();
-                })
+                });
             },
 
-            signin: function(data, callback) {
-                $.post(SIGNIN_URL, data, callback, callback);
+            signin: function(userModel, data) {
+                var post = $.post(SIGNIN_URL, data);
+
+                post.done(function(data) {
+                    userModel.signinResponse($.parseJSON(data));
+                });
+
+                post.fail(function() {
+                    userModel.connectionError();
+                });
             }
         }
 
