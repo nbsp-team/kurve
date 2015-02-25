@@ -5,7 +5,7 @@
         <fest:if test="json.user.get('isLogin')">
             <a href="#game" class="btn btn__main blue"> Начать </a>
             <a href="#scoreboard" class="btn btn__main blue"> Рейтинги </a>
-            <a href="#logout" class="btn btn__main blue"> Выйти </a>
+            <div class="btn btn__main blue" id="logout"> Выйти </div>
         </fest:if>
 
         <fest:if test="!json.user.get('isLogin')">

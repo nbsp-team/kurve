@@ -4,14 +4,16 @@ define([
     'views/game',
     'views/scoreboard',
     'views/login',
-    'views/register'
+    'views/register',
+    'models/user'
 ], function(
     Backbone,
     Main,
     Game,
     Score,
     Login,
-    Register
+    Register,
+    User
 ){
 
     var Router = Backbone.Router.extend({
@@ -24,6 +26,24 @@ define([
         },
 
         currentView: null,
+
+        initialize: function () {
+            this.listenTo(User, 'login:ok', this.navigateHome);
+            this.listenTo(User, 'logout', this.defaultActions);
+        },
+
+        /* ================ Navigate Utils ================ */
+
+        navigateHome: function() {
+            alert(1);
+            this.navigateTo('/');
+        },
+
+        navigateTo: function(url) {
+            this.navigate(url, {trigger: true});
+        },
+
+        /* ================ Navigate Utils ================ */
 
         defaultActions: function () {
             this.setView(Main);

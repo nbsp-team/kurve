@@ -2,7 +2,7 @@ define([
     'backbone',
     'tmpl/main',
     'notify',
-    'models/user',
+    'models/user'
 ], function(
     Backbone,
     tmpl,
@@ -15,9 +15,21 @@ define([
         template: tmpl,
         model: User,
 
+        /* ================= Events ================= */
+
+        events: {
+            'click #logout': 'logoutEvent'
+        },
+
+        logoutEvent: function() {
+            this.model.logout();
+        },
+
+        /* ================= Events ================= */
+
         initialize: function () {
-            this.listenTo(this.model, 'signup:ok', this.renderSignupOk);
-            this.listenTo(this.model, 'signup:error', this.renderSignupError);
+            this.listenTo(this.model, 'login:ok', this.renderSignupOk);
+            this.listenTo(this.model, 'login:error', this.renderSignupError);
         },
 
         dispose: function() {

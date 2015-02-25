@@ -9,13 +9,16 @@ define([
     var User = Backbone.Model.extend({
 
         defaults: {
+            "name": "",
+            "email": "",
+            "score": 0,
             "isLogin": false
         },
 
         register: function(username, email, password) {
 
             if(!username || !email || !password) {
-                this.trigger("signup:error", "Некорректные данные");
+                this.trigger("login:error", "Некорректные данные");
                 return;
             }
 
@@ -29,7 +32,7 @@ define([
         },
 
         connectionError: function() {
-            this.trigger("signup:error", "Ошибка подключения");
+            this.trigger("login:error", "Ошибка подключения");
         },
 
         signupResponse: function(data) {
@@ -37,14 +40,14 @@ define([
                 var user = data['response']['user'];
 
                 this.set("isLogin", true);
-                this.set("username", user['username']);
+                this.set("name", user['username']);
                 this.set("email", user['email']);
-                this.set("rating", user['global_rating']);
+                this.set("score", user['global_rating']);
 
-                this.trigger("signup:ok");
+                this.trigger("login:ok");
 
             } else {
-                this.trigger("signup:error", data['message']);
+                this.trigger("login:error", data['message']);
             }
         },
 
@@ -53,14 +56,14 @@ define([
                 var user = data['response']['user'];
 
                 this.set("isLogin", true);
-                this.set("username", user['username']);
+                this.set("name", user['username']);
                 this.set("email", user['email']);
-                this.set("rating", user['global_rating']);
+                this.set("score", user['global_rating']);
 
-                this.trigger("signup:ok");
+                this.trigger("login:ok");
 
             } else {
-                this.trigger("signup:error", data['message']);
+                this.trigger("login:error", data['message']);
             }
         },
 
@@ -72,6 +75,15 @@ define([
             };
 
             Api.signin(this, userObject);
+        },
+
+        logout: function() {
+            this.clear()
+                .set(this.defaults);
+
+            console.log(this);
+
+            this.trigger("logout");
         }
 
     });
