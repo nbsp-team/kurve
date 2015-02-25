@@ -8,7 +8,7 @@
     </div>
 
     <fest:if test="json.user.get('isLogin')">
-        <fest:include context="json" src="components/userinfo.xml"/>
+        <fest:include context="json.user" src="components/userinfo.xml"/>
     </fest:if>
 
 </fest:template>

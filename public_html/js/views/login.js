@@ -43,20 +43,6 @@ define([
         login: function() {
             this.model.login($(this.input_login).val(),
                 $(this.input_password).val());
-        },
-
-        renderSignupOk: function(message) {
-            $.notify("Готово", {
-                position: 'bottom',
-                className: 'success'
-            });
-        },
-
-        renderSignupError: function(message) {
-            $.notify(message, {
-                position: 'bottom',
-                className: 'error'
-            });
         }
     });
 
