@@ -22,10 +22,6 @@
                     <fest:value output="text">user.get('rating')</fest:value>
                 </span>
             </div>
-
-            <div id="user-block__rating">
-                rating
-            </div>
         </div>
     </div>
 </fest:template>

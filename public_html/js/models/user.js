@@ -48,7 +48,6 @@ define([
 
             } else {
                 this.trigger("login:error", data['error']['description']);
-                this.trigger("login:error", data['message']);
             }
         },
 
@@ -65,7 +64,6 @@ define([
 
             } else {
                 this.trigger("login:error", data['error']['description']);
-                this.trigger("login:error", data['message']);
             }
         },
 
@@ -83,11 +81,8 @@ define([
             this.clear()
                 .set(this.defaults);
 
-            console.log(this);
-
             this.trigger("logout");
         }
-
     });
 
     return new User();
