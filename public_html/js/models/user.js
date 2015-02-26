@@ -15,20 +15,12 @@ define([
             "isLogin": false
         },
 
-        register: function(username, email, password) {
-
-            if(!username || !email || !password) {
-                this.trigger("login:error", "Некорректные данные");
-                return;
-            }
-
-            var userObject = {
-                "username": username,
-                "email": email,
-                "password": password
-            };
-
+        register: function(userObject) {
             Api.signup(this, userObject);
+        },
+
+        login: function(userObject) {
+            Api.signin(this, userObject);
         },
 
         connectionError: function() {
@@ -65,16 +57,6 @@ define([
             } else {
                 this.trigger("login:error", data['error']['description']);
             }
-        },
-
-        login: function(username, password) {
-
-            var userObject = {
-                "username": username,
-                "password": password
-            };
-
-            Api.signin(this, userObject);
         },
 
         logout: function() {

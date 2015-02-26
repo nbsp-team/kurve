@@ -3,9 +3,4 @@
         <div class="title"> Рейтинги </div>
         <a href="#" class="btn btn__rating red"> Назад </a>
     </div>
-
-    <fest:if test="json.user.get('isLogin')">
-        <fest:include context="json.user" src="components/userinfo.xml"/>
-    </fest:if>
-
 </fest:template>

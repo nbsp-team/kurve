@@ -13,6 +13,7 @@ define([
 
         return {
             signup: function(userModel, data) {
+
                 var post = $.post(SIGNUP_URL, data);
 
                 post.done(function(data) {
@@ -22,6 +23,16 @@ define([
                 post.fail(function() {
                     userModel.connectionError();
                 });
+                /*var dfd = $.Deferred();
+
+                $.post().done(function(data) {
+                    //do some actoin with data
+                    var newData = {};
+                    dfd.resolve(newData);
+                    dfd.reject(newData);
+                })
+
+                return dfd;*/
             },
 
             signin: function(userModel, data) {

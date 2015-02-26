@@ -5,6 +5,7 @@ define([
     'views/scoreboard',
     'views/login',
     'views/register',
+    'views/user',
     'models/user'
 ], function(
     Backbone,
@@ -13,6 +14,7 @@ define([
     Score,
     Login,
     Register,
+    UserView,
     User
 ){
 

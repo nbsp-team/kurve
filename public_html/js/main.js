@@ -5,6 +5,7 @@ require.config({
         jquery: "lib/jquery",
         underscore: "lib/underscore",
         backbone: "lib/backbone",
+        syphon: "lib/backbone-syphon",
         notify: "lib/notify.min"
     },
     shim: {

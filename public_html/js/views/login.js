@@ -1,9 +1,11 @@
 define([
     'backbone',
+    'syphon',
     'tmpl/login',
     'models/user'
 ], function(
     Backbone,
+    Syphon,
     tmpl,
     User
 ){
@@ -15,7 +17,7 @@ define([
         model: User,
 
         events: {
-            'click #login' : 'login'
+            'submit #login-form' : 'login'
         },
 
         input_login: '[type=login]',
@@ -41,8 +43,9 @@ define([
         },
 
         login: function() {
-            this.model.login($(this.input_login).val(),
-                $(this.input_password).val());
+            var userData = Syphon.serialize(this);
+            this.model.login(userData);
+            return false;
         }
     });
 

@@ -1,9 +1,11 @@
 define([
     'backbone',
+    'syphon',
     'tmpl/register',
     'models/user'
 ], function(
     Backbone,
+    Syphon,
     tmpl,
     User
 ){
@@ -15,12 +17,8 @@ define([
         model: User,
 
         events: {
-            'click #register' : 'register'
+            'submit #reg-form' : 'register'
         },
-
-        input_username: '[type=username]',
-        input_email: '[type=email]',
-        input_password: '[type=password]',
 
         initialize: function () {},
 
@@ -43,9 +41,10 @@ define([
         },
 
         register: function() {
-            this.model.register($(this.input_username).val(),
-                $(this.input_email).val(),
-                $(this.input_password).val());
+            // Get data from form
+            var userData = Syphon.serialize(this);
+            this.model.register(userData);
+            return false;
         }
     });
 

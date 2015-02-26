@@ -77,7 +77,7 @@ body {
 .btn {
     border: none;
     border-radius: 5px;    
-    padding: 10px 25px;
+    padding: 10px 0px;
     font-size: 19px;
     text-decoration: none;    
     color: #fff;
@@ -110,7 +110,7 @@ body {
 
 .btn__main, .btn__login, .btn__rating, .btn__reg {
     margin: 15px auto;
-    width: 70%;
+    width: 80%;
 }
 
 /* =======================  Buttons ========================= */
