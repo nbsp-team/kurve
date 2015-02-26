@@ -47,11 +47,8 @@ define([
                 this.trigger("login:ok");
 
             } else {
-<<<<<<< HEAD
                 this.trigger("login:error", data['error']['description']);
-=======
                 this.trigger("login:error", data['message']);
->>>>>>> bff13d74a8b04176c47064a3a6e74f6319ba1f23
             }
         },
 
@@ -67,11 +64,8 @@ define([
                 this.trigger("login:ok");
 
             } else {
-<<<<<<< HEAD
                 this.trigger("login:error", data['error']['description']);
-=======
                 this.trigger("login:error", data['message']);
->>>>>>> bff13d74a8b04176c47064a3a6e74f6319ba1f23
             }
         },
 

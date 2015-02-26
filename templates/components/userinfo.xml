@@ -16,16 +16,15 @@
                 </span>
             </div>
 
-<<<<<<< HEAD
             <div class="user-field" id="user-block__rating">
                 Рейтинг:
                 <span class="field-value">
                     <fest:value output="text">user.get('rating')</fest:value>
                 </span>
-=======
+            </div>
+
             <div id="user-block__rating">
                 rating
->>>>>>> bff13d74a8b04176c47064a3a6e74f6319ba1f23
             </div>
         </div>
     </div>
