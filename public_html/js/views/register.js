@@ -45,7 +45,7 @@ define([
         register: function() {
             this.model.register($(this.input_username).val(),
                 $(this.input_email).val(),
-                $(this.input_username).val());
+                $(this.input_password).val());
         }
     });
 

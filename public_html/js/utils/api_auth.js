@@ -16,7 +16,7 @@ define([
                 var post = $.post(SIGNUP_URL, data);
 
                 post.done(function(data) {
-                    userModel.signupResponse($.parseJSON(data));
+                    userModel.signupResponse(data);
                 });
 
                 post.fail(function() {
@@ -28,7 +28,7 @@ define([
                 var post = $.post(SIGNIN_URL, data);
 
                 post.done(function(data) {
-                    userModel.signinResponse($.parseJSON(data));
+                    userModel.signinResponse(data);
                 });
 
                 post.fail(function() {

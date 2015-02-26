@@ -37,7 +37,7 @@ define([
 
         signupResponse: function(data) {
             if(data['error'] === null) {
-                var user = data['response']['user'];
+                var user = data['response'];
 
                 this.set("isLogin", true);
                 this.set("name", user['username']);
@@ -47,13 +47,13 @@ define([
                 this.trigger("login:ok");
 
             } else {
-                this.trigger("login:error", data['message']);
+                this.trigger("login:error", data['error']['description']);
             }
         },
 
         signinResponse: function(data) {
             if(data['error'] === null) {
-                var user = data['response']['user'];
+                var user = data['response'];
 
                 this.set("isLogin", true);
                 this.set("name", user['username']);
@@ -63,7 +63,7 @@ define([
                 this.trigger("login:ok");
 
             } else {
-                this.trigger("login:error", data['message']);
+                this.trigger("login:error", data['error']['description']);
             }
         },
 

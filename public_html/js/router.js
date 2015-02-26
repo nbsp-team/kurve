@@ -35,7 +35,6 @@ define([
         /* ================ Navigate Utils ================ */
 
         navigateHome: function() {
-            alert(1);
             this.navigateTo('/');
         },
 
