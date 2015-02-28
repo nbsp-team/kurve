@@ -6,8 +6,10 @@ module.exports = function (grunt) {
                 stdout: true,
                 stderr: true
             },
-            server: {
-                //command: 'java -cp L1.2-1.0-jar-with-dependencies.jar main.Main 8080'
+            buildServer: {
+                command: 'sh kurve-server/build_server.sh'
+            },
+            runServer: {
                 command: 'java -cp kurve-server.jar main.Main 8080'
             }
         },
@@ -40,7 +42,7 @@ module.exports = function (grunt) {
             }
         },
         concurrent: {
-            target: ['watch', 'shell'],
+            target: ['watch', 'shell:runServer'],
             options: {
                 logConcurrentOutput: true
             }
@@ -52,6 +54,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-shell');
     grunt.loadNpmTasks('grunt-fest');
 
-    grunt.registerTask('default', ['concurrent']);
-
+    grunt.registerTask('default', ['shell:buildServer', 'concurrent']);
 };
