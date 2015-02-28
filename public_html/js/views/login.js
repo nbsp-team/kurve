@@ -44,7 +44,7 @@ define([
 
         login: function() {
             var userData = Syphon.serialize(this);
-            this.model.login(userData);
+            this.model.save(userData);
             return false;
         }
     });

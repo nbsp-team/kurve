@@ -41,9 +41,8 @@ define([
         },
 
         register: function() {
-            // Get data from form
             var userData = Syphon.serialize(this);
-            this.model.register(userData);
+            this.model.save(userData);
             return false;
         }
     });

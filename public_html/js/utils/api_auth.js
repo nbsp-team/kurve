@@ -10,41 +10,15 @@ define([
 
         var SIGNUP_URL = '/api/v1/auth/signup'; // Рега
         var SIGNIN_URL = '/api/v1/auth/signin'; // Авторизация
+        var USER_URL_  = '/api/v1/user';
 
         return {
-            signup: function(userModel, data) {
-
-                var post = $.post(SIGNUP_URL, data);
-
-                post.done(function(data) {
-                    userModel.signupResponse(data);
-                });
-
-                post.fail(function() {
-                    userModel.connectionError();
-                });
-                /*var dfd = $.Deferred();
-
-                $.post().done(function(data) {
-                    //do some actoin with data
-                    var newData = {};
-                    dfd.resolve(newData);
-                    dfd.reject(newData);
-                })
-
-                return dfd;*/
+            signup: function(data) {
+                return $.post(SIGNUP_URL, data);
             },
 
-            signin: function(userModel, data) {
-                var post = $.post(SIGNIN_URL, data);
-
-                post.done(function(data) {
-                    userModel.signinResponse(data);
-                });
-
-                post.fail(function() {
-                    userModel.connectionError();
-                });
+            signin: function(data) {
+                return $.post(SIGNIN_URL, data);
             }
         }
 
