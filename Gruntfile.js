@@ -7,7 +7,7 @@ module.exports = function (grunt) {
                 stderr: true
             },
             buildServer: {
-                command: 'sh kurve-server/build_server.sh'
+                command: 'sh build_server.sh'
             },
             runServer: {
                 command: 'java -cp kurve-server.jar main.Main 8080'
