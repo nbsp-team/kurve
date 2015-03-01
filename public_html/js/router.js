@@ -61,6 +61,9 @@ define([
         registerAction: function () {
             this.setView(Register);
         },
+        adminAction: function () {
+            this.setView(Register);
+        },
 
         setView: function(model) {
 

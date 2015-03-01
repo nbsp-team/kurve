@@ -3,9 +3,13 @@ define([
 ], function(
     Backbone
 ){
-
-    var Model = Backbone.Model.extend({
+    var Score = Backbone.Model.extend({
+        defaults: {
+            "username": "",
+            "global_rating": 0
+        }
     });
 
-    return Model;
+    return Score;
 });
+

@@ -9,54 +9,34 @@ define([
     var User = Backbone.Model.extend({
 
         defaults: {
-            "name": "",
+            "username": "",
             "email": "",
-            "score": 0,
+            "global_rating": 0,
             "isLogin": false
         },
 
         register: function(userObject) {
-            Api.signup(this, userObject);
+            Api.signup(userObject).then(
+                this.loginHandler.bind(this),
+                this.errorHandler.bind(this)
+            );
         },
 
         login: function(userObject) {
-            Api.signin(this, userObject);
+            Api.signin(userObject).then(
+                this.loginHandler.bind(this),
+                this.errorHandler.bind(this)
+            );
         },
 
-        connectionError: function() {
-            this.trigger("login:error", "Ошибка подключения");
+        errorHandler: function(message) {
+            this.trigger("login:error", message);
         },
 
-        signupResponse: function(data) {
-            if(data['error'] === null) {
-                var user = data['response'];
-
-                this.set("isLogin", true);
-                this.set("name", user['username']);
-                this.set("email", user['email']);
-                this.set("score", user['global_rating']);
-
-                this.trigger("login:ok");
-
-            } else {
-                this.trigger("login:error", data['error']['description']);
-            }
-        },
-
-        signinResponse: function(data) {
-            if(data['error'] === null) {
-                var user = data['response'];
-
-                this.set("isLogin", true);
-                this.set("name", user['username']);
-                this.set("email", user['email']);
-                this.set("score", user['global_rating']);
-
-                this.trigger("login:ok");
-
-            } else {
-                this.trigger("login:error", data['error']['description']);
-            }
+        loginHandler: function(data) {
+            this.set(data);
+            this.set('isLogin', true);
+            this.trigger("login:ok");
         },
 
         logout: function() {

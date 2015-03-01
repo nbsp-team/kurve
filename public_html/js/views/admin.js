@@ -1,7 +1,7 @@
 define([
     'backbone',
-    'tmpl/components/user',
-    'models/user',
+    'tmpl/game',
+    'models/admin',
     'views/abstract'
 ], function(
     Backbone,
@@ -9,15 +9,15 @@ define([
     User,
     Abstract
 ){
+
     var View = Abstract.extend({
 
-        el: '#user-block',
+        el: '#admin',
         template: tmpl,
         model: User,
 
         initialize: function () {
-            this.listenTo(this.model, 'login:ok', this.render);
-            this.listenTo(this.model, 'logout', this.hide);
+
         }
     });
 

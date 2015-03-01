@@ -17,7 +17,8 @@ body {
     left: -250px;
     border-radius: 5px;
     z-index: 0;
-    padding-bottom: 27px;    
+    padding-bottom: 27px;
+    margin-bottom: 50px;
 }
 
 .wrapper:before {
@@ -142,11 +143,11 @@ body {
 /* ====================  User-block ======================= */
 
 #user-block {
-    position: absolute;
+    position: fixed;
     box-shadow: 0px 2px 4px 0px rgba(50, 50, 50, 0.3);
     bottom: 10px;
     right: 10px;
-    z-index: 0;
+    z-index: 1;
     height: 100px;
     width: 300px;
     border-radius: 3px;
@@ -189,5 +190,33 @@ body {
     color: #555;
 }
 
+/* ====================  User-block ======================= */
+
+/* ====================  Score-block ======================= */
+
+
+/* ================  table =================== */
+.flat-table {
+    margin: 0 auto;
+    font-family: arial;
+    font-size: 17px;
+    overflow: auto;
+}
+
+.flat-table th {
+    background-color: #3498DB;
+    color: white;
+    font-weight: normal;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.flat-table td {
+    background-color: #ECF0F1;
+    color: rgb(111, 111, 111);
+    padding: 10px 20px;
+}
+
+/* ================  table =================== */
 
 /* ====================  User-block ======================= */

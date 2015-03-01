@@ -1,6 +1,41 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
     <div class="wrapper">
         <div class="title"> Рейтинги </div>
+
+        <table class="flat-table">
+            <tr id="header-table">
+                <th> Место </th>
+                <th> Имя </th>
+                <th> Рейтинг </th>
+            </tr>
+            <tbody>
+
+                <fest:for iterate="json.collection.models" index="i">
+                        <tr>
+                            <td>
+                                <fest:value output="text">
+                                    i + 1
+                                </fest:value>
+                            </td>
+
+                            <td>
+                                <fest:value output="text">
+                                    json.collection.models[i].get('username');
+                                </fest:value>
+                            </td>
+
+                            <td>
+                                <fest:value output="text">
+                                    json.collection.models[i].get('global_rating');
+                                </fest:value>
+                            </td>
+                        </tr>
+                </fest:for>
+            </tbody>
+        </table>
+
+
+
         <a href="#" class="btn btn__rating red"> Назад </a>
     </div>
 </fest:template>

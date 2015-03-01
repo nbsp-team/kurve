@@ -2,14 +2,16 @@ define([
     'backbone',
     'tmpl/main',
     'notify',
-    'models/user'
+    'models/user',
+    'views/abstract'
 ], function(
     Backbone,
     tmpl,
     Notify,
-    User
+    User,
+    Abstract
 ){
-    var View = Backbone.View.extend({
+    var View = Abstract.extend({
 
         el: '#menu',
         template: tmpl,
@@ -30,23 +32,6 @@ define([
         initialize: function () {
             this.listenTo(this.model, 'login:ok', this.renderSignupOk);
             this.listenTo(this.model, 'login:error', this.renderSignupError);
-        },
-
-        dispose: function() {
-            this.hide();
-        },
-
-        render: function () {
-            $(this.el).html(this.template({'user': this.model}));
-            this.show();
-        },
-
-        show: function () {
-            $(this.el).show();
-        },
-
-        hide: function () {
-            $(this.el).hide();
         },
 
         renderSignupOk: function(message) {

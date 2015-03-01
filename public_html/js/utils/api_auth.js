@@ -12,43 +12,41 @@ define([
         var SIGNIN_URL = '/api/v1/auth/signin'; // Авторизация
 
         return {
-            signup: function(userModel, data) {
-
+            signup: function(data) {
+                var def = $.Deferred();
                 var post = $.post(SIGNUP_URL, data);
-
                 post.done(function(data) {
-                    userModel.signupResponse(data);
-                });
 
+                    if(data.error == null) {
+                        def.resolve(data.response);
+                    } else {
+                        def.reject(data.error.description);
+                    }
+                });
                 post.fail(function() {
-                    userModel.connectionError();
+                    def.reject("Ошибка подключения");
                 });
-                /*var dfd = $.Deferred();
-
-                $.post().done(function(data) {
-                    //do some actoin with data
-                    var newData = {};
-                    dfd.resolve(newData);
-                    dfd.reject(newData);
-                })
-
-                return dfd;*/
+                return def;
             },
 
-            signin: function(userModel, data) {
+            signin: function(data) {
+                var def = $.Deferred();
                 var post = $.post(SIGNIN_URL, data);
-
                 post.done(function(data) {
-                    userModel.signinResponse(data);
-                });
 
-                post.fail(function() {
-                    userModel.connectionError();
+                    if(data.error == null) {
+                        def.resolve(data.response);
+                    } else {
+                        def.reject(data.error.description);
+                    }
                 });
+                post.fail(function() {
+                    def.reject("Ошибка подключения");
+                });
+                return def;
             }
         }
 
     })();
-
 });
 

@@ -2,15 +2,17 @@ define([
     'backbone',
     'syphon',
     'tmpl/login',
-    'models/user'
+    'models/user',
+    'views/abstract'
 ], function(
     Backbone,
     Syphon,
     tmpl,
-    User
+    User,
+    Abstract
 ){
 
-    var View = Backbone.View.extend({
+    var View = Abstract.extend({
 
         el: '#login',
         template: tmpl,
@@ -20,26 +22,8 @@ define([
             'submit #login-form' : 'login'
         },
 
-        input_login: '[type=login]',
-        input_password: '[type=password]',
+        initialize: function () {
 
-        initialize: function () {},
-
-        render: function () {
-            $(this.el).html(this.template({'user': this.model}));
-            this.show();
-        },
-
-        dispose: function() {
-            this.hide();
-        },
-
-        show: function() {
-            $(this.el).show();
-        },
-
-        hide: function() {
-            $(this.el).hide();
         },
 
         login: function() {

@@ -2,15 +2,17 @@ define([
     'backbone',
     'syphon',
     'tmpl/register',
-    'models/user'
+    'models/user',
+    'views/abstract'
 ], function(
     Backbone,
     Syphon,
     tmpl,
-    User
+    User,
+    Abstract
 ){
 
-    var View = Backbone.View.extend({
+    var View = Abstract.extend({
 
         el: '#register',
         template: tmpl,
@@ -22,26 +24,7 @@ define([
 
         initialize: function () {},
 
-        dispose: function() {
-            this.hide();
-            this.stopListening();
-        },
-
-        render: function () {
-            $(this.el).html(this.template({'user': this.model}));
-            this.show();
-        },
-
-        show: function() {
-            $(this.el).show();
-        },
-
-        hide: function() {
-            $(this.el).hide();
-        },
-
         register: function() {
-            // Get data from form
             var userData = Syphon.serialize(this);
             this.model.register(userData);
             return false;

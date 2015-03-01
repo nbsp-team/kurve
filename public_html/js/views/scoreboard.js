@@ -1,38 +1,37 @@
 define([
     'backbone',
     'tmpl/scoreboard',
-    'models/user'
+    'views/abstract',
+    'collections/scores'
 ], function(
     Backbone,
     tmpl,
-    User
+    Abstract,
+    Collect
 ){
 
-    var View = Backbone.View.extend({
+    // Abstract.prototype.render.bind(this)();
+
+    var View = Abstract.extend({
 
         el: '#rating',
         template: tmpl,
+        collection: Collect,
 
         initialize: function () {
-
+            this.listenTo(this.collection, 'ratingLoad:ok', this.setCollection);
+            //this.listenTo(this.collection, 'ratingLoad:error', this.);
         },
 
-        dispose: function() {
-            this.hide();
+        render: function() {
+            this.collection.loadRating();
         },
 
-        render: function () {
-            $(this.el).html(this.template({'user': User}));
+        setCollection: function() {
+            $(this.el).html(this.template({'collection': this.collection}));
             this.show();
-        },
-
-        show: function() {
-            $(this.el).show();
-        },
-
-        hide: function() {
-            $(this.el).hide();
         }
+
     });
 
     return new View();
