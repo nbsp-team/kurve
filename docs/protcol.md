@@ -43,7 +43,7 @@ POST /api/v1/auth/signup
 ```js
 {
     error: {
-        code: 2,
+        code: 1,
         description: "Пользователь с таким именем уже существует"
     }
 }
@@ -77,7 +77,7 @@ POST /api/v1/auth/signin
 ```js
 {
     error: {
-        code: 3,
+        code: 0,
         description: "Неправильная пара логин/пароль"
     }
 }
