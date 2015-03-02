@@ -82,6 +82,25 @@ POST /api/v1/auth/signin
     }
 }
 ```
+## Пользователь
+#### Получение информации о пользователе
+```
+GET /api/v1/user/
+```
+
+#### Ответ сервера
+```js
+{
+    error: null,
+    response: {
+        user: {
+            username: "ivan333",
+            email: "ivan@gmail.com",
+            global_rating: 0
+        }
+    }
+}
+```
 
 ## Игра
 Для начала игры, требуется установить соединение с сервером по протоколу WebSocket:
