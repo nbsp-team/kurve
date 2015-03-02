@@ -14,6 +14,7 @@ define([
         el: '#user-block',
         template: tmpl,
         model: User,
+        templateArg: User,
 
         initialize: function () {
             this.listenTo(this.model, 'login:ok', this.render);

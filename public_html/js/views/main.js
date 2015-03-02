@@ -3,12 +3,14 @@ define([
     'tmpl/main',
     'notify',
     'models/user',
+    'models/session',
     'views/abstract'
 ], function(
     Backbone,
     tmpl,
     Notify,
     User,
+    Session,
     Abstract
 ){
     var View = Abstract.extend({
@@ -16,6 +18,7 @@ define([
         el: '#menu',
         template: tmpl,
         model: User,
+        templateArg: User,
 
         /* ================= Events ================= */
 

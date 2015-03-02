@@ -17,6 +17,7 @@ define([
         el: '#register',
         template: tmpl,
         model: User,
+        templateArg: User,
 
         events: {
             'submit #reg-form' : 'register'

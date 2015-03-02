@@ -7,9 +7,10 @@ define([
 ], function($) {
 
     return (function() {
-
-        var SIGNUP_URL = '/api/v1/auth/signup'; // Рега
-        var SIGNIN_URL = '/api/v1/auth/signin'; // Авторизация
+        var API_VERSION = 'v1';
+        var SIGNUP_URL = '/api/' + API_VERSION + '/auth/signup'; // Рега
+        var SIGNIN_URL = '/api/' + API_VERSION + '/auth/signin'; // Авторизация
+        var GET_USER_URL = '/api/' + API_VERSION + '/user/'; // Авторизация
 
         return {
             signup: function(data) {
@@ -40,6 +41,24 @@ define([
                         def.reject(data.error.description);
                     }
                 });
+                post.fail(function() {
+                    def.reject("Ошибка подключения");
+                });
+                return def;
+            },
+
+            getUser: function() {
+                var def = $.Deferred();
+                var post = $.get(GET_USER_URL);
+
+                post.done(function(data) {
+                    if(data.error == null) {
+                        def.resolve(data.response);
+                    } else {
+                        def.reject(data.error.description);
+                    }
+                });
+
                 post.fail(function() {
                     def.reject("Ошибка подключения");
                 });

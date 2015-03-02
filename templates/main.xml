@@ -2,13 +2,13 @@
     <div class="wrapper">
         <div class="title"> Меню </div>
 
-        <fest:if test="json.model.get('isLogin')">
+        <fest:if test="json.arg.get('isLogin')">
             <a href="#game" class="btn btn__main blue"> Начать </a>
             <a href="#scoreboard" class="btn btn__main blue"> Рейтинги </a>
             <div class="btn btn__main blue" id="logout"> Выйти </div>
         </fest:if>
 
-        <fest:if test="!json.model.get('isLogin')">
+        <fest:if test="!json.arg.get('isLogin')">
             <a href="#login" class="btn btn__main blue"> Войти </a>
             <a href="#register" class="btn btn__main blue"> Регистрация </a>
             <a href="#scoreboard" class="btn btn__main blue"> Рейтинги </a>

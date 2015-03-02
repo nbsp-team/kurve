@@ -17,14 +17,13 @@ define([
         el: '#login',
         template: tmpl,
         model: User,
+        templateArg: User,
 
         events: {
             'submit #login-form' : 'login'
         },
 
-        initialize: function () {
-
-        },
+        initialize: function () {},
 
         login: function() {
             var userData = Syphon.serialize(this);

@@ -13,6 +13,7 @@ define([
         el: '#game',
         template: tmpl,
         model: User,
+        templateArg: User,
 
         initialize: function () {
             // TODO

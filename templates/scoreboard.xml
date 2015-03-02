@@ -10,7 +10,7 @@
             </tr>
             <tbody>
 
-                <fest:for iterate="json.collection.models" index="i">
+                <fest:for iterate="json.arg.models" index="i">
                         <tr>
                             <td>
                                 <fest:value output="text">
@@ -20,13 +20,13 @@
 
                             <td>
                                 <fest:value output="text">
-                                    json.collection.models[i].get('username');
+                                    json.arg.models[i].get('username');
                                 </fest:value>
                             </td>
 
                             <td>
                                 <fest:value output="text">
-                                    json.collection.models[i].get('global_rating');
+                                    json.arg.models[i].get('global_rating');
                                 </fest:value>
                             </td>
                         </tr>

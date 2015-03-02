@@ -10,8 +10,13 @@ define([
         },
 
         render: function () {
-            $(this.el).html(this.template({'model': this.model}));
+            this.trigger('loading:finish');
+            $(this.el).html(this.template({'arg': this.templateArg}));
             this.show();
+        },
+
+        load: function() {
+            this.render();
         },
 
         show: function () {

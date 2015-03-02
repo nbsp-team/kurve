@@ -1,7 +1,7 @@
 define([
     'backbone',
     'models/score',
-    'utils/api_rating'
+    'utils/api/api_rating'
 ], function(
     Backbone,
     Score,

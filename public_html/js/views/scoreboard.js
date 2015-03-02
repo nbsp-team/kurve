@@ -17,21 +17,16 @@ define([
         el: '#rating',
         template: tmpl,
         collection: Collect,
+        templateArg: Collect,
 
         initialize: function () {
-            this.listenTo(this.collection, 'ratingLoad:ok', this.setCollection);
+            this.listenTo(this.collection, 'ratingLoad:ok', this.render);
             //this.listenTo(this.collection, 'ratingLoad:error', this.);
         },
 
-        render: function() {
+        load: function() {
             this.collection.loadRating();
-        },
-
-        setCollection: function() {
-            $(this.el).html(this.template({'collection': this.collection}));
-            this.show();
         }
-
     });
 
     return new View();

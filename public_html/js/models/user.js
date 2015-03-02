@@ -1,6 +1,6 @@
 define([
     'backbone',
-    'utils/api_auth'
+    'utils/api/api_auth'
 ], function(
     Backbone,
     Api
@@ -29,20 +29,33 @@ define([
             );
         },
 
+        checkAuth: function() {
+            Api.getUser().then(
+                this.checkAuthhandler.bind(this),
+                this.errorHandler.bind(this)
+            );
+        },
+
         errorHandler: function(message) {
             this.trigger("login:error", message);
+        },
+
+        checkAuthhandler: function(data) {
+            this.set(data);
+            this.set('isLogin', true);
+            this.trigger("login:ok");
         },
 
         loginHandler: function(data) {
             this.set(data);
             this.set('isLogin', true);
             this.trigger("login:ok");
+            this.trigger("redirect:home");
         },
 
         logout: function() {
             this.clear()
                 .set(this.defaults);
-
             this.trigger("logout");
         }
     });

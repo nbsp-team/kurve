@@ -1,12 +1,10 @@
 define([
     'backbone',
-    'tmpl/game',
-    'models/admin',
+    'tmpl/admin',
     'views/abstract'
 ], function(
     Backbone,
     tmpl,
-    User,
     Abstract
 ){
 
@@ -14,9 +12,12 @@ define([
 
         el: '#admin',
         template: tmpl,
-        model: User,
 
         initialize: function () {
+            //this.listenTo(this.collection, 'ratingLoad:error', this.);
+        },
+
+        load: function() {
 
         }
     });

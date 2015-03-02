@@ -5,7 +5,8 @@ define([
     'views/scoreboard',
     'views/login',
     'views/register',
-    'views/user',
+    'views/components/preloader',
+    'views/components/user',
     'models/user'
 ], function(
     Backbone,
@@ -14,6 +15,7 @@ define([
     Score,
     Login,
     Register,
+    Preloader,
     UserView,
     User
 ){
@@ -24,14 +26,15 @@ define([
             'game': 'gameAction',
             'login': 'loginAction',
             'register': 'registerAction',
-            '*default': 'defaultActions'
+            '*default': 'defaultAction'
         },
 
         currentView: null,
+        preloader: Preloader,
 
         initialize: function () {
-            this.listenTo(User, 'login:ok', this.navigateHome);
-            this.listenTo(User, 'logout', this.defaultActions);
+            this.listenTo(User, 'redirect:home', this.navigateHome);
+            this.listenTo(User, 'logout', this.defaultAction);
         },
 
         /* ================ Navigate Utils ================ */
@@ -46,7 +49,7 @@ define([
 
         /* ================ Navigate Utils ================ */
 
-        defaultActions: function () {
+        defaultAction: function () {
             this.setView(Main);
         },
         scoreboardAction: function () {
@@ -61,17 +64,25 @@ define([
         registerAction: function () {
             this.setView(Register);
         },
-        adminAction: function () {
-            this.setView(Register);
-        },
 
-        setView: function(model) {
-
+        setView: function(view) {
             if(this.currentView) {
                 this.currentView.dispose();
             }
-            this.currentView = model;
-            model.render();
+
+            this.showPreloader();
+            this.listenToOnce(view, 'loading:finish', this.hidePreloader);
+
+            this.currentView = view;
+            view.load();
+        },
+
+        showPreloader: function() {
+            this.preloader.show();
+        },
+
+        hidePreloader: function() {
+            this.preloader.hide();
         }
     });
 
