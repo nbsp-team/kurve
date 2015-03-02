@@ -1,5 +1,5 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
-<fest:insert src="signup_validation_scripts.html"/>
+
 
     <div class="wrapper">
         <div class="title"> Регистрация </div>
@@ -7,12 +7,13 @@
         <form id="reg-form">
 
 	    <input class="input-field" name="username" type="username" placeholder="Логин" required="" 
-	    oninput="username_oninput(this)"  />
+	    id="username_input"  />
 
        
             <input class="input-field" name="email" type="email" placeholder="Email" required="" />
-            <input class="input-field" name="password" id="password" type="password" placeholder="Пароль" required="" oninput="password_oninput()"/>
-	    <input class="input-field" name="password" id="password_repeat" type="password" placeholder="Повторите пароль" required="" oninput="password_oninput()"/>
+            <input class="input-field" name="password" id="password" type="password" placeholder="Пароль" required="" 
+            id="password_input" />
+	    <input class="input-field" name="password" id="password_repeat" type="password" placeholder="Повторите пароль" required="" id="password_repeat" />
             <button class="btn btn__reg blue" id="register"> Регистрация </button>
         </form>
 
