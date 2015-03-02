@@ -54,5 +54,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-shell');
     grunt.loadNpmTasks('grunt-fest');
 
-    grunt.registerTask('default', ['concurrent']);
+    grunt.registerTask('default', ['shell:buildServer', 'concurrent']);
 };
