@@ -1,5 +1,5 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
-<fest:insert src="signup_validation_scripts.html"/>
+<fest:insert src="signup_validation_scripts.txt"/>
 
     <div class="wrapper">
         <div class="title"> Регистрация </div>
