@@ -1,23 +1,45 @@
 define([
     'backbone',
     'tmpl/admin',
-    'views/abstract'
+    'views/abstract',
+    'utils/api/api_admin',
+    'models/serverStatus'
 ], function(
     Backbone,
     tmpl,
-    Abstract
+    Abstract,
+    Api,
+    ServerStatus
 ){
 
     var View = Abstract.extend({
 
         el: '#admin',
         template: tmpl,
+        templateArg: ServerStatus,
+        model: ServerStatus,
 
-        initialize: function () {
-            //this.listenTo(this.collection, 'ratingLoad:error', this.);
+        events: {
+            'click #shutdown' : 'shutdownServer'
         },
 
-        load: function() {
+        initialize: function () {
+            this.listenTo(this.model, 'change', this.render);
+            ServerStatus.update();
+        },
+
+        shutdownServer: function() {
+            Api.shutdownServer(5000).then(
+                this.shutdownSuccess.bind(this),
+                this.shutdownError.bind(this)
+            );
+        },
+
+        shutdownSuccess: function() {
+
+        },
+
+        shutdownError: function() {
 
         }
     });

@@ -68,9 +68,27 @@ body {
     color: #666;
     margin-top: 20px;
     margin-bottom: 25px;
-    letter-spacing: 4px;
+    letter-spacing: 3px;
     font: normal 30px/1 Verdana, Helvetica;
     position: relative;
+}
+
+.subtitle {
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0px 2px 0 rgba(125, 125, 125, .5);
+    text-transform: uppercase;
+    text-align: center;
+    color: #666;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    letter-spacing: 3px;
+    font: normal 20px/1 Verdana, Helvetica;
+    position: relative;
+}
+
+p {
+    font-family:'Open Sans', sans-serif;
+    width: 80%;
+    margin: 15px auto;
 }
 
 /* =======================  Buttons ========================= */
@@ -109,7 +127,12 @@ body {
     box-shadow: 0px 5px 0px 0px #CE3323;
 }
 
-.btn__main, .btn__login, .btn__rating, .btn__reg {
+.btn--short {
+    margin: 15px auto;
+    width: 40%;
+}
+
+.btn__main, .btn__login, .btn__rating, .btn__reg, .btn__admin {
     margin: 15px auto;
     width: 80%;
 }

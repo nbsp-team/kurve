@@ -5,6 +5,7 @@ define([
     'views/scoreboard',
     'views/login',
     'views/register',
+    'views/admin',
     'views/components/preloader',
     'views/components/user',
     'models/user'
@@ -15,6 +16,7 @@ define([
     Score,
     Login,
     Register,
+    Admin,
     Preloader,
     UserView,
     User
@@ -26,6 +28,7 @@ define([
             'game': 'gameAction',
             'login': 'loginAction',
             'register': 'registerAction',
+            'admin': 'adminAction',
             '*default': 'defaultAction'
         },
 
@@ -63,6 +66,10 @@ define([
         },
         registerAction: function () {
             this.setView(Register);
+        },
+        adminAction: function () {
+            console.log("admin");
+            this.setView(Admin);
         },
 
         setView: function(view) {

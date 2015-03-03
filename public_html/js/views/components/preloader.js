@@ -9,11 +9,11 @@ define([
         el: '#preloader',
 
         show: function() {
-            $(this.el).show();
+            $(this.el).fadeIn();
         },
 
         hide: function() {
-            $(this.el).hide();
+            $(this.el).fadeOut();
         }
     });
 
