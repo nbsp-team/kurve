@@ -10,8 +10,6 @@ define([
     Collect
 ){
 
-    // Abstract.prototype.render.bind(this)();
-
     var View = Abstract.extend({
 
         el: '#rating',
@@ -20,8 +18,7 @@ define([
         templateArg: Collect,
 
         initialize: function () {
-            this.listenTo(this.collection, 'ratingLoad:ok', this.render);
-            //this.listenTo(this.collection, 'ratingLoad:error', this.);
+            this.listenTo(this.collection, 'add', this.render);
         },
 
         load: function() {

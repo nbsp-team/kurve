@@ -14,9 +14,6 @@ define([
             return -score.get('global_rating');
         },
 
-        initialize: function() {
-        },
-
         loadRating: function() {
             Rating_api.loadRating().then(
                 this.successLoadingHandler.bind(this),
@@ -25,8 +22,7 @@ define([
         },
 
         successLoadingHandler: function(data) {
-            this.set(data);
-            this.trigger('ratingLoad:ok');
+            this.add(data);
         },
 
         errorLoadingHandler: function(message) {

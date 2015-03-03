@@ -25,10 +25,14 @@ require.config({
 
 require([
     'backbone',
-    'router'
+    'router',
+    'views/components/user',
+    'views/components/alert'
 ], function(
     Backbone,
-    Router
+    Router,
+    ShowUser,
+    Alerter
 ) {
     Backbone.history.start();
 });

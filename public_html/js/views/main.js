@@ -1,14 +1,14 @@
 define([
     'backbone',
     'tmpl/main',
-    'notify',
     'models/user',
+    'models/alertManager',
     'views/abstract'
 ], function(
     Backbone,
     tmpl,
-    Notify,
     User,
+    AlertManager,
     Abstract
 ){
     var View = Abstract.extend({
@@ -26,28 +26,9 @@ define([
 
         logoutEvent: function() {
             this.model.logout();
-        },
+        }
 
         /* ================= Events ================= */
-
-        initialize: function () {
-            this.listenTo(this.model, 'login:ok', this.renderSignupOk);
-            this.listenTo(this.model, 'login:error', this.renderSignupError);
-        },
-
-        renderSignupOk: function(message) {
-            $.notify("Готово", {
-                position: 'bottom',
-                className: 'success'
-            });
-        },
-
-        renderSignupError: function(message) {
-            $.notify(message, {
-                position: 'bottom',
-                className: 'error'
-            });
-        }
     });
 
     return new View();

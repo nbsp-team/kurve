@@ -7,7 +7,7 @@ define([
     'views/register',
     'views/admin',
     'views/components/preloader',
-    'views/components/user',
+    'models/redirectManager',
     'models/user'
 ], function(
     Backbone,
@@ -18,7 +18,7 @@ define([
     Register,
     Admin,
     Preloader,
-    UserView,
+    Redirector,
     User
 ){
 
@@ -36,15 +36,11 @@ define([
         preloader: Preloader,
 
         initialize: function () {
-            this.listenTo(User, 'redirect:home', this.navigateHome);
+            this.listenTo(Redirector, 'navigate', this.navigateTo);
             this.listenTo(User, 'logout', this.defaultAction);
         },
 
         /* ================ Navigate Utils ================ */
-
-        navigateHome: function() {
-            this.navigateTo('/');
-        },
 
         navigateTo: function(url) {
             this.navigate(url, {trigger: true});
@@ -68,7 +64,6 @@ define([
             this.setView(Register);
         },
         adminAction: function () {
-            console.log("admin");
             this.setView(Admin);
         },
 

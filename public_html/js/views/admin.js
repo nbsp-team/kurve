@@ -25,22 +25,14 @@ define([
 
         initialize: function () {
             this.listenTo(this.model, 'change', this.render);
-            ServerStatus.update();
+        },
+
+        load: function() {
+            this.model.update();
         },
 
         shutdownServer: function() {
-            Api.shutdownServer(5000).then(
-                this.shutdownSuccess.bind(this),
-                this.shutdownError.bind(this)
-            );
-        },
-
-        shutdownSuccess: function() {
-
-        },
-
-        shutdownError: function() {
-
+            this.model.shutdownServer();
         }
     });
 

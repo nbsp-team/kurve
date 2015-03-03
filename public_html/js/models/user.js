@@ -1,9 +1,13 @@
 define([
     'backbone',
-    'utils/api/api_auth'
+    'utils/api/api_auth',
+    'models/redirectManager',
+    'models/alertManager'
 ], function(
     Backbone,
-    Api
+    Api,
+    Redirector,
+    Alerter
 ){
 
     var User = Backbone.Model.extend({
@@ -14,6 +18,8 @@ define([
             "global_rating": 0,
             "isLogin": false
         },
+
+        userOkMessage: "Все хорошо",
 
         register: function(userObject) {
             Api.signup(userObject).then(
@@ -29,33 +35,40 @@ define([
             );
         },
 
+        /*
         checkAuth: function() {
             Api.getUser().then(
                 this.checkAuthhandler.bind(this),
                 this.errorHandler.bind(this)
             );
         },
+        */
 
         errorHandler: function(message) {
-            this.trigger("login:error", message);
+            Alerter.alert(message, 'error');
         },
 
+        /*
         checkAuthhandler: function(data) {
             this.set(data);
             this.set('isLogin', true);
             this.trigger("login:ok");
         },
+        */
 
         loginHandler: function(data) {
             this.set(data);
             this.set('isLogin', true);
-            this.trigger("login:ok");
-            this.trigger("redirect:home");
+
+            Alerter.alert(this.userOkMessage, "success");
+            Redirector.redirectTo('/');
+            this.trigger('login:ok');
         },
 
         logout: function() {
             this.clear()
                 .set(this.defaults);
+
             this.trigger("logout");
         }
     });

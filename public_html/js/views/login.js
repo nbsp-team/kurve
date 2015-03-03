@@ -23,8 +23,6 @@ define([
             'submit #login-form' : 'login'
         },
 
-        initialize: function () {},
-
         login: function() {
             var userData = Syphon.serialize(this);
             this.model.login(userData);
