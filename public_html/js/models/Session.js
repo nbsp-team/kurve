@@ -17,7 +17,7 @@ define([
             this.trigger('change:loggedIn');
         },
 
-        updateSessionUser: function(userData){
+        updateSessionUser: function(userData) {
             this.user.set(_.pick(userData, _.keys(this.user.defaults)));
         },
 
@@ -36,23 +36,36 @@ define([
             );
         },
 
-
-        login: function(userData){
+        signup: function(userData) {
             var self = this;
-            app.api.auth.signIn(userData).then(
+            app.api.auth.signUp(userData).then(
                 function(userData) {
-                    self.set("loggedIn", true);
                     self.updateSessionUser(userData);
+                    self.set("loggedIn", true);
                 },
                 function(errorObject) {
-                    console.log(errorObject);
                     app.notify.notify(errorObject.description, 'error');
                     self.set("loggedIn", false);
                 }
             );
         },
 
-        logout: function(){
+
+        login: function(userData) {
+            var self = this;
+            app.api.auth.signIn(userData).then(
+                function(userData) {
+                    self.updateSessionUser(userData);
+                    self.set("loggedIn", true);
+                },
+                function(errorObject) {
+                    app.notify.notify(errorObject.description, 'error');
+                    self.set("loggedIn", false);
+                }
+            );
+        },
+
+        logout: function() {
             var self = this;
             app.api.auth.signOut().then(
                 function() {
@@ -61,14 +74,6 @@ define([
                 function(errorObject) {
                 }
             );
-        },
-
-        signup: function(opts, callback, args){
-            this.postAuth(_.extend(opts, { method: 'signup' }), callback);
-        },
-
-        removeAccount: function(opts, callback, args){
-            this.postAuth(_.extend(opts, { method: 'remove_account' }), callback);
         }
     });
 

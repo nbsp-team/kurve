@@ -5,15 +5,10 @@
         <div class="title"> Регистрация </div>
 
         <form id="reg-form">
-
-	    <input class="input-field" name="username" type="username" placeholder="Логин" required="" 
-	    id="username_input"  />
-
-       
+            <input class="input-field" name="username" type="username" placeholder="Логин" required=""
+                    pattern="^[\w\.]*$" title="Допустимые символы: Латинские буквы, '_', '.'."/>
             <input class="input-field" name="email" type="email" placeholder="Email" required="" />
-            <input class="input-field" name="password" id="password" type="password" placeholder="Пароль" required="" 
-            id="password_input" />
-	    <input class="input-field" name="password" id="password_repeat" type="password" placeholder="Повторите пароль" required="" id="password_repeat" />
+            <input class="input-field" name="password" type="password" placeholder="Пароль" required="" />
             <button class="btn btn__reg blue" id="register"> Регистрация </button>
         </form>
 

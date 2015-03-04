@@ -5,7 +5,7 @@
         <form id="login-form">
             <input class="input-field" name="username" type="username" placeholder="Логин" required="" />
             <input class="input-field" name="password" type="password" placeholder="Пароль" required="" />
-            <button class="btn btn__login blue" id="register"> Войти </button>
+            <button class="btn btn__login blue" id="login"> Войти </button>
         </form>
 
         <a href="#" class="btn btn__login red"> Назад </a>

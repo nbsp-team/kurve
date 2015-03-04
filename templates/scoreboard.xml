@@ -11,25 +11,25 @@
             <tbody>
 
                 <fest:for iterate="json.arg.models" index="i">
-                        <tr>
-                            <td>
-                                <fest:value output="text">
-                                    i + 1
-                                </fest:value>
-                            </td>
+                    <tr>
+                        <td>
+                            <fest:value output="text">
+                                i + 1
+                            </fest:value>
+                        </td>
 
-                            <td>
-                                <fest:value output="text">
-                                    json.arg.models[i].get('username');
-                                </fest:value>
-                            </td>
+                        <td>
+                            <fest:value output="text">
+                                json.arg.models[i].get('username');
+                            </fest:value>
+                        </td>
 
-                            <td>
-                                <fest:value output="text">
-                                    json.arg.models[i].get('global_rating');
-                                </fest:value>
-                            </td>
-                        </tr>
+                        <td>
+                            <fest:value output="text">
+                                json.arg.models[i].get('global_rating');
+                            </fest:value>
+                        </td>
+                    </tr>
                 </fest:for>
             </tbody>
         </table>

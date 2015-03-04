@@ -22,7 +22,7 @@ define([
         },
 
         successLoadingHandler: function(data) {
-            this.add(data);
+            this.set(data);
         },
 
         errorLoadingHandler: function(message) {

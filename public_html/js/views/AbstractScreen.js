@@ -9,6 +9,11 @@ define([
             this.hide();
         },
 
+        load: function() {
+            this.render();
+            this.show();
+        },
+
         render: function () {
             $(this.el).html(this.template(
                 {

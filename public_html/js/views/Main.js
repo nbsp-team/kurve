@@ -13,11 +13,10 @@ define([
 
         el: '#menu',
         template: tmpl,
-        model: User,
         templateArg: User,
 
         initialize: function() {
-            this.listenTo(app.session, "change:loggedIn", this.render);
+            this.listenTo(app.session, "change:loggedIn", this.load);
         },
 
         /* ================= Events ================= */

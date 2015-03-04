@@ -36,7 +36,6 @@ body {
     overflow: hidden;
 }
 
-
 #container__ingame {
     margin-top: 30px;
     position: absolute;
@@ -198,10 +197,12 @@ p {
 }
 
 #user-block__right-block {
-    margin-top: 20px;
+    margin-top: 14px;
+    overflow: hidden;
 }
 
 .user-field {
+    overflow: hidden;
     margin: 5px;
     font-family: arial;
     color: #222;
@@ -241,5 +242,3 @@ p {
 }
 
 /* ================  table =================== */
-
-/* ====================  User-block ======================= */

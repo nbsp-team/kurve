@@ -19,8 +19,13 @@ define([
             // TODO
         },
 
+        load: function() {
+            this.render();
+            this.show();
+        },
+
         render: function () {
-            $(this.el).html(this.template({'model': this.model}));
+            $(this.el).html(this.template({'model': this.templateArg}));
         },
 
         dispose: function() {

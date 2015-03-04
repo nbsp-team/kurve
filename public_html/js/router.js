@@ -35,8 +35,6 @@ define([
 
         },
 
-        /* ================ Navigate Utils ================ */
-
         navigateTo: function(url) {
             this.navigate(url, {trigger: true});
         },
@@ -46,13 +44,11 @@ define([
 
             if(this.currentView) {
                 this.currentView.dispose();
-                this.currentView.remove();
-                this.currentView.remove();
+                this.currentView.undelegateEvents();
             }
 
             this.currentView = view;
-            view.render();
-            view.show();
+            view.load();
         },
 
         initViews: function() {
