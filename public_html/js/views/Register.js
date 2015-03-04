@@ -1,11 +1,11 @@
 define([
-    'backbone',
+    'app',
     'syphon',
     'tmpl/register',
-    'models/user',
-    'views/abstract'
+    'models/User',
+    'views/AbstractScreen'
 ], function(
-    Backbone,
+    app,
     Syphon,
     tmpl,
     User,
@@ -62,5 +62,5 @@ define([
 	}
     });
 
-    return new View();
+    return View;
 });

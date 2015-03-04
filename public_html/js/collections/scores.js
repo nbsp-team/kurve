@@ -1,9 +1,9 @@
 define([
-    'backbone',
-    'models/score',
+    'app',
+    '../models/Score',
     'utils/api/api_rating'
 ], function(
-    Backbone,
+    app,
     Score,
     Rating_api
 ){

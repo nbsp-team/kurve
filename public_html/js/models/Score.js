@@ -1,7 +1,7 @@
 define([
-    'backbone'
+    'app'
 ], function(
-    Backbone
+    app
 ){
     var Score = Backbone.Model.extend({
         defaults: {

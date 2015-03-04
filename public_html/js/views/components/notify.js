@@ -1,17 +1,15 @@
 define([
-    'backbone',
-    'notify',
-    'models/alertManager'
+    'app',
+    'notify'
 ], function(
-    Backbone,
-    Notify,
-    AlertManager
+    app,
+    Notify
 ){
 
-    var Alert = Backbone.View.extend({
+    var Notify = Backbone.View.extend({
 
         initialize: function () {
-            this.listenTo(AlertManager, 'alert', this.showMessage);
+            this.listenTo(app.notify, 'notify', this.showMessage);
         },
 
         showMessage: function(message, status) {
@@ -22,5 +20,5 @@ define([
         }
     });
 
-    return new Alert();
+    return Notify;
 });

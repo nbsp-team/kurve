@@ -1,10 +1,10 @@
 define([
-    'backbone',
+    'app',
     'tmpl/scoreboard',
-    'views/abstract',
+    'views/AbstractScreen',
     'collections/scores'
 ], function(
-    Backbone,
+    app,
     tmpl,
     Abstract,
     Collect
@@ -26,5 +26,5 @@ define([
         }
     });
 
-    return new View();
+    return View;
 });

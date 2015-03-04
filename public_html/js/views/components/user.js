@@ -1,26 +1,47 @@
 define([
-    'backbone',
+    'app',
     'tmpl/components/user',
-    'models/user',
-    'views/abstract'
+    'models/User'
 ], function(
-    Backbone,
+    app,
     tmpl,
-    User,
-    Abstract
+    User
 ){
-    var View = Abstract.extend({
+    var View = Backbone.View.extend({
 
         el: '#user-block',
         template: tmpl,
-        model: User,
-        templateArg: User,
 
         initialize: function () {
-            this.listenTo(this.model, 'login:ok', this.render);
-            this.listenTo(this.model, 'logout', this.hide);
+            this.listenTo(app.session, 'change:loggedIn', this.update);
+        },
+
+        show: function() {
+            $(this.el).fadeIn();
+        },
+
+        hide: function() {
+            $(this.el).fadeOut();
+        },
+
+        update: function() {
+            if (!app.session.get('loggedIn')) {
+                this.hide();
+            } else {
+                this.render();
+                this.show();
+            }
+        },
+
+        render: function () {
+            $(this.el).html(this.template(
+                {
+                    'app': app,
+                    'user': app.session.user.toJSON()
+                }
+            ));
         }
     });
 
-    return new View();
+    return View;
 });

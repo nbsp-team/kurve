@@ -1,27 +1,24 @@
 define([
-    'backbone',
-    'views/main',
-    'views/game',
-    'views/scoreboard',
-    'views/login',
-    'views/register',
-    'views/admin',
-    'views/components/preloader',
-    'models/redirectManager',
-    'models/user'
+    'app',
+    'views/Main',
+    'views/Game',
+    'views/Scoreboard',
+    'views/Login',
+    'views/Register',
+    'views/Admin',
+    'views/components/user',
+    'views/components/notify'
 ], function(
-    Backbone,
+    app,
     Main,
     Game,
     Score,
     Login,
     Register,
     Admin,
-    Preloader,
-    Redirector,
-    User
+    UserView,
+    NotifyView
 ){
-
     var Router = Backbone.Router.extend({
         routes: {
             'scoreboard': 'scoreboardAction',
@@ -33,11 +30,9 @@ define([
         },
 
         currentView: null,
-        preloader: Preloader,
 
         initialize: function () {
-            this.listenTo(Redirector, 'navigate', this.navigateTo);
-            this.listenTo(User, 'logout', this.defaultAction);
+
         },
 
         /* ================ Navigate Utils ================ */
@@ -46,47 +41,53 @@ define([
             this.navigate(url, {trigger: true});
         },
 
+        showView: function(view) {
+            this.initViews();
+
+            if(this.currentView) {
+                this.currentView.dispose();
+                this.currentView.remove();
+                this.currentView.remove();
+            }
+
+            this.currentView = view;
+            view.render();
+            view.show();
+        },
+
+        initViews: function() {
+            if (!this.userView) {
+                this.userView = new UserView();
+                // TODO:
+                app.session.triggerLoggedUpdate();
+            }
+
+            if (!this.notifyView) {
+                this.notifyView = new NotifyView();
+            }
+        },
+
         /* ================ Navigate Utils ================ */
 
         defaultAction: function () {
-            this.setView(Main);
+            this.showView(new Main());
         },
         scoreboardAction: function () {
-            this.setView(Score);
+            this.showView(new Score());
         },
         gameAction: function () {
-            this.setView(Game);
+            this.showView(new Game());
         },
         loginAction: function () {
-            this.setView(Login);
+            this.showView(new Login());
         },
         registerAction: function () {
-            this.setView(Register);
+            this.showView(new Register());
         },
         adminAction: function () {
-            this.setView(Admin);
-        },
-
-        setView: function(view) {
-            if(this.currentView) {
-                this.currentView.dispose();
-            }
-
-            this.showPreloader();
-            this.listenToOnce(view, 'loading:finish', this.hidePreloader);
-
-            this.currentView = view;
-            view.load();
-        },
-
-        showPreloader: function() {
-            this.preloader.show();
-        },
-
-        hidePreloader: function() {
-            this.preloader.hide();
+            this.showView(new Admin());
         }
     });
 
-    return new Router();
+    return Router;
 });

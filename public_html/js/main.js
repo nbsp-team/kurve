@@ -1,38 +1,19 @@
-require.config({
-    urlArgs: "_=" + (new Date()).getTime(),
-    baseUrl: "js",
-    paths: {
-        jquery: "lib/jquery",
-        underscore: "lib/underscore",
-        backbone: "lib/backbone",
-        syphon: "lib/backbone-syphon",
-        notify: "lib/notify.min"
-    },
-    shim: {
-        'backbone': {
-            deps: ['underscore', 'jquery'],
-            exports: 'Backbone'
-        },
-        'underscore': {
-            exports: '_'
-        },
-        'notify': {
-            deps: ['jquery'],
-            exports: '$'
-        }
-    }
-});
-
 require([
-    'backbone',
+    'app',
     'router',
-    'views/components/user',
-    'views/components/alert'
+    'models/Session',
+    'models/NotifyManager'
 ], function(
-    Backbone,
+    app,
     Router,
-    ShowUser,
-    Alerter
+    SessionModel,
+    NotifyManager
 ) {
-    Backbone.history.start();
+    app.session = new SessionModel({});
+    app.router = new Router();
+    app.notify = new NotifyManager();
+
+    app.session.checkAuth(function(isLogged){
+        Backbone.history.start();
+    });
 });

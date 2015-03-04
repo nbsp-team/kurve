@@ -1,18 +1,18 @@
 define([
-    'backbone',
+    'app',
     'tmpl/admin',
-    'views/abstract',
+    'views/AbstractScreen',
     'utils/api/api_admin',
-    'models/serverStatus'
+    'models/ServerStatus'
 ], function(
-    Backbone,
+    app,
     tmpl,
-    Abstract,
+    AbstractScreen,
     Api,
     ServerStatus
 ){
 
-    var View = Abstract.extend({
+    var View = AbstractScreen.extend({
 
         el: '#admin',
         template: tmpl,
@@ -36,5 +36,5 @@ define([
         }
     });
 
-    return new View();
+    return View;
 });

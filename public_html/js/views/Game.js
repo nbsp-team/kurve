@@ -1,9 +1,9 @@
 define([
-    'backbone',
+    'app',
     'tmpl/game',
-    'models/user'
+    '../models/User'
 ], function(
-    Backbone,
+    app,
     tmpl,
     User
 ){
@@ -21,7 +21,6 @@ define([
 
         render: function () {
             $(this.el).html(this.template({'model': this.model}));
-            this.show();
         },
 
         dispose: function() {
@@ -37,5 +36,5 @@ define([
         }
     });
 
-    return new View();
+    return View;
 });

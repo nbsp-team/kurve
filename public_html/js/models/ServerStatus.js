@@ -1,11 +1,9 @@
 define([
-    'backbone',
+    'app',
     'utils/api/api_admin',
-    'models/alertManager'
 ], function(
-    Backbone,
-    Api,
-    Alerter
+    app,
+    Api
 ){
 
     var ServerStatus = Backbone.Model.extend({
@@ -30,7 +28,7 @@ define([
         },
 
         shutdownServerSuccess: function() {
-            Alerter.alert("Сервер выключиться через 5 секунд", "success");
+            app.notify.notify("Сервер выключиться через 5 секунд", "success");
         },
 
         shutdownServerError: function() {},

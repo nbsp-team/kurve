@@ -1,14 +1,12 @@
 define([
-    'backbone',
+    'app',
     'tmpl/main',
-    'models/user',
-    'models/alertManager',
-    'views/abstract'
+    'models/User',
+    'views/AbstractScreen'
 ], function(
-    Backbone,
+    app,
     tmpl,
     User,
-    AlertManager,
     Abstract
 ){
     var View = Abstract.extend({
@@ -18,6 +16,10 @@ define([
         model: User,
         templateArg: User,
 
+        initialize: function() {
+            this.listenTo(app.session, "change:loggedIn", this.render);
+        },
+
         /* ================= Events ================= */
 
         events: {
@@ -25,11 +27,11 @@ define([
         },
 
         logoutEvent: function() {
-            this.model.logout();
+            app.session.logout();
         }
 
         /* ================= Events ================= */
     });
 
-    return new View();
+    return View;
 });
