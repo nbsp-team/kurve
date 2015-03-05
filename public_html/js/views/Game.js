@@ -22,7 +22,7 @@ define([
         render: function () {
             $(this.el).html(this.template({'model': this.templateArg}));
 
-            var width = window.innerWidth;
+            var width = 1000;
             var height = 600;
             var stage = new Konva.Stage({
                 container: 'gameContainer',
