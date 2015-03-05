@@ -1,6 +1,6 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
-    <div class="wrapper">
-        <div class="title"> Рейтинги </div>
+    <div id="scoreboard__wrapper">
+        <div class="scoreboard__wrapper__title"> Рейтинги </div>
 
         <table class="flat-table">
             <tr id="header-table">
@@ -36,6 +36,6 @@
 
 
 
-        <a href="#" class="btn btn__rating red"> Назад </a>
+        <a href="#" class="scoreboard__wrapper__btn btn--red"> Назад </a>
     </div>
 </fest:template>
