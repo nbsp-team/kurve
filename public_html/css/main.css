@@ -11,7 +11,7 @@ body {
     margin-top: 30px;
     position: absolute;
     background-color: white;
-    box-shadow: 0px 2px 4px 0px rgba(50, 50, 50, 0.3);
+    box-shadow: 0 2px 4px 0 rgba(50, 50, 50, 0.3);
     width: 500px;
     margin-left: 50%;
     left: -250px;
@@ -61,7 +61,7 @@ body {
 }
 
 .title {
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0px 2px 0 rgba(0, 0, 0, .5);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0 2px 0 rgba(0, 0, 0, .5);
     text-transform: uppercase;
     text-align: center;
     color: #666;
@@ -73,7 +73,7 @@ body {
 }
 
 .subtitle {
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0px 2px 0 rgba(125, 125, 125, .5);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0 2px 0 rgba(125, 125, 125, .5);
     text-transform: uppercase;
     text-align: center;
     color: #666;
@@ -95,7 +95,7 @@ p {
 .btn {
     border: none;
     border-radius: 5px;    
-    padding: 10px 0px;
+    padding: 10px 0;
     font-size: 19px;
     text-decoration: none;    
     color: #fff;
@@ -103,13 +103,13 @@ p {
     position: relative;
     display: block;
     cursor: pointer;
-    font-family: Verdana, Helvetica;
+    font-family: Verdana, Helvetica, sans-serif;;
 }
 
 .btn:active {
     transform: translate(0px, 5px);
     -webkit-transform: translate(0px, 5px);
-    box-shadow: 0px 1px 0px 0px;
+    box-shadow: 0 1px 0 0;
 }
 
 .btn:focus {
@@ -118,12 +118,12 @@ p {
 
 .blue {
     background-color: #55acee;
-    box-shadow: 0px 5px 0px 0px #3C93D5;
+    box-shadow: 0 5px 0 0 #3C93D5;
 }
 
 .red {
     background-color: #e74c3c;
-    box-shadow: 0px 5px 0px 0px #CE3323;
+    box-shadow: 0 5px 0 0 #CE3323;
 }
 
 .btn--short {
@@ -166,12 +166,12 @@ p {
 
 #user-block {
     position: fixed;
-    box-shadow: 0px 2px 4px 0px rgba(50, 50, 50, 0.3);
+    box-shadow: 0 2px 4px 0 rgba(50, 50, 50, 0.3);
     bottom: 10px;
     right: 10px;
     z-index: 1;
     height: 100px;
-    width: 300px;
+    width: 320px;
     border-radius: 3px;
     background-color: white;
 }
@@ -187,10 +187,9 @@ p {
 }
 
 #user-block__ava {
-    box-shadow: 0px 2px 4px 0px rgba(50, 50, 50, 0.3);
+    box-shadow: 0 2px 4px 0 rgba(50, 50, 50, 0.3);
     float: left;
-    margin: 15px;
-    margin-left: 20px;
+    margin: 15px 15px 15px 20px;
     border-radius: 50%;
     height: 70px;
     width: 70px;
@@ -204,7 +203,7 @@ p {
 .user-field {
     overflow: hidden;
     margin: 5px;
-    font-family: arial;
+    font-family: Arial, sans-serif;
     color: #222;
     font-size: 15px;
 }
@@ -222,7 +221,7 @@ p {
 /* ================  table =================== */
 .flat-table {
     margin: 0 auto;
-    font-family: arial;
+    font-family: Arial, sans-serif;;
     font-size: 17px;
     overflow: auto;
 }

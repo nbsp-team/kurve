@@ -7,7 +7,8 @@ require.config({
         backbone: "lib/backbone",
         relational: "lib/backbone-relational",
         syphon: "lib/backbone-syphon",
-        notify: "lib/notify.min"
+        notify: "lib/notify.min",
+        konva: "lib/konva"
     },
     shim: {
         'underscore': {
