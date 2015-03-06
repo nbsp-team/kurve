@@ -4,14 +4,16 @@ define([
     app
 ){
 
-    var User = Backbone.Model.extend({
+    var Player = Backbone.Model.extend({
         defaults: {
             "username": "",
             "email": "",
             "global_rating": 0,
-            "isLogin": false
+            "rating": 0,
+            "color": "#333333",
+            "isReady": false
         }
     });
 
-    return User;
+    return Player;
 });

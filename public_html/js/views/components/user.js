@@ -9,7 +9,7 @@ define([
 ){
     var View = Backbone.View.extend({
 
-        el: '#user',
+        el: '#user-block',
         template: tmpl,
 
         initialize: function () {

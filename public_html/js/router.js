@@ -2,6 +2,7 @@ define([
     'app',
     'views/Main',
     'views/Game',
+    'views/Room',
     'views/Scoreboard',
     'views/Login',
     'views/Register',
@@ -12,6 +13,7 @@ define([
     app,
     Main,
     Game,
+    Room,
     Score,
     Login,
     Register,
@@ -23,6 +25,7 @@ define([
         routes: {
             'scoreboard': 'scoreboardAction',
             'game': 'gameAction',
+            'room': 'roomAction',
             'login': 'loginAction',
             'register': 'registerAction',
             'admin': 'adminAction',
@@ -73,6 +76,9 @@ define([
         },
         gameAction: function () {
             this.showView(new Game());
+        },
+        roomAction: function () {
+            this.showView(new Room());
         },
         loginAction: function () {
             this.showView(new Login());

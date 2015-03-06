@@ -23,9 +23,9 @@ define([
             $(this.el).html(this.template({'model': this.templateArg}));
 
             var width = 1000;
-            var height = 500;
+            var height = 600;
             var stage = new Konva.Stage({
-                container: 'game__wrapper_container',
+                container: 'gameContainer',
                 width: width,
                 height: height
             });

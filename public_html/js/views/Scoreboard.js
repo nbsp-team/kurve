@@ -2,7 +2,7 @@ define([
     'app',
     'tmpl/scoreboard',
     'views/AbstractScreen',
-    'collections/scores'
+    'collections/Scores'
 ], function(
     app,
     tmpl,
