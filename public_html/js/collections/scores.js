@@ -27,6 +27,7 @@ define([
 
         errorLoadingHandler: function(message) {
             this.trigger('ratingLoad:error', message);
+            // for commit
         }
     });
 
