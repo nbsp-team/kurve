@@ -1,6 +1,6 @@
 define([
     'app',
-    '../models/Score',
+    'models/Score',
     'utils/api/api_rating'
 ], function(
     app,
@@ -27,6 +27,7 @@ define([
 
         errorLoadingHandler: function(message) {
             this.trigger('ratingLoad:error', message);
+            // for commit
         }
     });
 

@@ -2,7 +2,8 @@ require([
     'app',
     'router',
     'models/Session',
-    'models/NotifyManager'
+    'models/NotifyManager',
+    'underscore'
 ], function(
     app,
     Router,
@@ -12,6 +13,7 @@ require([
     app.session = new SessionModel({});
     app.router = new Router();
     app.notify = new NotifyManager();
+    app.wsEvents = new _.extend({}, Backbone.Events);
 
     app.session.checkAuth(function(isLogged){
         Backbone.history.start();

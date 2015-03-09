@@ -7,12 +7,7 @@ body {
     background-color: #eeeeee;
 }
 
-#menu, #login, #register, #rating, #game, #admin, #scoreboard  {
-    overflow: hidden;
-}
-
-#menu__wrapper, #login__wrapper, #register__wrapper,
-    #rating__wrapper, #admin__wrapper, #scoreboard__wrapper {
+.wrapper {
     margin-top: 30px;
     position: absolute;
     background-color: white;
@@ -26,8 +21,7 @@ body {
     margin-bottom: 50px;
 }
 
-#menu__wrapper:before, #login__wrapper:before, #register__wrapper:before,
-    #rating__wrapper:before, #admin__wrapper:before, #scoreboard__wrapper:before {
+.wrapper:before {
     content: '';
     position: absolute;
     z-index: -1;
@@ -35,16 +29,19 @@ body {
     top: 5px;
     left: 5px;
     bottom: 5px;
-    right: 5px;
+    right: 5px;    
 }
 
-#game__wrapper {
+.container {
+    overflow: hidden;
+}
+
+#container__ingame {
     margin-top: 30px;
-    margin-bottom: 30px;
     position: absolute;
     background-color: white;
     width: 1000px;
-    min-height: 200px;
+    min-height: 500px;
     margin-left: 50%;
     left: -500px;
     border-radius: 5px;
@@ -52,7 +49,7 @@ body {
     padding-bottom: 10px;
 }
 
-#game__wrapper:before {
+#container__ingame:before {
     content: '';
     position: absolute;
     z-index: -1;
@@ -63,8 +60,7 @@ body {
     right: 5px;
 }
 
-.menu__wrapper__title, .login__wrapper__title, .register__wrapper__title,
-    .rating__wrapper__title, .admin__wrapper__title, .scoreboard__wrapper__title {
+.title {
     text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0 2px 0 rgba(0, 0, 0, .5);
     text-transform: uppercase;
     text-align: center;
@@ -76,7 +72,7 @@ body {
     position: relative;
 }
 
-.admin__wrapper__subtitle {
+.subtitle {
     text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0 2px 0 rgba(125, 125, 125, .5);
     text-transform: uppercase;
     text-align: center;
@@ -96,8 +92,7 @@ p {
 
 /* =======================  Buttons ========================= */
 
-.menu__wrapper__btn, .login__wrapper__btn, .register__wrapper__btn,
-    .rating__wrapper__btn, .admin__wrapper__btn, .scoreboard__wrapper__btn, .game__wrapper__btn {
+.btn {
     border: none;
     border-radius: 5px;    
     padding: 10px 0;
@@ -108,33 +103,25 @@ p {
     position: relative;
     display: block;
     cursor: pointer;
-    font-family: Verdana, Helvetica, sans-serif;
-    margin: 15px auto;
-    width: 80%;
+    font-family: Verdana, Helvetica, sans-serif;;
 }
 
-.game__wrapper__btn {
-    width: 100px;
-}
-
-.menu__wrapper__btn:active, .login__wrapper__btn:active, .register__wrapper__btn:active,
-    .rating__wrapper__btn:active, .admin__wrapper__btn:active, .game__wrapper__btn:active {
+.btn:active {
     transform: translate(0px, 5px);
     -webkit-transform: translate(0px, 5px);
     box-shadow: 0 1px 0 0;
 }
 
-.menu__wrapper__btn:focus, .login__wrapper__btn:focus, .register__wrapper__btn:focus,
-    .rating__wrapper__btn:focus, .admin__wrapper__btn:focus, .game__wrapper__btn:focus {
+.btn:focus {
     outline: none;
 }
 
-.btn--blue {
+.blue {
     background-color: #55acee;
     box-shadow: 0 5px 0 0 #3C93D5;
 }
 
-.btn--red {
+.red {
     background-color: #e74c3c;
     box-shadow: 0 5px 0 0 #CE3323;
 }
@@ -142,6 +129,11 @@ p {
 .btn--short {
     margin: 15px auto;
     width: 40%;
+}
+
+.btn__main, .btn__login, .btn__rating, .btn__reg, .btn__admin {
+    margin: 15px auto;
+    width: 80%;
 }
 
 /* =======================  Buttons ========================= */
@@ -172,7 +164,7 @@ p {
 
 /* ====================  User-block ======================= */
 
-#user {
+#user-block {
     position: fixed;
     box-shadow: 0 2px 4px 0 rgba(50, 50, 50, 0.3);
     bottom: 10px;
@@ -183,7 +175,7 @@ p {
     border-radius: 3px;
     background-color: white;
 }
-#user:before {
+#user-block:before {
     content: '';
     position: absolute;
     z-index: -1;
@@ -194,7 +186,7 @@ p {
     right: 5px;
 }
 
-#user__ava {
+#user-block__ava {
     box-shadow: 0 2px 4px 0 rgba(50, 50, 50, 0.3);
     float: left;
     margin: 15px 15px 15px 20px;
@@ -203,7 +195,7 @@ p {
     width: 70px;
 }
 
-#user__right-block {
+#user-block__right-block {
     margin-top: 14px;
     overflow: hidden;
 }

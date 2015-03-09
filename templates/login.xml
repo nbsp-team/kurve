@@ -1,13 +1,13 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
-    <div id="login__wrapper">
-        <div class="login__wrapper__title"> Вход </div>
+    <div class="wrapper">
+        <div class="title"> Вход </div>
 
         <form id="login-form">
             <input class="input-field" name="username" type="username" placeholder="Логин" required="" />
             <input class="input-field" name="password" type="password" placeholder="Пароль" required="" />
-            <button class="login__wrapper__btn btn--blue" id="login"> Войти </button>
+            <button class="btn btn__login blue" id="login"> Войти </button>
         </form>
 
-        <a href="#" class="login__wrapper__btn btn--red"> Назад </a>
+        <a href="#" class="btn btn__login red"> Назад </a>
     </div>
 </fest:template>
