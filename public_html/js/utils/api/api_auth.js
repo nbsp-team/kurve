@@ -20,7 +20,7 @@ define([
                 post.done(function(data) {
 
                     if(data.error == null) {
-                        def.resolve(data.response);
+                        def.resolve(data.response.user);
                     } else {
                         def.reject(data.error);
                     }
@@ -37,7 +37,7 @@ define([
                 post.done(function(data) {
 
                     if(data.error == null) {
-                        def.resolve(data.response);
+                        def.resolve(data.response.user);
                     } else {
                         def.reject(data.error);
                     }
@@ -70,7 +70,7 @@ define([
 
                 post.done(function(data) {
                     if(data.error == null) {
-                        def.resolve(data.response);
+                        def.resolve(data.response.user);
                     } else {
                         def.reject(data.error);
                     }

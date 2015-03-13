@@ -34,6 +34,9 @@ define([
         },
 
         render: function () {
+
+            console.log(app.session.user);
+
             $(this.el).html(this.template(
                 {
                     'app': app,
