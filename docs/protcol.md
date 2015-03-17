@@ -178,7 +178,6 @@ ws.onmessage = function (e) {
 ```js
 {
     code: 3,
-    roomId: 388,
     players: [
         {
             playerId: 399,
