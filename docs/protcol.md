@@ -169,7 +169,7 @@ ws.onmessage = function (e) {
 {
     code: 2,
     ready: true,
-    playerId: 399
+    player_id: 399
 }
 ```
 
