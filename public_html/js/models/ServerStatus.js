@@ -1,9 +1,7 @@
 define([
-    'app',
-    'utils/api/api_admin',
+    'app'
 ], function(
-    app,
-    Api
+    app
 ){
 
     var ServerStatus = Backbone.Model.extend({
@@ -14,14 +12,14 @@ define([
         },
 
         update: function() {
-            Api.getStatus().then(
+            app.api.admin.getStatus().then(
                 this.statusLoaded.bind(this),
                 this.getStatusError.bind(this)
             );
         },
 
         shutdownServer: function() {
-            Api.shutdownServer(5000).then(
+            app.api.admin.shutdownServer(5000).then(
                 this.shutdownServerSuccess.bind(this),
                 this.shutdownServerError.bind(this)
             );

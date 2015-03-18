@@ -3,13 +3,13 @@
 
 
     <div class="subtitle"> Состояние сервера </div>
-    <p> Количество пользователей:<fest:space/>
+    <p class="b-admin__plain-info"> Количество пользователей:<fest:space/>
         <fest:value output="text">
             json.arg.get("userCount")
         </fest:value>
     </p>
 
-    <p>Количество сессий:<fest:space/>
+    <p class="b-admin__plain-info">Количество сессий:<fest:space/>
         <fest:value output="text">
             json.arg.get("sessionCount")
         </fest:value>

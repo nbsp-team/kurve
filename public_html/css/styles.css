@@ -1,3 +1,6 @@
+.b-admin__plain-info {
+    text-align: center;
+}
 .b-admin {
     overflow: hidden;
     margin-top: 30px;
