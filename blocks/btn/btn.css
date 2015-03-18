@@ -1,0 +1,25 @@
+.btn {
+    border: none;
+    border-radius: 5px;
+    padding: 10px 0;
+    font-size: 19px;
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    display: block;
+    cursor: pointer;
+    font-family: Verdana, Helvetica, sans-serif;
+    margin: 15px auto;
+    width: 80%;
+}
+
+.btn:active {
+    transform: translate(0px, 5px);
+    -webkit-transform: translate(0px, 5px);
+    box-shadow: 0 1px 0 0;
+}
+
+.btn:focus {
+    outline: none;
+}

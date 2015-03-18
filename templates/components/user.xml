@@ -1,6 +1,7 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
 
     <img src="/img/default.jpg" id="user-block__ava"/>
+
     <div id="user-block__right-block">
         <div class="user-field" id="user-block__name">
             Имя:

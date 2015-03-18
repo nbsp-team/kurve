@@ -1,0 +1,21 @@
+.b-user {
+    position: fixed;
+    box-shadow: 0 2px 4px 0 rgba(50, 50, 50, 0.3);
+    bottom: 10px;
+    right: 10px;
+    z-index: 1;
+    height: 100px;
+    width: 320px;
+    border-radius: 3px;
+    background-color: white;
+}
+.b-user:before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    border: 1px dashed #ccc;
+    top: 5px;
+    left: 5px;
+    bottom: 5px;
+    right: 5px;
+}

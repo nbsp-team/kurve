@@ -1,0 +1,7 @@
+.b-user__left__ava {
+    box-shadow: 0 2px 4px 0 rgba(50, 50, 50, 0.3);
+    margin: 15px 15px 15px 20px;
+    border-radius: 50%;
+    height: 70px;
+    width: 70px;
+}

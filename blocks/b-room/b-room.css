@@ -1,0 +1,25 @@
+.b-room {
+    overflow: hidden;
+    margin-top: 30px;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 2px 4px 0 rgba(50, 50, 50, 0.3);
+    width: 500px;
+    margin-left: 50%;
+    left: -250px;
+    border-radius: 5px;
+    z-index: 0;
+    padding-bottom: 27px;
+    margin-bottom: 50px;
+}
+
+.b-room:before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    border: 1px dashed #ccc;
+    top: 5px;
+    left: 5px;
+    bottom: 5px;
+    right: 5px;
+}

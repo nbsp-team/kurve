@@ -6,6 +6,7 @@
   "author": "",
   "license": "GNU",
   "devDependencies": {
+    "bem": "^0.9.0",
     "grunt": "~0.4.2",
     "grunt-cli": "^0.1.13",
     "grunt-concurrent": "^1.0.0",
