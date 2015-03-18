@@ -12,7 +12,7 @@ define([
 
     var View = AbstractScreen.extend({
 
-        el: '#room',
+        el: '.js-room',
         template: tmpl,
 
         initialize: function () {

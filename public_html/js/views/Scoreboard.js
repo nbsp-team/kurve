@@ -12,7 +12,7 @@ define([
 
     var View = Abstract.extend({
 
-        el: '#rating',
+        el: '.js-rating',
         template: tmpl,
         collection: Collect,
         templateArg: Collect,

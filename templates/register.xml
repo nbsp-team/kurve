@@ -1,17 +1,15 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
 
+    <div class="title"> Регистрация </div>
 
-    <div class="wrapper">
-        <div class="title"> Регистрация </div>
+    <form class="js-reg-form">
+        <input class="text-field" name="username" type="username" placeholder="Логин" required=""
+                pattern="^[\w\.]*$" title="Допустимые символы: Латинские буквы, '_', '.'."/>
+        <input class="text-field" name="email" type="email" placeholder="Email" required="" />
+        <input class="text-field" name="password" type="password" placeholder="Пароль" required="" />
+        <button class="btn btn_blue js-register"> Регистрация </button>
+    </form>
 
-        <form id="reg-form">
-            <input class="input-field" name="username" type="username" placeholder="Логин" required=""
-                    pattern="^[\w\.]*$" title="Допустимые символы: Латинские буквы, '_', '.'."/>
-            <input class="input-field" name="email" type="email" placeholder="Email" required="" />
-            <input class="input-field" name="password" type="password" placeholder="Пароль" required="" />
-            <button class="btn btn__reg blue" id="register"> Регистрация </button>
-        </form>
+    <a href="#" class="btn btn_red"> Назад </a>
 
-        <a href="#" class="btn btn__reg red"> Назад </a>
-    </div>
 </fest:template>

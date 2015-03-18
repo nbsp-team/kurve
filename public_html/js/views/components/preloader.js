@@ -6,7 +6,7 @@ define([
 
     var View = Backbone.View.extend({
 
-        el: '#preloader',
+        el: '.preloader',
 
         show: function() {
             $(this.el).fadeIn();
