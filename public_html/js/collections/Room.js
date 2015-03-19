@@ -23,8 +23,14 @@ define([
             Api.startConnection();
         },
 
+        disconnectFromRoom: function() {
+            Api.closeConnection();
+        },
+
         onConnectToRoom: function(usersData) {
-            console.log(usersData);
+            for(var i = 0; i < usersData.length; ++i) {
+                this.add(new Player(usersData[i]));
+            }
         },
 
         onNewUserConnected: function(userData) {

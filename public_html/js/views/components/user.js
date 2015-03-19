@@ -1,11 +1,9 @@
 define([
     'app',
-    'tmpl/components/user',
-    'models/User'
+    'tmpl/components/user'
 ], function(
     app,
-    tmpl,
-    User
+    tmpl
 ){
     var View = Backbone.View.extend({
 
@@ -34,8 +32,6 @@ define([
         },
 
         render: function () {
-
-            console.log(app.session.user);
 
             $(this.el).html(this.template(
                 {

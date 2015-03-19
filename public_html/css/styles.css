@@ -150,15 +150,18 @@
     bottom: 5px;
     right: 5px;
 }
+.b-room__container-players {
+    min-height: 400px;
+}
 .b-room {
     overflow: hidden;
     margin-top: 30px;
     position: absolute;
     background-color: white;
     box-shadow: 0 2px 4px 0 rgba(50, 50, 50, 0.3);
-    width: 500px;
+    width: 900px;
     margin-left: 50%;
-    left: -250px;
+    left: -450px;
     border-radius: 5px;
     z-index: 0;
     padding-bottom: 27px;
@@ -257,6 +260,46 @@
 
 .btn:focus {
     outline: none;
+}
+.card-player__color-block {
+    display: block;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    margin: 0 auto;
+    background-color: red;
+}
+.card-player__name {
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0 2px 0 rgba(125, 125, 125, .5);
+    text-transform: uppercase;
+    text-align: center;
+    color: #666;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    letter-spacing: 3px;
+    font: normal 16px/1 Verdana, Helvetica;
+    position: relative;
+}
+.card-player__rating {
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0 2px 0 rgba(125, 125, 125, .5);
+    text-transform: uppercase;
+    text-align: center;
+    color: #888;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    letter-spacing: 3px;
+    font: normal 14px/1 Verdana, Helvetica;
+    position: relative;
+}
+.card-player {
+    width: 25%;
+    float: left;
+    margin: 10px 0;
+    margin-left: 6.25%;
+    overflow: hidden;
+    background: rgba(253, 253, 253, 0.53);
+    border-radius: 0.2em;
+    box-shadow: 0px 2px 4px 0px rgba(50, 50, 50, 0.3);
 }
 * {
     margin: 0;

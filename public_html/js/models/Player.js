@@ -1,8 +1,5 @@
 define([
-    'app'
-], function(
-    app
-){
+], function(){
 
     var Player = Backbone.Model.extend({
         defaults: {
@@ -11,7 +8,7 @@ define([
             "global_rating": 0,
             "rating": 0,
             "color": "#333333",
-            "isReady": false
+            "is_ready": false
         }
     });
 

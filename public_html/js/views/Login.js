@@ -25,7 +25,6 @@ define([
 
         login: function() {
             var userData = Syphon.serialize(this);
-            console.log(userData);
             app.session.login(userData);
             return false;
         },
