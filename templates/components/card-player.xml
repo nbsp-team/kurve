@@ -1,13 +1,11 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
 
-    <div class="card-player">
-        <div class="card-player__name">
-            <fest:value output="text">json.player.username</fest:value>
-        </div>
-        <div class="card-player__color-block"> </div>
-        <div class="card-player__rating">
-            Рейтинг: <fest:value output="text">json.player.global_rating</fest:value>
-        </div>
+    <div class="card-player__name">
+        <fest:value output="text">json.player.username</fest:value>
+    </div>
+    <div class="card-player__color-block"> </div>
+    <div class="card-player__rating">
+        Рейтинг: <fest:value output="text">json.player.global_rating</fest:value>
     </div>
 
 </fest:template>

@@ -35,7 +35,7 @@ define([
 
         addUser: function(UserModel) {
             var playerView = new RoomPlayer({'model': UserModel});
-            this.playersContainer.append(playerView.el.innerHTML);
+            this.playersContainer.append(playerView.el);
             this.listenToOnce(playerView, "removeMe", this.removeUser);
         },
 
