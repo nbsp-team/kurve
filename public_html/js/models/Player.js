@@ -1,5 +1,6 @@
 define([
-], function(){
+    "app"
+], function(app){
 
     var Player = Backbone.Model.extend({
         defaults: {

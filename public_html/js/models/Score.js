@@ -1,6 +1,6 @@
 define([
-
-], function(){
+    "app"
+], function(app){
     var Score = Backbone.Model.extend({
         defaults: {
             "username": "",
