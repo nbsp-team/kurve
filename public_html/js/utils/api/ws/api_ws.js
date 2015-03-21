@@ -4,7 +4,7 @@ define([
 
     var wsApi = {
 
-        WS_URL: 'ws://127.0.0.1:8080/',
+        WS_URL: 'ws://' + location.host + '/',
 
         currentApi: null,
 
