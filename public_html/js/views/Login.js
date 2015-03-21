@@ -12,7 +12,7 @@ define([
 
     var View = AbstractScreen.extend({
 
-        el: '#login',
+        el: '.b-login',
         template: tmpl,
 
         initialize: function() {
@@ -20,14 +20,12 @@ define([
         },
 
         events: {
-            'submit #login-form' : 'login'
+            'submit .js-login-form' : 'login'
         },
 
         login: function() {
             var userData = Syphon.serialize(this);
             app.session.login(userData);
-
-            // Prevent default form submit
             return false;
         },
 

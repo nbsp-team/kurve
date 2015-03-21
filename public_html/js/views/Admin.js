@@ -14,13 +14,13 @@ define([
 
     var View = AbstractScreen.extend({
 
-        el: '#admin',
+        el: '.b-admin',
         template: tmpl,
         templateArg: ServerStatus,
         model: ServerStatus,
 
         events: {
-            'click #shutdown' : 'shutdownServer'
+            'click .js-shutdown' : 'shutdownServer'
         },
 
         initialize: function () {

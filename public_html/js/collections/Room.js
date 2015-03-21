@@ -15,7 +15,8 @@ define([
         },
 
         initialize: function () {
-            this.listenTo(app.wsEvents, "new_user_connected", this.onNewUserConnected);
+            this.listenTo(app.wsEvents, "player_connected", this.onNewUserConnected);
+            this.listenTo(app.wsEvents, "player_disconnected", this.onUserDisconnected);
             this.listenToOnce(app.wsEvents, "connected", this.onConnectToRoom);
         },
 
@@ -23,12 +24,22 @@ define([
             Api.startConnection();
         },
 
+        disconnectFromRoom: function() {
+            Api.closeConnection();
+        },
+
         onConnectToRoom: function(usersData) {
-            console.log(usersData);
+            for(var i = 0; i < usersData.length; ++i) {
+                this.add(new Player(usersData[i]));
+            }
         },
 
         onNewUserConnected: function(userData) {
-            console.log(userData);
+            this.add(new Player(userData));
+        },
+
+        onUserDisconnected: function(userData) {
+            this.remove(this.where({"username": userData.username}));
         }
     });
 

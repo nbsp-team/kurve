@@ -10,6 +10,10 @@ define([
         },
 
         load: function() {
+            this.renderAndShow();
+        },
+
+        renderAndShow: function() {
             this.render();
             this.show();
         },

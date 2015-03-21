@@ -57,7 +57,7 @@ define([
         initViews: function() {
             if (!this.userView) {
                 this.userView = new UserView();
-                // TODO:
+
                 app.session.triggerLoggedUpdate();
             }
 

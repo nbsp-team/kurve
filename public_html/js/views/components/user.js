@@ -1,15 +1,13 @@
 define([
     'app',
-    'tmpl/components/user',
-    'models/User'
+    'tmpl/components/user'
 ], function(
     app,
-    tmpl,
-    User
+    tmpl
 ){
     var View = Backbone.View.extend({
 
-        el: '#user-block',
+        el: '.b-user',
         template: tmpl,
 
         initialize: function () {
@@ -34,6 +32,7 @@ define([
         },
 
         render: function () {
+
             $(this.el).html(this.template(
                 {
                     'app': app,

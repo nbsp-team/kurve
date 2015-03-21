@@ -1,6 +1,15 @@
 module.exports = function (grunt) {
 
     grunt.initConfig({
+        concat_css: {
+            options: {
+                // Task-specific options go here.
+            },
+            all: {
+                src: ["blocks/**/*.css"],
+                dest: "public_html/css/styles.css"
+            }
+        },
         shell: {
             options: {
                 stdout: true,
@@ -33,8 +42,16 @@ module.exports = function (grunt) {
         },
         watch: {
             fest: {
-                files: ['templates/*.xml', 'templates/components/*.xml'],
+                files: ['templates/**/*.xml'],
                 tasks: ['fest'],
+                options: {
+                    interrupt: true,
+                    atBegin: true
+                }
+            },
+            concat_css: {
+                files: ['blocks/**/*.css'],
+                tasks: ['concat_css'],
                 options: {
                     interrupt: true,
                     atBegin: true
@@ -49,6 +66,7 @@ module.exports = function (grunt) {
         }
     });
 
+    grunt.loadNpmTasks('grunt-concat-css');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-shell');

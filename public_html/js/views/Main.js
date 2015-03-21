@@ -11,7 +11,7 @@ define([
 ){
     var View = Abstract.extend({
 
-        el: '#menu',
+        el: '.b-menu',
         template: tmpl,
         templateArg: User,
 
@@ -22,7 +22,7 @@ define([
         /* ================= Events ================= */
 
         events: {
-            'click #logout': 'logoutEvent'
+            'click .js-logout': 'logoutEvent'
         },
 
         logoutEvent: function() {

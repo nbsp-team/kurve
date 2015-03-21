@@ -12,11 +12,10 @@ define([
 
     var View = AbstractScreen.extend({
 
-        el: '#game',
+        el: '.b-game',
         template: tmpl,
 
         initialize: function () {
-            // TODO
         },
 
         render: function () {

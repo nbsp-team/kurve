@@ -19,6 +19,10 @@ define([
             this.roomSocket.onmessage = this.currentApi.onMessage;
         },
 
+        closeConnection: function() {
+            this.roomSocket.close();
+        },
+
         onOpen: function() {
 
         },
@@ -28,7 +32,7 @@ define([
         },
 
         startGame: function() {
-            // Change onMessage to game_api
+
         }
     };
 

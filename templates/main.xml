@@ -1,18 +1,17 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
-    <div class="wrapper">
-        <div class="title"> Меню </div>
 
-        <fest:if test="json.app.session.get('loggedIn')">
-            <a href="#room" class="btn btn__main blue"> Начать </a>
-            <a href="#scoreboard" class="btn btn__main blue"> Рейтинги </a>
-            <div class="btn btn__main blue" id="logout"> Выйти </div>
-        </fest:if>
+    <div class="title"> Меню </div>
 
-        <fest:if test="!json.app.session.get('loggedIn')">
-            <a href="#login" class="btn btn__main blue"> Войти </a>
-            <a href="#register" class="btn btn__main blue"> Регистрация </a>
-            <a href="#scoreboard" class="btn btn__main blue"> Рейтинги </a>
-        </fest:if>
-    </div>
+    <fest:if test="json.app.session.get('loggedIn')">
+        <a href="#room" class="btn btn_blue"> Начать </a>
+        <a href="#scoreboard" class="btn btn_blue"> Рейтинги </a>
+        <div class="btn btn_blue js-logout"> Выйти </div>
+    </fest:if>
+
+    <fest:if test="!json.app.session.get('loggedIn')">
+        <a href="#login" class="btn btn_blue"> Войти </a>
+        <a href="#register" class="btn btn_blue"> Регистрация </a>
+        <a href="#scoreboard" class="btn btn_blue"> Рейтинги </a>
+    </fest:if>
 
 </fest:template>

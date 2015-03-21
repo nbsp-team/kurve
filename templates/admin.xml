@@ -1,49 +1,47 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
-    <div class="wrapper">
-        <div class="title"> Администрирование </div>
+    <div class="title"> Администрирование </div>
 
 
-        <div class="subtitle"> Состояние сервера </div>
-        <p> Количество пользователей:<fest:space/>
+    <div class="subtitle"> Состояние сервера </div>
+    <p class="b-admin__plain-info"> Количество пользователей:<fest:space/>
         <fest:value output="text">
             json.arg.get("userCount")
         </fest:value>
-        </p>
+    </p>
 
-        <p>Количество сессий:<fest:space/>
+    <p class="b-admin__plain-info">Количество сессий:<fest:space/>
         <fest:value output="text">
             json.arg.get("sessionCount")
         </fest:value>
-        </p>
+    </p>
 
-        <div class="subtitle"> Список комнат </div>
-        <table class="flat-table">
-            <tr id="header-table">
-                <th> # </th>
-                <th> Участники </th>
-            </tr>
-            <tbody>
+    <div class="subtitle"> Список комнат </div>
+    <table class="flat-table">
+        <tr>
+            <th class="flat-table__header-value"> # </th>
+            <th class="flat-table__header-value"> Участники </th>
+        </tr>
+        <tbody>
 
-                <!--<fest:for iterate="json.arg.models" index="i">-->
-                        <!--<tr>-->
-                            <!--<td>-->
-                                <!--<fest:value output="text">-->
-                                    <!--i + 1-->
-                                <!--</fest:value>-->
-                            <!--</td>-->
+            <!--<fest:for iterate="json.arg.models" index="i">-->
+                    <!--<tr>-->
+                        <!--<td>-->
+                            <!--<fest:value output="text">-->
+                                <!--i + 1-->
+                            <!--</fest:value>-->
+                        <!--</td>-->
 
-                            <!--<td>-->
-                                <!--<fest:value output="text">-->
-                                    <!--json.arg.rooms[i].get('username');-->
-                                <!--</fest:value>-->
-                            <!--</td>-->
-                        <!--</tr>-->
-                <!--</fest:for>-->
-            </tbody>
-        </table>
+                        <!--<td>-->
+                            <!--<fest:value output="text">-->
+                                <!--json.arg.rooms[i].get('username');-->
+                            <!--</fest:value>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+            <!--</fest:for>-->
+        </tbody>
+    </table>
 
-        <a class="btn btn__admin red" id="shutdown"> Выключить сервер </a>
+    <a class="btn btn_red" id="shutdown"> Выключить сервер </a>
 
-        <a href="#" class="btn btn__admin red"> Назад </a>
-    </div>
+    <a href="#" class="btn btn_red"> Назад </a>
 </fest:template>

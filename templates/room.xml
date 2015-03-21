@@ -1,5 +1,8 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
-    <div class="wrapper" id="container__ingame">
-        <div id="roomContainer"></div>
-    </div>
+
+    <div class="title"> Участники комнаты </div>
+    <div class="b-room__container-players js-container-players"> </div>
+    <div style="clear: both;"> </div>
+    <div class="btn btn_red js-back-button"> Назад </div>
+
 </fest:template>

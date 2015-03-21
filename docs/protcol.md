@@ -5,14 +5,14 @@ _Версия: 1, черновая_
 
 Коды ошибок:
 
-| Внутренний код | HTTP код | Описание                        |
-|----------------|----------|---------------------------------|
-| 0              | 401      | Ошибка авторизации              |
-| 1              | 400      | Ошибка регистрации              |
-| 2              | 500      | Пустой ответ сервера            |
-| 3              | 400      | Ошибка в параметрах запроса     |
-| 4              | 403      | Нет прав выполнить это действие |
-| 5              | 500      | Внутренняя ошибка сервера       |
+| Внутренний код | Описание                        |
+|----------------|---------------------------------|
+| 0              | Ошибка авторизации              |
+| 1              | Ошибка регистрации              |
+| 2              | Пустой ответ сервера            |
+| 3              | Ошибка в параметрах запроса     |
+| 4              | Нет прав выполнить это действие |
+| 5              | Внутренняя ошибка сервера       |
 
 ## Регистрация
 #### Запрос на регистрацию
@@ -144,7 +144,7 @@ ws.onmessage = function (e) {
     roomId: 388,
     players: [
         {
-            playerId: 399,
+            player_id: 399,
             username: "ivan333",
             global_rating: 0,
             color: "#abcdef",
@@ -169,7 +169,7 @@ ws.onmessage = function (e) {
 {
     code: 2,
     ready: true,
-    playerId: 399
+    player_id: 399
 }
 ```
 
@@ -178,10 +178,9 @@ ws.onmessage = function (e) {
 ```js
 {
     code: 3,
-    roomId: 388,
     players: [
         {
-            playerId: 399,
+            player_id: 399,
             username: "ivan333",
             rating: 0,
             color: "#abcdef",
@@ -227,7 +226,7 @@ ws.onmessage = function (e) {
 ```js
 {
     code: 5,
-    playerId: 0,
+    player_id: 0,
     keycode: 1,
     press: true,
 }
@@ -250,7 +249,7 @@ ws.onmessage = function (e) {
 ```js
 {
     action: 0,
-    playerId: 399,
+    player_id: 399,
     partId: 5,
     partType: 0,
     pointFrom: {
@@ -270,8 +269,8 @@ ws.onmessage = function (e) {
 ```js
 {
     action: 1,
-    playerId: 399,
-    partId: 5
+    player_id: 399,
+    part_id: 5
 }
 ```
 
@@ -294,7 +293,7 @@ ws.onmessage = function (e) {
 ```js
 {
     code: 8,
-    playerId: 399,
+    player_id: 399,
     bonus: {
         type: 0,
         position: {
@@ -310,7 +309,7 @@ ws.onmessage = function (e) {
 ```js
 {
     code: 9,
-    playerId: 399,
+    player_id: 399,
     rating: 1
 }
 ```
@@ -321,10 +320,9 @@ ws.onmessage = function (e) {
 ```js
 {
     code: 3,
-    roomId: 388,
     players: [
         {
-            playerId: 399,
+            player_id: 399,
             username: "ivan333",
             rating: 3,
             color: "#abcdef",
@@ -350,10 +348,9 @@ ws.onmessage = function (e) {
 ```js
 {
     code: 10,
-    roomId: 388,
     players: [
         {
-            playerId: 399,
+            player_id: 399,
             username: "ivan333",
             rating: 3,
             color: "#abcdef",

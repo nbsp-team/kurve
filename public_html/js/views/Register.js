@@ -12,13 +12,11 @@ define([
 
     var View = Abstract.extend({
 
-        el: '#register',
+        el: '.js-register',
         template: tmpl,
 
-        passwordRepeatField: 'password_repeat',
-
         events: {
-            'submit #reg-form': 'register'
+            'submit .js-reg-form': 'register'
         },
 
         initialize: function () {
