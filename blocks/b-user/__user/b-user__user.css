@@ -1,0 +1,12 @@
+.b-user__user {
+    margin-left: 80px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.b-user__user:hover {
+    background-color: #F5F5F5;
+    cursor: pointer;
+}

@@ -6,3 +6,11 @@
 body {
     background-color: #eeeeee;
 }
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}

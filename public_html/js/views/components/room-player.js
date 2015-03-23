@@ -23,6 +23,8 @@ define([
             this.$el.html(this.template(
                 { "player": this.model.toJSON() }
             ));
+            this.$el.children('.js-player-color').
+                css("background-color", this.model.get("color"));
         }
     });
 
