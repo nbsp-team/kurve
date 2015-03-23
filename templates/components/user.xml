@@ -1,30 +1,26 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
 
-    <div class="b-user__left">
-        <img src="/img/default.jpg" class="b-user__left__ava"/>
+
+    <div class="b-user__user left">
+        <img src="/img/default.jpg" class="b-user__user__ava left"/>
+
+        <div class="b-user__user__name left">
+            <fest:value output="text">json.user.username</fest:value>
+        </div>
+
     </div>
 
-    <div class="b-user__right">
-        <div class="b-user__right__field">
-            Имя:
-            <span class="b-user__right__field__value">
-                <fest:value output="text">json.user.username</fest:value>
-            </span>
+    <div class="b-user__exit right js-toolbar-exit">
+
+        <div class="b-user__exit__text left">
+            Выйти
         </div>
 
-        <div class="b-user__right__field">
-            Email:
-            <span class="b-user__right__field__value">
-                <fest:value output="text">json.user.email</fest:value>
-            </span>
-        </div>
-
-        <div class="b-user__right__field">
-            Рейтинг:
-            <span class="b-user__right__field__value">
-                <fest:value output="text">json.user.global_rating</fest:value>
-            </span>
-        </div>
+        <img src="/img/exit.png" class="b-user__exit__icon left"/>
     </div>
+
+
+
+
 
 </fest:template>
