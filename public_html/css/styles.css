@@ -272,12 +272,20 @@
 .btn:focus {
     outline: none;
 }
+.card-player__color-block__ready {
+    color: white;
+    font-family: arial;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 14px;
+}
 .card-player__color-block {
     display: block;
     height: 60px;
     width: 60px;
     border-radius: 50%;
     margin: 0 auto;
+    overflow: hidden;
 }
 .card-player__name {
     text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0 2px 0 rgba(125, 125, 125, .5);
