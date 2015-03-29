@@ -2,11 +2,11 @@ define([
     "app",
     'konva'
 ], function(app, Konva){
-
-    var SnakePartLine = Backbone.Model.extend({
+	function SnakePartLine(){}
+    SnakePartLine.prototype = {
 		init: function(x, y, vx, vy, radius, color, layer) {
-	        this.x1 = x;
-			this.y1 = y;
+	        this.x1 = x-vx;
+			this.y1 = y-vy;
 			this.d = Math.sqrt(vx*vx+vy*vy);
 			this.A = -vy/this.d;
 			this.B = vx/this.d;
@@ -32,6 +32,7 @@ define([
 			this.y2 = newY;
 			this.d += v;
 			this.line.points([this.x1, this.y1, this.x2, this.y2]);
+			
 			//console.log(this.line);
 		},
 		isInside: function(x, y, radius) {
@@ -52,7 +53,7 @@ define([
 			ctx.closePath();
 			ctx.stroke();
 		}
-    });
-
+    };
+	
     return SnakePartLine;
 });

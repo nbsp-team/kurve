@@ -20,7 +20,6 @@ define([
         initialize: function () {
 			
 			this.field = new GameField();
-			
 			document.addEventListener('keydown',    this.keyDown(),    false);
 			document.addEventListener('keyup',    this.keyUp(),    false);
 			this.leftRepeat = false;

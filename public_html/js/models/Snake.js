@@ -6,8 +6,8 @@ define([
     "models/SnakePartLine",
     "models/SnakePartArc"
 ], function(app, Konva, SnakePartLine, SnakePartArc){
-
-    var Snake = Backbone.Model.extend({
+	function Snake(){this.initialize();}
+    Snake.prototype = {
 		defaultSpeed: 120, 
 		defaultAngleSpeed: 100,
 		defaultPartLength: 100,
@@ -51,6 +51,7 @@ define([
 			console.log(this.color + ' x_x');
 		},
         initialize: function (){
+			
 			this.c = 0;
 			this.drawing = true;
 			this.isAlive = true;
@@ -205,7 +206,8 @@ define([
 			}
 		}
 		
-    });
+    };
+    
     return Snake;
 });
 

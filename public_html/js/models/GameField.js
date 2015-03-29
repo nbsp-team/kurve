@@ -11,8 +11,8 @@ define([
     AbstractScreen,
     Snake
 ){
-	
-    var GameField = Backbone.Model.extend({
+	function GameField(){this.initialize();}
+    GameField.prototype = {
 		colors: ['blue', 'red', 'yellow', 'green', 'magenta'],
 		FPS : 60,
 		width : 1000,
@@ -23,8 +23,8 @@ define([
 			this.numPlayers = 5;
 			this.playing = false;
 			this.snakes = []
-			
 			for(var i = 0; i < this.numPlayers; i++) {
+				//this.snakes[i] = new Snake();
 				this.snakes[i] = new Snake();
 				var mindim = Math.min(this.width, this.height);
 				var angle = i*2*Math.PI/this.numPlayers;
@@ -95,7 +95,7 @@ define([
 			}
 			if(this.dead==this.numPlayers) {
 				this.playing = false;
-				console.log('add dead, game paused');
+				console.log('all dead, game paused');
 			}
 		},
 		render: function() {
@@ -122,6 +122,7 @@ define([
 			}
 			requestAnimationFrame(frame);
 		}
-    });
+    };
+    
     return GameField;
 });

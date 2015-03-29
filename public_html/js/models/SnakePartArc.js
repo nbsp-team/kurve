@@ -2,8 +2,8 @@ define([
     "app",
     'konva'
 ], function(app, Konva){
-
-    var SnakePartArc = Backbone.Model.extend({
+	function SnakePartArc(){}
+    SnakePartArc.prototype = {
 		init: function(_x, _y, _r, startAngle, color, radius, clockwise, layer) {
 	        this.r = _r;
 			this.x = _x;
@@ -14,13 +14,13 @@ define([
 			this.clockwise = clockwise;
 			
 			var that = this;
-			
+			var correct = (clockwise)?1:-1;
 			this.arc = new Konva.Arc({
 			  innerRadius: that.r - that.radius,
 			  outerRadius: that.r + that.radius,
 			  fill: color,
 			  angle: 0,
-			  rotationDeg: startAngle*180/Math.PI,
+			  rotationDeg: startAngle*180/Math.PI+correct,
 			  x : _x,
 			  y : _y,
 			  clockwise : clockwise,
@@ -85,7 +85,7 @@ define([
 			
 			ctx.stroke();	
 		}
-    });
+    };
 
     return SnakePartArc;
 });
