@@ -5,11 +5,11 @@
     </div>
     <div class="card-player__color-block js-player-color">
         <div class="card-player__color-block__ready js-ready" style="display: none;">
-            V
+            ✓
         </div>
     </div>
     <div class="card-player__rating">
-        Рейтинг: <fest:value output="text">json.player.global_rating</fest:value>
+        Рейтинг: <fest:space/> <fest:value output="text">json.player.global_rating</fest:value>
     </div>
 
 </fest:template>

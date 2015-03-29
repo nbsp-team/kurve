@@ -275,9 +275,9 @@
 .card-player__color-block__ready {
     color: white;
     font-family: arial;
-    font-size: 30px;
+    font-size: 34px;
     text-align: center;
-    margin-top: 14px;
+    margin-top: 10px;
 }
 .card-player__color-block {
     display: block;
@@ -299,15 +299,12 @@
     position: relative;
 }
 .card-player__rating {
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0 2px 0 rgba(125, 125, 125, .5);
-    text-transform: uppercase;
     text-align: center;
-    color: #888;
+    color: #999;
     margin-top: 10px;
     margin-bottom: 10px;
-    letter-spacing: 3px;
-    font: normal 14px/1 Verdana, Helvetica;
-    position: relative;
+    font-size: 17px;
+    font-family: arial;
 }
 .card-player {
     width: 25%;
