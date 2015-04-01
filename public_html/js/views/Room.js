@@ -29,7 +29,7 @@ define([
         initialize: function () {
             this.collection = new RoomCollection();
             this.listenTo(this.collection, "add", this.addUser);
-            this.listenToOnce(this.collection, "loggined", this.connected);
+            this.listenTo(this.collection, "loggined", this.connected);
         },
 
         load: function() {
@@ -57,10 +57,9 @@ define([
             this.collection.disconnectFromRoom();
             app.router.navigateTo("/");
         },
+
         setReady: function() {
-
             var newReadyStatus = !this.currentPlayer.get("is_ready");
-
             this.collection.setReady(newReadyStatus);
             this.currentPlayer.set("is_ready", newReadyStatus);
         }

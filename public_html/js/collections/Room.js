@@ -18,7 +18,7 @@ define([
             this.listenTo(app.wsEvents, "player_connected", this.onNewUserConnected);
             this.listenTo(app.wsEvents, "player_disconnected", this.onUserDisconnected);
             this.listenTo(app.wsEvents, "player_ready", this.onPlayerReady);
-            this.listenToOnce(app.wsEvents, "connected", this.onConnectToRoom);
+            this.listenTo(app.wsEvents, "connected", this.onConnectToRoom);
         },
 
         connectToRoom: function() {
@@ -27,6 +27,7 @@ define([
 
         disconnectFromRoom: function() {
             Api.closeConnection();
+            _.invoke(this.toArray(), 'destroy');
         },
 
         onConnectToRoom: function(usersData) {
