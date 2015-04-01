@@ -8,14 +8,14 @@ define([
 ], function(app, Konva, SnakePartLine, SnakePartArc){
 	function Snake(){this.initialize();}
     Snake.prototype = {
-		defaultSpeed: 120, 
+		defaultSpeed: 120,
 		defaultAngleSpeed: 100,
 		defaultPartLength: 100,
 		defaultHoleLength: 20,
 		defaultRadius: 4,
-		init: function(x, y, angle, color, FPS, backLayer, foreLayer) {
-			this.backLayer = backLayer;
-			this.layer = foreLayer;
+		init: function(x, y, angle, color, FPS, backCtx, foreCtx) {
+			this.backCtx = backCtx;
+			this.foreCtx = foreCtx;
 			this.color = color;
 			this.FPS=FPS;
 			this.angleV = this.defaultAngleSpeed*2*Math.PI/180/FPS;
@@ -33,17 +33,7 @@ define([
 			this.nextArcToDraw = 0;
 			this.nextLineToDraw = 0;
 			
-			
-			var that = this;
-			this.head = new Konva.Rect({
-                x: that.x, y: that.y,
-                width: 10, height: 10,
-                fill: 'red', stroke: 'black',
-                strokeWidth: 4,
-                offset : {x : 5, y : 5}
-            });
-            this.layer.add(this.head);
-            this.head.x(x); this.head.y(y);
+
             this.doLine();
 		},
 		kill: function() {
@@ -51,7 +41,8 @@ define([
 			console.log(this.color + ' x_x');
 		},
         initialize: function (){
-			
+			this.linesInBack = 0;
+			this.arcsInBack=0;
 			this.c = 0;
 			this.drawing = true;
 			this.isAlive = true;
@@ -96,30 +87,73 @@ define([
 			}
 			this.arcAngle = this.arcStartAngle;
 			
+			this.moveToBack(true);
+			
 			if(!this.drawing) return;
 			
 			var newArc = new SnakePartArc();
 			newArc.init(this.arcCenterX, this.arcCenterY
 			  , this.arcRadius, this.arcStartAngle, this.color
 			  , this.radius, clockwise, this.layer);
-
-			if(this.narcs>0){
-				this.snakeArcs[this.narcs-1].arc.moveTo(this.backLayer);
-				this.backLayer.draw();
-			}
+			
 			this.snakeArcs.push(newArc);
 			this.narcs++;
 		},
+		moveToBack: function(b){
+			if(this.nlines>0){
+				this.lastLine().clear(this.foreCtx);
+				if(this.nlines > this.linesInBack){
+					
+					this.lastLine().draw(this.backCtx,  this.color);
+					this.linesInBack = this.nlines;
+				}
+				
+			}
+			if(this.narcs>0){
+				this.lastArc().clear(this.foreCtx);
+				if(this.narcs>this.arcsInBack){
+					
+					this.lastArc().draw(this.backCtx,  this.color);
+					this.arcsInBack = this.narcs;
+				}
+				
+			}
+		},
 		doLine: function() {
+			this.moveToBack(false);
+			
 	        if(!this.drawing) return;
 			var newLine = new SnakePartLine();
 			newLine.init(this.x, this.y, this.vx, this.vy, this.radius, this.color, this.layer);
-			if(this.nlines>0){
-				this.snakeLines[this.nlines-1].line.moveTo(this.backLayer);
-				this.backLayer.draw();
-			}
+			
 			this.snakeLines.push(newLine);
 			this.nlines++;
+		},
+		clear: function(){
+			this.foreCtx.clearRect(this.prevX - this.prevRadius-2, this.prevY - this.prevRadius-2
+				, this.prevRadius*2+4, this.prevRadius*2+4);
+			if(true || this.drawing) {
+				if(this.turning != this.NOT_TURNING){
+					this.lastArc().clear(this.foreCtx);
+				}else{
+					this.lastLine().clear(this.foreCtx);
+				}
+			}
+		},
+		draw: function(){			
+			if(true || this.drawing) {
+				if(this.turning != this.NOT_TURNING){
+					this.lastArc().draw(this.foreCtx, this.color);
+				}else{
+					this.lastLine().draw(this.foreCtx, this.color);
+				}
+			}
+			this.foreCtx.beginPath();
+			this.foreCtx.fillStyle = this.color;
+			this.foreCtx.arc(this.x, this.y, this.radius, 0, 2*Math.PI);
+			this.foreCtx.fill();
+			
+			this.prevX = this.x; this.prevY = this.y; this.prevRadius = this.radius;
 		},
 		changeRadius: function(radius) {
 			this.radius = radius;
@@ -132,6 +166,8 @@ define([
 			}
 		},
 		isInside: function(x, y, itself, radius) {
+			//return false;
+			
 			var lim = this.nlines;
 			if(itself && this.turning == this.NOT_TURNING) lim--;
 			for(var i = 0; i < lim; i++){
@@ -172,8 +208,6 @@ define([
 				}
 				
 			}
-			this.head.x(this.x);
-			this.head.y(this.y);
 		},
 		makeHoles: function() {
 			if(this.stepCounter > this.partStopper){

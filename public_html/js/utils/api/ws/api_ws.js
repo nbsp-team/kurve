@@ -6,8 +6,6 @@ define([
 
         WS_URL: 'ws://' + location.host + '/',
 
-        READY_CODE: 3,
-
         currentApi: null,
 
         startConnection: function() {
@@ -15,14 +13,14 @@ define([
 
             this.currentApi = roomApi;
 
-            this.socket = socket;
-            this.socket.onopen = this.onOpen;
-            this.socket.onclose = this.onClose;
-            this.socket.onmessage = this.currentApi.onMessage;
+            this.roomSocket = socket;
+            this.roomSocket.onopen = this.onOpen;
+            this.roomSocket.onclose = this.onClose;
+            this.roomSocket.onmessage = this.currentApi.onMessage;
         },
 
         closeConnection: function() {
-            this.socket.close();
+            this.roomSocket.close();
         },
 
         onOpen: function() {
@@ -35,23 +33,7 @@ define([
 
         startGame: function() {
 
-        },
-
-        //****************** Methods ******************//
-
-        sendReady: function(readyStatus) {
-
-            var data = {
-                "code": this.READY_CODE,
-                "ready": readyStatus
-            };
-
-            console.log(data);
-
-            this.socket.send(JSON.stringify(data));
         }
-
-        //****************** Methods ******************//
     };
 
     return wsApi;

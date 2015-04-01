@@ -4,45 +4,23 @@ define([
 ], function(app, Konva){
 	function SnakePartArc(){}
     SnakePartArc.prototype = {
-		init: function(_x, _y, _r, startAngle, color, radius, clockwise, layer) {
-	        this.r = _r;
-			this.x = _x;
-			this.y = _y;
-			this.angle = startAngle;
+		init: function(x, y, r, startAngle, color, radius, clockwise, layer) {
+	        this.r = r;
+			this.x = x;
+			this.y = y;
+			
 			this.span = 0;
 			this.radius = radius;
 			this.clockwise = clockwise;
 			
 			var that = this;
-			var correct = (clockwise)?1:-1;
-			this.arc = new Konva.Arc({
-			  innerRadius: that.r - that.radius,
-			  outerRadius: that.r + that.radius,
-			  fill: color,
-			  angle: 0,
-			  rotationDeg: startAngle*180/Math.PI+correct,
-			  x : _x,
-			  y : _y,
-			  clockwise : clockwise,
-			  perfectDrawEnabled : false,
-			  listening: false
-			  //transformsEnabled : {'position', 'rotation'}
-			  
-			});
+			this.correct = (clockwise)?2.0/r:-2.0/r;
 			
-			layer.add(this.arc);
+			this.angle = startAngle;
 			
 		},
 		cache:function(){
-			return;
-			var that = this;
-			this.arc.cache({
-				x: that.x,
-				y:that.y,
-				width:that.r*2,
-				height:that.r*2,
-				drawBorder:true
-			});
+			
 		},
 		normAngle: function(x) {
 			//return x;
@@ -52,8 +30,6 @@ define([
 		},
 		updateHead: function(angleV) {
 			this.span += angleV;
-			this.arc.angle(this.span*180/Math.PI);
-			//console.log(this.arc);
 		},
 		isInside: function(x, y, radius){
 			var d = Math.sqrt((x-this.x)*(x-this.x)+(y-this.y)*(y-this.y));
@@ -72,15 +48,22 @@ define([
 				return true;
 			}
 		},
-		draw: function(ctx){
+		clear:function(ctx){
+			ctx.clearRect(this.x - this.r - this.radius-1, this.y-this.r-this.radius-1
+			, 2*(this.r+this.radius+1),2*(this.r+this.radius+1));
+		},
+		draw: function(ctx, col){
+			
+			
 			ctx.beginPath();
+			ctx.strokeStyle = col;
 			ctx.lineWidth = this.radius*2;
 			
 			if(this.span>0){
-				ctx.arc(this.x, this.y, this.r, this.normAngle(this.angle), this.normAngle(this.angle+this.span));
+				ctx.arc(this.x, this.y, this.r, this.normAngle(this.angle+this.correct), this.normAngle(this.angle+this.span));
 				
 			} else {
-				ctx.arc(this.x, this.y, this.r, this.normAngle(this.angle), this.normAngle(this.angle+this.span), true);
+				ctx.arc(this.x, this.y, this.r, this.normAngle(this.angle+this.correct ), this.normAngle(this.angle+this.span), true);
 			}
 			
 			ctx.stroke();	

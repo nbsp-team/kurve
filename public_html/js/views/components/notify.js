@@ -1,9 +1,7 @@
 define([
-    'app',
-    'lib/notify.min'
+    'app'
 ], function(
-    app,
-    notify
+    app
 ){
 
     var Notify = Backbone.View.extend({
