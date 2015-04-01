@@ -2,98 +2,102 @@ define([
     'app',
     'konva',
     'tmpl/game',
-    'views/AbstractScreen'
+    'views/AbstractScreen',
+    'models/Snake',
+    'models/GameField'
 ], function(
     app,
     Konva,
     tmpl,
-    AbstractScreen
+    AbstractScreen,
+    Snake,
+    GameField
 ){
-
     var View = AbstractScreen.extend({
 
         el: '.b-game',
         template: tmpl,
-
         initialize: function () {
+			
+			this.field = new GameField();
+			document.addEventListener('keydown',    this.keyDown(),    false);
+			document.addEventListener('keyup',    this.keyUp(),    false);
+			this.leftRepeat = false;
+			this.rightRepeat = false;
         },
-
+        keyDown: function () {
+			var that = this;
+			return function (e) {
+				switch(e.keyCode) {		
+					case 32:
+						that.pause();
+						break;
+					case 81:
+						if(that.leftRepeat) break;
+						that.leftRepeat = true;
+						console.log('down');
+						that.field.leftDown(0);
+						e.preventDefault();
+						break;
+					case 87:
+						if(that.rightRepeat) break;
+						console.log('down');
+						that.rightRepeat = true;
+						that.field.rightDown(0);
+						e.preventDefault();
+						break;
+					case 79:
+						if(that.leftRepeat2) break;
+						that.field.leftDown(1);
+						that.leftRepeat2 = true;
+						e.preventDefault();
+						break;
+					case 80:	
+						if(that.rightRepeat2) break;
+						that.rightRepeat2 = true;
+						that.field.rightDown(1);
+						e.preventDefault();
+						break;
+				}
+			}
+		},
+		keyUp: function() {
+			var that = this;
+			return function (e) {
+				switch(e.keyCode) {
+					case 81:
+						that.leftRepeat = false;
+						that.field.leftUp(0);
+						e.preventDefault();
+						break;
+					case 87:
+						that.rightRepeat = false;
+						that.field.rightUp(0);
+						e.preventDefault();
+						break;
+					case 79:
+						that.leftRepeat2 = false;
+						that.field.leftUp(1);
+						e.preventDefault();
+						break;
+					case 80:
+						that.rightRepeat2 = false;
+						that.field.rightUp(1);
+						e.preventDefault();
+						break;
+				}
+			}
+		},
+        events: {
+			'click #foreground-canvas' : 'pause'
+		},
+		pause: function() {
+			this.field.playPause();
+		},
         render: function () {
             $(this.el).html(this.template({'model': this.templateArg}));
-
-            var width = 1000;
-            var height = 600;
-            var stage = new Konva.Stage({
-                container: 'gameContainer',
-                width: width,
-                height: height
-            });
-
-            var layer = new Konva.Layer();
-            /*
-             * leave center point positioned
-             * at the default which is the top left
-             * corner of the rectangle
-             */
-            var blueRect = new Konva.Rect({
-                x: 400,
-                y: 375,
-                width: 100,
-                height: 50,
-                fill: '#00D2FF',
-                stroke: 'black',
-                strokeWidth: 4
-            });
-
-            /*
-             * move center point to the center
-             * of the rectangle with offset
-             */
-            var yellowRect = new Konva.Rect({
-                x: 520,
-                y: 205,
-                width: 100,
-                height: 50,
-                fill: 'yellow',
-                stroke: 'black',
-                strokeWidth: 4,
-                offset: {
-                    x: 50,
-                    y: 25
-                }
-            });
-            /*
-             * move center point outside of the rectangle
-             * with offset
-             */
-            var redRect = new Konva.Rect({
-                x: 400,
-                y: 75,
-                width: 100,
-                height: 50,
-                fill: 'red',
-                stroke: 'black',
-                strokeWidth: 4,
-                offset: {
-                    x: -100,
-                    y: 0
-                }
-            });
-            layer.add(blueRect);
-            layer.add(yellowRect);
-            layer.add(redRect);
-            stage.add(layer);
-
-            // one revolution per 4 seconds
-            var angularSpeed = 90;
-            var anim = new Konva.Animation(function(frame) {
-                var angleDiff = frame.timeDiff * angularSpeed / 1000;
-                blueRect.rotate(angleDiff);
-                yellowRect.rotate(angleDiff);
-                redRect.rotate(angleDiff);
-            }, layer);
-
-            anim.start();
+             
+            this.field.makeStage();
         }
     });
 
