@@ -60,7 +60,7 @@ module.exports = function (grunt) {
                 }
             },
 
-            lol: {
+            livereload: {
                 files: ['public_html/**/*.js'],                
                 options: {                    
                     livereload: true         
