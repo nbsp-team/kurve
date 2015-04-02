@@ -13,16 +13,15 @@ define([
 ){
 	function GameField(){this.initialize();}
     GameField.prototype = {
-		colors: ['blue', 'red', 'yellow', 'green', 'magenta'],
+		colors: ['blue', 'red', 'yellow', 'green', 'orange'],
 		FPS : 60,
 		width : 1000,
 		height : 600,
         initialize: function() {
-			this.backLayer = new Konva.FastLayer();
-			this.foreLayer = new Konva.FastLayer();
-			this.numPlayers = 5;
+			
+			this.numPlayers = 2;
 			this.playing = false;
-			this.snakes = []
+			this.snakes = [];
 			for(var i = 0; i < this.numPlayers; i++) {
 				//this.snakes[i] = new Snake();
 				this.snakes[i] = new Snake();
@@ -31,22 +30,22 @@ define([
 				var x = this.width/2 + mindim*0.25*Math.cos(angle);
                 var y = this.height/2 + mindim*0.25*Math.sin(angle);
                 
-				this.snakes[i].init(x, y, angle+Math.PI/2, this.colors[i], this.FPS, this.backLayer, this.foreLayer);
+				this.snakes[i].init(x, y, angle+Math.PI/2, this.colors[i], this.FPS, this.backCtx, this.foreCtx);
 				this.dead = 0;
 			}
             
 		},
 		makeStage:function() {
-			
-			var that = this;
-            this.stage = new Konva.Stage({
-                container: 'gameContainer',
-                width: that.width,
-                height: that.height
-            });
-            
-            this.stage.add(this.backLayer);
-            this.stage.add(this.foreLayer);
+			this.backCanvas = document.getElementById('background-canvas');
+			this.foreCanvas = document.getElementById('foreground-canvas');
+			console.log(this.foreCanvas);
+			this.backCtx = this.backCanvas.getContext('2d');
+			this.foreCtx = this.foreCanvas.getContext('2d');
+			console.log(this.foreCtx);
+			for(var i = 0; i < this.numPlayers; i++){
+				this.snakes[i].foreCtx = this.foreCtx;
+				this.snakes[i].backCtx = this.backCtx;
+			}
 		},
 		leftDown: function(sender) {
 			this.snakes[sender].startTurning(this.snakes[sender].TURNING_LEFT);
@@ -99,7 +98,12 @@ define([
 			}
 		},
 		render: function() {
-			this.foreLayer.draw();
+			for(var i = 0; i < this.numPlayers; i++){
+				this.snakes[i].clear();
+			}
+			for(var i = 0; i < this.numPlayers; i++){
+				this.snakes[i].draw();
+			}
 		},
 		run: function(){
 			var that = this;

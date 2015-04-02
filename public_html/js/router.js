@@ -1,11 +1,23 @@
 define([
     'app',
-    'views/ViewManager',
+    'views/Main',
+    'views/Game',
+    'views/Room',
+    'views/Scoreboard',
+    'views/Login',
+    'views/Register',
+    'views/Admin',
     'views/components/user',
     'views/components/notify'
 ], function(
     app,
-    ViewManager,
+    Main,
+    Game,
+    Room,
+    Score,
+    Login,
+    Register,
+    Admin,
     UserView,
     NotifyView
 ){
@@ -20,12 +32,10 @@ define([
             '*default': 'defaultAction'
         },
 
-        viewManager: null,
+        currentView: null,
 
         initialize: function () {
-            this.userView = new UserView();
-            this.notifyView = new NotifyView();
-            this.viewManager = new ViewManager();
+
         },
 
         navigateTo: function(url) {
@@ -33,31 +43,51 @@ define([
         },
 
         showView: function(view) {
-            this.viewManager.displayView(view);
+            this.initViews();
+
+            if(this.currentView) {
+                this.currentView.dispose();
+                this.currentView.undelegateEvents();
+            }
+
+            this.currentView = view;
+            view.load();
+        },
+
+        initViews: function() {
+            if (!this.userView) {
+                this.userView = new UserView();
+
+                app.session.triggerLoggedUpdate();
+            }
+
+            if (!this.notifyView) {
+                this.notifyView = new NotifyView();
+            }
         },
 
         /* ================ Navigate Utils ================ */
 
         defaultAction: function () {
-            this.showView(this.viewManager.MAIN_VIEW);
+            this.showView(new Main());
         },
         scoreboardAction: function () {
-            this.showView(this.viewManager.SCOREBOARD_VIEW);
+            this.showView(new Score());
         },
         gameAction: function () {
-            this.showView(this.viewManager.GAME_VIEW);
+            this.showView(new Game());
         },
         roomAction: function () {
-            this.showView(this.viewManager.ROOM_VIEW);
+            this.showView(new Room());
         },
         loginAction: function () {
-            this.showView(this.viewManager.LOGIN_VIEW);
+            this.showView(new Login());
         },
         registerAction: function () {
-            this.showView(this.viewManager.REGISTER_VIEW);
+            this.showView(new Register());
         },
         adminAction: function () {
-            this.showView(this.viewManager.ADMIN_VIEW);
+            this.showView(new Admin());
         }
     });
 

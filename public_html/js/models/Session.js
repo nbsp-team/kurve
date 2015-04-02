@@ -25,8 +25,8 @@ define([
             var self = this;
             app.api.auth.getUser().then(
                 function(userData) {
-                    self.updateSessionUser(userData);
                     self.set("loggedIn", true);
+                    self.updateSessionUser(userData);
                     callback(true);
                 },
                 function(errorObject) {
@@ -49,6 +49,7 @@ define([
                 }
             );
         },
+
 
         login: function(userData) {
             var self = this;

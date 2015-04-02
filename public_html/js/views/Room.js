@@ -3,15 +3,13 @@ define([
     'tmpl/room',
     'views/AbstractScreen',
     'collections/Room',
-    'views/components/room-player',
-    'models/Player'
+    'views/components/room-player'
 ], function(
     app,
     tmpl,
     AbstractScreen,
     RoomCollection,
-    RoomPlayer,
-    Player
+    RoomPlayer
 ){
 
     var View = AbstractScreen.extend({
@@ -19,17 +17,14 @@ define([
         el: '.js-room',
         playersContainer: null,
         template: tmpl,
-        currentPlayer: null,
 
         events: {
-            'click .js-back-button': 'goBack',
-            'click .js-ready-button': 'setReady'
+            'click .js-back-button': 'goBack'
         },
 
         initialize: function () {
             this.collection = new RoomCollection();
             this.listenTo(this.collection, "add", this.addUser);
-            this.listenTo(this.collection, "loggined", this.connected);
         },
 
         load: function() {
@@ -38,14 +33,9 @@ define([
             this.collection.connectToRoom();
         },
 
-        addUser: function(userModel) {
-            var playerView = new RoomPlayer({'model': userModel});
+        addUser: function(UserModel) {
+            var playerView = new RoomPlayer({'model': UserModel});
             this.playersContainer.append(playerView.el);
-
-            if(userModel.get('username') == app.session.user.get('username')) {
-                this.currentPlayer = userModel;
-            }
-
             this.listenToOnce(playerView, "removeMe", this.removeUser);
         },
 
@@ -56,12 +46,6 @@ define([
         goBack: function() {
             this.collection.disconnectFromRoom();
             app.router.navigateTo("/");
-        },
-
-        setReady: function() {
-            var newReadyStatus = !this.currentPlayer.get("is_ready");
-            this.collection.setReady(newReadyStatus);
-            this.currentPlayer.set("is_ready", newReadyStatus);
         }
     });
 

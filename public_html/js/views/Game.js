@@ -28,7 +28,10 @@ define([
         keyDown: function () {
 			var that = this;
 			return function (e) {
-				switch(e.keyCode) {							
+				switch(e.keyCode) {		
+					case 32:
+						that.pause();
+						break;
 					case 81:
 						if(that.leftRepeat) break;
 						that.leftRepeat = true;
@@ -86,7 +89,7 @@ define([
 			}
 		},
         events: {
-			'click #gameContainer' : 'pause'
+			'click #foreground-canvas' : 'pause'
 		},
 		pause: function() {
 			this.field.playPause();
