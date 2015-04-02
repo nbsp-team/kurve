@@ -16,7 +16,7 @@ define([
         templateArg: User,
 
         initialize: function() {
-            this.listenTo(app.session, "change:loggedIn", this.load);
+            this.listenTo(app.session, "change:loggedIn", this.load);                    
         },
 
         /* ================= Events ================= */
