@@ -40,7 +40,7 @@ define([
         },
 
         render: function () {
-
+            console.log(app.session.user.toJSON());
             $(this.el).html(this.template(
                 {
                     'app': app,

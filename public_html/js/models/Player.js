@@ -4,6 +4,7 @@ define([
 
     var Player = Backbone.Model.extend({
         defaults: {
+            "player_id": 0,
             "username": "",
             "email": "",
             "global_rating": 0,
