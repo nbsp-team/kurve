@@ -275,11 +275,10 @@
     outline: none;
 }
 .card-player__color-block__ready {
-    color: white;
-    font-family: arial;
-    font-size: 34px;
-    text-align: center;
-    margin-top: 10px;
+    margin: 12px;
+    width: 36px;
+    height: 36px;
+    background: url('../img/ready.png')
 }
 .card-player__color-block {
     display: block;
