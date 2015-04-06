@@ -40,7 +40,7 @@ define([
 
         initialize: function () {
             this.views[this.ADMIN_VIEW] = new Admin();
-            this.views[this.GAME_VIEW] = new Game();
+            //this.views[this.GAME_VIEW] = new Game();
             this.views[this.LOGIN_VIEW] = new Login();
             this.views[this.MAIN_VIEW] = new Main();
             this.views[this.REGISTER_VIEW] = new Register();
