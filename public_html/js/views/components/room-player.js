@@ -35,7 +35,6 @@ define([
         },
 
         setReady: function() {
-            console.log("qweqwe");
             var readyValue = this.model.get('is_ready');
 
             if(readyValue == true) {

@@ -67,11 +67,9 @@ define([
 			var data = { 'code' : this.EVENT_CODE, 'isLeft' : isLeft, 'isUp': isUp }
 			
 			this.socket.send(JSON.stringify(data));
-		}
+		},
 
-		
-        //****************** Methods ******************//
-    };
+	
 
         //****************** Methods ******************//
 

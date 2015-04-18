@@ -15,7 +15,7 @@ define([
         initialize: function(options) {
 			this.numPlayers = options.numPlayers;
 			this.myId = options.myId;
-			console.log(options);
+			
 			if(options.width) this.width = options.width;
 			if(options.height) this.height = options.height;
 			if(options.FPS) this.FPS = options.FPS;
@@ -23,7 +23,7 @@ define([
 			if(options.angleSpeed) Snake.prototype.defaultAngleSpeed = options.angleSpeed;
 			if(options.partLength) Snake.prototype.defaultPartLength = options.partLength;
 			if(options.holeLength) Snake.prototype.defaultHoleLength = options.holeLength;
-			console.log(this);
+			
 			this.snakes = [];
 			var mindim = Math.min(this.width, this.height);
 			for(var i = 0; i < this.numPlayers; i++) {
@@ -53,7 +53,7 @@ define([
 			this.foreCanvas.style.zIndex   = 2;
 			this.backCanvas.style.position = "absolute"; this.foreCanvas.style.position = "absolute";
 			
-			console.log(box);
+			
 			box.append(this.backCanvas); box.append(this.foreCanvas);
 			box.width(this.width); box.height(this.height);
 			box.css({left:-this.width/2});
