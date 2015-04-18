@@ -12,6 +12,6 @@
         <a href="#login" class="btn btn_blue"> Войти </a>
         <a href="#register" class="btn btn_blue"> Регистрация </a>
         <a href="#scoreboard" class="btn btn_blue"> Рейтинги </a>
-    </fest:if>
+    </fest:if>    
 
 </fest:template>

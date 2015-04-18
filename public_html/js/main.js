@@ -15,7 +15,6 @@ require([
     app.session = new SessionModel({});
     app.router = new Router();
 
-
     app.session.checkAuth(function(isLogged){
         Backbone.history.start();
     });

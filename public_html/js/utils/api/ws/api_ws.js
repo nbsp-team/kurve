@@ -19,7 +19,6 @@ define([
 
             
             this.currentApi = roomApi;
-           
 
             this.socket = socket;
             this.socket.onopen = this.onOpen;
@@ -27,7 +26,6 @@ define([
             
             this.currentApi.ws_api = this;
             this.socket.onmessage = this.currentApi.onMessage();
-            
             
         },
 		switchToGame: function(){
@@ -75,8 +73,22 @@ define([
         //****************** Methods ******************//
     };
 
+        //****************** Methods ******************//
+
+        sendReady: function(readyStatus) {
+
+            var data = {
+                "code": this.READY_CODE,
+                "ready": readyStatus
+            };
+
+            console.log(data);
+
+            this.socket.send(JSON.stringify(data));
+        }
+
+        //****************** Methods ******************//
+    };
+
     return wsApi;
 });
-
-
-

@@ -1,6 +1,6 @@
 define([
     'app',
-    'lib/notify.min'
+    'notify'
 ], function(
     app,
     notify

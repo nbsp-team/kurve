@@ -13,10 +13,6 @@ define([
             this.user = new UserModel({});
         },
 
-        triggerLoggedUpdate: function() {
-            this.trigger('change:loggedIn');
-        },
-
         updateSessionUser: function(userData) {
             this.user.set(_.pick(userData, _.keys(this.user.defaults)));
         },
@@ -78,4 +74,3 @@ define([
 
     return SessionModel;
 });
-

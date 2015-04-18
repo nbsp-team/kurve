@@ -46,6 +46,7 @@ module.exports = function (grunt) {
                 tasks: ['fest'],
                 options: {
                     interrupt: true,
+                    livereload: true,
                     atBegin: true
                 }
             },
@@ -54,8 +55,16 @@ module.exports = function (grunt) {
                 tasks: ['concat_css'],
                 options: {
                     interrupt: true,
+                    livereload: true,
                     atBegin: true
                 }
+            },
+
+            livereload: {
+                files: ['public_html/**/*.js'],                
+                options: {                    
+                    livereload: true         
+                }  
             }
         },
         concurrent: {

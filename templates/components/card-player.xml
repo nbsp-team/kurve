@@ -5,7 +5,7 @@
     </div>
     <div class="card-player__color-block js-player-color">
         <div class="card-player__color-block__ready js-ready" style="display: none;">
-            ✓
+
         </div>
     </div>
     <div class="card-player__rating">
