@@ -16,9 +16,9 @@ define([
         return {
             signUp: function(data) {
                 var def = $.Deferred();
+                
                 var post = $.post(SIGNUP_URL, data);
                 post.done(function(data) {
-
                     if(data.error == null) {
                         def.resolve(data.response.user);
                     } else {
@@ -26,6 +26,7 @@ define([
                     }
                 });
                 post.fail(function() {
+					alert("Ошибка подключения");
                     def.reject("Ошибка подключения");
                 });
                 return def;

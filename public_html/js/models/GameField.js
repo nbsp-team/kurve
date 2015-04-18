@@ -1,47 +1,65 @@
 define([
     'app',
-    'konva',
-    'tmpl/game',
-    'views/AbstractScreen',
-    'models/Snake'
+    'models/Snake',
+    'utils/api/ws/api_ws'
 ], function(
     app,
-    Konva,
-    tmpl,
-    AbstractScreen,
-    Snake
+    Snake,
+    Api
 ){
-	function GameField(){this.initialize();}
+	function GameField(options){this.initialize(options);}
     GameField.prototype = {
-		colors: ['blue', 'red', 'yellow', 'green', 'orange'],
 		FPS : 60,
-		width : 1000,
-		height : 600,
-        initialize: function() {
-			
-			this.numPlayers = 2;
-			this.playing = false;
+		width : 500,
+		height : 300,
+        initialize: function(options) {
+			this.numPlayers = options.numPlayers;
+			this.myId = options.myId;
+			console.log(options);
+			if(options.width) this.width = options.width;
+			if(options.height) this.height = options.height;
+			if(options.FPS) this.FPS = options.FPS;
+			if(options.speed) Snake.prototype.defaultSpeed = options.speed;
+			if(options.angleSpeed) Snake.prototype.defaultAngleSpeed = options.angleSpeed;
+			if(options.partLength) Snake.prototype.defaultPartLength = options.partLength;
+			if(options.holeLength) Snake.prototype.defaultHoleLength = options.holeLength;
+			console.log(this);
 			this.snakes = [];
+			var mindim = Math.min(this.width, this.height);
 			for(var i = 0; i < this.numPlayers; i++) {
-				//this.snakes[i] = new Snake();
-				this.snakes[i] = new Snake();
-				var mindim = Math.min(this.width, this.height);
+				this.snakes[i] = new Snake();				
 				var angle = i*2*Math.PI/this.numPlayers;
 				var x = this.width/2 + mindim*0.25*Math.cos(angle);
                 var y = this.height/2 + mindim*0.25*Math.sin(angle);
                 
-				this.snakes[i].init(x, y, angle+Math.PI/2, this.colors[i], this.FPS, this.backCtx, this.foreCtx);
-				this.dead = 0;
+				this.snakes[i].init(x, y, angle+Math.PI/2, options.players[i].color, this.FPS, this.backCtx, this.foreCtx);
 			}
-            
+			this.deadCount = 0;
+			this.playing = true;
+			
+			this.makeCanvas(options.canvasBox);
 		},
-		makeStage:function() {
-			this.backCanvas = document.getElementById('background-canvas');
-			this.foreCanvas = document.getElementById('foreground-canvas');
-			console.log(this.foreCanvas);
+		snakeUpdate: function(snake){
+			this.snakes[snake.id].update(snake);
+		},
+		makeCanvas:function(box) {
+			this.backCanvas = document.createElement('canvas');
+			this.backCanvas.id     = "background-canvas";
+			this.backCanvas.width  = this.width; this.backCanvas.height = this.height;
+			this.backCanvas.style.zIndex   = 1;
+			this.foreCanvas = document.createElement('canvas');
+			this.foreCanvas.id     = "foreground-canvas";
+			this.foreCanvas.width  = this.width; this.foreCanvas.height = this.height;
+			this.foreCanvas.style.zIndex   = 2;
+			this.backCanvas.style.position = "absolute"; this.foreCanvas.style.position = "absolute";
+			
+			console.log(box);
+			box.append(this.backCanvas); box.append(this.foreCanvas);
+			box.width(this.width); box.height(this.height);
+			box.css({left:-this.width/2});
+			
 			this.backCtx = this.backCanvas.getContext('2d');
 			this.foreCtx = this.foreCanvas.getContext('2d');
-			console.log(this.foreCtx);
 			for(var i = 0; i < this.numPlayers; i++){
 				this.snakes[i].foreCtx = this.foreCtx;
 				this.snakes[i].backCtx = this.backCtx;
@@ -49,15 +67,16 @@ define([
 		},
 		leftDown: function(sender) {
 			this.snakes[sender].startTurning(this.snakes[sender].TURNING_LEFT);
+			
 		},
-		leftUp: function(sender) {
+		leftUp: function(sender) { 
 			this.snakes[sender].stopTurning(this.snakes[sender].TURNING_LEFT);
 		},
-		rightDown: function(sender) {
+		rightDown: function(sender) {					
 			this.snakes[sender].startTurning(this.snakes[sender].TURNING_RIGHT);
 		},
-		rightUp: function(sender) {
-			this.snakes[sender].stopTurning(this.snakes[sender].TURNING_RIGHT);
+		rightUp: function(sender) {	
+			this.snakes[sender].stopTurning(this.snakes[sender].TURNING_RIGHT);	
 		},
 		playPause: function() {
 			this.playing = !this.playing;
@@ -67,43 +86,27 @@ define([
 			} else console.log('pause');
 		},
         step: function () {
+			this.steps++;
 			for(var i = 0; i < this.numPlayers; i++) {
 				if(this.snakes[i].isAlive) {
 					this.snakes[i].step();
-					if(this.snakes[i].x > this.width) {
-						this.snakes[i].teleport(0, this.snakes[i].y);
-					}
-					if(this.snakes[i].x < 0) {
-						this.snakes[i].teleport(this.width, this.snakes[i].y);
-					}
-					if(this.snakes[i].y > this.height) {
-						this.snakes[i].teleport(this.snakes[i].x, 0);
-					}
-					if(this.snakes[i].y < 0) {
-						this.snakes[i].teleport(this.snakes[i].x, this.height);
-					}
-					for(var ii = 0; ii < this.numPlayers; ii++){
-						if(this.snakes[ii].isInside(this.snakes[i].x
-						,this.snakes[i].y, i==ii, this.snakes[i].radius)){
-							this.snakes[i].kill();
-							this.dead++;
-						}
-					}
-					
+					if(this.snakes[i].x > this.width)  this.snakes[i].teleport(0, this.snakes[i].y);
+					if(this.snakes[i].x < 0)           this.snakes[i].teleport(this.width, this.snakes[i].y);
+					if(this.snakes[i].y > this.height) this.snakes[i].teleport(this.snakes[i].x, 0);
+					if(this.snakes[i].y < 0)           this.snakes[i].teleport(this.snakes[i].x, this.height);		
 				}
 			}
-			if(this.dead==this.numPlayers) {
+			if(this.deadCount===this.numPlayers) {
 				this.playing = false;
-				console.log('all dead, game paused');
+				console.log('all deadCount, game paused');				
 			}
 		},
+		onGameOver: function(){
+			Api.closeConnection();
+		},
 		render: function() {
-			for(var i = 0; i < this.numPlayers; i++){
-				this.snakes[i].clear();
-			}
-			for(var i = 0; i < this.numPlayers; i++){
-				this.snakes[i].draw();
-			}
+			for(var i = 0; i < this.numPlayers; i++) this.snakes[i].clear();
+			for(var i = 0; i < this.numPlayers; i++) this.snakes[i].draw();
 		},
 		run: function(){
 			var that = this;
@@ -112,7 +115,8 @@ define([
 			var stepTime = 1000/this.FPS;
 			function frame() {					
 				now = window.performance.now();
-				dt += (now - last);
+				dt += Math.min(1000, now - last);
+				
 				if(dt > stepTime){	
 					while(dt > stepTime) {
 						dt -= stepTime;
@@ -120,8 +124,9 @@ define([
 					}
 					
 					that.render();
-					last = now;
+					
 				}
+				last = now;
 				if (that.playing) requestAnimationFrame(frame);
 			}
 			requestAnimationFrame(frame);

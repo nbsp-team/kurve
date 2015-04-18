@@ -20,18 +20,20 @@ define([
         },
 
         initialize: function () {
+			
             this.listenTo(app.session, "change:loggedIn", this.loggedChanged);
         },
 
         register: function () {
             var userData = Syphon.serialize(this);
+            
             app.session.signup(userData);
             return false;
         },
 
         loggedChanged: function() {
             if (app.session.get("loggedIn")) {
-                app.router.navigateTo("/");
+              //  app.router.navigateTo("/");
             }
         }
     });

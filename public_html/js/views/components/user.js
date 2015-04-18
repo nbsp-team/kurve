@@ -14,6 +14,14 @@ define([
             this.listenTo(app.session, 'change:loggedIn', this.update);
         },
 
+        events: {
+            'click .js-toolbar-exit': 'logoutEvent'
+        },
+
+        logoutEvent: function() {
+            app.session.logout();
+        },
+
         show: function() {
             $(this.el).fadeIn();
         },
@@ -32,7 +40,7 @@ define([
         },
 
         render: function () {
-
+            console.log(app.session.user.toJSON());
             $(this.el).html(this.template(
                 {
                     'app': app,

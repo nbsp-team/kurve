@@ -3,6 +3,7 @@
     <div class="title"> Участники комнаты </div>
     <div class="b-room__container-players js-container-players"> </div>
     <div style="clear: both;"> </div>
+    <div class="btn btn_blue js-ready-button"> Готов </div>
     <div class="btn btn_red js-back-button"> Назад </div>
 
 </fest:template>

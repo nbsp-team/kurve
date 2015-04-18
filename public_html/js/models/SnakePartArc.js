@@ -4,6 +4,7 @@ define([
 ], function(app, Konva){
 	function SnakePartArc(){}
     SnakePartArc.prototype = {
+		
 		init: function(x, y, r, startAngle, color, radius, clockwise, layer) {
 	        this.r = r;
 			this.x = x;
@@ -18,52 +19,30 @@ define([
 			
 			this.angle = startAngle;
 			
-		},
-		cache:function(){
-			
-		},
-		normAngle: function(x) {
-			//return x;
-			while(x >= 2*Math.PI) x-=2*Math.PI;
-			while(x < 0) x += 2*Math.PI;
-			return x;
+		},		
+		applyUpdate: function(arc){
+			this.x = arc.x; this.y = arc.y;
+			this.radius = arc.lineRadius;
+			this.r = arc.radius; this.span = arc.span;
+			this.angle = arc.angle;
+			this.clockwise = arc.clockwise;
+			this.correct = (this.clockwise)?2.0/this.r:-2.0/this.r;
 		},
 		updateHead: function(angleV) {
 			this.span += angleV;
-		},
-		isInside: function(x, y, radius){
-			var d = Math.sqrt((x-this.x)*(x-this.x)+(y-this.y)*(y-this.y));
-			if(Math.abs(d-this.r)>this.radius + radius) return false;
-			var alpha = Math.atan2((y-this.y),(x-this.x));
-
-			var b = ((alpha<this.angle) != (alpha< this.angle + this.span));
-			if(b){
-				console.log(this.r);
-				console.log(d);
-				console.log(x);
-				console.log(y);
-				console.log(this.normAngle(this.angle)	);
-				console.log(this.normAngle(this.angle + this.span));
-				console.log(alpha);
-				return true;
-			}
 		},
 		clear:function(ctx){
 			ctx.clearRect(this.x - this.r - this.radius-1, this.y-this.r-this.radius-1
 			, 2*(this.r+this.radius+1),2*(this.r+this.radius+1));
 		},
-		draw: function(ctx, col){
-			
-			
+		draw: function(ctx, col){			
 			ctx.beginPath();
 			ctx.strokeStyle = col;
-			ctx.lineWidth = this.radius*2;
-			
-			if(this.span>0){
-				ctx.arc(this.x, this.y, this.r, this.normAngle(this.angle+this.correct), this.normAngle(this.angle+this.span));
-				
+			ctx.lineWidth = this.radius*2;			
+			if(this.span>=0){
+				ctx.arc(this.x, this.y, this.r, this.angle+this.correct, this.angle+this.span, this.clockwise);
 			} else {
-				ctx.arc(this.x, this.y, this.r, this.normAngle(this.angle+this.correct ), this.normAngle(this.angle+this.span), true);
+				ctx.arc(this.x, this.y, this.r, this.angle+this.correct, this.angle+this.span, this.clockwise);
 			}
 			
 			ctx.stroke();	

@@ -18,8 +18,7 @@ define([
         templateArg: Collect,
 
         initialize: function () {
-            this.listenToOnce(this.collection, 'add', this.render);
-            this.listenToOnce(this.collection, 'add', this.show);
+            this.listenTo(this.collection, 'add', this.renderAndShow);
         },
 
         load: function() {

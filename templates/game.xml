@@ -1,6 +1,4 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
-<canvas height='600' width='1000' id='foreground-canvas' style="position: absolute; left: 0; top: 0; z-index:2"></canvas>
-<canvas height='600' width='1000' id='background-canvas' style="position: absolute; left: 0; top: 0; z-index:1"></canvas>
     <!--div class="wrapper" id="container__ingame">
         <div id="gameContainer">
 

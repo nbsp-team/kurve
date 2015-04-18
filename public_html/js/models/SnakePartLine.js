@@ -7,6 +7,8 @@ define([
 		init: function(x, y, vx, vy, radius, color, layer) {
 	        this.x1 = x-vx;
 			this.y1 = y-vy;
+			this.x2 = x-vx;
+			this.y2 = y-vy;
 			this.d = Math.sqrt(vx*vx+vy*vy);
 			this.A = -vy/this.d;
 			this.B = vx/this.d;
@@ -16,6 +18,13 @@ define([
 			this.radius = radius;
 			
 			
+		},
+		applyUpdate: function(line){
+			if (line.y1 < 0) line.y1 = 1;
+			if( line.y2 >= 600) line.y2 = 599;
+			this.x1 = line.x1; this.y1 = line.y1;
+			this.x2 = line.x2; this.y2 = line.y2;
+			this.radius = line.lineRadius;
 		},
 		updateHead: function(newX, newY, v) {
 			this.x2 = newX;
