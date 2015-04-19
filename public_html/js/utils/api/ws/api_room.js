@@ -8,7 +8,7 @@ define([
         var PLAYER_CONNECTED_CODE = 1;
         var PLAYER_DISCONNECTED_CODE = 2;
         var PLAYER_READY_CODE = 4;
-		var GAME_STARTED_CODE = 13;
+		var GAME_STARTED_CODE = 5;
 		
 		
         return {

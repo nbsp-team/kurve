@@ -7,7 +7,7 @@
     </network>
 
     <mechanics>
-        <minPlayerNumber>2</minPlayerNumber>
+        <minPlayerNumber>1</minPlayerNumber>
         <maxPlayerNumber>6</maxPlayerNumber>
     </mechanics>
 

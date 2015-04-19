@@ -37,7 +37,6 @@ define([
 			document.addEventListener('keydown',    this.keyDown(),    false);
 			document.addEventListener('keyup',    this.keyUp(),    false);
 			
-			
 			this.field.run();
 		},
         keyEvent: function(isLeft, isUp, sender){
