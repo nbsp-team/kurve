@@ -20,7 +20,7 @@ define([
         el: '.b-game',
         template: tmpl,
         initialize: function () {			
-			game_log = true;
+			game_log = false;
 			this.listenTo(app.wsEvents, "wsKeyEvent", this.keyEvent);
 			this.listenTo(app.wsEvents, "wsStartGame", this.start);
 			this.listenTo(app.wsEvents, "wsSnakeUpdateEvent", this.snakeUpdate);
@@ -44,7 +44,7 @@ define([
 				if(isUp){
 					this.field.leftUp(sender);
 				} else {
-					//this.field.leftDown(sender);
+					this.field.leftDown(sender);
 					if (that.myId == sender){
 						var delay = window.performance.now()-this.fromTime;
 						//console.log('serv delay '+(delay));
@@ -58,7 +58,7 @@ define([
 				}
 			}
 		},	
-		  keyDown: function () {
+		keyDown: function () {
 			var that = this;
 			return function (e) {
 				switch(e.keyCode) {		
@@ -111,6 +111,7 @@ define([
 		},
 		pause: function() {
 			this.field.playPause();
+			console.log(this.field.snakes[0]);
 		},
         render: function () {
             $(this.el).html(this.template({'model': this.templateArg}));            

@@ -67,7 +67,7 @@ define([
 			this.narcs = snake.narcs;
 			
 			if(this.narcs > 0){
-			//	this.arcCenterX = this.lastArc().x;	this.arcCenterY = this.lastArc().y;
+				this.arcCenterX = this.lastArc().x;	this.arcCenterY = this.lastArc().y;
 			}
 			this.isAlive = snake.alive;
 			
@@ -91,8 +91,10 @@ define([
 		clear: function(){					
 			this.foreCtx.clearRect(this.prevX - this.prevRadius-2, this.prevY - this.prevRadius-2
 				, this.prevRadius*2+4, this.prevRadius*2+4);
+
+			
 			for(var i = this.arcsInBack; i < this.narcs; i++) {
-				this.snakeArcs[i].clear(this.foreCtx);			
+				this.snakeArcs[i].clear(this.foreCtx);	
 			}
 			for(var i = this.linesInBack; i < this.nlines; i++) {
 				this.snakeLines[i].clear(this.foreCtx);

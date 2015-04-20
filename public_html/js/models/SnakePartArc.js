@@ -34,6 +34,7 @@ define([
 		clear:function(ctx){
 			ctx.clearRect(this.x - this.r - this.radius-1, this.y-this.r-this.radius-1
 			, 2*(this.r+this.radius+1),2*(this.r+this.radius+1));
+
 		},
 		draw: function(ctx, col){			
 			ctx.beginPath();
@@ -41,9 +42,9 @@ define([
 			ctx.lineWidth = this.radius*2;			
 			
 			if(this.span>=0){
-				ctx.arc(this.x, this.y, this.r, this.angle+this.correct, this.angle2+this.correct, this.clockwise);
+				ctx.arc(this.x, this.y, this.r, this.angle+this.correct, this.angle2, this.clockwise);
 			} else {
-				ctx.arc(this.x, this.y, this.r, this.angle+this.correct, this.angle2+this.correct, this.clockwise);
+				ctx.arc(this.x, this.y, this.r, this.angle+this.correct, this.angle2, this.clockwise);
 			}
 			
 			ctx.stroke();	

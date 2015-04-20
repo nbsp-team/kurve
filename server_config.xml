@@ -9,12 +9,23 @@
     <mechanics>
         <minPlayerNumber>1</minPlayerNumber>
         <maxPlayerNumber>6</maxPlayerNumber>
-	<defaultSnakeSpeed>20</defaultSnakeSpeed>
-	<defaultSnakeAngleSpeed>17</defaultSnakeAngleSpeed>
-	<FPS>60</FPS>
-	<gameFieldWidth>500</gameFieldWidth>
-	<gameFieldHeight>500</gameFieldHeight>
-	<defaultSnakeWidth>4</defaultSnakeWidth>
+        <Snake>
+			<defaultSpeed>50</defaultSpeed>
+			<defaultAngleSpeed>44</defaultAngleSpeed>
+			<defaultWidth>4</defaultWidth>
+			<color>#F44336</color>
+			<color>#4CAF50</color>
+			<color>#2196F3</color>
+			<color>#673AB7</color>
+			<color>#E91E63</color>
+			<color>#9C27B0</color>
+		</Snake>
+		
+		<FPS>60</FPS>
+		<GameField>
+			<width>500</width>
+			<height>500</height>
+		</GameField>
     </mechanics>
 
 </configuration>
