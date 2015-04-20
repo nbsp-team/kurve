@@ -20,7 +20,7 @@ define([
         el: '.b-game',
         template: tmpl,
         initialize: function () {			
-			game_log = false;
+			game_log = true;
 			this.listenTo(app.wsEvents, "wsKeyEvent", this.keyEvent);
 			this.listenTo(app.wsEvents, "wsStartGame", this.start);
 			this.listenTo(app.wsEvents, "wsSnakeUpdateEvent", this.snakeUpdate);

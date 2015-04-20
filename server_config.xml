@@ -9,6 +9,12 @@
     <mechanics>
         <minPlayerNumber>1</minPlayerNumber>
         <maxPlayerNumber>6</maxPlayerNumber>
+	<defaultSnakeSpeed>20</defaultSnakeSpeed>
+	<defaultSnakeAngleSpeed>17</defaultSnakeAngleSpeed>
+	<FPS>60</FPS>
+	<gameFieldWidth>500</gameFieldWidth>
+	<gameFieldHeight>500</gameFieldHeight>
+	<defaultSnakeWidth>4</defaultSnakeWidth>
     </mechanics>
 
 </configuration>
