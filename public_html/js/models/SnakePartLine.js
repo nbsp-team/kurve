@@ -53,7 +53,7 @@ define([
 			ctx.beginPath();
 			
 			ctx.lineWidth = this.radius*2;	
-			ctx.moveTo(this.x1, this.y1);
+			ctx.moveTo(this.x1-this.B*2, this.y1+this.A*2);
 			ctx.lineTo(this.x2, this.y2);
 			ctx.strokeStyle = col;
 			ctx.stroke();

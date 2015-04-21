@@ -10,9 +10,12 @@
         <minPlayerNumber>1</minPlayerNumber>
         <maxPlayerNumber>6</maxPlayerNumber>
         <Snake>
-			<defaultSpeed>50</defaultSpeed>
-			<defaultAngleSpeed>44</defaultAngleSpeed>
-			<defaultWidth>4</defaultWidth>
+			<defaultSpeed>77</defaultSpeed>
+			<defaultTurnRadius>44</defaultTurnRadius>
+			<defaultWidth>8</defaultWidth>
+			<minPartLength>100</minPartLength>
+			<maxPartLength>300</maxPartLength>
+			<holeLength>20</holeLength>
 			<color>#F44336</color>
 			<color>#4CAF50</color>
 			<color>#2196F3</color>

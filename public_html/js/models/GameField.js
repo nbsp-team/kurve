@@ -22,7 +22,7 @@ define([
 			if(options.speed) Snake.prototype.defaultSpeed = options.speed;
 			if(options.angleSpeed) Snake.prototype.defaultAngleSpeed = options.angleSpeed;
 			if(options.partLength) Snake.prototype.defaultPartLength = options.partLength;
-			if(options.holeLength) Snake.prototype.defaultHoleLength = options.holeLength;
+			if(options.holeLength) Snake.prototype.holeLength = options.holeLength;
 			
 			this.snakes = [];
 			var mindim = Math.min(this.width, this.height);
