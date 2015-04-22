@@ -26,7 +26,6 @@ define([
                     }
                 });
                 post.fail(function() {
-					alert("Ошибка подключения");
                     def.reject("Ошибка подключения");
                 });
                 return def;

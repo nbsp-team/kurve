@@ -10,7 +10,6 @@ define([
     Snake.prototype = {
 		defaultSpeed: 100,
 		defaultAngleSpeed: 87,
-		defaultPartLength: 100,
 		holeLength: 20,
 		defaultRadius: 4,
 		init: function(x, y, angle, color, FPS, backCtx, foreCtx) {
@@ -36,7 +35,7 @@ define([
             this.doLine();
 		},
 		setDrawing: function(){
-			this.drawing = (this.stepCounter <= this.partStopper);			
+			this.drawing = (this.distSinceLastHole <= this.partStopper);			
 		},
 		update: function(snake){			
 			if(game_log) console.log('got '+snake.arcs.length+' arcs and '+snake.lines.length+' lines');
@@ -55,7 +54,7 @@ define([
 				this.sinV = Math.sin(this.angleV);
 			}
 			this.radius = snake.radius;
-			this.stepCounter= (snake.steps);
+			this.distSinceLastHole= (snake.distance);
 						
 			if(game_log) if(this.nlines < snake.nlines) console.log('this.nlines < snake.nlines');
 			if(game_log) if(this.narcs < snake.narcs) console.log('this.narcs < snake.narcs');
@@ -81,8 +80,9 @@ define([
 			this.isAlive = snake.alive;
 			
 			this.setDrawing();
-			this.teleport(snake.x, snake.y);
+			
 			this.moveToBack();
+			this.teleport(snake.x, snake.y);
 		},
 		moveToBack: function(b){
 			for(var i = this.linesInBack; i < this.nlines-1; i++){						
@@ -116,7 +116,7 @@ define([
 			for(var i = this.linesInBack; i < this.nlines; i++) {
 				this.snakeLines[i].draw(this.foreCtx, this.color);
 			}
-			if(game_log) console.log('qqq');
+			
 			this.foreCtx.beginPath();
 			this.foreCtx.fillStyle = this.color;
 			this.foreCtx.arc(this.x, this.y, this.radius, 0, 2*Math.PI);
@@ -141,7 +141,7 @@ define([
 			this.narcs = 0;
 			this.nlines = 0;			
 			this.radius = this.defaultRadius;
-			this.stepCounter = 0;
+			this.distSinceLastHole = 0;
 		},
 		startTurning: function(where) {
 			if((this.angleV > 0) != (where === this.TURNING_RIGHT)) {
@@ -202,6 +202,7 @@ define([
 			}
 		},
 		step: function() {
+			
 			this.makeHoles();
 			if(this.turning === this.NOT_TURNING) {
 				this.x += this.vx;
@@ -217,18 +218,18 @@ define([
 			}
 		},																																					
 		makeHoles: function() {
-			this.stepCounter++;
-			if(this.stepCounter > this.partStopper){
+			this.distSinceLastHole += this.v;
+			if(this.distSinceLastHole > this.partStopper){
 				this.drawing = false;
-				if(this.stepCounter >= this.holeStopper) {
-					this.stepCounter = 0;
+				if(this.distSinceLastHole >= this.holeStopper) {
+					this.distSinceLastHole = 0;
 					this.drawing = true;
 					if(this.turning === this.NOT_TURNING) {
 						this.doLine();
 					} else {
 						this.doArc();
 					}
-				}
+				} 
 			} else drawing = true;
 			
 		},

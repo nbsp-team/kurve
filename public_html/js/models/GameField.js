@@ -21,7 +21,7 @@ define([
 			if(options.FPS) this.FPS = options.FPS;
 			if(options.speed) Snake.prototype.defaultSpeed = options.speed;
 			if(options.angleSpeed) Snake.prototype.defaultAngleSpeed = options.angleSpeed;
-			if(options.partLength) Snake.prototype.defaultPartLength = options.partLength;
+			
 			if(options.holeLength) Snake.prototype.holeLength = options.holeLength;
 			
 			this.snakes = [];
@@ -85,6 +85,10 @@ define([
 				this.run();
 			} else console.log('pause');
 		},
+		pause: function(){
+			this.playing = !this.playing;
+			console.log(this.snakes[0]);
+		},
         step: function () {
 			this.steps++;
 			for(var i = 0; i < this.numPlayers; i++) {
@@ -100,9 +104,11 @@ define([
 				this.playing = false;
 				console.log('all deadCount, game paused');				
 			}
+			if(game_log) console.log('step');
 		},
 		onGameOver: function(){
 			Api.closeConnection();
+			this.pause();
 		},
 		render: function() {
 			for(var i = 0; i < this.numPlayers; i++) this.snakes[i].clear();

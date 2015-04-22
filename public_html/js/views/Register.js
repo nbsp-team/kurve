@@ -33,7 +33,7 @@ define([
 
         loggedChanged: function() {
             if (app.session.get("loggedIn")) {
-              //  app.router.navigateTo("/");
+                app.router.navigateTo("/");
             }
         }
     });

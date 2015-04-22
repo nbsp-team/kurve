@@ -179,11 +179,9 @@
     right: 5px;
 }
 .b-user__exit__icon {
-    width: 30px;
-    height: 30px;
-    padding: 5px;
+    width: 40px;
+    height: 40px;
     margin-top: 10px;
-    opacity: 0.55;
 }
 .b-user__exit__text {
     color: #777;
@@ -275,18 +273,11 @@
     outline: none;
 }
 .card-player__color-block__ready {
-<<<<<<< HEAD
     color: white;
     font-family: arial;
     font-size: 34px;
     text-align: center;
     margin-top: 10px;
-=======
-    margin: 12px;
-    width: 36px;
-    height: 36px;
-    background: url('../img/ready.png')
->>>>>>> 797ba15669b40e5597bedb6702f4bab8be79c89b
 }
 .card-player__color-block {
     display: block;
