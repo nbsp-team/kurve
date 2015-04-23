@@ -1,11 +1,13 @@
 define([
     'app',
     'models/Snake',
-    'utils/api/ws/api_ws'
+    'utils/api/ws/api_ws',
+    'models/Bonus'
 ], function(
     app,
     Snake,
-    Api
+    Api,
+    Bonus
 ){
 	function GameField(options){this.initialize(options);}
     GameField.prototype = {
@@ -38,6 +40,7 @@ define([
 			this.playing = true;
 			
 			this.makeCanvas(options.canvasBox);
+			this.bonuses = [];
 		},
 		snakeUpdate: function(snake){
 			this.snakes[snake.id].update(snake);
@@ -64,6 +67,22 @@ define([
 				this.snakes[i].foreCtx = this.foreCtx;
 				this.snakes[i].backCtx = this.backCtx;
 			}
+		},
+		onNewBonus: function(bonus){
+			var options = bonus;
+			options.ctx = this.foreCtx;
+			this.bonuses.push(new Bonus(options));
+		},
+		onEatBonus: function(id){
+			
+			var i = 0;
+			while(i < this.bonuses.length && this.bonuses[i].id != id) i++;
+			if(i==this.bonuses.length) return;
+			//this.bonuses[i].clear();
+			for(; i < this.bonuses.length-1; i++){
+				this.bonuses[i] = this.bonuses[i+1];
+			}
+			this.bonuses.length--;
 		},
 		leftDown: function(sender) {
 			this.snakes[sender].startTurning(this.snakes[sender].TURNING_LEFT);
@@ -113,6 +132,8 @@ define([
 		render: function() {
 			for(var i = 0; i < this.numPlayers; i++) this.snakes[i].clear();
 			for(var i = 0; i < this.numPlayers; i++) this.snakes[i].draw();
+			for(var j = 0; j < this.bonuses.length; j++) this.bonuses[j].clear();
+			for(var i = 0; i < this.bonuses.length; i++) this.bonuses[i].draw();
 		},
 		run: function(){
 			var that = this;

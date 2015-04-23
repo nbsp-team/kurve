@@ -60,6 +60,11 @@ define([
 			if(game_log) if(this.narcs < snake.narcs) console.log('this.narcs < snake.narcs');
 			for(var i = this.nlines; i < snake.nlines; i++) this.snakeLines[i] = new SnakePartLine();
 			for(var i = this.narcs; i < snake.narcs; i++) this.snakeArcs[i] = new SnakePartArc();
+			/*for(var i = Math.max(0, snake.nlines-1); i < this.linesInBack; i++) this.snakeLines[i].clear(this.backCtx);
+			for(var i = Math.max(0, snake.narcs-1); i < this.arcsInBack; i++) this.snakeArcs[i].clear(this.backCtx);
+			this.linesInBack = Math.min(Math.max(0, snake.nlines-1), this.linesInBack);
+			this.arcsInBack = Math.min(Math.max(0, snake.narcs-1), this.arcsInBack);*/
+			
 			
 			for(var i = 0; i < snake.arcs.length; i++){
 				var arc = snake.arcs[i];
@@ -120,6 +125,7 @@ define([
 			this.foreCtx.beginPath();
 			this.foreCtx.fillStyle = this.color;
 			this.foreCtx.arc(this.x, this.y, this.radius, 0, 2*Math.PI);
+			
 			this.foreCtx.fill();
 			this.prevX = this.x; this.prevY = this.y; this.prevRadius = this.radius;
 		},

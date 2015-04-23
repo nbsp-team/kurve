@@ -8,6 +8,8 @@ define([
         var GAME_OVER_CODE = 12;
 		var GAME_START_CODE = 13;
 		var SNAKE_UPDATE_CODE = 14;
+		var NEW_BONUS_CODE = 9;
+		var EAT_BONUS_CODE = 10;
 		
         return {
             onMessage: function(message) {
@@ -29,6 +31,14 @@ define([
 						app.wsEvents.trigger("wsGameOverEvent", msg);
 						break;
 					} 
+					case NEW_BONUS_CODE:{
+						app.wsEvents.trigger("wsNewBonus", msg.bonus);
+						break;
+					}
+					case EAT_BONUS_CODE:{
+						app.wsEvents.trigger("wsEatBonus", msg.bonus_id);
+						break;
+					}
 				}
             }
         };

@@ -25,9 +25,13 @@ define([
 			this.listenTo(app.wsEvents, "wsStartGame", this.start);
 			this.listenTo(app.wsEvents, "wsSnakeUpdateEvent", this.snakeUpdate);
 			this.listenTo(app.wsEvents, "wsGameOverEvent", this.onGameOver);
+			this.listenTo(app.wsEvents, "wsNewBonus", this.onNewBonus);
+			this.listenTo(app.wsEvents, "wsEatBonus", this.onEatBonus);
 			this.leftRepeat = false;
 			this.rightRepeat = false;
         },
+        onEatBonus:function(bonus_id){ this.field.onEatBonus(bonus_id); },
+        onNewBonus:function(bonus){ this.field.onNewBonus(bonus); },
         onGameOver: function(msg){ this.field.onGameOver(); },
         snakeUpdate: function(snake){ this.field.snakeUpdate(snake); },
         start: function(options){
