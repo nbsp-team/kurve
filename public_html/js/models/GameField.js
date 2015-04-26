@@ -53,11 +53,11 @@ define([
 			this.updatesQueue.push(snake);
 		},
 		applyUpdates: function(){
-			for(var i = 0; i < this.updatesQueue.length; i++){
-				var snake = this.updatesQueue[i];
+			while(this.updatesQueue.length > 0){
+				var snake = this.updatesQueue.shift();
 				this.snakes[snake.id].update(snake);
 			}
-			this.updatesQueue.length = 0;
+			//console.log(this.updatesQueue.length);// = 0;
 		},
 		makeCanvas:function(box) {
 			this.backCanvas = document.createElement('canvas');
@@ -103,12 +103,12 @@ define([
 			console.log(this.bonuses);
 		},
 		doControls: function(){
-			for(var i = 0; i < this.controlsQueue.length; i++){
-				var control = this.controlsQueue[i];
+			while(this.controlsQueue.length > 0 ){
+				var control = this.controlsQueue.shift();
 				if(control.isUp) this.snakes[control.sender].stopTurning(control.where);
 				else this.snakes[control.sender].startTurning(control.where);
 			}
-			this.controlsQueue.length = 0;
+			//this.controlsQueue.length = 0;
 		},
 		leftDown: function(sender) {
 			this.controlsQueue.push({isUp: false, sender : sender, where : Snake.prototype.TURNING_LEFT});			
