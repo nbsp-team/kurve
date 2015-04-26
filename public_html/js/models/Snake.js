@@ -12,6 +12,9 @@ define([
 		defaultAngleSpeed: 87,
 		holeLength: 20,
 		defaultRadius: 4,
+		TURNING_LEFT: 0,
+		TURNING_RIGHT: 1,
+		NOT_TURNING: 2,
 		init: function(x, y, angle, color, FPS, backCtx, foreCtx) {
 			this.backCtx = backCtx;
 			this.foreCtx = foreCtx;
@@ -25,19 +28,19 @@ define([
 			this.turnRadius = this.v / this.angleV;
 			this.partStopper = 1111111;	
 			this.holeStopper = 1111111;		
-			//this.holeLength = this.defaultHoleLength*FPS/defaultSpeed;
 			this.x = x;	this.y = y;
 			
 			this.cosV = Math.cos(this.angleV);
 			this.sinV = Math.sin(this.angleV);
 			this.arcsInBack = 0;
 			this.linesInBack = 0;
+			this.updating = false;
             this.doLine();
 		},
 		setDrawing: function(){
 			this.drawing = (this.distSinceLastHole <= this.partStopper);			
 		},
-		update: function(snake){			
+		update: function(snake){		
 			if(game_log) console.log('got '+snake.arcs.length+' arcs and '+snake.lines.length+' lines');
 			this.x = snake.x; this.y = snake.y;
 			
@@ -137,10 +140,7 @@ define([
 			this.linesInBack = 0;
 			this.arcsInBack = 0;
 			this.drawing = true;
-			this.isAlive = true;
-			this.TURNING_LEFT = 0;
-			this.TURNING_RIGHT = 1;
-			this.NOT_TURNING = 2;			
+			this.isAlive = true;		
 			this.turning = this.NOT_TURNING;			
 			this.snakeArcs = [];
 			this.snakeLines = [];
@@ -150,6 +150,7 @@ define([
 			this.distSinceLastHole = 0;
 		},
 		startTurning: function(where) {
+			this.updating = true;
 			if((this.angleV > 0) != (where === this.TURNING_RIGHT)) {
 				this.angleV = -this.angleV;
 				this.sinV = -this.sinV;
@@ -157,14 +158,17 @@ define([
 	        this.turning = where;  
 	        
 			this.doArc();
+			this.updating = false;
 		},
 		stopTurning: function(where) {
+			this.updating = true;
 			if(this.turning===where) {
 				this.turning = this.NOT_TURNING;
 				this.vx = this.v*Math.cos(this.angle);
 				this.vy = this.v*Math.sin(this.angle);
 				this.doLine();
 			}
+			this.updating = false;
 		},
 		doArc: function() {
 			if(this.turning === this.TURNING_LEFT){
@@ -208,7 +212,6 @@ define([
 			}
 		},
 		step: function() {
-			
 			this.makeHoles();
 			if(this.turning === this.NOT_TURNING) {
 				this.x += this.vx;

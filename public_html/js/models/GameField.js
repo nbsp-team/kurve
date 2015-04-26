@@ -46,9 +46,18 @@ define([
 			
 			this.makeCanvas(options.canvasBox);
 			this.bonuses = [];
+			this.updatesQueue = [];
+			this.controlsQueue = [];
 		},
 		snakeUpdate: function(snake){
-			this.snakes[snake.id].update(snake);
+			this.updatesQueue.push(snake);
+		},
+		applyUpdates: function(){
+			for(var i = 0; i < this.updatesQueue.length; i++){
+				var snake = this.updatesQueue[i];
+				this.snakes[snake.id].update(snake);
+			}
+			this.updatesQueue.length = 0;
 		},
 		makeCanvas:function(box) {
 			this.backCanvas = document.createElement('canvas');
@@ -93,18 +102,28 @@ define([
 			this.bonuses.splice(i, 1);
 			console.log(this.bonuses);
 		},
+		doControls: function(){
+			for(var i = 0; i < this.controlsQueue.length; i++){
+				var control = this.controlsQueue[i];
+				if(control.isUp) this.snakes[control.sender].stopTurning(control.where);
+				else this.snakes[control.sender].startTurning(control.where);
+			}
+			this.controlsQueue.length = 0;
+		},
 		leftDown: function(sender) {
-			this.snakes[sender].startTurning(this.snakes[sender].TURNING_LEFT);
-			
+			this.controlsQueue.push({isUp: false, sender : sender, where : Snake.prototype.TURNING_LEFT});			
 		},
 		leftUp: function(sender) { 
-			this.snakes[sender].stopTurning(this.snakes[sender].TURNING_LEFT);
+			this.controlsQueue.push({isUp: true, sender : sender, where : Snake.prototype.TURNING_LEFT});	
+			//this.snakes[sender].stopTurning(this.snakes[sender].TURNING_LEFT);
 		},
-		rightDown: function(sender) {					
-			this.snakes[sender].startTurning(this.snakes[sender].TURNING_RIGHT);
+		rightDown: function(sender) {	
+			this.controlsQueue.push({isUp: false, sender : sender, where : Snake.prototype.TURNING_RIGHT});					
+			//this.snakes[sender].startTurning(this.snakes[sender].TURNING_RIGHT);
 		},
 		rightUp: function(sender) {	
-			this.snakes[sender].stopTurning(this.snakes[sender].TURNING_RIGHT);	
+			this.controlsQueue.push({isUp: true, sender : sender, where : Snake.prototype.TURNING_RIGHT});	
+			//this.snakes[sender].stopTurning(this.snakes[sender].TURNING_RIGHT);	
 		},
 		playPause: function() {
 			this.playing = !this.playing;
@@ -153,7 +172,9 @@ define([
 				now = window.performance.now();
 				dt += Math.min(1000, now - last);
 				
-				if(dt > stepTime){	
+				if(dt > stepTime){
+					that.applyUpdates();
+					that.doControls();	
 					while(dt > stepTime) {
 						dt -= stepTime;
 						that.step();
