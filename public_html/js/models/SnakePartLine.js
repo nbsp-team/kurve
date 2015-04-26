@@ -16,8 +16,6 @@ define([
 			this.C = (-this.x1*this.A - this.B*this.y1);
 			this.d = 0;
 			this.radius = radius;
-			
-			
 		},
 		applyUpdate: function(line){
 			if (line.y1 < 0) line.y1 = 1;
