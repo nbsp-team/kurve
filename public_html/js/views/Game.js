@@ -23,10 +23,7 @@ define([
 			game_log = true;
 			this.listenTo(app.wsEvents, "wsKeyEvent", this.keyEvent);
 			this.listenTo(app.wsEvents, "wsStartGame", this.start);
-			this.listenTo(app.wsEvents, "wsSnakeUpdateEvent", this.snakeUpdate);
-			this.listenTo(app.wsEvents, "wsGameOverEvent", this.onGameOver);
-			this.listenTo(app.wsEvents, "wsNewBonus", this.onNewBonus);
-			this.listenTo(app.wsEvents, "wsEatBonus", this.onEatBonus);
+			
 			this.leftRepeat = false;
 			this.rightRepeat = false;
         },

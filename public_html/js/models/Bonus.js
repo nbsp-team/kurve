@@ -13,7 +13,8 @@ define([
 			this.y = options.y;
 			this.ctx = options.ctx;
 			this.id = options.id;
-			this.color = 'green';
+			//this.color = 'green';
+			this.id = options.id;
 		},
 		clear: function(){
 			this.ctx.clearRect(this.x - this.radius - 1, this.y - this.radius - 1

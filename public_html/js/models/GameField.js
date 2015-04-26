@@ -9,14 +9,19 @@ define([
     Api,
     Bonus
 ){
-	function GameField(options){this.initialize(options);}
-    GameField.prototype = {
+	//function GameField(options){this.initialize(options);}
+    GameField = Backbone.Model.extend({
 		FPS : 60,
 		width : 500,
 		height : 300,
         initialize: function(options) {
+			this.listenTo(app.wsEvents, "wsSnakeUpdateEvent", this.snakeUpdate);
+			this.listenTo(app.wsEvents, "wsGameOverEvent", this.onGameOver);
+			this.listenTo(app.wsEvents, "wsNewBonus", this.onNewBonus);
+			this.listenTo(app.wsEvents, "wsEatBonus", this.onEatBonus);
+			
 			this.numPlayers = options.numPlayers;
-			this.myId = options.myId;
+//			this.myId = options.myId;
 			
 			if(options.width) this.width = options.width;
 			if(options.height) this.height = options.height;
@@ -71,18 +76,22 @@ define([
 		onNewBonus: function(bonus){
 			var options = bonus;
 			options.ctx = this.foreCtx;
-			this.bonuses.push(new Bonus(options));
+			console.log('new');
+			var bon = new Bonus(options);
+			console.log(bon);
+			console.log(this.bonuses);
+			this.bonuses.push(bon);
+			console.log(this.bonuses);
 		},
 		onEatBonus: function(id){
-			
 			var i = 0;
 			while(i < this.bonuses.length && this.bonuses[i].id != id) i++;
+			
 			if(i==this.bonuses.length) return;
-			//this.bonuses[i].clear();
-			for(; i < this.bonuses.length-1; i++){
-				this.bonuses[i] = this.bonuses[i+1];
-			}
-			this.bonuses.length--;
+			console.log(this.bonuses);
+			this.bonuses[i].clear();
+			this.bonuses.splice(i, 1);
+			console.log(this.bonuses);
 		},
 		leftDown: function(sender) {
 			this.snakes[sender].startTurning(this.snakes[sender].TURNING_LEFT);
@@ -131,9 +140,9 @@ define([
 		},
 		render: function() {
 			for(var i = 0; i < this.numPlayers; i++) this.snakes[i].clear();
-			for(var i = 0; i < this.numPlayers; i++) this.snakes[i].draw();
 			for(var j = 0; j < this.bonuses.length; j++) this.bonuses[j].clear();
 			for(var i = 0; i < this.bonuses.length; i++) this.bonuses[i].draw();
+			for(var i = 0; i < this.numPlayers; i++) this.snakes[i].draw();			
 		},
 		run: function(){
 			var that = this;
@@ -158,7 +167,7 @@ define([
 			}
 			requestAnimationFrame(frame);
 		}
-    };
+    });
     
     return GameField;
 });
