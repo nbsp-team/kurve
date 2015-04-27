@@ -3,6 +3,7 @@ require.config({
     baseUrl: "js",
     paths: {
         jquery: "lib/jquery",
+        deserialize: "lib/jquery-deserialize",
         underscore: "lib/underscore",
         backbone: "lib/backbone",
         relational: "lib/backbone-relational",

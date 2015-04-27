@@ -19,8 +19,22 @@ define([
             this.listenTo(app.session, "change:loggedIn", this.loggedChanged);
         },
 
+        load: function() {
+            this.renderAndShow();
+            var savedStateData = app.storage.loginStorage.getData();
+
+            if(savedStateData) {
+                Syphon.deserialize(this, savedStateData);
+            }
+        },
+
         events: {
-            'submit .js-login-form' : 'login'
+            'submit .js-login-form' : 'login',
+            'input .js-login-form': 'saveData'
+        },
+
+        saveData: function() {
+            app.storage.loginStorage.setData(Syphon.serialize(this));
         },
 
         login: function() {
@@ -30,7 +44,8 @@ define([
         },
 
         loggedChanged: function() {
-            if (app.session.get("loggedIn")) {
+            if(app.session.get("loggedIn")) {
+                app.storage.loginStorage.clear();
                 app.router.navigateTo("/");
             }
         }

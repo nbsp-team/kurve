@@ -11,7 +11,7 @@ body {
 .right {
   float: right; }
 
-.dashed, .b-admin:before, .b-room:before, .b-game:before, .b-login:before, .b-menubefore, .b-rating:before, .b-register:before {
+.dashed, .b-admin:before, .b-room:before, .b-game:before, .b-login:before, .b-menu:before, .b-rating:before, .b-register:before {
   content: '';
   position: absolute;
   z-index: -1;
@@ -292,4 +292,4 @@ body {
   font: normal 30px/1 Verdana, Helvetica;
   position: relative; }
 
-/*# sourceMappingURL=common.css.map */
+/*# sourceMappingURL=styles.css.map */

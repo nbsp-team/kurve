@@ -11,7 +11,7 @@
     z-index: 0;
     padding-bottom: 27px;
     margin-bottom: 50px;
-    &before {
+    &:before {
 		@extend .dashed;
     }
 }

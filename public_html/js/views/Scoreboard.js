@@ -22,7 +22,7 @@ define([
         },
 
         load: function() {
-            this.collection.loadRating();
+            this.collection.fetch();
         }
     });
 
