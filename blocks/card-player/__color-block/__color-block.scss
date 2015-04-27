@@ -1,0 +1,14 @@
+&__color-block {
+    display: block;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    margin: 0 auto;
+    overflow: hidden;
+    &__ready {
+		margin: 12px;
+		width: 36px;
+		height: 36px;
+		background: url('../img/ready.png')
+	}
+}

@@ -1,0 +1,13 @@
+&__user {
+	margin-left: 80px;
+	padding-left: 10px;
+	padding-right: 10px;
+	height: 100%;
+	overflow: hidden;
+	&:hover {
+		background-color: #F5F5F5;
+		cursor: pointer;
+	}
+	@import '__ava/__ava';
+	@import '__name/__name';
+}

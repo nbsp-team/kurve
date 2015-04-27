@@ -1,0 +1,19 @@
+.b-room {
+    overflow: hidden;
+    margin-top: 30px;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 2px 4px 0 rgba(50, 50, 50, 0.3);
+    width: 900px;
+    margin-left: 50%;
+    left: -450px;
+    border-radius: 5px;
+    z-index: 0;
+    padding-bottom: 27px;
+    margin-bottom: 50px;
+	&:before {
+		@extend .dashed;
+	}
+	@import '__container-players/__container-players';
+}
+

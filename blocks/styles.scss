@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #eeeeee;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.dashed {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	border: 1px dashed #ccc;
+	top: 5px;
+	left: 5px;
+	bottom: 5px;
+	right: 5px;
+}
+
+@mixin transform($tr) {
+	transform: $tr;
+	-webkit-transform: $tr;
+}
+
+@import 'btn/btn';
+@import 'b-admin/b-admin';
+@import 'b-room/b-room';
+@import 'b-game/b-game';
+@import 'b-login/b-login';
+@import 'b-menu/b-menu';
+@import 'b-rating/b-rating';
+@import 'b-register/b-register';
+@import 'b-user/b-user';
+@import 'card-player/card-player';
+@import 'flat-table/flat-table';
+@import 'subtitle/subtitle';
+@import 'text-field/text-field';
+@import 'title/title';

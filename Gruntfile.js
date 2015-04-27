@@ -1,15 +1,7 @@
 module.exports = function (grunt) {
 
     grunt.initConfig({
-        concat_css: {
-            options: {
-                // Task-specific options go here.
-            },
-            all: {
-                src: ["blocks/**/*.css"],
-                dest: "public_html/css/styles.css"
-            }
-        },
+     
         shell: {
             options: {
                 stdout: true,
@@ -50,15 +42,16 @@ module.exports = function (grunt) {
                     atBegin: true
                 }
             },
-            concat_css: {
-                files: ['blocks/**/*.css'],
-                tasks: ['concat_css'],
-                options: {
+            sass: {
+				files: ['blocks/scss/**/*.scss'],
+				tasks: ['sass'],
+				options: {
                     interrupt: true,
                     livereload: true,
                     atBegin: true
                 }
-            },
+			},
+            
 
             livereload: {
                 files: ['public_html/**/*.js'],                
@@ -66,20 +59,36 @@ module.exports = function (grunt) {
                     livereload: true         
                 }  
             }
+            
         },
         concurrent: {
             target: ['watch', 'shell:runServer'],
             options: {
                 logConcurrentOutput: true
             }
-        }
+        },
+        sass: {
+			dist: {
+				options: {
+					update: true
+				},
+				files: [{
+					expand: true,
+					cwd: 'blocks',
+					src: ['styles.scss'],
+					dest: 'public_html/css/',
+					ext: '.css'
+				}]
+			}
+		}
     });
 
-    grunt.loadNpmTasks('grunt-concat-css');
+    
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-shell');
     grunt.loadNpmTasks('grunt-fest');
+	grunt.loadNpmTasks('grunt-contrib-sass');
 
     grunt.registerTask('default', ['concurrent']);
     grunt.registerTask('buildAllAndRun', ['shell:buildServer', 'concurrent']);
