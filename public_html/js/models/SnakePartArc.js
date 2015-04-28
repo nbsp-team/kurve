@@ -37,6 +37,7 @@ define([
 
 		},
 		draw: function(ctx, col){			
+			if (this.angle+this.correct === this.angle2) return;
 			ctx.beginPath();
 			ctx.strokeStyle = col;
 			ctx.lineWidth = this.radius*2;			

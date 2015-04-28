@@ -19,7 +19,6 @@ define([
 			this.backCtx = backCtx;
 			this.foreCtx = foreCtx;
 			this.color = color;
-			this.FPS=FPS;
 			this.angleV = this.defaultAngleSpeed*2*Math.PI/180/FPS;
 			this.v = this.defaultSpeed / FPS;
 			this.angle = angle;
@@ -63,10 +62,6 @@ define([
 			if(game_log) if(this.narcs < snake.narcs) console.log('this.narcs < snake.narcs');
 			for(var i = this.nlines; i < snake.nlines; i++) this.snakeLines[i] = new SnakePartLine();
 			for(var i = this.narcs; i < snake.narcs; i++) this.snakeArcs[i] = new SnakePartArc();
-			/*for(var i = Math.max(0, snake.nlines-1); i < this.linesInBack; i++) this.snakeLines[i].clear(this.backCtx);
-			for(var i = Math.max(0, snake.narcs-1); i < this.arcsInBack; i++) this.snakeArcs[i].clear(this.backCtx);
-			this.linesInBack = Math.min(Math.max(0, snake.nlines-1), this.linesInBack);
-			this.arcsInBack = Math.min(Math.max(0, snake.narcs-1), this.arcsInBack);*/
 			
 			
 			for(var i = 0; i < snake.arcs.length; i++){
@@ -150,7 +145,6 @@ define([
 			this.distSinceLastHole = 0;
 		},
 		startTurning: function(where) {
-			this.updating = true;
 			if((this.angleV > 0) != (where === this.TURNING_RIGHT)) {
 				this.angleV = -this.angleV;
 				this.sinV = -this.sinV;
@@ -158,37 +152,34 @@ define([
 	        this.turning = where;  
 	        
 			this.doArc();
-			this.updating = false;
 		},
 		stopTurning: function(where) {
-			this.updating = true;
 			if(this.turning===where) {
 				this.turning = this.NOT_TURNING;
 				this.vx = this.v*Math.cos(this.angle);
 				this.vy = this.v*Math.sin(this.angle);
 				this.doLine();
 			}
-			this.updating = false;
 		},
 		doArc: function() {
 			if(this.turning === this.TURNING_LEFT){
-				this.arcStartAngle = this.angle + Math.PI/2;
+				var arcAngle = this.angle + Math.PI/2;
 				var clockwise = true;
 				this.arcCenterX = this.x + this.turnRadius*Math.sin(this.angle);
 				this.arcCenterY = this.y - this.turnRadius*Math.cos(this.angle);
 			} else {
-				this.arcStartAngle = this.angle - Math.PI/2;
+				var arcAngle = this.angle - Math.PI/2;
 				var clockwise = false;
 				this.arcCenterX = this.x - this.turnRadius*Math.sin(this.angle);
 				this.arcCenterY = this.y + this.turnRadius*Math.cos(this.angle);
 			}
-			this.arcAngle = this.arcStartAngle;
+			 
 						
 			if(!this.drawing) return;
 			
 			var newArc = new SnakePartArc();
 			newArc.init(this.arcCenterX, this.arcCenterY
-			  , this.turnRadius, this.arcStartAngle, this.color
+			  , this.turnRadius, arcAngle, this.color
 			  , this.radius, clockwise, this.layer);
 			
 			this.snakeArcs[this.narcs] = newArc;
@@ -200,16 +191,6 @@ define([
 			newLine.init(this.x, this.y, this.vx, this.vy, this.radius, this.color, this.layer);
 			this.snakeLines[this.nlines] = newLine;
 			this.nlines++;
-		},
-		changeRadius: function(radius) {
-			this.radius = radius;
-			if(this.drawing) {
-				if(this.turning === this.NOT_TURNING) {
-					this.doLine();
-				} else {
-					this.doArc();
-				}
-			}
 		},
 		step: function() {
 			this.makeHoles();
