@@ -26,8 +26,8 @@
 		
 		<FPS>60</FPS>
 		<GameField>
-			<width>500</width>
-			<height>500</height>
+			<width>1200</width>
+			<height>600</height>
 		</GameField>
     </mechanics>
 

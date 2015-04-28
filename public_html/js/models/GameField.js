@@ -12,8 +12,8 @@ define([
 	//function GameField(options){this.initialize(options);}
     GameField = Backbone.Model.extend({
 		FPS : 60,
-		width : 500,
-		height : 300,
+		width : 1200,
+		height : 600,
         initialize: function(options) {
 			this.listenTo(app.wsEvents, "wsSnakeUpdateEvent", this.snakeUpdate);
 			this.listenTo(app.wsEvents, "wsGameOverEvent", this.onGameOver);
