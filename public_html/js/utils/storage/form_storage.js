@@ -1,6 +1,9 @@
 define([], function() {
 
     return function(key) {
+
+        //TODO: data-key session
+
         this.DATA_KEY = key;
 
         this.setData = function(data) {
