@@ -6,6 +6,14 @@
         <host>0.0.0.0</host>
     </network>
 
+    <db>
+        <port>31822</port>
+        <host>ds031822.mongolab.com</host>
+        <dbname>kurve</dbname>
+        <username>root</username>
+        <password>password</password>
+    </db>
+
     <mechanics>
         <minPlayerNumber>1</minPlayerNumber>
         <maxPlayerNumber>6</maxPlayerNumber>
@@ -16,6 +24,7 @@
 			<minPartLength>100</minPartLength>
 			<maxPartLength>300</maxPartLength>
 			<holeLength>20</holeLength>
+
 			<color>#F44336</color>
 			<color>#4CAF50</color>
 			<color>#2196F3</color>
