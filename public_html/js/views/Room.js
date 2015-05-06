@@ -13,7 +13,6 @@ define([
     RoomPlayer,
     Player
 ){
-
     var View = AbstractScreen.extend({
 
         el: '.js-room',

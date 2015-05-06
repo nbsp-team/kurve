@@ -10,7 +10,8 @@ define([
 		var SNAKE_UPDATE_CODE = 14;
 		var NEW_BONUS_CODE = 9;
 		var EAT_BONUS_CODE = 10;
-		
+		var SNAKE_PATCH_CODE = 16;
+		//var dbg = 0;
         return {
             onMessage: function(message) {
                 var msg = JSON.parse(message.data);
@@ -23,7 +24,10 @@ define([
 						break;
 					}
 					case SNAKE_UPDATE_CODE:{
-						app.wsEvents.trigger("wsSnakeUpdateEvent", msg.snake);
+						console.log('bbb');
+						//dbg++;
+						//if(dbg !=3)
+						app.wsEvents.trigger("wsOnUpdateEvent", msg);
 						break;
 					} 
 					case GAME_OVER_CODE:{
@@ -37,6 +41,10 @@ define([
 					}
 					case EAT_BONUS_CODE:{
 						app.wsEvents.trigger("wsEatBonus", msg.bonus_id);
+						break;
+					}
+					case SNAKE_PATCH_CODE:{
+						app.wsEvents.trigger("wsOnPatchEvent", msg.updates);
 						break;
 					}
 				}

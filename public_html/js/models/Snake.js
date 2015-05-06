@@ -31,6 +31,7 @@ define([
 			
 			this.cosV = Math.cos(this.angleV);
 			this.sinV = Math.sin(this.angleV);
+
 			this.arcsInBack = 0;
 			this.linesInBack = 0;
 			this.updating = false;

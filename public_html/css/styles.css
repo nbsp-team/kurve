@@ -80,16 +80,18 @@ body {
   z-index: 0;
   padding-bottom: 27px;
   margin-bottom: 50px; }
+  .b-room .b-room__container-players {
+    min-height: 400px; }
 
 .b-game {
   overflow: hidden;
   margin-top: 30px;
   position: absolute;
   background-color: white;
-  width: 1000px;
-  min-height: 500px;
+  width: 1200px;
+  min-height: 600px;
   margin-left: 50%;
-  left: -500px;
+  left: -600px;
   border-radius: 5px;
   z-index: 0;
   padding-bottom: 10px; }
