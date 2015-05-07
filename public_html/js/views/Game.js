@@ -64,7 +64,7 @@ define([
 			return function (e) {
 				switch(e.keyCode) {		
 					case 32:
-						that.pause();
+						that.playPause();
 						break;
 					case 81:
 						if(that.leftRepeat) break;

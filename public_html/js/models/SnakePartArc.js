@@ -41,12 +41,7 @@ define([
 			ctx.beginPath();
 			ctx.strokeStyle = col;
 			ctx.lineWidth = this.radius*2;			
-			
-			if(this.span>=0){
-				ctx.arc(this.x, this.y, this.r, this.angle+this.correct, this.angle2, this.clockwise);
-			} else {
-				ctx.arc(this.x, this.y, this.r, this.angle+this.correct, this.angle2, this.clockwise);
-			}
+			ctx.arc(this.x, this.y, this.r, this.angle+this.correct, this.angle2, this.clockwise);
 			
 			ctx.stroke();	
 		}

@@ -11,7 +11,7 @@ define([
         READY_CODE: 3,
         
         EVENT_CODE: 6,
-
+        UPDATE_PATCH_CODE : 15,
         currentApi: null,
 
         startConnection: function() {
@@ -69,19 +69,8 @@ define([
 			this.socket.send(JSON.stringify(data));
 		},
 
-	
-
-        //****************** Methods ******************//
-
-        sendReady: function(readyStatus) {
-
-            var data = {
-                "code": this.READY_CODE,
-                "ready": readyStatus
-            };
-
-            console.log(data);
-
+        sendRequestPatch: function(ids){
+            var data = { 'code' : this.UPDATE_PATCH_CODE, 'ids' : ids};
             this.socket.send(JSON.stringify(data));
         }
 

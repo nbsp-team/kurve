@@ -2,12 +2,14 @@ define([
     'app',
     'models/Snake',
     'utils/api/ws/api_ws',
-    'models/Bonus'
+    'models/Bonus',
+    'utils/SnakeUpdatesManager'
 ], function(
     app,
     Snake,
     Api,
-    Bonus
+    Bonus,
+    UpdatesManager
 ){
 	//function GameField(options){this.initialize(options);}
     GameField = Backbone.Model.extend({
@@ -15,6 +17,7 @@ define([
 		width : 1200,
 		height : 600,
         initialize: function(options) {
+			this.updatesManager = new SnakeUpdatesManager();
 			this.listenTo(app.wsEvents, "wsSnakeUpdateEvent", this.snakeUpdate);
 			this.listenTo(app.wsEvents, "wsGameOverEvent", this.onGameOver);
 			this.listenTo(app.wsEvents, "wsNewBonus", this.onNewBonus);
@@ -50,6 +53,10 @@ define([
 			this.controlsQueue = [];
 		},
 		snakeUpdate: function(snake){
+			if(game_log) {
+				console.log('applying update ');
+				console.log(snake);
+			}
 			this.updatesQueue.push(snake);
 		},
 		applyUpdates: function(){
