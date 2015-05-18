@@ -24,7 +24,6 @@ define([
 						break;
 					}
 					case SNAKE_UPDATE_CODE:{
-						console.log('bbb');
 						//dbg++;
 						//if(dbg !=3)
 						app.wsEvents.trigger("wsOnUpdateEvent", msg);
@@ -40,7 +39,7 @@ define([
 						break;
 					}
 					case EAT_BONUS_CODE:{
-						app.wsEvents.trigger("wsEatBonus", msg.bonus_id);
+						app.wsEvents.trigger("wsEatBonus", msg);
 						break;
 					}
 					case SNAKE_PATCH_CODE:{

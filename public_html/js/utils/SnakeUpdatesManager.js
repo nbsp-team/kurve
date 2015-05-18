@@ -14,7 +14,6 @@ define([
 			this.listenTo(app.wsEvents, "wsOnPatchEvent", this.onPatch);
 		},
 		snakeUpdate: function(update){
-			console.log('aaaa');
 			var id = update.id;
 			if (id <= this.lastId) return;
 			if(id === this.lastId+1) {
