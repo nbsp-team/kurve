@@ -19,6 +19,11 @@ define([
             this.listenTo(app.wsEvents, "player_disconnected", this.onUserDisconnected);
             this.listenTo(app.wsEvents, "player_ready", this.onPlayerReady);
             this.listenTo(app.wsEvents, "connected", this.onConnectToRoom);
+            this.listenTo(app.wsEvents, "start_game_event", this.onStartGame);
+        },
+
+        onStartGame: function() {
+            Api.switchToGame();
         },
 
         connectToRoom: function() {
@@ -31,6 +36,8 @@ define([
         },
 
         onConnectToRoom: function(usersData) {
+            _.invoke(this.toArray(), 'destroy');
+            this.reset();
             for(var i = 0; i < usersData.length; ++i) {
                 this.add(new Player(usersData[i]));
             }

@@ -17,7 +17,6 @@ define([
         startConnection: function() {
             var socket = new WebSocket(this.WS_URL);
 
-            
             this.currentApi = roomApi;
 
             this.socket = socket;
@@ -25,14 +24,15 @@ define([
             this.socket.onclose = this.onClose;
             
             this.currentApi.ws_api = this;
-            this.socket.onmessage = this.currentApi.onMessage();
-            
+            this.socket.onmessage = this.currentApi.onMessage;
         },
+
 		switchToGame: function(){
 			this.currentApi = gameApi;
 			this.socket.onmessage = this.currentApi.onMessage;
 			app.router.navigateTo("game");
 		},
+
         closeConnection: function() {
             this.socket.close();
         },
@@ -42,10 +42,6 @@ define([
         },
 
         onClose: function() {
-
-        },
-
-        startGame: function() {
 
         },
 
