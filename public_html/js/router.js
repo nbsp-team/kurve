@@ -17,6 +17,7 @@ define([
             'login': 'loginAction',
             'register': 'registerAction',
             'admin': 'adminAction',
+            'controller': 'controllerAction',
             '*default': 'defaultAction'
         },
 
@@ -58,6 +59,9 @@ define([
         },
         adminAction: function () {
             this.showView(this.viewManager.ADMIN_VIEW);
+        },
+        controllerAction: function() {
+            this.showView(this.viewManager.CONTROLLER_VIEW);
         }
     });
 

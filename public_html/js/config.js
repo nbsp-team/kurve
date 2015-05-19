@@ -3,7 +3,7 @@ require.config({
     baseUrl: "js",
     paths: {
         jquery: "lib/jquery",
-        deserialize: "lib/jquery-deserialize",
+        jquery_mobile: 'lib/jquery-mobile.min',
         underscore: "lib/underscore",
         backbone: "lib/backbone",
         relational: "lib/backbone-relational",
@@ -16,7 +16,7 @@ require.config({
             exports: '_'
         },
         'backbone': {
-            deps: ['underscore', 'jquery'],
+            deps: ['underscore', 'jquery', 'jquery_mobile'],
             exports: 'Backbone'
         },
         'notify': {
