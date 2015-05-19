@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<configuration>
+    <mechanics>
+        <minPlayerNumber>1</minPlayerNumber>
+        <maxPlayerNumber>6</maxPlayerNumber>
+        <Snake>
+			<defaultSpeed>77</defaultSpeed>
+			<defaultTurnRadius>44</defaultTurnRadius>
+			<defaultWidth>8</defaultWidth>
+			<minPartLength>100</minPartLength>
+			<maxPartLength>300</maxPartLength>
+			<holeLength>20</holeLength>
+
+			<color>#F44336</color>
+			<color>#4CAF50</color>
+			<color>#2196F3</color>
+			<color>#673AB7</color>
+			<color>#E91E63</color>
+			<color>#9C27B0</color>
+		</Snake>
+		
+		<FPS>60</FPS>
+		<GameField>
+			<width>1200</width>
+			<height>600</height>
+		</GameField>
+    </mechanics>
+</configuration>
