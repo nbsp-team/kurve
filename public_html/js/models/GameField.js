@@ -16,6 +16,8 @@ define([
 		FPS : 60,
 		width : 1200,
 		height : 600,
+		timeOutLimSec: 10,
+		timeOutLim: 10000,
         initialize: function(options) {
 			this.updatesManager = new SnakeUpdatesManager();
 			this.listenTo(app.wsEvents, "wsSnakeUpdateEvent", this.snakeUpdate);
@@ -51,20 +53,31 @@ define([
 			this.bonuses = [];
 			this.updatesQueue = [];
 			this.controlsQueue = [];
+			this.eatenBonusesQueue = [];
 		},
 		snakeUpdate: function(snake){
 			if(game_log) {
 				console.log('applying update ');
-				console.log(snake);
+				console.log(snake);			
 			}
+			this.lastUpdateTime = window.performance.now();
 			this.updatesQueue.push(snake);
 		},
 		applyUpdates: function(){
+			if(window.performance.now() - this.lastUpdateTime > this.timeOutLim) this.onTimeOut();
 			while(this.updatesQueue.length > 0){
 				var snake = this.updatesQueue.shift();
 				this.snakes[snake.id].update(snake);
 			}
-			//console.log(this.updatesQueue.length);// = 0;
+		},
+		applyBonuses: function(){
+			while(this.eatenBonusesQueue.length > 0){
+				this.eatenBonusesQueue.shift()();
+			}
+		},
+		onTimeOut: function(){
+			alert('server time out! (' + this.timeOutLimSec + ' seconds)');
+			this.pause();
 		},
 		makeCanvas:function(box) {
 			this.backCanvas = document.createElement('canvas');
@@ -99,15 +112,16 @@ define([
 			this.bonuses.push(bon);
 			console.log(this.bonuses);
 		},
-		onEatBonus: function(id){
+		onEatBonus: function(msg){
+			var id = msg.bonus_id;
 			var i = 0;
 			while(i < this.bonuses.length && this.bonuses[i].id != id) i++;
 			
 			if(i==this.bonuses.length) return;
-			console.log(this.bonuses);
 			this.bonuses[i].clear();
+			
+			this.bonuses[i].onEat(this, msg.eater_id, this.eatenBonusesQueue);
 			this.bonuses.splice(i, 1);
-			console.log(this.bonuses);
 		},
 		doControls: function(){
 			while(this.controlsQueue.length > 0 ){
@@ -156,7 +170,7 @@ define([
 			}
 			if(this.deadCount===this.numPlayers) {
 				this.playing = false;
-				console.log('all deadCount, game paused');				
+				console.log('all dead, game paused');
 			}
 			if(game_log) console.log('step');
 		},
@@ -181,6 +195,7 @@ define([
 				
 				if(dt > stepTime){
 					that.applyUpdates();
+					that.applyBonuses();
 					that.doControls();	
 					while(dt > stepTime) {
 						dt -= stepTime;
@@ -196,6 +211,6 @@ define([
 			requestAnimationFrame(frame);
 		}
     });
-    
+
     return GameField;
 });

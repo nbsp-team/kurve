@@ -40,9 +40,62 @@ define([
 		setDrawing: function(){
 			this.drawing = (this.distSinceLastHole <= this.partStopper);			
 		},
+		eraseSelf: function(){
+			this.clear();
+            console.log('erase self');
+			this.linesInBack = 0;
+			this.arcsInBack = 0;
+			this.nlines = 0;
+			this.narcs = 0;
+			this.doNewPart();
+		},
+		drawAll: function(){
+			this.draw();
+			for(var i = 0; i < this.arcsInBack; i++) {
+				this.snakeArcs[i].draw(this.backCtx, this.color);
+			}
+			for(var i = 0; i < this.linesInBack; i++) {
+				this.snakeLines[i].draw(this.backCtx, this.color);
+			}
+		},
 		update: function(snake){		
 			if(game_log) console.log('got '+snake.arcs.length+' arcs and '+snake.lines.length+' lines');
-			this.x = snake.x; this.y = snake.y;
+			
+						
+			
+			//for(var i = this.nlines; i < snake.nlines; i++) this.snakeLines[i] = new SnakePartLine();
+			//for(var i = this.narcs; i < snake.narcs; i++) this.snakeArcs[i] = new SnakePartArc();
+			for(var i = snake.narcs; i < this.narcs; i++) this.snakeArcs[i].clear(this.foreCtx);
+			for(var i = snake.nlines; i < this.nlines; i++) this.snakeLines[i].clear(this.foreCtx);
+
+			for(var i = 0; i < snake.arcs.length; i++){
+				var arc = snake.arcs[i];
+				if(arc.id >= this.narcs){
+				    this.snakeArcs[arc.id] = new SnakePartArc(arc.x, arc.y, arc.r, arc.angle, arc.radius, arc.clockwise);
+				} else {
+				    this.snakeArcs[arc.id].clear(this.foreCtx);
+				}
+				this.snakeArcs[arc.id].applyUpdate(arc);
+			}
+			for(var i = 0; i < snake.lines.length; i++){
+				var line = snake.lines[i];
+				if(line.id >= this.nlines){
+				    this.snakeLines[line.id] = new SnakePartLine(line.x1, line.y1, line.x2, line.y2, line.radius);
+				} else  {
+				    this.snakeLines[line.id].clear(this.foreCtx);
+				}
+				this.snakeLines[line.id].applyUpdate(line);
+			}
+			this.nlines = snake.nlines;
+			this.narcs = snake.narcs;
+			
+			if(this.narcs > 0){
+				this.arcCenterX = this.lastArc().x;	
+				this.arcCenterY = this.lastArc().y;
+			}
+			this.isAlive = snake.alive;
+			this.x = snake.x; 
+			this.y = snake.y;
 			
 			this.angle = snake.angle;
 			this.v = snake.v;
@@ -58,46 +111,23 @@ define([
 			}
 			this.radius = snake.radius;
 			this.distSinceLastHole= (snake.distance);
-						
-			if(game_log) if(this.nlines < snake.nlines) console.log('this.nlines < snake.nlines');
-			if(game_log) if(this.narcs < snake.narcs) console.log('this.narcs < snake.narcs');
-			for(var i = this.nlines; i < snake.nlines; i++) this.snakeLines[i] = new SnakePartLine();
-			for(var i = this.narcs; i < snake.narcs; i++) this.snakeArcs[i] = new SnakePartArc();
-			
-			
-			for(var i = 0; i < snake.arcs.length; i++){
-				var arc = snake.arcs[i];
-				this.snakeArcs[arc.id].clear(this.foreCtx);
-				this.snakeArcs[arc.id].applyUpdate(arc);
-			}
-			for(var i = 0; i < snake.lines.length; i++){
-				var line = snake.lines[i];
-				this.snakeLines[line.id].clear(this.foreCtx);
-				this.snakeLines[line.id].applyUpdate(line);
-			}
-			this.nlines = snake.nlines;
-			this.narcs = snake.narcs;
-			
-			if(this.narcs > 0){
-				this.arcCenterX = this.lastArc().x;	this.arcCenterY = this.lastArc().y;
-			}
-			this.isAlive = snake.alive;
-			
 			this.setDrawing();
 			
 			this.moveToBack();
 			this.teleport(snake.x, snake.y);
+			
 		},
 		moveToBack: function(b){
 			for(var i = this.linesInBack; i < this.nlines-1; i++){						
 				this.snakeLines[i].clear(this.foreCtx);
-				this.snakeLines[i].draw(this.backCtx,  this.color);						
+				this.snakeLines[i].draw(this.backCtx,  this.color);
 			}	
-			this.linesInBack = Math.max(0,this.nlines-1);				
+			this.linesInBack = Math.max(0,this.nlines-1);
 		
 			for(var i = this.arcsInBack; i < this.narcs-1; i++){						
 				this.snakeArcs[i].clear(this.foreCtx);
-				this.snakeArcs[i].draw(this.backCtx,  this.color);						
+				console.log('cleared arc '+i);
+				this.snakeArcs[i].draw(this.backCtx,  this.color);
 			}
 			this.arcsInBack = Math.max(0,this.narcs-1);
 		},
@@ -107,15 +137,29 @@ define([
 
 			
 			for(var i = this.arcsInBack; i < this.narcs; i++) {
-				this.snakeArcs[i].clear(this.foreCtx);	
+				this.snakeArcs[i].clear(this.foreCtx);
 			}
 			for(var i = this.linesInBack; i < this.nlines; i++) {
 				this.snakeLines[i].clear(this.foreCtx);
 			}
 		},
+		reversed:false,
+		reverse: function(){
+		    if(this.reversed){
+		        this.startTurning(this.turning);
+		        this.reversed = !this.reversed;
+		    } else {
+                this.reversed = !this.reversed;
+                this.startTurning(this.turning);
+		    }
+		    console.log('reversed');
+		    console.log(this.reversed);
+		    console.log(this.turning);
+		},
 		draw: function(){			
 			for(var i = this.arcsInBack; i < this.narcs; i++) {
 				this.snakeArcs[i].draw(this.foreCtx, this.color);
+				console.log('drew arc '+i);
 			}
 			for(var i = this.linesInBack; i < this.nlines; i++) {
 				this.snakeLines[i].draw(this.foreCtx, this.color);
@@ -141,11 +185,14 @@ define([
 			this.snakeArcs = [];
 			this.snakeLines = [];
 			this.narcs = 0;
-			this.nlines = 0;			
+			this.nlines = 0;
 			this.radius = this.defaultRadius;
 			this.distSinceLastHole = 0;
 		},
 		startTurning: function(where) {
+		    if(where === this.NOT_TURNING) return;
+		    if(this.reversed && where != this.NOT_TURNING) where = (where == this.TURNING_LEFT)?this.TURNING_RIGHT:this.TURNING_LEFT;
+
 			if((this.angleV > 0) != (where === this.TURNING_RIGHT)) {
 				this.angleV = -this.angleV;
 				this.sinV = -this.sinV;
@@ -155,6 +202,7 @@ define([
 			this.doArc();
 		},
 		stopTurning: function(where) {
+		    if(this.reversed && where != this.NOT_TURNING) where = (where == this.TURNING_LEFT)?this.TURNING_RIGHT:this.TURNING_LEFT;
 			if(this.turning===where) {
 				this.turning = this.NOT_TURNING;
 				this.vx = this.v*Math.cos(this.angle);
@@ -178,18 +226,16 @@ define([
 						
 			if(!this.drawing) return;
 			
-			var newArc = new SnakePartArc();
-			newArc.init(this.arcCenterX, this.arcCenterY
-			  , this.turnRadius, arcAngle, this.color
-			  , this.radius, clockwise, this.layer);
+			var newArc = new SnakePartArc(this.arcCenterX, this.arcCenterY
+			    , this.turnRadius, arcAngle, this.radius, clockwise);
+
 			
 			this.snakeArcs[this.narcs] = newArc;
 			this.narcs++;
 		},
 		doLine: function() {			
 	        if(!this.drawing) return;
-			var newLine = new SnakePartLine();
-			newLine.init(this.x, this.y, this.vx, this.vy, this.radius, this.color, this.layer);
+			var newLine = new SnakePartLine(this.x-this.vx, this.y-this.vy, this.x, this.y, this.radius);
 			this.snakeLines[this.nlines] = newLine;
 			this.nlines++;
 		},
@@ -215,11 +261,7 @@ define([
 				if(this.distSinceLastHole >= this.holeStopper) {
 					this.distSinceLastHole = 0;
 					this.drawing = true;
-					if(this.turning === this.NOT_TURNING) {
-						this.doLine();
-					} else {
-						this.doArc();
-					}
+					this.doNewPart();
 				} 
 			} else drawing = true;
 			
@@ -230,14 +272,16 @@ define([
 		lastArc: function() {
 			return this.snakeArcs[this.narcs-1];
 		},
-		
+		doNewPart: function(){
+		    if(this.turning === this.NOT_TURNING) {
+                this.doLine();
+            } else {
+                this.doArc();
+            }
+		},
 		teleport: function(newX, newY) {
 			this.x = newX;	this.y = newY;
-			if(this.turning === this.NOT_TURNING) {
-				this.doLine();
-			} else {
-				this.doArc();
-			}
+			this.doNewPart();
 		}
 		
     };
