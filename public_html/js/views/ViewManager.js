@@ -6,7 +6,8 @@ define([
     'views/Register',
     'views/Room',
     'views/Scoreboard',
-    'views/Controller'
+    'views/Controller',
+    'app'
 ], function(
     Admin,
     Game,
@@ -15,7 +16,8 @@ define([
     Register,
     Room,
     Scoreboard,
-    Controller
+    Controller,
+    App
 ){
 
     var ViewManager = Backbone.View.extend({
@@ -52,6 +54,8 @@ define([
             this.views[this.ROOM_VIEW] = new Room();
             this.views[this.SCOREBOARD_VIEW] = new Scoreboard();
             this.views[this.CONTROLLER_VIEW] = new Controller();
+
+            this.listenTo(App.wsEvents, "wsStartGame", this.startGame);
         },
 
         displayView: function(viewKey) {
@@ -64,6 +68,18 @@ define([
 
             view.load();
             this.currentView = view;
+        },
+
+        startGame: function(options) {
+
+            var gameView = this.views[this.GAME_VIEW];
+
+            if(App.isTouchDevice) {
+                App.router.navigateTo("controller");
+            } else {
+                App.router.navigateTo("game");
+                gameView.start.call(gameView, options);
+            }
         }
     });
 
