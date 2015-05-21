@@ -22,7 +22,6 @@ define([
         initialize: function () {			
 			game_log = true;
 			this.listenTo(app.wsEvents, "wsKeyEvent", this.keyEvent);
-			this.listenTo(app.wsEvents, "wsStartGame", this.start);
 			
 			this.leftRepeat = false;
 			this.rightRepeat = false;
@@ -93,8 +92,6 @@ define([
 						that.leftRepeat = false;
 						Api.sendKeyEvent(true, true);
 						that.field.leftUp(that.myId);
-						
-						
 						e.preventDefault();
 						break;
 					case 87:

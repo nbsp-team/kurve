@@ -30,7 +30,6 @@ define([
 		switchToGame: function(){
 			this.currentApi = gameApi;
 			this.socket.onmessage = this.currentApi.onMessage;
-			app.router.navigateTo("game");
 		},
 
         closeConnection: function() {

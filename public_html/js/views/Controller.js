@@ -1,13 +1,13 @@
 define([
-    'app',
     'tmpl/controller',
     'models/User',
-    'views/AbstractScreen'
+    'views/AbstractScreen',
+    'utils/api/ws/api_ws'
 ], function(
-    app,
     tmpl,
     User,
-    Abstract
+    Abstract,
+    Api
 ){
     var View = Abstract.extend({
 
@@ -16,16 +16,27 @@ define([
         templateArg: User,
 
         events : {
-            'vmousedown .js-button-left': 'leftButtonDown',
-            'vmouseup .js-button-left': 'leftButtonUp'
+            'touchstart .js-button-left': 'leftButtonDown',
+            'touchend .js-button-left': 'leftButtonUp',
+
+            'touchstart .js-button-right': 'rightButtonDown',
+            'touchend .js-button-right': 'rightButtonUp'
         },
 
         leftButtonDown: function() {
-            console.log("down");
+            Api.sendKeyEvent(true, false);
         },
 
         leftButtonUp: function() {
-            console.log("up");
+            Api.sendKeyEvent(true, true);
+        },
+
+        rightButtonDown: function() {
+            Api.sendKeyEvent(false, false);
+        },
+
+        rightButtonUp: function() {
+            Api.sendKeyEvent(false, true);
         }
     });
 
