@@ -17,7 +17,8 @@ define([
             this.angle=angle;
             this.radius = radius;
             this.clockwise = clockwise;
-            this.correct = (clockwise)?1.0/r:-1.0/r;
+            this._correct = (clockwise)?1.0/r:-1.0/r;
+            this.correct = 0;
 		},
 		applyUpdate: function(arc){
 		    this.update(arc.x, arc.y, arc.radius, arc.angle, arc.angle2, arc.lineRadius, arc.clockwise);
@@ -33,13 +34,27 @@ define([
 
 		},
 		draw: function(ctx, col){			
-			if (this.angle+this.correct === this.angle2) return;
+			if(this.correct === 0) {
+				var span = this.angle2 - this.angle - this.correct;
+				
+				if((span > 0 && span < 0.1 && this.clockwise) 
+				|| (span < 0 && span > -0.1 && !this.clockwise)){
+						//
+				} else {
+					this.correct = this._correct;
+				}
+			}
 			ctx.beginPath();
 			ctx.strokeStyle = col;
 			ctx.lineWidth = this.radius*2;			
 			ctx.arc(this.x, this.y, this.r, this.angle+this.correct, this.angle2, this.clockwise);
 			
-			ctx.stroke();	
+			ctx.stroke();
+		},
+		normAngle: function(x) {
+			while(x >= 2*Math.PI) x -= 2*Math.PI;
+			while(x < 0) x += 2*Math.PI;
+			return x;
 		}
     };
 
