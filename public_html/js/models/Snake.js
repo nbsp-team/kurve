@@ -156,7 +156,7 @@ define([
 		draw: function(){			
 			for(var i = this.arcsInBack; i < this.narcs; i++) {
 				this.snakeArcs[i].draw(this.foreCtx, this.color);
-				console.log('drew arc '+i);
+				
 			}
 			for(var i = this.linesInBack; i < this.nlines; i++) {
 				this.snakeLines[i].draw(this.foreCtx, this.color);
