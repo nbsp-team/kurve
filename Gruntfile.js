@@ -42,16 +42,16 @@ module.exports = function (grunt) {
                     atBegin: true
                 }
             },
+
             sass: {
 				files: ['blocks/**/*.scss'],
-				tasks: ['sass'],
+				tasks: ['sass', 'concat_css'],
 				options: {
                     interrupt: true,
                     livereload: true,
                     atBegin: true
                 }
 			},
-            
 
             livereload: {
                 files: ['public_html/**/*.js'],                
@@ -75,12 +75,19 @@ module.exports = function (grunt) {
 				files: [{
 					expand: true,
 					cwd: 'blocks',
-					src: ['styles.scss'],
+					src: ['project-styles.scss'],
 					dest: 'public_html/css/',
 					ext: '.css'
 				}]
 			}
-		}
+		},
+
+        concat_css: {
+            all: {
+                src: ["public_html/css/**/*.css"],
+                dest: "public_html/css/styles.css"
+            }
+        }
     });
 
     
@@ -89,6 +96,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-shell');
     grunt.loadNpmTasks('grunt-fest');
 	grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-concat-css');
 
     grunt.registerTask('default', ['concurrent']);
     grunt.registerTask('buildAllAndRun', ['shell:buildServer', 'concurrent']);

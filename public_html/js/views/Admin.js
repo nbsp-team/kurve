@@ -24,11 +24,16 @@ define([
         },
 
         initialize: function () {
-            this.listenTo(this.model, 'change', this.render);
-            this.listenTo(this.model, 'change', this.show);
+            this.listenTo(this.model, 'change', this.onLoad);
+        },
+
+        onLoad: function() {
+            app.preloader.hide();
+            this.renderAndShow();
         },
 
         load: function() {
+            app.preloader.show();
             this.model.update();
         },
 

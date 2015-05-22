@@ -1,0 +1,32 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
+    <div class="title"> Бонусы </div>
+
+    <table class="flat-table">
+        <tr>
+            <th class="flat-table__header-value"> Иконка </th>
+            <th class="flat-table__header-value"> Описание </th>
+        </tr>
+        <tbody>
+
+            <fest:for iterate="json.arg.models" index="i">
+                <tr>
+                    <td class="flat-table__value">
+                        <fest:value output="text">
+                            i + 1
+                        </fest:value>
+                    </td>
+
+                    <td class="flat-table__value">
+                        <fest:value output="text">
+                            json.arg.models[i].get('username');
+                        </fest:value>
+                    </td>
+                </tr>
+            </fest:for>
+        </tbody>
+    </table>
+
+
+
+    <a href="#" class="btn btn_red"> Назад </a>
+</fest:template>

@@ -9,6 +9,7 @@ require.config({
         relational: "lib/backbone-relational",
         syphon: "lib/backbone-syphon",
         notify: "lib/notify.min",
+        preloader: "lib/material-preloader",
         konva: "lib/konva"
     },
     shim: {
@@ -22,6 +23,9 @@ require.config({
         'notify': {
             deps: ['jquery'],
             exports: '$'
+        },
+        'preloader': {
+            deps: ['jquery']
         }
     }
 });

@@ -18,10 +18,16 @@ define([
         templateArg: Collect,
 
         initialize: function () {
-            this.listenTo(this.collection, 'add', this.renderAndShow);
+            this.listenTo(this.collection, 'add', this.onLoad);
+        },
+
+        onLoad: function() {
+            app.preloader.hide();
+            this.renderAndShow();
         },
 
         load: function() {
+            app.preloader.show();
             this.collection.fetch();
         }
     });
