@@ -1,11 +1,8 @@
-
-
 define([
     "app",
-    "konva",
     "models/SnakePartLine",
     "models/SnakePartArc"
-], function(app, Konva, SnakePartLine, SnakePartArc){
+], function(app, SnakePartLine, SnakePartArc){
 	function Snake(){this.initialize();}
     Snake.prototype = {
 		defaultSpeed: 100,
