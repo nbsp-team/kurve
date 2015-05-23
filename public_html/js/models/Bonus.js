@@ -5,7 +5,6 @@ define([
 ){
 	function Bonus(options){this.initialize(options);}
     Bonus.prototype = {
-		radius: 10,
         initialize: function(options) {
 			this.x = options.x;
 			this.y = options.y;
@@ -14,8 +13,11 @@ define([
 			this.kind = options.kind;
 		},
 		clear: function(){
-            this.ctx.clearRect(this.x - this.radius - 1, this.y - this.radius - 1,
-                BonusUtils.BONUS_WIDTH * 2 + 2, BonusUtils.BONUS_HEIGHT * 2 + 2);
+            this.ctx.clearRect(
+                this.x - BonusUtils.BONUS_WIDTH / 2 - 1,
+                this.y - BonusUtils.BONUS_HEIGHT / 2 - 1,
+                BonusUtils.BONUS_WIDTH + 2,
+                BonusUtils.BONUS_HEIGHT + 2);
 		},
 		draw: function(){
 			this.ctx.drawImage.apply(this.ctx,

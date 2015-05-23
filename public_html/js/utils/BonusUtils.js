@@ -42,9 +42,12 @@ define(function() {
             var leftOffset = bonusIndex % this.SPRITE_WIDTH_COUNT * this.BONUS_WIDTH;
 
             return [this.img, leftOffset, topOffset,
-                this.BONUS_WIDTH, this.BONUS_HEIGHT,
-                x - this.BONUS_WIDTH / 2, y - this.BONUS_HEIGHT,
-                this.BONUS_WIDTH, this.BONUS_HEIGHT];
+                this.BONUS_WIDTH,
+                this.BONUS_HEIGHT,
+                x - this.BONUS_WIDTH / 2,
+                y - this.BONUS_HEIGHT / 2,
+                this.BONUS_WIDTH,
+                this.BONUS_HEIGHT];
         }
     };
 });
