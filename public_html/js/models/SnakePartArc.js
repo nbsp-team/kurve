@@ -1,7 +1,5 @@
 define([
-    "app",
-    'konva'
-], function(app, Konva){
+], function(){
 	function SnakePartArc(x, y, r, startAngle, radius, clockwise){ this.init(x, y, r, startAngle, radius, clockwise);}
     SnakePartArc.prototype = {
 		
