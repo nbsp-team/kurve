@@ -1,6 +1,0 @@
-<fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
-    <div class="b-controller__container">
-        <div class="controller-btn js-button-left"> </div>
-        <div class="controller-btn js-button-right"> </div>
-    </div>
-</fest:template>

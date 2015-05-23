@@ -43,7 +43,8 @@ define(function() {
 
             return [this.img, leftOffset, topOffset,
                 this.BONUS_WIDTH, this.BONUS_HEIGHT,
-                x, y, this.BONUS_WIDTH, this.BONUS_HEIGHT];
+                x - this.BONUS_WIDTH / 2, y - this.BONUS_HEIGHT,
+                this.BONUS_WIDTH, this.BONUS_HEIGHT];
         }
     };
 });
