@@ -128,6 +128,12 @@ body {
   border-radius: 5px;
   z-index: 0;
   padding-bottom: 10px; }
+  .b-game .b-game__back-canvas {
+    z-index: 1;
+    position: absolute; }
+  .b-game .b-game__fore-canvas {
+    z-index: 2;
+    position: absolute; }
 
 .b-login {
   overflow: hidden;

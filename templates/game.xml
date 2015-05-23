@@ -1,9 +1,4 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
-
-    <!--div class="wrapper" id="container__ingame">
-        <div id="gameContainer">
-
-</div>
-        <a href="#" class="btn btn_game red"> Назад </a>
-    </div-->
+    <canvas class="b-game__back-canvas js_b-canvas"> </canvas>
+    <canvas class="b-game__fore-canvas js_f-canvas"> </canvas>
 </fest:template>

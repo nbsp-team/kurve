@@ -2,24 +2,22 @@ define([
     'app',
     'models/Snake',
     'utils/api/ws/api_ws',
-    'models/Bonus',
-    'utils/SnakeUpdatesManager'
+    'models/Bonus'
 ], function(
     app,
     Snake,
     Api,
-    Bonus,
-    UpdatesManager
+    Bonus
 ){
 	//function GameField(options){this.initialize(options);}
-    GameField = Backbone.Model.extend({
+    var GameField = Backbone.Model.extend({
 		FPS : 60,
 		width : 1200,
 		height : 600,
 		timeOutLimSec: 10,
 		timeOutLim: 10000,
         initialize: function(options) {
-			this.updatesManager = new SnakeUpdatesManager();
+
 			this.listenTo(app.wsEvents, "wsSnakeUpdateEvent", this.snakeUpdate);
 			this.listenTo(app.wsEvents, "wsNewBonus", this.onNewBonus);
 			this.listenTo(app.wsEvents, "wsEatBonus", this.onEatBonus);
@@ -54,6 +52,20 @@ define([
 			this.controlsQueue = [];
 			this.eatenBonusesQueue = [];
 		},
+
+        destruct: function() {
+            this.stopListening(app.wsEvents, "wsSnakeUpdateEvent", this.snakeUpdate);
+            this.stopListening(app.wsEvents, "wsNewBonus", this.onNewBonus);
+            this.stopListening(app.wsEvents, "wsEatBonus", this.onEatBonus);
+
+            this.playing = false;
+
+            console.log(this.backCtx);
+            console.log(this.foreCtx);
+
+            this.backCtx.clearRect(0, 0, this.width, this.height);
+            this.foreCtx.clearRect(0, 0, this.width, this.height);
+        },
 		snakeUpdate: function(snake){
 			if(game_log) {
 				console.log('applying update ');
@@ -79,19 +91,20 @@ define([
 			this.pause();
 		},
 		makeCanvas:function(box) {
-			this.backCanvas = document.createElement('canvas');
-			this.backCanvas.id     = "background-canvas";
-			this.backCanvas.width  = this.width; this.backCanvas.height = this.height;
-			this.backCanvas.style.zIndex   = 1;
-			this.foreCanvas = document.createElement('canvas');
-			this.foreCanvas.id     = "foreground-canvas";
-			this.foreCanvas.width  = this.width; this.foreCanvas.height = this.height;
-			this.foreCanvas.style.zIndex   = 2;
-			this.backCanvas.style.position = "absolute"; this.foreCanvas.style.position = "absolute";
-			
-			
-			box.append(this.backCanvas); box.append(this.foreCanvas);
-			box.width(this.width); box.height(this.height);
+
+            var backCanvas =  $('.js_b-canvas').get(0);
+			backCanvas.width  = this.width;
+            backCanvas.height = this.height;
+
+			var foreCanvas = $('.js_f-canvas').get(0);
+			foreCanvas.width  = this.width;
+            foreCanvas.height = this.height;
+
+            this.backCanvas = backCanvas;
+            this.foreCanvas = foreCanvas;
+
+			box.width(this.width);
+            box.height(this.height);
 			box.css({left:-this.width/2});
 			
 			this.backCtx = this.backCanvas.getContext('2d');
@@ -203,7 +216,6 @@ define([
 					}
 					
 					that.render();
-					
 				}
 				last = now;
 				if (that.playing) requestAnimationFrame(frame);

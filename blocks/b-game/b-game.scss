@@ -13,4 +13,6 @@
     &:before {
 		@extend .dashed;
     }
+    @import '__back-canvas/__back-canvas.scss';
+    @import '__fore-canvas/__fore-canvas';
 }

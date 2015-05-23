@@ -1,6 +1,5 @@
 define([
     'app',
-    'konva',
     'tmpl/game',
     'views/AbstractScreen',
     'models/Snake',
@@ -8,7 +7,6 @@ define([
     'utils/api/ws/api_ws'
 ], function(
     app,
-    Konva,
     tmpl,
     AbstractScreen,
     Snake,
@@ -19,30 +17,38 @@ define([
 
         el: '.b-game',
         template: tmpl,
-        initialize: function () {			
+
+        initialize: function () {
 			game_log = false;
 
 			this.listenTo(app.wsEvents, "wsKeyEvent", this.keyEvent);
             this.listenTo(app.wsEvents, "wsGameOverEvent", this.onGameOver);
-            this.listenTo(app.wsEvents, "new_round_event", this.start);
-			
+            this.listenTo(app.wsEvents, "new_round_event", this.onStartNewRound);
+
 			this.leftRepeat = false;
 			this.rightRepeat = false;
         },
-        onEatBonus:function(bonus_id){ this.field.onEatBonus(bonus_id); },
-        onNewBonus:function(bonus){ this.field.onNewBonus(bonus); },
-        onGameOver: function(msg){ this.field.onGameOver(msg); },
-        snakeUpdate: function(snake){ this.field.snakeUpdate(snake); },
-        start: function(options){
+
+        onEatBonus:function(bonus_id) { this.field.onEatBonus(bonus_id); },
+
+        onNewBonus:function(bonus) { this.field.onNewBonus(bonus); },
+
+        onGameOver: function(msg) { this.field.onGameOver(msg); },
+
+        snakeUpdate: function(snake) { this.field.snakeUpdate(snake); },
+
+        start: function(options) {
 			this.myId = options.myId;
 			options.canvasBox = this.$el;
+
 			this.field = new GameField(options);
-			document.addEventListener('keydown',    this.keyDown(),    false);
-			document.addEventListener('keyup',    this.keyUp(),    false);
+            $(document).on('keydown', this.keyDown.bind(this));
+            $(document).on('keyup', this.keyUp.bind(this));
 			
 			this.field.run();
 		},
-        keyEvent: function(isLeft, isUp, sender){
+
+        keyEvent: function(isLeft, isUp, sender) {
 			if(isLeft){
 				if(isUp){
 					this.field.leftUp(sender);
@@ -61,61 +67,63 @@ define([
 				}
 			}
 		},	
-		keyDown: function () {
-			var that = this;
-			return function (e) {
-				switch(e.keyCode) {		
-					case 32:
-						that.playPause();
-						break;
-					case 81:
-						if(that.leftRepeat) break;
-						that.leftRepeat = true;
-						Api.sendKeyEvent(true, false);
-						that.field.leftDown(that.myId);						
-						e.preventDefault();
-						that.fromTime = window.performance.now();
-						break;
-					case 87:
-						if(that.rightRepeat) break;
-						
-						that.rightRepeat = true;
-						Api.sendKeyEvent(false, false);
-						that.field.rightDown(that.myId);						
-						e.preventDefault();
-						break;
-				}
-			}
+
+        keyDown: function (e) {
+
+            switch(e.keyCode) {
+                case 32:
+                    this.playPause();
+                    break;
+                case 81:
+                    if(this.leftRepeat) break;
+                    this.leftRepeat = true;
+                    Api.sendKeyEvent(true, false);
+                    this.field.leftDown(this.myId);
+                    e.preventDefault();
+                    break;
+                case 87:
+                    if(this.rightRepeat) break;
+
+                    this.rightRepeat = true;
+                    Api.sendKeyEvent(false, false);
+                    this.field.rightDown(this.myId);
+                    e.preventDefault();
+                    break;
+            }
 		},
-		keyUp: function() {
-			var that = this;
-			return function (e) {
-				switch(e.keyCode) {
-					case 81:
-						that.leftRepeat = false;
-						Api.sendKeyEvent(true, true);
-						that.field.leftUp(that.myId);
-						e.preventDefault();
-						break;
-					case 87:
-						that.rightRepeat = false;
-						Api.sendKeyEvent(false, true);
-						that.field.rightUp(that.myId);
-						
-						e.preventDefault();
-						break;
-				}
-			}
+
+        keyUp: function(e) {
+
+            switch(e.keyCode) {
+                case 81:
+                    this.leftRepeat = false;
+                    Api.sendKeyEvent(true, true);
+                    this.field.leftUp(this.myId);
+                    e.preventDefault();
+                    break;
+                case 87:
+                    this.rightRepeat = false;
+                    Api.sendKeyEvent(false, true);
+                    this.field.rightUp(this.myId);
+                    e.preventDefault();
+                    break;
+            }
 		},	
-        events: {
-			'click #foreground-canvas' : 'pause'
-		},
+
 		pause: function() {
 			this.field.pause();
-			
 		},
+
         render: function () {
             $(this.el).html(this.template({'model': this.templateArg}));            
+        },
+
+        onStartNewRound: function(options) {
+            this.undelegateEvents();
+            this.field.destruct();
+            $(document).off('keydown');
+            $(document).off('keyup');
+            this.start(options);
         }
     });
 

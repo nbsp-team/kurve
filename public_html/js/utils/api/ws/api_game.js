@@ -47,7 +47,15 @@ define([
 						break;
 					}
                     case NEW_ROUND_START: {
-                        app.wsEvents.trigger("new_round_event", msg);
+                        var options = msg;
+
+                        options.colors = [];
+                        options.numPlayers = msg.players.length;
+                        for(var i = 0; i < msg.players.length; i++){
+                            options.colors.push(msg.players[i].color);
+                        }
+
+                        app.wsEvents.trigger("new_round_event", options);
                         break;
                     }
 				}
