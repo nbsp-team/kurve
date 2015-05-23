@@ -24,5 +24,6 @@
 			<width>1200</width>
 			<height>600</height>
 		</GameField>
+		<bonusRadius>24</bonusRadius>
     </mechanics>
 </configuration>
