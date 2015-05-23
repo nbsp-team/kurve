@@ -21,7 +21,6 @@ define([
         initialize: function(options) {
 			this.updatesManager = new SnakeUpdatesManager();
 			this.listenTo(app.wsEvents, "wsSnakeUpdateEvent", this.snakeUpdate);
-			this.listenTo(app.wsEvents, "wsGameOverEvent", this.onGameOver);
 			this.listenTo(app.wsEvents, "wsNewBonus", this.onNewBonus);
 			this.listenTo(app.wsEvents, "wsEatBonus", this.onEatBonus);
 			
@@ -174,7 +173,8 @@ define([
 			}
 			if(game_log) console.log('step');
 		},
-		onGameOver: function(){
+		onGameOver: function(msg) {
+            // TODO: Показать сообщение, с результатами и кнопками.
 			Api.closeConnection();
 			this.pause();
 		},

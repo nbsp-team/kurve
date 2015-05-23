@@ -21,14 +21,17 @@ define([
         template: tmpl,
         initialize: function () {			
 			game_log = false;
+
 			this.listenTo(app.wsEvents, "wsKeyEvent", this.keyEvent);
+            this.listenTo(app.wsEvents, "wsGameOverEvent", this.onGameOver);
+            this.listenTo(app.wsEvents, "new_round_event", this.start);
 			
 			this.leftRepeat = false;
 			this.rightRepeat = false;
         },
         onEatBonus:function(bonus_id){ this.field.onEatBonus(bonus_id); },
         onNewBonus:function(bonus){ this.field.onNewBonus(bonus); },
-        onGameOver: function(msg){ this.field.onGameOver(); },
+        onGameOver: function(msg){ this.field.onGameOver(msg); },
         snakeUpdate: function(snake){ this.field.snakeUpdate(snake); },
         start: function(options){
 			this.myId = options.myId;

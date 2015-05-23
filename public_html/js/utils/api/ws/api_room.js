@@ -13,7 +13,6 @@ define([
         return {
             onMessage: function(message) {
                 var messageObject = JSON.parse(message.data);
-                console.log(messageObject);
 
                 switch(messageObject.code) {
                     case CONNECTED_CODE:

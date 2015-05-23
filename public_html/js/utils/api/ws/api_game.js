@@ -6,12 +6,13 @@ define([
 
         var KEY_EVENT_CODE = 7;
         var GAME_OVER_CODE = 12;
-		var GAME_START_CODE = 13;
+		var NEW_ROUND_START = 17;
 		var SNAKE_UPDATE_CODE = 14;
 		var NEW_BONUS_CODE = 9;
 		var EAT_BONUS_CODE = 10;
 		var SNAKE_PATCH_CODE = 16;
-		//var dbg = 0;
+
+
         return {
             onMessage: function(message) {
                 var msg = JSON.parse(message.data);
@@ -19,7 +20,6 @@ define([
 
                 switch(msg.code){
 					case KEY_EVENT_CODE: {
-						 console.log(msg);
 						app.wsEvents.trigger("wsKeyEvent", msg.isLeft, msg.isUp, msg.sender);
 						break;
 					}
@@ -46,6 +46,10 @@ define([
 						app.wsEvents.trigger("wsOnPatchEvent", msg.updates);
 						break;
 					}
+                    case NEW_ROUND_START: {
+                        app.wsEvents.trigger("new_round_event", msg);
+                        break;
+                    }
 				}
             }
         };
