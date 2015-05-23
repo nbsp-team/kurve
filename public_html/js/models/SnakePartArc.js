@@ -35,8 +35,8 @@ define([
 			if(this.correct === 0) {
 				var span = this.angle2 - this.angle - this.correct;
 				
-				if((span > 0 && span < 0.1 && this.clockwise) 
-				    || (span < 0 && span > -0.1 && !this.clockwise)){
+				if((span >= 0 && span < 0.4 && this.clockwise)
+				    || (span <= 0 && span > -0.4 && !this.clockwise)){
 					//
 				} else {
 					this.correct = this._correct;

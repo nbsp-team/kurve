@@ -123,7 +123,6 @@ define([
 		
 			for(var i = this.arcsInBack; i < this.narcs-1; i++){						
 				this.snakeArcs[i].clear(this.foreCtx);
-				console.log('cleared arc '+i);
 				this.snakeArcs[i].draw(this.backCtx,  this.color);
 			}
 			this.arcsInBack = Math.max(0,this.narcs-1);
