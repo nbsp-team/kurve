@@ -58,14 +58,14 @@ define([
             this.stopListening(app.wsEvents, "wsNewBonus", this.onNewBonus);
             this.stopListening(app.wsEvents, "wsEatBonus", this.onEatBonus);
 
-            this.playing = false;
-
-            console.log(this.backCtx);
-            console.log(this.foreCtx);
-
             this.foreCtx.clearRect(0, 0, this.width, this.height);
             this.backCtx.clearRect(0, 0, this.width, this.height);
         },
+
+        stopPlaying: function() {
+            this.playing = false;
+        },
+
 		snakeUpdate: function(snake){
 			if(game_log) {
 				console.log('applying update ');
@@ -205,7 +205,7 @@ define([
 			function frame() {					
 				now = window.performance.now();
 				dt += Math.min(1000, now - last);
-				
+
 				if(dt > stepTime){
 					that.applyUpdates();
 					that.applyBonuses();
@@ -218,7 +218,11 @@ define([
 					that.render();
 				}
 				last = now;
-				if (that.playing) requestAnimationFrame(frame);
+				if (that.playing) {
+                    requestAnimationFrame(frame);
+                } else {
+                    that.destruct();
+                }
 			}
 			requestAnimationFrame(frame);
 		}
