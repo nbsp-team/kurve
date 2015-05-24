@@ -10,7 +10,6 @@ require.config({
         syphon: "lib/backbone-syphon",
         notify: "lib/notify.min",
         preloader: "lib/material-preloader",
-        konva: "lib/konva"
     },
     shim: {
         'underscore': {
