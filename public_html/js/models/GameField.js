@@ -23,7 +23,7 @@ define([
 			this.listenTo(app.wsEvents, "wsEatBonus", this.onEatBonus);
 			
 			this.numPlayers = options.numPlayers;
-//			this.myId = options.myId;
+            //this.myId = options.myId;
 			
 			if(options.width) this.width = options.width;
 			if(options.height) this.height = options.height;
@@ -63,8 +63,8 @@ define([
             console.log(this.backCtx);
             console.log(this.foreCtx);
 
-            this.backCtx.clearRect(0, 0, this.width, this.height);
             this.foreCtx.clearRect(0, 0, this.width, this.height);
+            this.backCtx.clearRect(0, 0, this.width, this.height);
         },
 		snakeUpdate: function(snake){
 			if(game_log) {

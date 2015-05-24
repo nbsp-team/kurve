@@ -57,9 +57,7 @@ define([
 		},
 		update: function(snake){		
 			if(game_log) console.log('got '+snake.arcs.length+' arcs and '+snake.lines.length+' lines');
-			
-						
-			
+
 			//for(var i = this.nlines; i < snake.nlines; i++) this.snakeLines[i] = new SnakePartLine();
 			//for(var i = this.narcs; i < snake.narcs; i++) this.snakeArcs[i] = new SnakePartArc();
 			for(var i = snake.narcs; i < this.narcs; i++) this.snakeArcs[i].clear(this.foreCtx);
