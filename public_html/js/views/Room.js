@@ -41,7 +41,7 @@ define([
             var playerView = new RoomPlayer({'model': userModel});
             this.playersContainer.append(playerView.el);
 
-            if(userModel.get('username') == app.session.user.get('username')) {
+            if(userModel.get('user_id') == app.session.user.get('user_id')) {
                 this.currentPlayer = userModel;
             }
 
