@@ -2,12 +2,16 @@ define([
     'app',
     'models/Snake',
     'utils/api/ws/api_ws',
-    'models/Bonus'
+    'models/Bonus',
+    'utils/SnakeUpdatesManager',
+    'utils/BonusUtils'
 ], function(
     app,
     Snake,
     Api,
-    Bonus
+    Bonus,
+    SnakeUpdatesManager,
+    BonusUtils
 ){
 	//function GameField(options){this.initialize(options);}
     var GameField = Backbone.Model.extend({
@@ -17,13 +21,13 @@ define([
 		timeOutLimSec: 10,
 		timeOutLim: 10000,
         initialize: function(options) {
-
+            this.lastUpdateTime = window.performance.now();
 			this.listenTo(app.wsEvents, "wsSnakeUpdateEvent", this.snakeUpdate);
 			this.listenTo(app.wsEvents, "wsNewBonus", this.onNewBonus);
 			this.listenTo(app.wsEvents, "wsEatBonus", this.onEatBonus);
 			
 			this.numPlayers = options.numPlayers;
-            //this.myId = options.myId;
+            this.myId = options.myId;
 			
 			if(options.width) this.width = options.width;
 			if(options.height) this.height = options.height;
@@ -32,7 +36,9 @@ define([
 			if(options.angleSpeed) Snake.prototype.defaultAngleSpeed = options.angleSpeed;
 			
 			if(options.holeLength) Snake.prototype.holeLength = options.holeLength;
-			
+            if(options.countdown) this.countdown = options.countdown;
+			this.makeCanvas(options.canvasBox);
+
 			this.snakes = [];
 			var mindim = Math.min(this.width, this.height);
 			for(var i = 0; i < this.numPlayers; i++) {
@@ -51,6 +57,7 @@ define([
 			this.updatesQueue = [];
 			this.controlsQueue = [];
 			this.eatenBonusesQueue = [];
+			this.updatesManager = new SnakeUpdatesManager();
 		},
 
         destruct: function() {
@@ -60,11 +67,10 @@ define([
 
             this.playing = false;
 
-            console.log(this.backCtx);
-            console.log(this.foreCtx);
 
             this.foreCtx.clearRect(0, 0, this.width, this.height);
             this.backCtx.clearRect(0, 0, this.width, this.height);
+            app.wsEvents.trigger("GameFieldDestructed");
         },
 		snakeUpdate: function(snake){
 			if(game_log) {
@@ -109,10 +115,10 @@ define([
 			
 			this.backCtx = this.backCanvas.getContext('2d');
 			this.foreCtx = this.foreCanvas.getContext('2d');
-			for(var i = 0; i < this.numPlayers; i++){
-				this.snakes[i].foreCtx = this.foreCtx;
-				this.snakes[i].backCtx = this.backCtx;
-			}
+			//for(var i = 0; i < this.numPlayers; i++){
+		    //	this.snakes[i].foreCtx = this.foreCtx;
+			//	this.snakes[i].backCtx = this.backCtx;
+			//}
 		},
 		onNewBonus: function(bonus){
 			var options = bonus;
@@ -133,6 +139,8 @@ define([
 			this.bonuses[i].clear();
 			
 			this.bonuses[i].onEat(this, msg.eater_id, this.eatenBonusesQueue);
+
+			BonusUtils.assignBonus(this.bonuses[i], this.snakes, msg.eater_id);
 			this.bonuses.splice(i, 1);
 		},
 		doControls: function(){
@@ -197,6 +205,36 @@ define([
 			for(var i = 0; i < this.bonuses.length; i++) this.bonuses[i].draw();
 			for(var i = 0; i < this.numPlayers; i++) this.snakes[i].draw();			
 		},
+		stopPlaying: function(){
+		    this.playing = false;
+		},
+		start: function() {
+		    var that = this;
+		    var t = this.countdown;
+		    var f = function() {
+                that.foreCtx.clearRect(0,0,that.width, that.height);
+		        if(t <= 0) {
+                    that.run();
+                    return;
+		        }
+
+		        that.render();
+		        var h = 200;
+		        that.foreCtx.font = h + "px sans-serif";
+		        that.foreCtx.fillStyle = that.snakes[that.myId].color;
+		        var text;
+		        if(t == that.countdown) {
+		            text = "Round ?/6"
+		        } else {
+		            text = t;
+		        }
+		        var txt = that.foreCtx.measureText(text);
+		        that.foreCtx.fillText(text, (that.width-txt.width)/2, (that.height+h)/2);
+		        t--;
+		        setTimeout(f, 1000);
+		    }
+		    f();
+		},
 		run: function(){
 			var that = this;
 			var now, dt = 0;
@@ -218,7 +256,11 @@ define([
 					that.render();
 				}
 				last = now;
-				if (that.playing) requestAnimationFrame(frame);
+				if (that.playing) {
+                    requestAnimationFrame(frame);
+                } else {
+                    that.destruct();
+                }
 			}
 			requestAnimationFrame(frame);
 		}

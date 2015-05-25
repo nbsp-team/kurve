@@ -45,7 +45,7 @@ define([
             $(document).on('keydown', this.keyDown.bind(this));
             $(document).on('keyup', this.keyUp.bind(this));
 			
-			this.field.run();
+			this.field.start();
 		},
 
         keyEvent: function(isLeft, isUp, sender) {
@@ -120,10 +120,17 @@ define([
 
         onStartNewRound: function(options) {
             this.undelegateEvents();
-            this.field.destruct();
+            this.field.stopPlaying();
             $(document).off('keydown');
             $(document).off('keyup');
-            this.start(options);
+            this.listenToOnce(app.wsEvents, "GameFieldDestructed", this.onFieldDestructed(options));
+
+        },
+        onFieldDestructed: function(options){
+            var options = options;
+            return function(){
+                this.start(options);
+            }
         }
     });
 
