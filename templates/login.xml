@@ -1,7 +1,4 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
-    <div id="vk_api_transport"></div>
-    <div id="fb-root"></div>
-
     <div class="title"> Вход </div>
 
     <form class="js-login-form">

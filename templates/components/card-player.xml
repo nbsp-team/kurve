@@ -1,7 +1,9 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
 
     <div class="card-player__name">
-        <fest:value output="text">json.player.username</fest:value>
+        <fest:value output="text">json.player.first_name</fest:value>
+        <fest:space/>
+        <fest:value output="text">json.player.last_name</fest:value>
     </div>
     <div class="card-player__color-block js-player-color">
         <div class="card-player__color-block__ready js-ready" style="display: none;">

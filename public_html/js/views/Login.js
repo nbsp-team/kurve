@@ -23,6 +23,8 @@ define([
             window.onSocialAuth = function(isSuccess) {
                 if (isSuccess) {
                     console.log("auth!");
+                    app.session.checkAuth(function(auth) {
+                    })
                 } else {
                     console.log("fail!");
                 }
@@ -31,7 +33,6 @@ define([
 
         load: function() {
             this.renderAndShow();
-            this.checkLogin();
         },
 
         events: {

@@ -3,9 +3,11 @@
     <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
 
         <div class="b-user__user left">
-            <img src="/img/default.jpg" class="b-user__user__ava left"/>
+            <img src="{json.user.avatar}" class="b-user__user__ava left"/>
             <div class="b-user__user__name left">
-                <fest:value output="text">json.user.username</fest:value>
+                <fest:value output="text">json.user.first_name</fest:value>
+                <fest:space/>
+                <fest:value output="text">json.user.last_name</fest:value>
             </div>
         </div>
 
