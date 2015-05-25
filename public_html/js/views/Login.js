@@ -2,12 +2,14 @@ define([
     'app',
     'syphon',
     'tmpl/login',
-    'views/AbstractScreen'
+    'views/AbstractScreen',
+    'utils/AnotherUtils'
 ], function(
     app,
     Syphon,
     tmpl,
-    AbstractScreen
+    AbstractScreen,
+    utils
 ){
 
     var View = AbstractScreen.extend({
@@ -17,36 +19,34 @@ define([
 
         initialize: function() {
             this.listenTo(app.session, "change:loggedIn", this.loggedChanged);
+
+            window.onSocialAuth = function(isSuccess) {
+                if (isSuccess) {
+                    console.log("auth!");
+                } else {
+                    console.log("fail!");
+                }
+            };
         },
 
         load: function() {
             this.renderAndShow();
-            var savedStateData = app.storage.loginStorage.getData();
-
-            if(savedStateData) {
-                Syphon.deserialize(this, savedStateData);
-            }
+            this.checkLogin();
         },
 
         events: {
-            'submit .js-login-form' : 'login',
-            'input .js-login-form': 'saveData'
+            'click .js-login-vk' : function(){ this.openAuthPopup(app.session.AUTH_PROVIDER_VK); },
+            'click .js-login-fb' : function(){ this.openAuthPopup(app.session.AUTH_PROVIDER_FB); }
         },
 
-        saveData: function() {
-            app.storage.loginStorage.setData(Syphon.serialize(this));
-        },
-
-        login: function() {
-            var userData = Syphon.serialize(this);
-            app.session.login(userData);
-            return false;
-        },
-
-        loggedChanged: function() {
-            if(app.session.get("loggedIn")) {
-                app.storage.loginStorage.clear();
-                app.router.navigateTo("/");
+        openAuthPopup: function(authProvider) {
+            switch (authProvider) {
+                case app.session.AUTH_PROVIDER_VK:
+                    utils.openPopup(app.session.VK_OAUTH_URL, 'Авторизация', '900','640');
+                    break;
+                case app.session.AUTH_PROVIDER_FB:
+                    utils.openPopup(app.session.FB_OAUTH_URL, 'Авторизация', '900','640');
+                    break;
             }
         }
     });

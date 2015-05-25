@@ -1,10 +1,12 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
+    <div id="vk_api_transport"></div>
+    <div id="fb-root"></div>
+
     <div class="title"> Вход </div>
 
     <form class="js-login-form">
-        <input class="text-field" name="username" type="username" placeholder="Логин" required="" />
-        <input class="text-field" name="password" type="password" placeholder="Пароль" required="" />
-        <button class="btn btn_blue js-login"> Войти </button>
+        <button class="btn btn_blue js-login-vk"> Войти с помощью ВКонтакте </button>
+        <button class="btn btn_blue js-login-fb"> Войти с помощью Facebook </button>
     </form>
 
     <a href="#" class="btn btn_red"> Назад </a>

@@ -6,8 +6,10 @@ define([
 
     var User = Backbone.Model.extend({
         defaults: {
-            "username": "",
-            "email": "",
+            "user_id": "",
+            "first_name": "",
+            "last_name": "",
+            "avatar": "",
             "global_rating": 0,
             "isLogin": false
         }
