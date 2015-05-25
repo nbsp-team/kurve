@@ -42,8 +42,7 @@ define([
 			this.snakes = [];
 			var mindim = Math.min(this.width, this.height);
 			for(var i = 0; i < this.numPlayers; i++) {
-				this.snakes[i] = new Snake();
-				console.log('new snake');
+				this.snakes[i] = new Snake();				
 				var angle = i*2*Math.PI/this.numPlayers;
 				var x = this.width/2 + mindim*0.25*Math.cos(angle);
                 var y = this.height/2 + mindim*0.25*Math.sin(angle);
@@ -53,16 +52,14 @@ define([
 			this.deadCount = 0;
 			this.playing = true;
 			
-
+			this.makeCanvas(options.canvasBox);
 			this.bonuses = [];
 			this.updatesQueue = [];
 			this.controlsQueue = [];
 			this.eatenBonusesQueue = [];
-			this.updatesManager = new SnakeUpdatesManager();
 		},
 
         destruct: function() {
-
             this.stopListening(app.wsEvents, "wsSnakeUpdateEvent", this.snakeUpdate);
             this.stopListening(app.wsEvents, "wsNewBonus", this.onNewBonus);
             this.stopListening(app.wsEvents, "wsEatBonus", this.onEatBonus);
@@ -72,8 +69,6 @@ define([
 
             this.foreCtx.clearRect(0, 0, this.width, this.height);
             this.backCtx.clearRect(0, 0, this.width, this.height);
-            if (game_log) console.log("FIELD DESTRUCTED");
-            app.wsEvents.trigger("GameFieldDestructed");
         },
 		snakeUpdate: function(snake){
 			if(game_log) {
@@ -251,10 +246,10 @@ define([
 				}
 				last = now;
 				if (that.playing) {
-				    requestAnimationFrame(frame);
-				} else {
-				    that.destruct();
-				}
+                    requestAnimationFrame(frame);
+                } else {
+                    that.destruct();
+                }
 			}
 			requestAnimationFrame(frame);
 		}

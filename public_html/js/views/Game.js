@@ -120,9 +120,7 @@ define([
 
         onStartNewRound: function(options) {
             this.undelegateEvents();
-            this.field.destruct();
-
-
+            this.field.stopPlaying();
             $(document).off('keydown');
             $(document).off('keyup');
             this.listenToOnce(app.wsEvents, "GameFieldDestructed", this.onFieldDestructed(options));
