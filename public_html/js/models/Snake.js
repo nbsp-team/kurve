@@ -1,8 +1,9 @@
 define([
     "app",
     "models/SnakePartLine",
-    "models/SnakePartArc"
-], function(app, SnakePartLine, SnakePartArc){
+    "models/SnakePartArc",
+    'models/BonusEffects'
+], function(app, SnakePartLine, SnakePartArc, BonusEffects){
 	function Snake(){this.initialize();}
     Snake.prototype = {
 		defaultSpeed: 100,
@@ -33,6 +34,8 @@ define([
 			this.linesInBack = 0;
 			this.updating = false;
             this.doLine();
+            console.log('new effects[]');
+            this.effects = new BonusEffects(foreCtx, this, FPS);
 		},
 		setDrawing: function(){
 			this.drawing = (this.distSinceLastHole <= this.partStopper);			
@@ -125,7 +128,8 @@ define([
 			}
 			this.arcsInBack = Math.max(0,this.narcs-1);
 		},
-		clear: function(){					
+		clear: function(){
+			this.effects.clear();
 			this.foreCtx.clearRect(this.prevX - this.prevRadius-2, this.prevY - this.prevRadius-2
 				, this.prevRadius*2+4, this.prevRadius*2+4);
 
@@ -150,7 +154,8 @@ define([
 		    console.log(this.reversed);
 		    console.log(this.turning);
 		},
-		draw: function(){			
+		draw: function(){
+		    this.effects.draw();
 			for(var i = this.arcsInBack; i < this.narcs; i++) {
 				this.snakeArcs[i].draw(this.foreCtx, this.color);
 				
@@ -234,6 +239,7 @@ define([
 			this.nlines++;
 		},
 		step: function() {
+		    this.effects.tick();
 			this.makeHoles();
 			if(this.turning === this.NOT_TURNING) {
 				this.x += this.vx;

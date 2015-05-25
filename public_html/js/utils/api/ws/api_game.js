@@ -24,8 +24,6 @@ define([
 						break;
 					}
 					case SNAKE_UPDATE_CODE:{
-						//dbg++;
-						//if(dbg !=3)
 						app.wsEvents.trigger("wsOnUpdateEvent", msg);
 						break;
 					} 
