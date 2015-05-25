@@ -2,7 +2,7 @@ define([
     "app",
     "models/SnakePartLine",
     "models/SnakePartArc",
-    'models/Bonus'
+    'models/BonusEffects'
 ], function(app, SnakePartLine, SnakePartArc, BonusEffects){
 	function Snake(){this.initialize();}
     Snake.prototype = {
