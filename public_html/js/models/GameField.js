@@ -57,6 +57,7 @@ define([
 			this.updatesQueue = [];
 			this.controlsQueue = [];
 			this.eatenBonusesQueue = [];
+			this.updatesManager = new SnakeUpdatesManager();
 		},
 
         destruct: function() {
@@ -69,6 +70,7 @@ define([
 
             this.foreCtx.clearRect(0, 0, this.width, this.height);
             this.backCtx.clearRect(0, 0, this.width, this.height);
+            app.wsEvents.trigger("GameFieldDestructed");
         },
 		snakeUpdate: function(snake){
 			if(game_log) {
@@ -203,6 +205,9 @@ define([
 			for(var i = 0; i < this.bonuses.length; i++) this.bonuses[i].draw();
 			for(var i = 0; i < this.numPlayers; i++) this.snakes[i].draw();			
 		},
+		stopPlaying: function(){
+		    this.playing = false;
+		},
 		start: function() {
 		    var that = this;
 		    var t = this.countdown;
@@ -214,12 +219,18 @@ define([
 		        }
 
 		        that.render();
-		        that.foreCtx.font = "400px sans-serif";
+		        var h = 200;
+		        that.foreCtx.font = h + "px sans-serif";
 		        that.foreCtx.fillStyle = that.snakes[that.myId].color;
-		        var txt = that.foreCtx.measureText(t);
-		        that.foreCtx.fillText(t, (that.width-txt.width)/2, (that.height+400)/2);
+		        var text;
+		        if(t == that.countdown) {
+		            text = "Round ?/6"
+		        } else {
+		            text = t;
+		        }
+		        var txt = that.foreCtx.measureText(text);
+		        that.foreCtx.fillText(text, (that.width-txt.width)/2, (that.height+h)/2);
 		        t--;
-		        console.log(t);
 		        setTimeout(f, 1000);
 		    }
 		    f();
