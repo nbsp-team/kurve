@@ -8,9 +8,9 @@ define([
         AUTH_PROVIDER_FB: 1,
         AUTH_PROVIDER_GUEST: 2,
 
-        VK_OAUTH_URL: 'https://oauth.vk.com/authorize?client_id=4930885&scope=notify,friends&redirect_uri=http%3A%2F%2Fkurve.ml%2Fapi%2Fv1%2Fauth%2Fsocial%3Ftype%3D0&response_type=code',
-        FB_OAUTH_URL: 'https://www.facebook.com/dialog/oauth?client_id=925250904206070&redirect_uri=http%3A%2F%2Fkurve.ml%2Fapi%2Fv1%2Fauth%2Fsocial%3Ftype%3D1&display=popup&scope=public_profile,user_friends',
-        GUEST_OAUTH_URL: 'http://kurve.ml/api/v1/auth/social?type=2&code=TODOMAKEBROWSERFINGERPRINT',
+        VK_OAUTH_URL: 'https://oauth.vk.com/authorize?client_id=4930885&scope=notify,friends&redirect_uri=http%3A%2F%2F' + app.config.domain + '%2Fapi%2Fv1%2Fauth%2Fsocial%3Ftype%3D0&response_type=code',
+        FB_OAUTH_URL: 'https://www.facebook.com/dialog/oauth?client_id=925250904206070&redirect_uri=http%3A%2F%2F' + app.config.domain + '%2Fapi%2Fv1%2Fauth%2Fsocial%3Ftype%3D1&display=popup&scope=public_profile,user_friends',
+        GUEST_OAUTH_URL: 'http://' + app.config.domain + '/api/v1/auth/social?type=2&code=TODOMAKEBROWSERFINGERPRINT',
 
         defaults: {
             loggedIn: false

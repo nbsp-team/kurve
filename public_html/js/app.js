@@ -26,6 +26,10 @@ define([
             "storage": {
                 "loginStorage": new FormStorage("login"),
                 "registerStorage": new FormStorage("register")
+            },
+
+            "config": {
+                "domain": "kurve.ml"
             }
         };
 
