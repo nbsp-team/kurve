@@ -5,7 +5,10 @@ define(function() {
                 || 'onmsgesturechange' in window;
         },
 
-        openPopup: function(url, title, w, h) {
+        openPopup: function(url, title) {
+            var w = 900;
+            var h = 640;
+
             var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
             var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
 

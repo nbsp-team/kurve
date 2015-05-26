@@ -37,16 +37,22 @@ define([
 
         events: {
             'click .js-login-vk' : function(){ this.openAuthPopup(app.session.AUTH_PROVIDER_VK); },
-            'click .js-login-fb' : function(){ this.openAuthPopup(app.session.AUTH_PROVIDER_FB); }
+            'click .js-login-fb' : function(){ this.openAuthPopup(app.session.AUTH_PROVIDER_FB); },
+            'click .js-login-guest' : function(){ this.openAuthPopup(app.session.AUTH_PROVIDER_GUEST); }
         },
 
         openAuthPopup: function(authProvider) {
+            var popUpTitle = 'Авторизация';
+
             switch (authProvider) {
                 case app.session.AUTH_PROVIDER_VK:
-                    utils.openPopup(app.session.VK_OAUTH_URL, 'Авторизация', '900','640');
+                    utils.openPopup(app.session.VK_OAUTH_URL, popUpTitle);
                     break;
                 case app.session.AUTH_PROVIDER_FB:
-                    utils.openPopup(app.session.FB_OAUTH_URL, 'Авторизация', '900','640');
+                    utils.openPopup(app.session.FB_OAUTH_URL, popUpTitle);
+                    break;
+                case app.session.AUTH_PROVIDER_GUEST:
+                    utils.openPopup(app.session.GUEST_OAUTH_URL, popUpTitle);
                     break;
             }
         }

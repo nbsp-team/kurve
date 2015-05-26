@@ -4,6 +4,7 @@
     <form class="js-login-form">
         <button class="btn btn_blue js-login-vk"> Войти с помощью ВКонтакте </button>
         <button class="btn btn_blue js-login-fb"> Войти с помощью Facebook </button>
+        <button class="btn btn_blue js-login-guest"> Войти как гость </button>
     </form>
 
     <a href="#" class="btn btn_red"> Назад </a>
