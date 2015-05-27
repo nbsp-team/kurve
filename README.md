@@ -7,12 +7,12 @@ Achtung, die Kurve! Multiplayer implementation (Jetty, Websockets, HTML5)
 
 2. Clone repository:
 
-   ``` git clone https://github.com/lukaville/kurve.git ```
+   ``` git clone --recursive https://github.com/lukaville/kurve.git ```
 
 3. Install npm dependencies:
 
    ``` npm update ```
 
-4. Build project:
+4. Build and run project:
 
-   ``` grunt ```
+   ``` grunt buildAllAndRun ```
