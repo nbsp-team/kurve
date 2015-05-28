@@ -14372,6 +14372,7 @@ define('views/Game',[
 		},
 
         render: function () {
+            app.preloader.hide();
             $(this.el).html(this.template({'model': this.templateArg}));            
         },
 
