@@ -1,5 +1,10 @@
 .controller-btn__icon {
-  display: inline-block;
-  vertical-align: middle;
+  cursor: pointer;
+  font-family: arial;
+  color: #3C93D5;
+  display: table-cell;
+  text-align: center;
+  font-size: 130px;
   line-height: normal;
+  vertical-align: middle;
 }
