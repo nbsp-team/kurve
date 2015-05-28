@@ -3,7 +3,6 @@ define([
     'views/Game',
     'views/Login',
     'views/Main',
-    'views/Register',
     'views/Room',
     'views/Scoreboard',
     'views/Controller',
@@ -13,11 +12,10 @@ define([
     Game,
     Login,
     Main,
-    Register,
     Room,
     Scoreboard,
     Controller,
-    App
+    app
 ){
 
     var ViewManager = Backbone.View.extend({
@@ -26,7 +24,6 @@ define([
         GAME_VIEW: "game",
         LOGIN_VIEW: "login",
         MAIN_VIEW: "main",
-        REGISTER_VIEW: "register",
         ROOM_VIEW: "room",
         SCOREBOARD_VIEW: "scoreboard",
         CONTROLLER_VIEW: "controller",
@@ -36,7 +33,6 @@ define([
             GAME_VIEW: null,
             LOGIN_VIEW: null,
             MAIN_VIEW: null,
-            REGISTER_VIEW: null,
             ROOM_VIEW: null,
             SCOREBOARD_VIEW: null,
             CONTROLLER_VIEW: null
@@ -50,12 +46,11 @@ define([
             this.views[this.GAME_VIEW] = new Game();
             this.views[this.LOGIN_VIEW] = new Login();
             this.views[this.MAIN_VIEW] = new Main();
-            this.views[this.REGISTER_VIEW] = new Register();
             this.views[this.ROOM_VIEW] = new Room();
             this.views[this.SCOREBOARD_VIEW] = new Scoreboard();
             this.views[this.CONTROLLER_VIEW] = new Controller();
 
-            this.listenTo(App.wsEvents, "wsStartGame", this.startGame);
+            this.listenTo(app.wsEvents, "wsStartGame", this.startGame);
         },
 
         displayView: function(viewKey) {
@@ -65,6 +60,9 @@ define([
             }
 
             var view = this.views[viewKey];
+            app.preloader.show();
+            this.listenToOnce(view, "view_render",
+                    app.preloader.hide.bind(app.preloader));
 
             view.load();
             this.currentView = view;
@@ -74,10 +72,10 @@ define([
 
             var gameView = this.views[this.GAME_VIEW];
 
-            if(App.isTouchDevice) {
-                App.router.navigateTo("controller");
+            if(app.isTouchDevice) {
+                app.router.navigateTo("controller");
             } else {
-                App.router.navigateTo("game");
+                app.router.navigateTo("game");
                 gameView.start.call(gameView, options);
             }
         }

@@ -15,7 +15,6 @@ define([
             'game': 'gameAction',
             'room': 'roomAction',
             'login': 'loginAction',
-            'register': 'registerAction',
             'admin': 'adminAction',
             'controller': 'controllerAction',
             '*default': 'defaultAction'
@@ -53,9 +52,6 @@ define([
         },
         loginAction: function () {
             this.showView(this.viewManager.LOGIN_VIEW);
-        },
-        registerAction: function () {
-            this.showView(this.viewManager.REGISTER_VIEW);
         },
         adminAction: function () {
             this.showView(this.viewManager.ADMIN_VIEW);

@@ -22,12 +22,10 @@ define([
         },
 
         onLoad: function() {
-            app.preloader.hide();
             this.renderAndShow();
         },
 
         load: function() {
-            app.preloader.show();
             this.collection.fetch();
         }
     });

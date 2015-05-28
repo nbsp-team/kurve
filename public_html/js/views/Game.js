@@ -115,6 +115,7 @@ define([
 		},
 
         render: function () {
+            app.preloader.hide();
             $(this.el).html(this.template({'model': this.templateArg}));            
         },
 

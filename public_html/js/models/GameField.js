@@ -67,7 +67,6 @@ define([
 
             this.playing = false;
 
-
             this.foreCtx.clearRect(0, 0, this.width, this.height);
             this.backCtx.clearRect(0, 0, this.width, this.height);
             app.wsEvents.trigger("GameFieldDestructed");

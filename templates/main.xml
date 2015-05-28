@@ -10,9 +10,7 @@
 
     <fest:if test="!json.app.session.get('loggedIn')">
         <a href="#login" class="btn btn_blue"> Войти </a>
-        <a href="#register" class="btn btn_blue"> Регистрация </a>
         <a href="#scoreboard" class="btn btn_blue"> Рейтинги </a>
-        <a href="#controller" class="btn btn_blue"> Контроллер </a>
     </fest:if>    
 
 </fest:template>

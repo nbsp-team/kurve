@@ -2,10 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Achtung</title>
-    <link rel="stylesheet" type="text/css" href="css/styles.css" />
-    <script src="//localhost:35729/livereload.js"></script>
-    <script data-main="js/config" src="js/lib/require.js"></script>
+    <title> Kurve </title>
+    <link rel="stylesheet" type="text/css" href="css/build/style.min.css" />
     <meta name=viewport content="width=device-width, initial-scale=1">
 </head>
 <body>
@@ -20,6 +18,16 @@
     <div class="b-controller js-controller" style="display: none;"></div>
     <div class="b-admin js-admin"           style="display: none;"></div>
 
-    <div class="preloader" style="display: none;"> Loading... </div>
+    <div class="spinner" style="display: block;"></div>
+
+    <script src="js/build/build.min.js"></script>
+
+    <script>
+        (function () {
+            window.onload = function () {
+                document.getElementsByClassName("spinner")[0].style.display = "none";
+            };
+        })();
+    </script>
 </body>
 </html>
