@@ -9,7 +9,7 @@ require.config({
         relational: "lib/backbone-relational",
         syphon: "lib/backbone-syphon",
         notify: "lib/notify.min",
-        preloader: "lib/material-preloader",
+        preloader: "lib/material-preloader"
     },
     shim: {
         'underscore': {

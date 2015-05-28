@@ -11,12 +11,12 @@ define([
         width: 2,
         tempEffects: [],
         addEffect: function(bonus){
-            effect = {
+            var effect = {
                 angleV: 2*Math.PI/BonusUtils.timeOutOf(bonus)/this.FPS,
                 angle: 2*Math.PI,
                 color: BonusUtils.colorOf(bonus)
             };
-            this.effects.push(   effect);
+            this.effects.push(effect);
             this.clearRadius = this.radius0 + this.span*this.effects.length + 1;
         },
         initialize: function(ctx, snake, FPS) {
