@@ -24,7 +24,26 @@
 			<width>1200</width>
 			<height>600</height>
 		</GameField>
+
 		<bonusRadius>24</bonusRadius>
+		<bonusSpawnProbability>240</bonusSpawnProbability>
+		<bonusProbabilities>
+			<probability>10</probability> <!-- SPEED_SELF -->
+			<probability>10</probability> <!-- THIN_SELF -->
+			<probability>10</probability> <!-- SLOW_SELF -->
+			<probability>8</probability> <!-- BIG_HOLE_SELF -->
+			<probability>8</probability> <!-- TRAVERSE_WALLS_SELF -->
+			<probability>10</probability> <!-- SHARP_CORNERS_SELF -->
+			<probability>8</probability> <!-- ERASE_SELF -->
+			<probability>12</probability> <!-- SPEED_ENEMY -->
+			<probability>12</probability> <!-- THICK_ENEMY -->
+			<probability>12</probability> <!-- SLOW_ENEMY -->
+			<probability>12</probability> <!-- REVERSE_ENEMY -->
+			<probability>12</probability> <!-- BIG_TURNS_ENEMY -->
+			<probability>8</probability> <!-- TRAVERSE_WALLS_ALL -->
+			<probability>1</probability> <!-- DEATH_ALL -->
+		</bonusProbabilities>
+
 		<gameStartCountdown>3</gameStartCountdown>
     </mechanics>
 </configuration>
