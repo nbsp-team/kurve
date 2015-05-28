@@ -122,4 +122,5 @@ module.exports = function (grunt) {
     
     grunt.registerTask('buildAllAndRun', ['shell:buildServer', 'concurrent']);
     grunt.registerTask('buildAndRun', ['shell:buildServer', 'shell:runServer']);
+    grunt.registerTask('run', ['shell:runServer']);
 };
