@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <configuration>
     <db>
-		<inMemory>False</inMemory>
+        <offline>True</offline>
         <port>31822</port>
         <host>ds031822.mongolab.com</host>
         <dbname>kurve</dbname>
