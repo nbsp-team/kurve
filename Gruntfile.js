@@ -61,51 +61,16 @@ module.exports = function (grunt) {
                 }
             }
         },
-        watch: {
-            fest: {
-                files: ['templates/**/*.xml'],
-                tasks: ['fest'],
-                options: {
-                    interrupt: true,
-                    livereload: true,
-                    atBegin: true
-                }
-            },
-
-            css: {
-				files: ['blocks/**/*.scss'],
-				tasks: ['sass', 'concat_css', 'cssmin'],
-				options: {
-                    interrupt: true,
-                    livereload: true,
-                    atBegin: true
-                }
-			},
-
-            js: {
-                files: ['public_html/**/*.js'],
-                tasks: ['requirejs', 'concat', 'uglify'],
-                options: {
-                    interrupt: true,
-                    livereload: true,
-                    atBegin: true
-                }
-            },
-
-            livereload: {
-                files: ['public_html/**/*.js'],                
-                options: {                    
-                    livereload: true         
-                }  
-            }
-            
-        },
+        
         concurrent: {
-            target: ['watch', 'shell:runServer'],
+            target: ['shell:runServer'],
             options: {
                 logConcurrentOutput: true
             }
         },
+
+        clean: ["public_html/css/build"],
+
         sass: {
 			dist: {
 				options: {
@@ -115,7 +80,7 @@ module.exports = function (grunt) {
 					expand: true,
 					cwd: 'blocks',
 					src: ['project-styles.scss'],
-					dest: 'public_html/css/',
+					dest: 'public_html/css/build/',
 					ext: '.css'
 				}]
 			}
@@ -124,9 +89,10 @@ module.exports = function (grunt) {
         concat_css: {
             all: {
                 src: ["public_html/css/**/*.css"],
-                dest: "public_html/css/style.css"
+                dest: "public_html/css/build/style.css"
             }
         },
+
         cssmin: {
             options: {
                 shorthandCompacting: false,
@@ -134,7 +100,7 @@ module.exports = function (grunt) {
             },
             target: {
                 files: {
-                    'public_html/css/build/style.min.css': ['public_html/css/style.css']
+                    'public_html/css/build/style.min.css': ['public_html/css/build/style.css']
                 }
             }
         }
@@ -150,8 +116,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-clean');
 
-    grunt.registerTask('default', ['concurrent']);
+    grunt.registerTask('default', ['clean', 'sass', 'concat_css', 'cssmin', 'requirejs', 'concat', 'uglify', 'fest', 'concurrent']);
+    
     grunt.registerTask('buildAllAndRun', ['shell:buildServer', 'concurrent']);
     grunt.registerTask('buildAndRun', ['shell:buildServer', 'shell:runServer']);
 };
