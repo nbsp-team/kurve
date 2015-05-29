@@ -3,6 +3,6 @@
     <network>
         <port>9081</port>
         <host>0.0.0.0</host>
-        <domain>172.16.49.38:9081</domain>
+        <domain>kurve.ml</domain>
     </network>
 </configuration>
