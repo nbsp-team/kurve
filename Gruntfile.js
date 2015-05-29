@@ -119,7 +119,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
 
     grunt.registerTask('default', ['clean', 'sass', 'concat_css', 'cssmin', 'fest', 'requirejs', 'concat', 'uglify', 'concurrent']);
-    
+    grunt.registerTask('build', ['clean', 'sass', 'concat_css', 'cssmin', 'fest', 'requirejs', 'concat', 'uglify', 'shell:buildServer']);
     grunt.registerTask('buildAllAndRun', ['shell:buildServer', 'concurrent']);
     grunt.registerTask('buildAndRun', ['shell:buildServer', 'shell:runServer']);
     grunt.registerTask('run', ['shell:runServer']);
