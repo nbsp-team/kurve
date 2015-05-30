@@ -6,7 +6,7 @@ define([
 
     var wsApi = {
 
-        WS_URL: 'ws://' + location.host + '/',
+        WS_URL: 'ws://' + location.host + '/socket/',
 
         READY_CODE: 3,
         
