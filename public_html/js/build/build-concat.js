@@ -14154,7 +14154,7 @@ define('utils/api/ws/api_game',[
         return {
             onMessage: function(message) {
                 var msg = JSON.parse(message.data);
-    			if(game_log) console.log(msg);
+    			console.log(msg);
 
                 switch(msg.code){
 					case KEY_EVENT_CODE: {
