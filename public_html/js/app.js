@@ -5,6 +5,7 @@ define([
         "utils/api/api_admin",
         "utils/api/api_auth",
         "utils/api/api_rating",
+        "utils/api/api_other",
         "utils/storage/form_storage"
     ],
     function(
@@ -14,13 +15,15 @@ define([
         ApiAdmin,
         ApiAuth,
         ApiRating,
+        ApiOther,
         FormStorage
     ) {
         var app = {
             "api": {
                 "auth": ApiAuth,
                 "admin": ApiAdmin,
-                "rating": ApiRating
+                "rating": ApiRating,
+                "other": ApiOther
             },
 
             "storage": {

@@ -198,8 +198,8 @@ body {
       background-color: #F5F5F5;
       cursor: pointer; }
     .b-user__exit__icon {
-      width: 30px;
-      height: 30px;
+      width: 40px;
+      height: 40px;
       padding: 5px;
       margin-top: 10px;
       opacity: 0.55; }
@@ -230,6 +230,27 @@ body {
       font-size: 18px;
       margin-top: 20px;
       margin-left: 15px; }
+  .b-user__controller {
+    margin-right: 80px;
+    padding-left: 20px;
+    padding-right: 10px;
+    height: 100%;
+    overflow: hidden; }
+    .b-user__controller:hover {
+      background-color: #F5F5F5;
+      cursor: pointer; }
+    .b-user__controller__icon {
+      width: 40px;
+      height: 40px;
+      padding: 5px;
+      margin-top: 10px;
+      opacity: 0.55; }
+    .b-user__controller__text {
+      color: #777;
+      font-family: arial;
+      font-size: 16px;
+      margin-top: 22px;
+      margin-right: 10px; }
 
 .b-controller {
   position: absolute;

@@ -15,7 +15,12 @@ define([
         },
 
         events: {
-            'click .js-toolbar-exit': 'logoutEvent'
+            'click .js-toolbar-exit': 'logoutEvent',
+            'click .js-toolbar-controller': 'showQrPopup'
+        },
+
+        showQrPopup: function() {
+            app.qrPopup.showPopup();
         },
 
         logoutEvent: function() {

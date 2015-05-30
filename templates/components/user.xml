@@ -11,6 +11,13 @@
             </div>
         </div>
 
+        <div class="b-user__controller left js-toolbar-controller">
+            <img src="/img/gamepad-variant.png" class="b-user__controller__icon left"/>
+            <div class="b-user__controller__text left">
+                Контроллер
+            </div>
+        </div>
+
         <div class="b-user__exit right js-toolbar-exit">
             <div class="b-user__exit__text left">
                 Выйти

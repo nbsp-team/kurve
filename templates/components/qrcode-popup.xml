@@ -1,0 +1,8 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
+
+    <div class="cd-popup-container">
+        <p>Are you sure you want to delete this element?</p>
+        <a class="cd-popup-close img-replace js-close-popup">Close</a>
+    </div> <!-- cd-popup-container -->
+
+</fest:template>

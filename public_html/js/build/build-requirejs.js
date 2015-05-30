@@ -12876,6 +12876,41 @@ define('utils/api/api_rating',[
 
 
 
+/**
+ * Created by Dimorinny on 23.02.15.
+ */
+
+define('utils/api/api_other',[
+    'jquery'
+], function($) {
+
+    return (function() {
+
+        var LOAD_CONTROLLER_URL = '/api/v1/mobile/get';
+
+        return {
+            loadControllerUrl: function() {
+                var def = $.Deferred();
+                var get = $.get(LOAD_CONTROLLER_URL);
+
+                get.done(function(data) {
+                    if(data.error == null) {
+                        def.resolve(data.response.mobile_url);
+                    } else {
+                        def.reject(data.error.description);
+                    }
+                });
+
+                get.fail(function() {
+                    def.reject("Ошибка подключения");
+                });
+
+                return def;
+            }
+        }
+    })();
+});
+
 define('utils/storage/form_storage',[], function() {
 
     return function(key) {
@@ -12906,6 +12941,7 @@ define('app',[
         "utils/api/api_admin",
         "utils/api/api_auth",
         "utils/api/api_rating",
+        "utils/api/api_other",
         "utils/storage/form_storage"
     ],
     function(
@@ -12915,13 +12951,15 @@ define('app',[
         ApiAdmin,
         ApiAuth,
         ApiRating,
+        ApiOther,
         FormStorage
     ) {
         var app = {
             "api": {
                 "auth": ApiAuth,
                 "admin": ApiAdmin,
-                "rating": ApiRating
+                "rating": ApiRating,
+                "other": ApiOther
             },
 
             "storage": {
@@ -13781,7 +13819,7 @@ define('utils/api/ws/api_ws',[
 
     var wsApi = {
 
-        WS_URL: 'ws://' + location.host + '/',
+        WS_URL: 'ws://' + location.host + '/socket/',
 
         READY_CODE: 3,
         
@@ -15487,7 +15525,7 @@ define('views/ViewManager',[
     return ViewManager;
 });
 
-define('tmpl/components/user',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;var json=__fest_context;__fest_buf+=("<div class=\"b-user__user left\">");try{__fest_attrs[0]=__fest_escapeHTML(json.user.avatar)}catch(e){__fest_attrs[0]=""; __fest_log_error(e.message);}__fest_buf+=("<img src=\"" + __fest_attrs[0] + "\" class=\"b-user__user__ava left\"/><div class=\"b-user__user__name left\">");try{__fest_buf+=(json.user.first_name)}catch(e){__fest_log_error(e.message + "7");}__fest_buf+=(" ");try{__fest_buf+=(json.user.last_name)}catch(e){__fest_log_error(e.message + "9");}__fest_buf+=("</div></div><div class=\"b-user__exit right js-toolbar-exit\"><div class=\"b-user__exit__text left\">Выйти</div><img src=\"\/img\/exit.png\" class=\"b-user__exit__icon left\"/></div>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
+define('tmpl/components/user',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;var json=__fest_context;__fest_buf+=("<div class=\"b-user__user left\">");try{__fest_attrs[0]=__fest_escapeHTML(json.user.avatar)}catch(e){__fest_attrs[0]=""; __fest_log_error(e.message);}__fest_buf+=("<img src=\"" + __fest_attrs[0] + "\" class=\"b-user__user__ava left\"/><div class=\"b-user__user__name left\">");try{__fest_buf+=(json.user.first_name)}catch(e){__fest_log_error(e.message + "7");}__fest_buf+=(" ");try{__fest_buf+=(json.user.last_name)}catch(e){__fest_log_error(e.message + "9");}__fest_buf+=("</div></div><div class=\"b-user__controller left js-toolbar-controller\"><img src=\"\/img\/gamepad-variant.png\" class=\"b-user__controller__icon left\"/><div class=\"b-user__controller__text left\">Контроллер</div></div><div class=\"b-user__exit right js-toolbar-exit\"><div class=\"b-user__exit__text left\">Выйти</div><img src=\"\/img\/exit.png\" class=\"b-user__exit__icon left\"/></div>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
 define('views/components/user',[
     'app',
     'tmpl/components/user'
@@ -15505,7 +15543,12 @@ define('views/components/user',[
         },
 
         events: {
-            'click .js-toolbar-exit': 'logoutEvent'
+            'click .js-toolbar-exit': 'logoutEvent',
+            'click .js-toolbar-controller': 'showQrPopup'
+        },
+
+        showQrPopup: function() {
+            app.qrPopup.showPopup();
         },
 
         logoutEvent: function() {
@@ -15963,26 +16006,112 @@ define('views/components/preloader',[
 
     return View;
 });
+define('models/QrCode',[
+    'app'
+], function(
+    app
+){
+
+    var Qr = Backbone.Model.extend({
+
+        defaults: {
+            "url": ""
+        },
+
+        loadUrl: function() {
+            app.api.other.loadControllerUrl().then(
+                this.successLoadingHandler.bind(this),
+                this.errorLoadingHandler.bind(this)
+            );
+        },
+
+        successLoadingHandler: function(url) {
+            this.set("url", url);
+        },
+
+        errorLoadingHandler: function(message) {
+
+        }
+
+    });
+
+    return Qr;
+});
+define('tmpl/components/qrcode-popup',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<div class=\"cd-popup-container\"><p>Are you sure you want to delete this element?</p><a class=\"cd-popup-close img-replace js-close-popup\">Close</a></div>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
+define('views/components/qrcode-popup',[
+    'app',
+    'models/QrCode',
+    'tmpl/components/qrcode-popup'
+], function(
+    app,
+    QrCode,
+    tmpl
+){
+    var View = Backbone.View.extend({
+
+        el: '.cd-popup',
+        model: new QrCode(),
+        template: tmpl,
+
+        events: {
+            'click': 'closePopup'
+        },
+
+        initialize: function() {
+            this.listenTo(this.model, "change:url", this.onLoadUrl);
+        },
+
+        onLoadUrl: function(value) {
+            alert(value.get("url"));
+        },
+
+        showPopup: function() {
+            this.$el.addClass('is-visible');
+            this.render();
+            this.model.loadUrl();
+        },
+
+        closePopup: function(event) {
+            if($(event.target).is('.js-close-popup') || $(event.target).is(this.el)) {
+                event.preventDefault();
+                this.$el.removeClass('is-visible');
+            }
+        },
+
+        render: function () {
+            $(this.el).html(this.template(
+                {
+                }
+            ));
+        }
+    });
+
+    return View;
+});
+
 require([
     'app',
     'router',
     'models/Session',
     'models/NotifyManager',
     'utils/AnotherUtils',
-    'views/components/preloader'
+    'views/components/preloader',
+    'views/components/qrcode-popup'
 ], function(
     app,
     Router,
     SessionModel,
     NotifyManager,
     AnotherUtils,
-    Preloader
+    Preloader,
+    QrPopup
 ) {
     app.notify = new NotifyManager();
     app.preloader = Preloader;
     app.wsEvents = new _.extend({}, Backbone.Events);
     app.session = new SessionModel({});
     app.router = new Router();
+    app.qrPopup = new QrPopup();
     app.isTouchDevice = AnotherUtils.isTouchDevice();
 
     app.session.checkAuth(function(isLogged){

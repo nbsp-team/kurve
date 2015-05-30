@@ -1,0 +1,14 @@
+&__controller {
+  margin-right: 80px;
+  padding-left: 20px;
+  padding-right: 10px;
+  height: 100%;
+  overflow: hidden;
+  &:hover {
+    background-color: #F5F5F5;
+    cursor: pointer;
+  }
+
+  @import '__icon/__icon';
+  @import '__text/__text';
+}
