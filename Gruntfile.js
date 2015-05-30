@@ -111,7 +111,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-shell');
     grunt.loadNpmTasks('grunt-fest');
-	grunt.loadNpmTasks('grunt-contrib-sass');
+	grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-concat-css');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-concat');

@@ -14376,14 +14376,23 @@ define('utils/SnakeUpdatesManager',[
 		    for(var i = 0; i < updates.length; i++){
 		        this.insertIntoQueue(updates[i]);
 		    }
+		    if (updates.length == 0) {
+				
+				console.error('*********** SUPER IMPORTANT DEBUG INFO ABOUT 1000000 sockets *******************');
+				
+				console.log('onPatch');
+				console.log(this.lastId);
+				console.log(JSON.stringify(this.updatesQueue));
+				console.log('*********** ***** *******************');
+			} else
 		    this.sendQueued();
 		},
-		insertIntoQueue: function(update){
+		insertIntoQueue: function(update) {
 		    if(this.updatesQueue.length == 0) {
 		        this.updatesQueue.push(update);
 		        return;
 		    }
-		    for(var i = 0; i < this.updatesQueue.length; i++){
+		    for(var i = 0; i < this.updatesQueue.length; i++) {
 		        if(this.updatesQueue[i].id === update.id) return;
 		        if(this.updatesQueue[i].id > update.id ) {
 		            this.updatesQueue.splice(i, 0, update);
@@ -14408,7 +14417,15 @@ define('utils/SnakeUpdatesManager',[
 		    for(var i = 1; i < this.updatesQueue.length; i++){
 		        for(var j = this.updatesQueue[i-1].id+1; j < this.updatesQueue[i].id; j++) lost.push(j);
 		    }
-		    //console.log(JSON.stringify(this.updatesQueue));
+		    
+		    if (lost.length == 0) {
+				console.error('*********** SUPER IMPORTANT DEBUG INFO ABOUT 1000000 sockets *******************');
+				
+				console.log('sendQueued');
+				console.log(this.lastId);
+				console.log(JSON.stringify(this.updatesQueue));
+				console.log('*********** ***** *******************');
+			} else 
 		    Api.sendRequestPatch(lost);
 		}
     });
