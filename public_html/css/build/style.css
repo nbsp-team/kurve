@@ -360,6 +360,13 @@ body {
   letter-spacing: 3px;
   font: normal 30px/1 Verdana, Helvetica;
   position: relative; }
+
+.cd-popup-container .cd-popup-container__qr-container {
+  height: 200px;
+  width: 200px;
+  margin: 30px auto;
+  display: block;
+  overflow: hidden; }
 /* -------------------------------- 
 
 Primary style
@@ -453,6 +460,7 @@ xpopup
 }
 
 .cd-popup-container {
+  overflow: hidden;
   position: relative;
   width: 90%;
   max-width: 400px;
