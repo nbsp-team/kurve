@@ -26,6 +26,7 @@ require([
     window.onSocialAuth = function() {
         app.session.checkAuth(function(isLogged) {
             if(isLogged) {
+                app.session.set("loggedIn", true);
                 app.router.navigateToMain();
             }
         });

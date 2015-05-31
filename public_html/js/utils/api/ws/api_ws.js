@@ -40,7 +40,7 @@ define([
 
         },
 
-        onClose: function() {
+        onClose: function(code) {
 
         },
 
