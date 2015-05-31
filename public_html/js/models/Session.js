@@ -35,10 +35,12 @@ define([
                 function(userData) {
                     self.updateSessionUser(userData);
                     self.set("loggedIn", true);
+                    self.trigger("authChecked");
                     callback(true);
                 },
                 function(errorObject) {
                     self.set("loggedIn", false);
+                    self.trigger("authChecked");
                     callback(false);
                 }
             );
@@ -49,6 +51,7 @@ define([
             app.api.auth.signOut().then(
                 function() {
                     self.set("loggedIn", false);
+                    self.trigger("logout");
                 },
                 function(errorObject) {
                 }

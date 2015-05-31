@@ -367,3 +367,15 @@ body {
   margin: 30px auto;
   display: block;
   overflow: hidden; }
+
+.b-preloader {
+  height: 100%;
+  width: 100%;
+  z-index: 100;
+  background-color: #eeeeee;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden; }

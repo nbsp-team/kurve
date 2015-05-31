@@ -13399,7 +13399,7 @@ define('app',[
             },
 
             "config": {
-                "domain": "kurve.ml"
+                "domain": "127.0.0.1:9081"
             }
         };
 
@@ -13428,7 +13428,6 @@ define('views/AbstractScreen',[
 
         render: function () {
 
-            this.trigger("view_render");
             $(this.el).html(this.template(
                 {
                     'app': app,
@@ -15382,6 +15381,7 @@ define('utils/AnotherUtils',[],function() {
 
             var left = ((width / 2) - (w / 2)) + dualScreenLeft;
             var top = ((height / 2) - (h / 2)) + dualScreenTop;
+
             var newWindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
 
             if (window.focus) {
@@ -15412,28 +15412,10 @@ define('views/Login',[
         el: '.b-login',
         template: tmpl,
 
-        initialize: function() {
-            this.listenTo(app.session, "change:loggedIn", this.loggedChanged);
-
-            window.onSocialAuth = function(isSuccess) {
-                if (isSuccess) {
-                    console.log("auth!");
-                    app.session.checkAuth(function(auth) {
-                    })
-                } else {
-                    console.log("fail!");
-                }
-            };
-        },
-
-        load: function() {
-            this.renderAndShow();
-        },
-
         events: {
             'click .js-login-vk' : function(){ this.openAuthPopup(app.session.AUTH_PROVIDER_VK); },
             'click .js-login-fb' : function(){ this.openAuthPopup(app.session.AUTH_PROVIDER_FB); },
-            'click .js-login-guest' : function(){ this.openAuthPopup(app.session.AUTH_PROVIDER_GUEST); }
+            'click .js-login-guest': function(){ this.openAuthPopup(app.session.AUTH_PROVIDER_GUEST); }
         },
 
         openAuthPopup: function(authProvider) {
@@ -15491,10 +15473,6 @@ define('views/Main',[
         el: '.b-menu',
         template: tmpl,
         templateArg: User,
-
-        initialize: function() {
-            this.listenTo(app.session, "change:loggedIn", this.load);
-        },
 
         /* ================= Events ================= */
 
@@ -15834,10 +15812,10 @@ define('views/Controller',[
 ], function(
     tmpl,
     User,
-    Abstract,
+    AbstractScreen,
     Api
 ){
-    var View = Abstract.extend({
+    var View = AbstractScreen.extend({
 
         el: '.b-controller',
         template: tmpl,
@@ -15923,6 +15901,16 @@ define('views/ViewManager',[
             this.views[this.CONTROLLER_VIEW] = new Controller();
 
             this.listenTo(app.wsEvents, "wsStartGame", this.startGame);
+            this.listenTo(app.session, "login", this.navigateToMain);
+            this.listenTo(app.session, "logout", this.navigateToMain);
+        },
+
+        navigateToMain: function() {
+            if(this.currentView == this.views[this.MAIN_VIEW]) {
+                this.currentView.load();
+            } else {
+                app.router.navigateToMain();
+            }
         },
 
         displayView: function(viewKey) {
@@ -15932,11 +15920,8 @@ define('views/ViewManager',[
             }
 
             var view = this.views[viewKey];
-            app.preloader.show();
-            this.listenToOnce(view, "view_render",
-                    app.preloader.hide.bind(app.preloader));
-
             view.load();
+
             this.currentView = view;
         },
 
@@ -15970,7 +15955,9 @@ define('views/components/user',[
         template: tmpl,
 
         initialize: function () {
-            this.listenTo(app.session, 'change:loggedIn', this.update);
+            this.listenTo(app.session, 'login', this.update);
+            this.listenTo(app.session, 'logout', this.update);
+            this.listenTo(app.session, 'authChecked', this.update);
         },
 
         events: {
@@ -15995,16 +15982,15 @@ define('views/components/user',[
         },
 
         update: function() {
-            if (!app.session.get('loggedIn')) {
-                this.hide();
-            } else {
+            if (app.session.get('loggedIn')) {
                 this.render();
                 this.show();
+            } else {
+                this.hide();
             }
         },
 
         render: function () {
-            console.log(app.session.user.toJSON());
             $(this.el).html(this.template(
                 {
                     'app': app,
@@ -16302,9 +16288,13 @@ define('router',[
         viewManager: null,
 
         initialize: function () {
-            this.userView = new UserView();
             this.notifyView = new NotifyView();
+            this.userView = new UserView();
             this.viewManager = new ViewManager();
+        },
+
+        navigateToMain: function() {
+            this.navigateTo("#");
         },
 
         navigateTo: function(url) {
@@ -16312,6 +16302,7 @@ define('router',[
         },
 
         showView: function(view) {
+            console.log(view);
             this.viewManager.displayView(view);
         },
 
@@ -16380,10 +16371,12 @@ define('models/Session',[
                 function(userData) {
                     self.updateSessionUser(userData);
                     self.set("loggedIn", true);
+                    self.trigger("authChecked");
                     callback(true);
                 },
                 function(errorObject) {
                     self.set("loggedIn", false);
+                    self.trigger("authChecked");
                     callback(false);
                 }
             );
@@ -16394,6 +16387,7 @@ define('models/Session',[
             app.api.auth.signOut().then(
                 function() {
                     self.set("loggedIn", false);
+                    self.trigger("logout");
                 },
                 function(errorObject) {
                 }
@@ -16427,10 +16421,12 @@ define('views/components/preloader',[
         el: '.spinner',
 
         show: function() {
+            console.log("show");
             $(this.el).fadeIn();
         },
 
         hide: function() {
+            console.log("hide");
             $(this.el).hide();
         }
     };
@@ -16557,6 +16553,11 @@ require([
     app.router = new Router();
     app.qrPopup = new QrPopup();
     app.isTouchDevice = AnotherUtils.isTouchDevice();
+
+    window.onSocialAuth = function() {
+        app.session.set("loggedIn", true);
+        app.session.trigger("login");
+    };
 
     app.session.checkAuth(function(isLogged){
         Backbone.history.start();

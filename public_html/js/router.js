@@ -23,9 +23,13 @@ define([
         viewManager: null,
 
         initialize: function () {
-            this.userView = new UserView();
             this.notifyView = new NotifyView();
+            this.userView = new UserView();
             this.viewManager = new ViewManager();
+        },
+
+        navigateToMain: function() {
+            this.navigateTo("#");
         },
 
         navigateTo: function(url) {
@@ -33,6 +37,7 @@ define([
         },
 
         showView: function(view) {
+            console.log(view);
             this.viewManager.displayView(view);
         },
 

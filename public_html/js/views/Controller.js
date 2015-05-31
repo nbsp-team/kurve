@@ -6,10 +6,10 @@ define([
 ], function(
     tmpl,
     User,
-    Abstract,
+    AbstractScreen,
     Api
 ){
-    var View = Abstract.extend({
+    var View = AbstractScreen.extend({
 
         el: '.b-controller',
         template: tmpl,

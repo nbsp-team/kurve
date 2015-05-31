@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <div class="b-user js-user" style="display: none;"> </div>
+    <div class="b-user js-user"             style="display: none;"> </div>
     <div class="b-menu js-menu"             style="display: none;"></div>
     <div class="b-login js-login"           style="display: none;"></div>
     <div class="b-register js-register"     style="display: none;"></div>
@@ -19,16 +19,25 @@
     <div class="b-admin js-admin"           style="display: none;"></div>
 
     <div class="cd-popup"></div>
-    <div class="spinner" style="display: block;"></div>
 
-    <script src="js/build/build.min.js"></script>
+    <div class="b-preloader">
+        <div class="spinner" style="display: block;"></div>
+    </div>
 
     <script>
         (function () {
+            var start = new Date().getTime();
             window.onload = function () {
-                document.getElementsByClassName("spinner")[0].style.display = "none";
+                var criticalTime = 500;
+                var fadeTime = criticalTime;
+                if (new Date().getTime() - start > criticalTime) {
+                    fadeTime = 0;
+                }
+                $(".spinner").delay(fadeTime).fadeOut('fast');
+                $(".b-preloader").delay(fadeTime + 400).fadeOut('fast');
             };
         })();
     </script>
+    <script src="js/build/build.min.js"></script>
 </body>
 </html>

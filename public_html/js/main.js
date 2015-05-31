@@ -23,6 +23,11 @@ require([
     app.qrPopup = new QrPopup();
     app.isTouchDevice = AnotherUtils.isTouchDevice();
 
+    window.onSocialAuth = function() {
+        app.session.set("loggedIn", true);
+        app.session.trigger("login");
+    };
+
     app.session.checkAuth(function(isLogged){
         Backbone.history.start();
     });
