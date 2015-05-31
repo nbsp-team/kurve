@@ -13364,14 +13364,16 @@ define('models/BonusEffects',[
 		    if(this.effects.length === 0) return;
 
 
+
             this.ctx.clearRect(
-                this.snake.x - this.clearRadius,
-                this.snake.y - this.clearRadius,
+                this.clearX,
+                this.clearY,
                 2*this.clearRadius,
                 2*this.clearRadius);
-            this.clearRadius = this.radius0 + this.span*this.effects.length + 1;
+
 		},
 		draw: function(){
+		    if(this.effects.length === 0) return;
 		    this.ctx.beginPath();
 
 		    for(var i = 0; i < this.effects.length; i++) {
@@ -13382,6 +13384,9 @@ define('models/BonusEffects',[
                 this.ctx.arc(this.snake.x, this.snake.y, this.radius0 + this.span*i, 0, effect.angle);
                 this.ctx.stroke();
             }
+            this.clearX = this.snake.x - this.clearRadius;
+            this.clearY = this.snake.y - this.clearRadius;
+            this.clearRadius = this.radius0 + this.span*this.effects.length + 1;
 		},
 		done: function(){
 			return false;
@@ -16066,8 +16071,8 @@ define('views/components/qrcode-popup',[
         },
 
         showPopup: function() {
-            this.$el.addClass('is-visible');
             this.render();
+            this.$el.addClass('is-visible');
             this.model.loadUrl();
         },
 
