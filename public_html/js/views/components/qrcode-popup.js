@@ -1,16 +1,18 @@
 define([
     'app',
+    'tmpl/components/qrcode-popup',
     'models/QrCode',
-    'tmpl/components/qrcode-popup'
+    'qrcode'
 ], function(
     app,
-    QrCode,
-    tmpl
+    tmpl,
+    QrCodeModel
 ){
     var View = Backbone.View.extend({
 
         el: '.cd-popup',
-        model: new QrCode(),
+        model: new QrCodeModel(),
+        qrCode: null,
         template: tmpl,
 
         events: {
@@ -18,11 +20,18 @@ define([
         },
 
         initialize: function() {
-            this.listenTo(this.model, "change:url", this.onLoadUrl);
+            this.listenTo(this.model, "url_loaded", this.onLoadUrl);
         },
 
-        onLoadUrl: function(value) {
-            alert(value.get("url"));
+        onLoadUrl: function(url) {
+            this.qrCode = new QRCode('js-qr-container', {
+                text: url,
+                width: 200,
+                height: 200,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
         },
 
         showPopup: function() {

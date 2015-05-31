@@ -19,6 +19,7 @@ define([
 
         successLoadingHandler: function(url) {
             this.set("url", url);
+            this.trigger("url_loaded", url);
         },
 
         errorLoadingHandler: function(message) {

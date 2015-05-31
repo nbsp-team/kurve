@@ -8,7 +8,8 @@ require.config({
         backbone: "lib/backbone",
         relational: "lib/backbone-relational",
         syphon: "lib/backbone-syphon",
-        notify: "lib/notify.min"
+        notify: "lib/notify.min",
+        qrcode: "lib/qrcode.min"
     },
     shim: {
         'underscore': {
@@ -23,6 +24,9 @@ require.config({
             exports: '$'
         },
         'preloader': {
+            deps: ['jquery']
+        },
+        'qrcode': {
             deps: ['jquery']
         }
     }
