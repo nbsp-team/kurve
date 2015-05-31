@@ -13399,7 +13399,7 @@ define('app',[
             },
 
             "config": {
-                "domain": "kurve.ml"
+                "domain": "127.0.0.1:9081"
             }
         };
 
@@ -16426,12 +16426,10 @@ define('views/components/preloader',[
         el: '.spinner',
 
         show: function() {
-            console.log("show");
             $(this.el).fadeIn();
         },
 
         hide: function() {
-            console.log("hide");
             $(this.el).hide();
         }
     };
@@ -16560,11 +16558,14 @@ require([
     app.isTouchDevice = AnotherUtils.isTouchDevice();
 
     window.onSocialAuth = function() {
-        app.session.set("loggedIn", true);
-        app.session.trigger("login");
+        app.session.checkAuth(function(isLogged) {
+            if(isLogged) {
+                app.router.navigateToMain();
+            }
+        });
     };
 
-    app.session.checkAuth(function(isLogged){
+    app.session.checkAuth(function(isLogged) {
         Backbone.history.start();
     });
 });

@@ -24,11 +24,14 @@ require([
     app.isTouchDevice = AnotherUtils.isTouchDevice();
 
     window.onSocialAuth = function() {
-        app.session.set("loggedIn", true);
-        app.session.trigger("login");
+        app.session.checkAuth(function(isLogged) {
+            if(isLogged) {
+                app.router.navigateToMain();
+            }
+        });
     };
 
-    app.session.checkAuth(function(isLogged){
+    app.session.checkAuth(function(isLogged) {
         Backbone.history.start();
     });
 });
