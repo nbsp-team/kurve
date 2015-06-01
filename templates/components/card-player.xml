@@ -2,13 +2,17 @@
 
     <div class="card-player__name">
         <fest:value output="text">json.player.first_name</fest:value>
-        <fest:space/>
+        <br/>
         <fest:value output="text">json.player.last_name</fest:value>
     </div>
-    <div class="card-player__color-block js-player-color">
-        <div class="card-player__color-block__ready js-ready" style="display: none;">
+
+    <div class="card-player__photo-container">
+        <img src='{json.player.avatar}' class="card-player__photo-container__img"/>
+        <div class="card-player__photo-container__ready js-ready" style="display: none;">
+            <img src="/img/ready.png" class="card-player__photo-container__ready__img"/>
         </div>
     </div>
+
     <div class="card-player__rating">
         Рейтинг: <fest:space/> <fest:value output="text">json.player.global_rating</fest:value>
     </div>

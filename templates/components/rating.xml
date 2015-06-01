@@ -1,0 +1,9 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
+
+    <div class="subtitle"> Рейтинг </div>
+
+    <fest:for iterate="json.arg.models" index="i">
+
+    </fest:for>
+
+</fest:template>

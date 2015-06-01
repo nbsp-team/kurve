@@ -11,7 +11,7 @@ body {
 .right {
   float: right; }
 
-.dashed, .b-admin:before, .b-room:before, .b-game:before, .b-login:before, .b-menu:before, .b-rating:before, .b-register:before {
+.dashed, .b-admin:before, .b-room:before, .b-game__game-container:before, .b-game__ratings-container:before, .b-login:before, .b-menu:before, .b-rating:before, .b-register:before {
   content: '';
   position: absolute;
   z-index: -1;
@@ -107,23 +107,34 @@ body {
     min-height: 400px; }
 
 .b-game {
+  position: relative;
   overflow: hidden;
   margin-top: 30px;
-  position: absolute;
-  background-color: white;
   width: 1200px;
   min-height: 600px;
   margin-left: 50%;
   left: -600px;
-  border-radius: 5px;
-  z-index: 0;
   padding-bottom: 10px; }
-  .b-game .b-game__back-canvas {
-    z-index: 1;
-    position: absolute; }
-  .b-game .b-game__fore-canvas {
-    z-index: 2;
-    position: absolute; }
+  .b-game__game-container {
+    position: relative;
+    overflow: hidden;
+    background-color: white;
+    float: right;
+    z-index: 1; }
+    .b-game__game-container__back-canvas {
+      z-index: 1;
+      position: absolute; }
+    .b-game__game-container__fore-canvas {
+      z-index: 2;
+      position: absolute; }
+  .b-game__ratings-container {
+    position: relative;
+    overflow: hidden;
+    background-color: white;
+    float: left;
+    min-height: 600px;
+    padding-bottom: 10px;
+    z-index: 1; }
 
 .b-login {
   overflow: hidden;
@@ -283,28 +294,15 @@ body {
   background: rgba(253, 253, 253, 0.53);
   border-radius: 0.2em;
   box-shadow: 0px 2px 4px 0px rgba(50, 50, 50, 0.3); }
-  .card-player__color-block {
-    display: block;
-    height: 60px;
-    width: 60px;
-    border-radius: 50%;
-    margin: 0 auto;
-    overflow: hidden; }
-    .card-player__color-block__ready {
-      margin: 12px;
-      width: 36px;
-      height: 36px;
-      background: url("../../img/ready.png"); }
   .card-player__name {
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7), 0 2px 0 rgba(125, 125, 125, 0.5);
     text-transform: uppercase;
     text-align: center;
     color: #666;
     margin-top: 10px;
     margin-bottom: 10px;
     letter-spacing: 3px;
-    font: normal 16px/1 Verdana, Helvetica;
-    position: relative; }
+    position: relative;
+    font-family: arial; }
   .card-player__rating {
     text-align: center;
     color: #999;
@@ -312,6 +310,30 @@ body {
     margin-bottom: 10px;
     font-size: 17px;
     font-family: arial; }
+  .card-player__photo-container {
+    position: relative;
+    display: block;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    margin: 0 auto;
+    overflow: hidden; }
+    .card-player__photo-container__img {
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%; }
+    .card-player__photo-container__ready {
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%; }
+      .card-player__photo-container__ready__img {
+        height: 50px;
+        width: 50px;
+        margin: 15px; }
 
 .flat-table {
   margin: 0 auto;

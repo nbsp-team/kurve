@@ -1,4 +1,11 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
-    <canvas class="b-game__back-canvas js_b-canvas"> </canvas>
-    <canvas class="b-game__fore-canvas js_f-canvas"> </canvas>
+    <div class="b-game__ratings-container js-ratings-container">
+
+    </div>
+
+    <div class="b-game__game-container js_game-container">
+        <canvas class="b-game__game-container__back-canvas js_b-canvas"> </canvas>
+        <canvas class="b-game__game-container__fore-canvas js_f-canvas"> </canvas>
+    </div>
+
 </fest:template>

@@ -37,10 +37,11 @@ define([
 			
 			if(options.holeLength) Snake.prototype.holeLength = options.holeLength;
             if(options.countdown) this.countdown = options.countdown;
-			this.makeCanvas(options.canvasBox);
-
 			this.snakes = [];
-			var mindim = Math.min(this.width, this.height);
+
+            this.makeCanvas();
+
+            var mindim = Math.min(this.width, this.height);
 			for(var i = 0; i < this.numPlayers; i++) {
 				this.snakes[i] = new Snake();				
 				var angle = i*2*Math.PI/this.numPlayers;
@@ -49,10 +50,10 @@ define([
                 
 				this.snakes[i].init(x, y, angle+Math.PI/2, options.players[i].color, this.FPS, this.backCtx, this.foreCtx);
 			}
+
 			this.deadCount = 0;
 			this.playing = true;
-			
-			this.makeCanvas(options.canvasBox);
+
 			this.bonuses = [];
 			this.updatesQueue = [];
 			this.controlsQueue = [];
@@ -95,29 +96,32 @@ define([
 			alert('server time out! (' + this.timeOutLimSec + ' seconds)');
 			this.pause();
 		},
-		makeCanvas:function(box) {
+		makeCanvas:function() {
+
+            var canvasContainer = $('.js_game-container');
+            canvasContainer.width(this.width);
+            canvasContainer.height(this.height);
+
+            var ratingsContainer = $('.js-ratings-container');
+            ratingsContainer.width(1200 - this.width - 50);
 
             var backCanvas =  $('.js_b-canvas').get(0);
-			backCanvas.width  = this.width;
+            backCanvas.width  = this.width;
             backCanvas.height = this.height;
 
-			var foreCanvas = $('.js_f-canvas').get(0);
-			foreCanvas.width  = this.width;
+            var foreCanvas = $('.js_f-canvas').get(0);
+            foreCanvas.width  = this.width;
             foreCanvas.height = this.height;
 
             this.backCanvas = backCanvas;
             this.foreCanvas = foreCanvas;
 
-			box.width(this.width);
-            box.height(this.height);
-			box.css({left:-this.width/2});
-			
-			this.backCtx = this.backCanvas.getContext('2d');
+            //box.width(this.width);
+            //box.height(this.height);
+            //box.css({left:-this.width/2});
+
+            this.backCtx = this.backCanvas.getContext('2d');
 			this.foreCtx = this.foreCanvas.getContext('2d');
-			//for(var i = 0; i < this.numPlayers; i++){
-		    //	this.snakes[i].foreCtx = this.foreCtx;
-			//	this.snakes[i].backCtx = this.backCtx;
-			//}
 		},
 		onNewBonus: function(bonus){
 			var options = bonus;
@@ -231,7 +235,7 @@ define([
 		        that.foreCtx.fillText(text, (that.width-txt.width)/2, (that.height+h)/2);
 		        t--;
 		        setTimeout(f, 1000);
-		    }
+		    };
 		    f();
 		},
 		run: function(){

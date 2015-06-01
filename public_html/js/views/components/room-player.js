@@ -1,9 +1,11 @@
 define([
     'app',
-    'tmpl/components/card-player'
+    'tmpl/components/card-player',
+    'hex2rgb'
 ], function(
     app,
-    tmpl
+    tmpl,
+    hex2rgb
 ){
     var View = Backbone.View.extend({
 
@@ -25,13 +27,14 @@ define([
             this.$el.html(this.template(
                 { "player": this.model.toJSON() }
             ));
+            this.readyBlock = $('.js-ready');
 
-            this.$el.children('.js-player-color').
-                css("background-color", this.model.get("color"));
+            var color = hexToRgb(this.model.get("color"));
 
-            this.readyBlock = this.$el.children().children('.js-ready');
+            this.readyBlock.css(
+                "background-color", "rgba(" + color.r + "," + color.g + "," + color.b + "," + "0.6)");
 
-            this.setReady(this.model);
+            this.setReady();
         },
 
         setReady: function() {
