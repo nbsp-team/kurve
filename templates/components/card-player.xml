@@ -6,7 +6,7 @@
         <fest:value output="text">json.player.last_name</fest:value>
     </div>
 
-    <div class="card-player__photo-container">
+    <div class="card-player__photo-container js-photo-container">
         <img src='{json.player.avatar}' class="card-player__photo-container__img"/>
         <div class="card-player__photo-container__ready js-ready" style="display: none;">
             <img src="/img/ready.png" class="card-player__photo-container__ready__img"/>

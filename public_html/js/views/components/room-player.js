@@ -27,12 +27,13 @@ define([
             this.$el.html(this.template(
                 { "player": this.model.toJSON() }
             ));
-            this.readyBlock = $('.js-ready');
+            this.readyBlock = this.$el.children('.js-photo-container')
+                .children('.js-ready');
 
             var color = hexToRgb(this.model.get("color"));
 
             this.readyBlock.css(
-                "background-color", "rgba(" + color.r + "," + color.g + "," + color.b + "," + "0.6)");
+                "background-color", "rgba(" + color.r + "," + color.g + "," + color.b + "," + "0.7)");
 
             this.setReady();
         },
