@@ -211,7 +211,7 @@ define([
 		stopPlaying: function(){
 		    this.playing = false;
 		},
-		start: function() {
+		start: function(roundCounter) {
 		    var that = this;
 		    var t = this.countdown;
 		    var f = function() {
@@ -222,12 +222,12 @@ define([
 		        }
 
 		        that.render();
-		        var h = 200;
+		        var h = 130;
 		        that.foreCtx.font = h + "px sans-serif";
 		        that.foreCtx.fillStyle = that.snakes[that.myId].color;
 		        var text;
 		        if(t == that.countdown) {
-		            text = "Round ?/6"
+		            text = "Round " + roundCounter + "/6"
 		        } else {
 		            text = t;
 		        }

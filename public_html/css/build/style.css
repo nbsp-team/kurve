@@ -418,14 +418,18 @@ body {
   overflow: hidden; }
   .game-rating-item__name {
     color: #444;
+    text-overflow: ellipsis;
     font-family: arial;
     float: left;
+    width: 60%;
     margin-left: 15px;
     font-size: 16px;
-    line-height: 40px; }
+    line-height: 40px;
+    white-space: nowrap;
+    overflow: hidden; }
   .game-rating-item__photo {
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
     border-radius: 50%;
     float: left;
     margin-left: 10px; }

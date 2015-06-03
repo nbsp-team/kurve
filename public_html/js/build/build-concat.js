@@ -14693,7 +14693,7 @@ define('models/GameField',[
 		stopPlaying: function(){
 		    this.playing = false;
 		},
-		start: function() {
+		start: function(roundCounter) {
 		    var that = this;
 		    var t = this.countdown;
 		    var f = function() {
@@ -14704,12 +14704,12 @@ define('models/GameField',[
 		        }
 
 		        that.render();
-		        var h = 200;
+		        var h = 130;
 		        that.foreCtx.font = h + "px sans-serif";
 		        that.foreCtx.fillStyle = that.snakes[that.myId].color;
 		        var text;
 		        if(t == that.countdown) {
-		            text = "Round ?/6"
+		            text = "Round " + roundCounter + "/6"
 		        } else {
 		            text = t;
 		        }
@@ -14865,6 +14865,7 @@ define('views/Game',[
 
 			this.leftRepeat = false;
 			this.rightRepeat = false;
+            this.roundCounter = 1;
 
             this.gameScoresView = new GameScoresView();
         },
@@ -14885,7 +14886,7 @@ define('views/Game',[
             $(document).on('keydown', this.keyDown.bind(this));
             $(document).on('keyup', this.keyUp.bind(this));
 			
-			this.field.start();
+			this.field.start(this.roundCounter++);
 		},
 
         keyEvent: function(isLeft, isUp, sender) {
