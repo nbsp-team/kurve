@@ -10,4 +10,3 @@ define([
 
     return Score;
 });
-
