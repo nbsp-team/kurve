@@ -11,7 +11,7 @@ body {
 .right {
   float: right; }
 
-.dashed, .b-admin:before, .b-room:before, .b-game__game-container:before, .b-game__ratings-container:before, .b-login:before, .b-menu:before, .b-rating:before, .b-register:before {
+.dashed, .b-admin:before, .b-room:before, .b-game__game-container:before, .b-game__ratings-card:before, .b-login:before, .b-menu:before, .b-rating:before, .b-register:before {
   content: '';
   position: absolute;
   z-index: -1;
@@ -127,7 +127,7 @@ body {
     .b-game__game-container__fore-canvas {
       z-index: 2;
       position: absolute; }
-  .b-game__ratings-container {
+  .b-game__ratings-card {
     position: relative;
     overflow: hidden;
     background-color: white;
@@ -135,6 +135,11 @@ body {
     min-height: 600px;
     padding-bottom: 10px;
     z-index: 1; }
+    .b-game__ratings-card__container {
+      display: block;
+      margin: 20px auto;
+      width: 90%;
+      overflow: hidden; }
 
 .b-login {
   overflow: hidden;
@@ -406,3 +411,28 @@ body {
   left: 0;
   right: 0;
   overflow: hidden; }
+
+.game-rating-item {
+  width: 100%;
+  margin: 10px 0;
+  overflow: hidden; }
+  .game-rating-item__name {
+    color: #444;
+    font-family: arial;
+    float: left;
+    margin-left: 15px;
+    font-size: 16px;
+    line-height: 40px; }
+  .game-rating-item__photo {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    float: left;
+    margin-left: 10px; }
+  .game-rating-item__point {
+    float: right;
+    font-size: 20px;
+    margin-right: 10px;
+    color: #555;
+    font-family: arial;
+    line-height: 40px; }

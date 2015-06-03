@@ -1,32 +1,32 @@
 define([
     'app',
-    'tmpl/scoreboard',
-    'views/AbstractScreen',
-    'collections/Scores'
+    'tmpl/components/game-scoreboard',
+    'collections/GameScores'
 ], function(
     app,
     tmpl,
-    Abstract,
-    Collect
+    ScoresCollection
 ){
 
-    var View = Abstract.extend({
+    var View = Backbone.View.extend({
 
-        el: '.js-rating',
         template: tmpl,
-        collection: Collect,
-        templateArg: Collect,
 
         initialize: function () {
-            this.listenTo(this.collection, 'add', this.onLoad);
+            this.collection = new ScoresCollection();
+            this.templateArg = this.collection;
+            this.el = '.js-ratings-container';
+
+            this.listenTo(this.collection, 'add', this.render);
         },
 
-        onLoad: function() {
-            this.renderAndShow();
-        },
-
-        load: function() {
-            this.collection.fetch();
+        render: function() {
+            console.log("render");
+            $(this.el).html(this.template({
+                    'app': app,
+                    'arg': this.templateArg
+                }
+            ));
         }
     });
 

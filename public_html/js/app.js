@@ -32,9 +32,11 @@ define([
             },
 
             "config": {
-                "domain": "kurve.ml"
+                "domain": "127.0.0.1:9081"
             }
         };
+
+        app.wsEvents = new _.extend({}, Backbone.Events);
 
         return app;
     });

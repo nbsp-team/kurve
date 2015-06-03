@@ -1,6 +1,11 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
-    <div class="b-game__ratings-container js-ratings-container">
+    <div class="b-game__ratings-card js-ratings-card">
+        <div class="subtitle"> Рейтинг </div>
 
+        <div class="b-game__ratings-card__container js-ratings-container">
+
+
+        </div>
     </div>
 
     <div class="b-game__game-container js_game-container">

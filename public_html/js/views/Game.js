@@ -4,14 +4,16 @@ define([
     'views/AbstractScreen',
     'models/Snake',
     'models/GameField',
-    'utils/api/ws/api_ws'
+    'utils/api/ws/api_ws',
+    'views/components/game-scores'
 ], function(
     app,
     tmpl,
     AbstractScreen,
     Snake,
     GameField,
-    Api
+    Api,
+    GameScoresView
 ){
     var View = AbstractScreen.extend({
 
@@ -27,6 +29,8 @@ define([
 
 			this.leftRepeat = false;
 			this.rightRepeat = false;
+
+            this.gameScoresView = new GameScoresView();
         },
 
         onEatBonus:function(bonus_id) { this.field.onEatBonus(bonus_id); },

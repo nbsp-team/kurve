@@ -1,6 +1,8 @@
 define([
+    'app',
     'models/GameScore'
 ], function(
+    app,
     GameScore
 ){
     var Collection = Backbone.Collection.extend({
@@ -15,8 +17,11 @@ define([
         },
 
         onNewRating: function(data) {
-
-            this.set(data);
+            _.invoke(this.toArray(), 'destroy');
+            this.reset();
+            for(var i = 0; i < data.length; ++i) {
+                this.add(new GameScore(data[i]));
+            }
         }
     });
 

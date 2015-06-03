@@ -17,7 +17,6 @@ require([
 ) {
     app.notify = new NotifyManager();
     app.preloader = Preloader;
-    app.wsEvents = new _.extend({}, Backbone.Events);
     app.session = new SessionModel({});
     app.router = new Router();
     app.qrPopup = new QrPopup();

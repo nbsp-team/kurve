@@ -102,8 +102,8 @@ define([
             canvasContainer.width(this.width);
             canvasContainer.height(this.height);
 
-            var ratingsContainer = $('.js-ratings-container');
-            ratingsContainer.width(1200 - this.width - 50);
+            var ratingsContainer = $('.js-ratings-card');
+            ratingsContainer.width(1200 - this.width - 25);
 
             var backCanvas =  $('.js_b-canvas').get(0);
             backCanvas.width  = this.width;

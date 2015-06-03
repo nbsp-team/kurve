@@ -12972,6 +12972,8 @@ define('app',[
             }
         };
 
+        app.wsEvents = new _.extend({}, Backbone.Events);
+
         return app;
     });
 define('tmpl/admin',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<div class=\"title\">Администрирование</div><div class=\"subtitle\">Состояние сервера</div><p class=\"b-admin__plain-info\">Количество пользователей: ");try{__fest_buf+=(json.arg.get("userCount"))}catch(e){__fest_log_error(e.message + "8");}__fest_buf+=("</p><p class=\"b-admin__plain-info\">Количество сессий: ");try{__fest_buf+=(json.arg.get("sessionCount"))}catch(e){__fest_log_error(e.message + "14");}__fest_buf+=("</p><div class=\"subtitle\">Список комнат</div><table class=\"flat-table\"><tr><th class=\"flat-table__header-value\">#</th><th class=\"flat-table__header-value\">Участники</th></tr><tbody></tbody></table><a class=\"btn btn_red\" id=\"shutdown\">Выключить сервер</a><a href=\"#\" class=\"btn btn_red\">Назад</a>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
@@ -12997,8 +12999,7 @@ define('views/AbstractScreen',[
 
         render: function () {
 
-            $(this.el).html(this.template(
-                {
+            this.$el.html(this.template({
                     'app': app,
                     'arg': this.templateArg
                 }
@@ -13107,7 +13108,7 @@ define('views/Admin',[
 
     return View;
 });
-define('tmpl/game',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<div class=\"b-game__ratings-container js-ratings-container\"></div><div class=\"b-game__game-container js_game-container\"><canvas class=\"b-game__game-container__back-canvas js_b-canvas\"></canvas><canvas class=\"b-game__game-container__fore-canvas js_f-canvas\"></canvas></div>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
+define('tmpl/game',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<div class=\"b-game__ratings-card js-ratings-card\"><div class=\"subtitle\">Рейтинг</div><div class=\"b-game__ratings-card__container js-ratings-container\"></div></div><div class=\"b-game__game-container js_game-container\"><canvas class=\"b-game__game-container__back-canvas js_b-canvas\"></canvas><canvas class=\"b-game__game-container__fore-canvas js_f-canvas\"></canvas></div>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
 define('models/SnakePartLine',[
     "app"
 ], function(app){
@@ -13760,12 +13761,11 @@ define('utils/api/ws/api_game',[
 		var NEW_BONUS_CODE = 9;
 		var EAT_BONUS_CODE = 10;
 		var SNAKE_PATCH_CODE = 16;
-
+        var RATING_UPDATE_CODE = 18;
 
         return {
             onMessage: function(message) {
                 var msg = JSON.parse(message.data);
-    			console.log(msg);
 
                 switch(msg.code){
 					case KEY_EVENT_CODE: {
@@ -13803,6 +13803,11 @@ define('utils/api/ws/api_game',[
                         }
 
                         app.wsEvents.trigger("new_round_event", options);
+                        break;
+                    }
+
+                    case RATING_UPDATE_CODE: {
+                        app.wsEvents.trigger("rating_update", msg.results);
                         break;
                     }
 				}
@@ -14148,8 +14153,8 @@ define('models/GameField',[
             canvasContainer.width(this.width);
             canvasContainer.height(this.height);
 
-            var ratingsContainer = $('.js-ratings-container');
-            ratingsContainer.width(1200 - this.width - 50);
+            var ratingsContainer = $('.js-ratings-card');
+            ratingsContainer.width(1200 - this.width - 25);
 
             var backCanvas =  $('.js_b-canvas').get(0);
             backCanvas.width  = this.width;
@@ -14318,20 +14323,102 @@ define('models/GameField',[
     return GameField;
 });
 
+define('tmpl/components/game-scoreboard',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;var i,__fest_to0,__fest_iterator0;try{__fest_iterator0=json.arg.models || [];__fest_to0=__fest_iterator0.length;}catch(e){__fest_iterator0=[];__fest_to0=0;__fest_log_error(e.message);}for(i=0;i<__fest_to0;i++){__fest_buf+=("<div class=\"game-rating-item\">");try{__fest_attrs[0]=__fest_escapeHTML(json.arg.models[i].get('avatar'))}catch(e){__fest_attrs[0]=""; __fest_log_error(e.message);}__fest_buf+=("<img src=\"" + __fest_attrs[0] + "\" class=\"game-rating-item__photo\"/><div class=\"game-rating-item__name\">");try{__fest_buf+=(json.arg.models[i].get('first_name'))}catch(e){__fest_log_error(e.message + "11");}__fest_buf+=(" ");try{__fest_buf+=(json.arg.models[i].get('last_name'))}catch(e){__fest_log_error(e.message + "15");}__fest_buf+=("</div><div class=\"game-rating-item__point\">");try{__fest_buf+=(json.arg.models[i].get('points'))}catch(e){__fest_log_error(e.message + "21");}__fest_buf+=("</div></div>");}__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
+define('models/GameScore',[
+], function() {
+    var Score = Backbone.Model.extend({
+        defaults: {
+            "user_id": "",
+            "first_name": "",
+            "last_name": "",
+            "avatar": "",
+            "color": "",
+            "points": 0
+        }
+    });
+
+    return Score;
+});
+
+define('collections/GameScores',[
+    'app',
+    'models/GameScore'
+], function(
+    app,
+    GameScore
+){
+    var Collection = Backbone.Collection.extend({
+        model: GameScore,
+
+        comparator: function(score) {
+            return -score.get('points');
+        },
+
+        initialize: function() {
+            this.listenTo(app.wsEvents, "rating_update", this.onNewRating);
+        },
+
+        onNewRating: function(data) {
+            _.invoke(this.toArray(), 'destroy');
+            this.reset();
+            for(var i = 0; i < data.length; ++i) {
+                this.add(new GameScore(data[i]));
+            }
+        }
+    });
+
+    return Collection;
+});
+define('views/components/game-scores',[
+    'app',
+    'tmpl/components/game-scoreboard',
+    'collections/GameScores'
+], function(
+    app,
+    tmpl,
+    ScoresCollection
+){
+
+    var View = Backbone.View.extend({
+
+        template: tmpl,
+
+        initialize: function () {
+            this.collection = new ScoresCollection();
+            this.templateArg = this.collection;
+            this.el = '.js-ratings-container';
+
+            this.listenTo(this.collection, 'add', this.render);
+        },
+
+        render: function() {
+            console.log("render");
+            $(this.el).html(this.template({
+                    'app': app,
+                    'arg': this.templateArg
+                }
+            ));
+        }
+    });
+
+    return View;
+});
 define('views/Game',[
     'app',
     'tmpl/game',
     'views/AbstractScreen',
     'models/Snake',
     'models/GameField',
-    'utils/api/ws/api_ws'
+    'utils/api/ws/api_ws',
+    'views/components/game-scores'
 ], function(
     app,
     tmpl,
     AbstractScreen,
     Snake,
     GameField,
-    Api
+    Api,
+    GameScoresView
 ){
     var View = AbstractScreen.extend({
 
@@ -14347,6 +14434,8 @@ define('views/Game',[
 
 			this.leftRepeat = false;
 			this.rightRepeat = false;
+
+            this.gameScoresView = new GameScoresView();
         },
 
         onEatBonus:function(bonus_id) { this.field.onEatBonus(bonus_id); },
@@ -15196,7 +15285,7 @@ define('views/components/room-player',[
             var color = hexToRgb(this.model.get("color"));
 
             this.readyBlock.css(
-                "background-color", "rgba(" + color.r + "," + color.g + "," + color.b + "," + "0.6)");
+                "background-color", "rgba(" + color.r + "," + color.g + "," + color.b + "," + "0.7)");
 
             this.setReady();
         },
@@ -15297,8 +15386,6 @@ define('models/Score',[
 
     return Score;
 });
-
-
 define('syncs/ScoresSync',[
     'app'
 ], function(
@@ -16134,7 +16221,6 @@ require([
 ) {
     app.notify = new NotifyManager();
     app.preloader = Preloader;
-    app.wsEvents = new _.extend({}, Backbone.Events);
     app.session = new SessionModel({});
     app.router = new Router();
     app.qrPopup = new QrPopup();
