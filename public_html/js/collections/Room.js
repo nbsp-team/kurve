@@ -61,5 +61,13 @@ define([
         }
     });
 
+    Collection.prototype.add = function(truck) {
+        var isDupe = this.any(function(_truck) {
+            return _truck.get('user_id') === truck.get('user_id');
+        });
+
+        return isDupe ? false : Backbone.Collection.prototype.add.call(this, truck);
+    };
+
     return Collection;
 });
