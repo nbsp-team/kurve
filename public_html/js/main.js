@@ -17,13 +17,20 @@ require([
 ) {
     app.notify = new NotifyManager();
     app.preloader = Preloader;
-    app.wsEvents = new _.extend({}, Backbone.Events);
     app.session = new SessionModel({});
     app.router = new Router();
     app.qrPopup = new QrPopup();
     app.isTouchDevice = AnotherUtils.isTouchDevice();
 
-    app.session.checkAuth(function(isLogged){
+    window.onSocialAuth = function() {
+        app.session.checkAuth(function(isLogged) {
+            if(isLogged) {
+                app.router.navigateToMain();
+            }
+        });
+    };
+
+    app.session.checkAuth(function(isLogged) {
         Backbone.history.start();
     });
 });

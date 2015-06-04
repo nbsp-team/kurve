@@ -51,6 +51,16 @@ define([
             this.views[this.CONTROLLER_VIEW] = new Controller();
 
             this.listenTo(app.wsEvents, "wsStartGame", this.startGame);
+            this.listenTo(app.session, "login", this.navigateToMain);
+            this.listenTo(app.session, "logout", this.navigateToMain);
+        },
+
+        navigateToMain: function() {
+            if(this.currentView == this.views[this.MAIN_VIEW]) {
+                this.currentView.load();
+            } else {
+                app.router.navigateToMain();
+            }
         },
 
         displayView: function(viewKey) {
@@ -60,11 +70,8 @@ define([
             }
 
             var view = this.views[viewKey];
-            app.preloader.show();
-            this.listenToOnce(view, "view_render",
-                    app.preloader.hide.bind(app.preloader));
-
             view.load();
+
             this.currentView = view;
         },
 

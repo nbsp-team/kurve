@@ -4,14 +4,16 @@ define([
     'views/AbstractScreen',
     'models/Snake',
     'models/GameField',
-    'utils/api/ws/api_ws'
+    'utils/api/ws/api_ws',
+    'views/components/game-scores'
 ], function(
     app,
     tmpl,
     AbstractScreen,
     Snake,
     GameField,
-    Api
+    Api,
+    GameScoresView
 ){
     var View = AbstractScreen.extend({
 
@@ -27,6 +29,9 @@ define([
 
 			this.leftRepeat = false;
 			this.rightRepeat = false;
+            this.roundCounter = 1;
+
+            this.gameScoresView = new GameScoresView();
         },
 
         onEatBonus:function(bonus_id) { this.field.onEatBonus(bonus_id); },
@@ -45,7 +50,7 @@ define([
             $(document).on('keydown', this.keyDown.bind(this));
             $(document).on('keyup', this.keyUp.bind(this));
 			
-			this.field.start();
+			this.field.start(this.roundCounter++);
 		},
 
         keyEvent: function(isLeft, isUp, sender) {

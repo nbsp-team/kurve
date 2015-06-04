@@ -11,7 +11,9 @@ define([
         template: tmpl,
 
         initialize: function () {
-            this.listenTo(app.session, 'change:loggedIn', this.update);
+            this.listenTo(app.session, 'login', this.update);
+            this.listenTo(app.session, 'logout', this.update);
+            this.listenTo(app.session, 'authChecked', this.update);
         },
 
         events: {
@@ -36,16 +38,15 @@ define([
         },
 
         update: function() {
-            if (!app.session.get('loggedIn')) {
-                this.hide();
-            } else {
+            if (app.session.get('loggedIn')) {
                 this.render();
                 this.show();
+            } else {
+                this.hide();
             }
         },
 
         render: function () {
-            console.log(app.session.user.toJSON());
             $(this.el).html(this.template(
                 {
                     'app': app,

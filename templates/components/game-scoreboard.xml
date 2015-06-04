@@ -1,0 +1,29 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
+
+    <fest:for iterate="json.arg.models" index="i">
+
+        <div class="game-rating-item">
+
+            <img src="{json.arg.models[i].get('avatar')}" class="game-rating-item__photo"/>
+
+            <div class="game-rating-item__name">
+                <fest:value output="text">
+                    json.arg.models[i].get('first_name');
+                </fest:value>
+                <fest:space/>
+                <fest:value output="text">
+                    json.arg.models[i].get('last_name');
+                </fest:value>
+            </div>
+
+            <div class="game-rating-item__point">
+                <fest:value output="text">
+                    json.arg.models[i].get('points');
+                </fest:value>
+            </div>
+
+        </div>
+
+    </fest:for>
+
+</fest:template>

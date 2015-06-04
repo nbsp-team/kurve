@@ -9,7 +9,8 @@ require.config({
         relational: "lib/backbone-relational",
         syphon: "lib/backbone-syphon",
         notify: "lib/notify.min",
-        qrcode: "lib/qrcode.min"
+        qrcode: "lib/qrcode.min",
+        hex2rgb: "lib/hex2rgb"
     },
     shim: {
         'underscore': {

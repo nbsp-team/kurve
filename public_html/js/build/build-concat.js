@@ -13399,9 +13399,11 @@ define('app',[
             },
 
             "config": {
-                "domain": "kurve.ml"
+                "domain": "127.0.0.1:9081"
             }
         };
+
+        app.wsEvents = new _.extend({}, Backbone.Events);
 
         return app;
     });
@@ -13428,9 +13430,7 @@ define('views/AbstractScreen',[
 
         render: function () {
 
-            this.trigger("view_render");
-            $(this.el).html(this.template(
-                {
+            this.$el.html(this.template({
                     'app': app,
                     'arg': this.templateArg
                 }
@@ -13539,7 +13539,7 @@ define('views/Admin',[
 
     return View;
 });
-define('tmpl/game',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<canvas class=\"b-game__back-canvas js_b-canvas\"></canvas><canvas class=\"b-game__fore-canvas js_f-canvas\"></canvas>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
+define('tmpl/game',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<div class=\"b-game__ratings-card js-ratings-card\"><div class=\"subtitle\">Рейтинг</div><div class=\"b-game__ratings-card__container js-ratings-container\"></div></div><div class=\"b-game__game-container js_game-container\"><canvas class=\"b-game__game-container__back-canvas js_b-canvas\"></canvas><canvas class=\"b-game__game-container__fore-canvas js_f-canvas\"></canvas></div>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
 define('models/SnakePartLine',[
     "app"
 ], function(app){
@@ -14183,12 +14183,11 @@ define('utils/api/ws/api_game',[
 		var NEW_BONUS_CODE = 9;
 		var EAT_BONUS_CODE = 10;
 		var SNAKE_PATCH_CODE = 16;
-
+        var RATING_UPDATE_CODE = 18;
 
         return {
             onMessage: function(message) {
                 var msg = JSON.parse(message.data);
-    			console.log(msg);
 
                 switch(msg.code){
 					case KEY_EVENT_CODE: {
@@ -14226,6 +14225,11 @@ define('utils/api/ws/api_game',[
                         }
 
                         app.wsEvents.trigger("new_round_event", options);
+                        break;
+                    }
+
+                    case RATING_UPDATE_CODE: {
+                        app.wsEvents.trigger("rating_update", msg.results);
                         break;
                     }
 				}
@@ -14280,7 +14284,7 @@ define('utils/api/ws/api_ws',[
 
         },
 
-        onClose: function() {
+        onClose: function(code) {
 
         },
 
@@ -14506,10 +14510,11 @@ define('models/GameField',[
 			
 			if(options.holeLength) Snake.prototype.holeLength = options.holeLength;
             if(options.countdown) this.countdown = options.countdown;
-			this.makeCanvas(options.canvasBox);
-
 			this.snakes = [];
-			var mindim = Math.min(this.width, this.height);
+
+            this.makeCanvas();
+
+            var mindim = Math.min(this.width, this.height);
 			for(var i = 0; i < this.numPlayers; i++) {
 				this.snakes[i] = new Snake();				
 				var angle = i*2*Math.PI/this.numPlayers;
@@ -14518,10 +14523,10 @@ define('models/GameField',[
                 
 				this.snakes[i].init(x, y, angle+Math.PI/2, options.players[i].color, this.FPS, this.backCtx, this.foreCtx);
 			}
+
 			this.deadCount = 0;
 			this.playing = true;
-			
-			this.makeCanvas(options.canvasBox);
+
 			this.bonuses = [];
 			this.updatesQueue = [];
 			this.controlsQueue = [];
@@ -14564,29 +14569,32 @@ define('models/GameField',[
 			alert('server time out! (' + this.timeOutLimSec + ' seconds)');
 			this.pause();
 		},
-		makeCanvas:function(box) {
+		makeCanvas:function() {
+
+            var canvasContainer = $('.js_game-container');
+            canvasContainer.width(this.width);
+            canvasContainer.height(this.height);
+
+            var ratingsContainer = $('.js-ratings-card');
+            ratingsContainer.width(1200 - this.width - 25);
 
             var backCanvas =  $('.js_b-canvas').get(0);
-			backCanvas.width  = this.width;
+            backCanvas.width  = this.width;
             backCanvas.height = this.height;
 
-			var foreCanvas = $('.js_f-canvas').get(0);
-			foreCanvas.width  = this.width;
+            var foreCanvas = $('.js_f-canvas').get(0);
+            foreCanvas.width  = this.width;
             foreCanvas.height = this.height;
 
             this.backCanvas = backCanvas;
             this.foreCanvas = foreCanvas;
 
-			box.width(this.width);
-            box.height(this.height);
-			box.css({left:-this.width/2});
-			
-			this.backCtx = this.backCanvas.getContext('2d');
+            //box.width(this.width);
+            //box.height(this.height);
+            //box.css({left:-this.width/2});
+
+            this.backCtx = this.backCanvas.getContext('2d');
 			this.foreCtx = this.foreCanvas.getContext('2d');
-			//for(var i = 0; i < this.numPlayers; i++){
-		    //	this.snakes[i].foreCtx = this.foreCtx;
-			//	this.snakes[i].backCtx = this.backCtx;
-			//}
 		},
 		onNewBonus: function(bonus){
 			var options = bonus;
@@ -14676,7 +14684,7 @@ define('models/GameField',[
 		stopPlaying: function(){
 		    this.playing = false;
 		},
-		start: function() {
+		start: function(roundCounter) {
 		    var that = this;
 		    var t = this.countdown;
 		    var f = function() {
@@ -14687,12 +14695,12 @@ define('models/GameField',[
 		        }
 
 		        that.render();
-		        var h = 200;
+		        var h = 130;
 		        that.foreCtx.font = h + "px sans-serif";
 		        that.foreCtx.fillStyle = that.snakes[that.myId].color;
 		        var text;
 		        if(t == that.countdown) {
-		            text = "Round ?/6"
+		            text = "Round " + roundCounter + "/6"
 		        } else {
 		            text = t;
 		        }
@@ -14700,7 +14708,7 @@ define('models/GameField',[
 		        that.foreCtx.fillText(text, (that.width-txt.width)/2, (that.height+h)/2);
 		        t--;
 		        setTimeout(f, 1000);
-		    }
+		    };
 		    f();
 		},
 		run: function(){
@@ -14737,20 +14745,102 @@ define('models/GameField',[
     return GameField;
 });
 
+define('tmpl/components/game-scoreboard',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;var i,__fest_to0,__fest_iterator0;try{__fest_iterator0=json.arg.models || [];__fest_to0=__fest_iterator0.length;}catch(e){__fest_iterator0=[];__fest_to0=0;__fest_log_error(e.message);}for(i=0;i<__fest_to0;i++){__fest_buf+=("<div class=\"game-rating-item\">");try{__fest_attrs[0]=__fest_escapeHTML(json.arg.models[i].get('avatar'))}catch(e){__fest_attrs[0]=""; __fest_log_error(e.message);}__fest_buf+=("<img src=\"" + __fest_attrs[0] + "\" class=\"game-rating-item__photo\"/><div class=\"game-rating-item__name\">");try{__fest_buf+=(json.arg.models[i].get('first_name'))}catch(e){__fest_log_error(e.message + "11");}__fest_buf+=(" ");try{__fest_buf+=(json.arg.models[i].get('last_name'))}catch(e){__fest_log_error(e.message + "15");}__fest_buf+=("</div><div class=\"game-rating-item__point\">");try{__fest_buf+=(json.arg.models[i].get('points'))}catch(e){__fest_log_error(e.message + "21");}__fest_buf+=("</div></div>");}__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
+define('models/GameScore',[
+], function() {
+    var Score = Backbone.Model.extend({
+        defaults: {
+            "user_id": "",
+            "first_name": "",
+            "last_name": "",
+            "avatar": "",
+            "color": "",
+            "points": 0
+        }
+    });
+
+    return Score;
+});
+
+define('collections/GameScores',[
+    'app',
+    'models/GameScore'
+], function(
+    app,
+    GameScore
+){
+    var Collection = Backbone.Collection.extend({
+        model: GameScore,
+
+        comparator: function(score) {
+            return -score.get('points');
+        },
+
+        initialize: function() {
+            this.listenTo(app.wsEvents, "rating_update", this.onNewRating);
+        },
+
+        onNewRating: function(data) {
+            _.invoke(this.toArray(), 'destroy');
+            this.reset();
+            for(var i = 0; i < data.length; ++i) {
+                this.add(new GameScore(data[i]));
+            }
+        }
+    });
+
+    return Collection;
+});
+define('views/components/game-scores',[
+    'app',
+    'tmpl/components/game-scoreboard',
+    'collections/GameScores'
+], function(
+    app,
+    tmpl,
+    ScoresCollection
+){
+
+    var View = Backbone.View.extend({
+
+        template: tmpl,
+
+        initialize: function () {
+            this.collection = new ScoresCollection();
+            this.templateArg = this.collection;
+            this.el = '.js-ratings-container';
+
+            this.listenTo(this.collection, 'add', this.render);
+        },
+
+        render: function() {
+            console.log("render");
+            $(this.el).html(this.template({
+                    'app': app,
+                    'arg': this.templateArg
+                }
+            ));
+        }
+    });
+
+    return View;
+});
 define('views/Game',[
     'app',
     'tmpl/game',
     'views/AbstractScreen',
     'models/Snake',
     'models/GameField',
-    'utils/api/ws/api_ws'
+    'utils/api/ws/api_ws',
+    'views/components/game-scores'
 ], function(
     app,
     tmpl,
     AbstractScreen,
     Snake,
     GameField,
-    Api
+    Api,
+    GameScoresView
 ){
     var View = AbstractScreen.extend({
 
@@ -14766,6 +14856,9 @@ define('views/Game',[
 
 			this.leftRepeat = false;
 			this.rightRepeat = false;
+            this.roundCounter = 1;
+
+            this.gameScoresView = new GameScoresView();
         },
 
         onEatBonus:function(bonus_id) { this.field.onEatBonus(bonus_id); },
@@ -14784,7 +14877,7 @@ define('views/Game',[
             $(document).on('keydown', this.keyDown.bind(this));
             $(document).on('keyup', this.keyUp.bind(this));
 			
-			this.field.start();
+			this.field.start(this.roundCounter++);
 		},
 
         keyEvent: function(isLeft, isUp, sender) {
@@ -15378,6 +15471,7 @@ define('utils/AnotherUtils',[],function() {
 
             var left = ((width / 2) - (w / 2)) + dualScreenLeft;
             var top = ((height / 2) - (h / 2)) + dualScreenTop;
+
             var newWindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
 
             if (window.focus) {
@@ -15408,28 +15502,10 @@ define('views/Login',[
         el: '.b-login',
         template: tmpl,
 
-        initialize: function() {
-            this.listenTo(app.session, "change:loggedIn", this.loggedChanged);
-
-            window.onSocialAuth = function(isSuccess) {
-                if (isSuccess) {
-                    console.log("auth!");
-                    app.session.checkAuth(function(auth) {
-                    })
-                } else {
-                    console.log("fail!");
-                }
-            };
-        },
-
-        load: function() {
-            this.renderAndShow();
-        },
-
         events: {
             'click .js-login-vk' : function(){ this.openAuthPopup(app.session.AUTH_PROVIDER_VK); },
             'click .js-login-fb' : function(){ this.openAuthPopup(app.session.AUTH_PROVIDER_FB); },
-            'click .js-login-guest' : function(){ this.openAuthPopup(app.session.AUTH_PROVIDER_GUEST); }
+            'click .js-login-guest': function(){ this.openAuthPopup(app.session.AUTH_PROVIDER_GUEST); }
         },
 
         openAuthPopup: function(authProvider) {
@@ -15487,10 +15563,6 @@ define('views/Main',[
         el: '.b-menu',
         template: tmpl,
         templateArg: User,
-
-        initialize: function() {
-            this.listenTo(app.session, "change:loggedIn", this.load);
-        },
 
         /* ================= Events ================= */
 
@@ -15594,13 +15666,21 @@ define('collections/Room',[
     return Collection;
 });
 
-define('tmpl/components/card-player',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<div class=\"card-player__name\">");try{__fest_buf+=(json.player.first_name)}catch(e){__fest_log_error(e.message + "3");}__fest_buf+=(" ");try{__fest_buf+=(json.player.last_name)}catch(e){__fest_log_error(e.message + "5");}__fest_buf+=("</div><div class=\"card-player__color-block js-player-color\"><div class=\"card-player__color-block__ready js-ready\" style=\"display: none;\"></div></div><div class=\"card-player__rating\">Рейтинг: ");try{__fest_buf+=(json.player.global_rating)}catch(e){__fest_log_error(e.message + "12");}__fest_buf+=("</div>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
+define('tmpl/components/card-player',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<div class=\"card-player__name\">");try{__fest_buf+=(json.player.first_name)}catch(e){__fest_log_error(e.message + "3");}__fest_buf+=("<br/>");try{__fest_buf+=(json.player.last_name)}catch(e){__fest_log_error(e.message + "5");}__fest_buf+=("</div><div class=\"card-player__photo-container js-photo-container\">");try{__fest_attrs[0]=__fest_escapeHTML(json.player.avatar)}catch(e){__fest_attrs[0]=""; __fest_log_error(e.message);}__fest_buf+=("<img src=\"" + __fest_attrs[0] + "\" class=\"card-player__photo-container__img\"/><div class=\"card-player__photo-container__ready js-ready\" style=\"display: none;\"><img src=\"\/img\/ready.png\" class=\"card-player__photo-container__ready__img\"/></div></div><div class=\"card-player__rating\">Рейтинг: ");try{__fest_buf+=(json.player.global_rating)}catch(e){__fest_log_error(e.message + "16");}__fest_buf+=("</div>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
+// hex-to-rgb.js -- Functions for Hex/RGB conversion
+// Copyright (c)2015 Andrew Mussey, amussey.com
+// For license and usage examples, see github.com/amussey/hex-to-rgb
+function hexToRgb(r,t){var n=/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(r),a=function(){return void 0==this.alpha?"rgb("+this.r+", "+this.g+", "+this.b+")":(this.alpha>1?this.alpha=1:this.alpha<0&&(this.alpha=0),"rgba("+this.r+", "+this.g+", "+this.b+", "+this.alpha+")")};return void 0==t?n?{r:parseInt(n[1],16),g:parseInt(n[2],16),b:parseInt(n[3],16),toString:a}:null:(t>1?t=1:0>t&&(t=0),n?{r:parseInt(n[1],16),g:parseInt(n[2],16),b:parseInt(n[3],16),alpha:t,toString:a}:null)}function rgbToHex(r,t,n){function a(r){var t=r.toString(16);return 1==t.length?"0"+t:t}if(void 0==t||void 0==n){if("string"==typeof r){var i=/^rgb[a]?\(([\d]+)[ \n]*,[ \n]*([\d]+)[ \n]*,[ \n]*([\d]+)[ \n]*,?[ \n]*([.\d]+)?[ \n]*\)$/i.exec(r);return rgbToHex(parseInt(i[1]),parseInt(i[2]),parseInt(i[3]))}return void 0==r.r||void 0==r.g||void 0==r.b?null:rgbToHex(r.r,r.g,r.b)}var e=r;return"#"+a(e)+a(t)+a(n)};
+define("hex2rgb", function(){});
+
 define('views/components/room-player',[
     'app',
-    'tmpl/components/card-player'
+    'tmpl/components/card-player',
+    'hex2rgb'
 ], function(
     app,
-    tmpl
+    tmpl,
+    hex2rgb
 ){
     var View = Backbone.View.extend({
 
@@ -15622,13 +15702,15 @@ define('views/components/room-player',[
             this.$el.html(this.template(
                 { "player": this.model.toJSON() }
             ));
+            this.readyBlock = this.$el.children('.js-photo-container')
+                .children('.js-ready');
 
-            this.$el.children('.js-player-color').
-                css("background-color", this.model.get("color"));
+            var color = hexToRgb(this.model.get("color"));
 
-            this.readyBlock = this.$el.children().children('.js-ready');
+            this.readyBlock.css(
+                "background-color", "rgba(" + color.r + "," + color.g + "," + color.b + "," + "0.7)");
 
-            this.setReady(this.model);
+            this.setReady();
         },
 
         setReady: function() {
@@ -15727,8 +15809,6 @@ define('models/Score',[
 
     return Score;
 });
-
-
 define('syncs/ScoresSync',[
     'app'
 ], function(
@@ -15830,10 +15910,10 @@ define('views/Controller',[
 ], function(
     tmpl,
     User,
-    Abstract,
+    AbstractScreen,
     Api
 ){
-    var View = Abstract.extend({
+    var View = AbstractScreen.extend({
 
         el: '.b-controller',
         template: tmpl,
@@ -15919,6 +15999,16 @@ define('views/ViewManager',[
             this.views[this.CONTROLLER_VIEW] = new Controller();
 
             this.listenTo(app.wsEvents, "wsStartGame", this.startGame);
+            this.listenTo(app.session, "login", this.navigateToMain);
+            this.listenTo(app.session, "logout", this.navigateToMain);
+        },
+
+        navigateToMain: function() {
+            if(this.currentView == this.views[this.MAIN_VIEW]) {
+                this.currentView.load();
+            } else {
+                app.router.navigateToMain();
+            }
         },
 
         displayView: function(viewKey) {
@@ -15928,11 +16018,8 @@ define('views/ViewManager',[
             }
 
             var view = this.views[viewKey];
-            app.preloader.show();
-            this.listenToOnce(view, "view_render",
-                    app.preloader.hide.bind(app.preloader));
-
             view.load();
+
             this.currentView = view;
         },
 
@@ -15966,7 +16053,9 @@ define('views/components/user',[
         template: tmpl,
 
         initialize: function () {
-            this.listenTo(app.session, 'change:loggedIn', this.update);
+            this.listenTo(app.session, 'login', this.update);
+            this.listenTo(app.session, 'logout', this.update);
+            this.listenTo(app.session, 'authChecked', this.update);
         },
 
         events: {
@@ -15991,16 +16080,15 @@ define('views/components/user',[
         },
 
         update: function() {
-            if (!app.session.get('loggedIn')) {
-                this.hide();
-            } else {
+            if (app.session.get('loggedIn')) {
                 this.render();
                 this.show();
+            } else {
+                this.hide();
             }
         },
 
         render: function () {
-            console.log(app.session.user.toJSON());
             $(this.el).html(this.template(
                 {
                     'app': app,
@@ -16298,9 +16386,13 @@ define('router',[
         viewManager: null,
 
         initialize: function () {
-            this.userView = new UserView();
             this.notifyView = new NotifyView();
+            this.userView = new UserView();
             this.viewManager = new ViewManager();
+        },
+
+        navigateToMain: function() {
+            this.navigateTo("#");
         },
 
         navigateTo: function(url) {
@@ -16308,6 +16400,7 @@ define('router',[
         },
 
         showView: function(view) {
+            console.log(view);
             this.viewManager.displayView(view);
         },
 
@@ -16376,10 +16469,12 @@ define('models/Session',[
                 function(userData) {
                     self.updateSessionUser(userData);
                     self.set("loggedIn", true);
+                    self.trigger("authChecked");
                     callback(true);
                 },
                 function(errorObject) {
                     self.set("loggedIn", false);
+                    self.trigger("authChecked");
                     callback(false);
                 }
             );
@@ -16390,6 +16485,7 @@ define('models/Session',[
             app.api.auth.signOut().then(
                 function() {
                     self.set("loggedIn", false);
+                    self.trigger("logout");
                 },
                 function(errorObject) {
                 }
@@ -16548,13 +16644,20 @@ require([
 ) {
     app.notify = new NotifyManager();
     app.preloader = Preloader;
-    app.wsEvents = new _.extend({}, Backbone.Events);
     app.session = new SessionModel({});
     app.router = new Router();
     app.qrPopup = new QrPopup();
     app.isTouchDevice = AnotherUtils.isTouchDevice();
 
-    app.session.checkAuth(function(isLogged){
+    window.onSocialAuth = function() {
+        app.session.checkAuth(function(isLogged) {
+            if(isLogged) {
+                app.router.navigateToMain();
+            }
+        });
+    };
+
+    app.session.checkAuth(function(isLogged) {
         Backbone.history.start();
     });
 });

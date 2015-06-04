@@ -1,0 +1,12 @@
+&__photo-container {
+  position: relative;
+  display: block;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  margin: 0 auto;
+  overflow: hidden;
+
+  @import '__img/__img';
+  @import '__ready/__ready';
+}

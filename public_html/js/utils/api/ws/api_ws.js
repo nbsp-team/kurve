@@ -22,6 +22,7 @@ define([
             this.socket = socket;
             this.socket.onopen = this.onOpen;
             this.socket.onclose = this.onClose;
+            this.socket.onerror = this.onError;
             
             this.currentApi.ws_api = this;
             this.socket.onmessage = this.currentApi.onMessage;
@@ -40,8 +41,12 @@ define([
 
         },
 
-        onClose: function() {
+        onClose: function(code) {
+            console.log("CLOSE CODE: " + JSON.stringify(code));
+        },
 
+        onError: function(error) {
+            console.log("SOCKET ERROR: " + JSON.stringify(error));
         },
 
         //****************** Methods ******************//

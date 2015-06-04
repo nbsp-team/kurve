@@ -11,12 +11,11 @@ define([
 		var NEW_BONUS_CODE = 9;
 		var EAT_BONUS_CODE = 10;
 		var SNAKE_PATCH_CODE = 16;
-
+        var RATING_UPDATE_CODE = 18;
 
         return {
             onMessage: function(message) {
                 var msg = JSON.parse(message.data);
-    			console.log(msg);
 
                 switch(msg.code){
 					case KEY_EVENT_CODE: {
@@ -54,6 +53,11 @@ define([
                         }
 
                         app.wsEvents.trigger("new_round_event", options);
+                        break;
+                    }
+
+                    case RATING_UPDATE_CODE: {
+                        app.wsEvents.trigger("rating_update", msg.results);
                         break;
                     }
 				}

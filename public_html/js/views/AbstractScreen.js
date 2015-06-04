@@ -20,9 +20,7 @@ define([
 
         render: function () {
 
-            this.trigger("view_render");
-            $(this.el).html(this.template(
-                {
+            this.$el.html(this.template({
                     'app': app,
                     'arg': this.templateArg
                 }

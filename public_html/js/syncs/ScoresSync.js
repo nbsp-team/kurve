@@ -4,7 +4,7 @@ define([
     app
 ) {
 
-    return function(method, model, options) {
+    return function(method, collection, options) {
 
         var methods = {
 
@@ -22,11 +22,12 @@ define([
                 },
 
                 successLoadingHandler: function(data) {
-                    model.set(data);
+                    console.log(data);
+                    collection.set(data);
                 },
 
                 errorLoadingHandler: function(message) {
-                    model.trigger('ratingLoad:error', message);
+                    collection.trigger('ratingLoad:error', message);
                 }
             },
             'create': {},
