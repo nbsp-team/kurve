@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <configuration>
     <mechanics>
-        <minPlayerNumber>1</minPlayerNumber>
+        <minPlayerNumber>2</minPlayerNumber>
         <maxPlayerNumber>6</maxPlayerNumber>
         <Snake>
 			<defaultSpeed>77</defaultSpeed>

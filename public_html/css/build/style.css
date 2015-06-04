@@ -440,6 +440,43 @@ body {
     color: #555;
     font-family: arial;
     line-height: 40px; }
+
+.rating-item {
+  width: 80%;
+  margin: 13px 10%;
+  overflow: hidden;
+  padding-bottom: 13px;
+  border-bottom: 2px dotted #ccc; }
+  .rating-item__name {
+    color: #444;
+    text-overflow: ellipsis;
+    font-family: arial;
+    float: left;
+    width: 60%;
+    margin-left: 15px;
+    font-size: 16px;
+    line-height: 40px;
+    white-space: nowrap;
+    overflow: hidden; }
+  .rating-item__photo {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    float: left;
+    margin-left: 10px; }
+  .rating-item__point {
+    float: right;
+    font-size: 20px;
+    margin-right: 10px;
+    color: #555;
+    font-family: arial;
+    line-height: 40px; }
+
+.rating-items-list li {
+  display: block; }
+
+.rating-items-list :last-child .rating-item {
+  border-bottom: none; }
 /* -------------------------------- 
 
 Primary style

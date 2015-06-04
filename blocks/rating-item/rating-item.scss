@@ -1,0 +1,20 @@
+.rating-item {
+
+  width: 80%;
+  margin: 13px 10%;
+  overflow: hidden;
+  padding-bottom: 13px;
+  border-bottom: 2px dotted #ccc;
+
+  @import '__name/__name';
+  @import '__photo/__photo';
+  @import '__point/__point';
+}
+
+.rating-items-list li {
+  display: block;
+}
+
+.rating-items-list :last-child .rating-item {
+  border-bottom: none;
+}

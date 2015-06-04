@@ -13291,7 +13291,7 @@ define('utils/api/api_rating',[
                 var post = $.get(LOAD_RATING_URL);
                 post.done(function(data) {
                     if(data.error == null) {
-                        def.resolve(data.response.users);
+                        def.resolve(data.response.rating);
                     } else {
                         def.reject(data.error.description);
                     }
@@ -14275,6 +14275,7 @@ define('utils/api/ws/api_ws',[
             this.socket = socket;
             this.socket.onopen = this.onOpen;
             this.socket.onclose = this.onClose;
+            this.socket.onerror = this.onError;
             
             this.currentApi.ws_api = this;
             this.socket.onmessage = this.currentApi.onMessage;
@@ -14294,7 +14295,11 @@ define('utils/api/ws/api_ws',[
         },
 
         onClose: function(code) {
+            console.log("CLOSE CODE: " + JSON.stringify(code));
+        },
 
+        onError: function(error) {
+            console.log("SOCKET ERROR: " + JSON.stringify(error));
         },
 
         //****************** Methods ******************//
@@ -15805,13 +15810,15 @@ define('views/Room',[
     return View;
 });
 
-define('tmpl/scoreboard',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<div class=\"title\">Рейтинги</div><table class=\"flat-table\"><tr><th class=\"flat-table__header-value\">Место</th><th class=\"flat-table__header-value\">Имя</th><th class=\"flat-table__header-value\">Рейтинг</th></tr><tbody>");var i,__fest_to0,__fest_iterator0;try{__fest_iterator0=json.arg.models || [];__fest_to0=__fest_iterator0.length;}catch(e){__fest_iterator0=[];__fest_to0=0;__fest_log_error(e.message);}for(i=0;i<__fest_to0;i++){__fest_buf+=("<tr><td class=\"flat-table__value\">");try{__fest_buf+=(i + 1)}catch(e){__fest_log_error(e.message + "16");}__fest_buf+=("</td><td class=\"flat-table__value\">");try{__fest_buf+=(json.arg.models[i].get('username'))}catch(e){__fest_log_error(e.message + "22");}__fest_buf+=("</td><td class=\"flat-table__value\">");try{__fest_buf+=(json.arg.models[i].get('global_rating'))}catch(e){__fest_log_error(e.message + "28");}__fest_buf+=("</td></tr>");}__fest_buf+=("</tbody></table><a href=\"#\" class=\"btn btn_red\">Назад</a>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
+define('tmpl/scoreboard',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<div class=\"title\">Рейтинги</div><ul class=\"rating-items-list\">");var i,__fest_to0,__fest_iterator0;try{__fest_iterator0=json.arg.models || [];__fest_to0=__fest_iterator0.length;}catch(e){__fest_iterator0=[];__fest_to0=0;__fest_log_error(e.message);}for(i=0;i<__fest_to0;i++){__fest_buf+=("<li><div class=\"rating-item\">");try{__fest_attrs[0]=__fest_escapeHTML(json.arg.models[i].get('avatar'))}catch(e){__fest_attrs[0]=""; __fest_log_error(e.message);}__fest_buf+=("<img src=\"" + __fest_attrs[0] + "\" class=\"rating-item__photo\"/><div class=\"rating-item__name\">");try{__fest_buf+=(json.arg.models[i].get('first_name'))}catch(e){__fest_log_error(e.message + "12");}__fest_buf+=(" ");try{__fest_buf+=(json.arg.models[i].get('last_name'))}catch(e){__fest_log_error(e.message + "18");}__fest_buf+=("</div><div class=\"rating-item__point\">");try{__fest_buf+=(json.arg.models[i].get('global_rating'))}catch(e){__fest_log_error(e.message + "24");}__fest_buf+=("</div></div></li>");}__fest_buf+=("</ul><a href=\"#\" class=\"btn btn_red\">Назад</a>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
 define('models/Score',[
-    "app"
-], function(app){
+], function(){
     var Score = Backbone.Model.extend({
         defaults: {
-            "username": "",
+            "user_id": "",
+            "first_name": "",
+            "last_name": "",
+            "avatar": "",
             "global_rating": 0
         }
     });
@@ -15824,7 +15831,7 @@ define('syncs/ScoresSync',[
     app
 ) {
 
-    return function(method, model, options) {
+    return function(method, collection, options) {
 
         var methods = {
 
@@ -15842,11 +15849,12 @@ define('syncs/ScoresSync',[
                 },
 
                 successLoadingHandler: function(data) {
-                    model.set(data);
+                    console.log(data);
+                    collection.set(data);
                 },
 
                 errorLoadingHandler: function(message) {
-                    model.trigger('ratingLoad:error', message);
+                    collection.trigger('ratingLoad:error', message);
                 }
             },
             'create': {},
