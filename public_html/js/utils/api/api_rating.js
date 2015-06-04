@@ -17,7 +17,7 @@ define([
                 var post = $.get(LOAD_RATING_URL);
                 post.done(function(data) {
                     if(data.error == null) {
-                        def.resolve(data.response.users);
+                        def.resolve(data.response.rating);
                     } else {
                         def.reject(data.error.description);
                     }
