@@ -13189,7 +13189,7 @@ define('models/SnakePartArc',[
             this.angle=angle;
             this.radius = radius;
             this.clockwise = clockwise;
-            this._correct = (clockwise)?1.0/r:-1.0/r;
+            this._correct = (clockwise)?2.0/r:-2.0/r;
             this.correct = 0;
 		},
 		applyUpdate: function(arc){
@@ -13199,23 +13199,18 @@ define('models/SnakePartArc',[
 		updateHead: function(angleV) {
 			this.angle2 += angleV;
 		},
-		clear:function(ctx){
-
+		clear:function(ctx) {
 			ctx.clearRect(this.x - this.r - this.radius-1, this.y-this.r-this.radius-1
 			, 2*(this.r+this.radius+1),2*(this.r+this.radius+1));
-
 		},
-		draw: function(ctx, col){			
-			if(this.correct === 0) {
-				var span = this.angle2 - this.angle - this.correct;
-				
-				if((span >= 0 && span < 0.4 && this.clockwise)
-				    || (span <= 0 && span > -0.4 && !this.clockwise)){
-					//
-				} else {
-					this.correct = this._correct;
-				}
-			}
+		draw: function(ctx, col) {
+            if(this.correct === 0) {
+                var span = this.angle2 - this.angle - this.correct;
+
+                if((span > 6 && !this.clockwise)  || (span < -6 && this.clockwise)) {
+                    this.correct = this._correct;
+                }
+            }
 			ctx.beginPath();
 			ctx.strokeStyle = col;
 			ctx.lineWidth = this.radius*2;			
@@ -13362,17 +13357,13 @@ define('models/BonusEffects',[
 		},
 		clear: function() {
 		    if(this.effects.length === 0) return;
-
-
-
             this.ctx.clearRect(
                 this.clearX,
                 this.clearY,
                 2*this.clearRadius,
                 2*this.clearRadius);
-
 		},
-		draw: function(){
+		draw: function() {
 		    if(this.effects.length === 0) return;
 		    this.ctx.beginPath();
 
@@ -13388,7 +13379,7 @@ define('models/BonusEffects',[
             this.clearY = this.snake.y - this.clearRadius;
             this.clearRadius = this.radius0 + this.span*this.effects.length + 1;
 		},
-		done: function(){
+		done: function() {
 			return false;
 		},
 		tick: function(){
@@ -13939,7 +13930,7 @@ define('models/Bonus',[
                     queue.push( function(){
 
                             for(var i = 0; i < snakes.length; i++){
-                                if(true || i != eater_id) snakes[i].reverse();
+                                if(i != eater_id) snakes[i].reverse();
                             }
                             setTimeout(function(){
                                 for(var i = 0; i < snakes.length; i++){

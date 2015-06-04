@@ -44,7 +44,7 @@ define([
                     queue.push( function(){
 
                             for(var i = 0; i < snakes.length; i++){
-                                if(true || i != eater_id) snakes[i].reverse();
+                                if(i != eater_id) snakes[i].reverse();
                             }
                             setTimeout(function(){
                                 for(var i = 0; i < snakes.length; i++){
