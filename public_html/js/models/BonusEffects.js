@@ -28,17 +28,13 @@ define([
 		},
 		clear: function() {
 		    if(this.effects.length === 0) return;
-
-
-
             this.ctx.clearRect(
                 this.clearX,
                 this.clearY,
                 2*this.clearRadius,
                 2*this.clearRadius);
-
 		},
-		draw: function(){
+		draw: function() {
 		    if(this.effects.length === 0) return;
 		    this.ctx.beginPath();
 
@@ -54,7 +50,7 @@ define([
             this.clearY = this.snake.y - this.clearRadius;
             this.clearRadius = this.radius0 + this.span*this.effects.length + 1;
 		},
-		done: function(){
+		done: function() {
 			return false;
 		},
 		tick: function(){

@@ -15,7 +15,7 @@ define([
             this.angle=angle;
             this.radius = radius;
             this.clockwise = clockwise;
-            this._correct = (clockwise)?1.0/r:-1.0/r;
+            this._correct = (clockwise)?2.0/r:-2.0/r;
             this.correct = 0;
 		},
 		applyUpdate: function(arc){
@@ -25,23 +25,18 @@ define([
 		updateHead: function(angleV) {
 			this.angle2 += angleV;
 		},
-		clear:function(ctx){
-
+		clear:function(ctx) {
 			ctx.clearRect(this.x - this.r - this.radius-1, this.y-this.r-this.radius-1
 			, 2*(this.r+this.radius+1),2*(this.r+this.radius+1));
-
 		},
-		draw: function(ctx, col){			
-			if(this.correct === 0) {
-				var span = this.angle2 - this.angle - this.correct;
-				
-				if((span >= 0 && span < 0.4 && this.clockwise)
-				    || (span <= 0 && span > -0.4 && !this.clockwise)){
-					//
-				} else {
-					this.correct = this._correct;
-				}
-			}
+		draw: function(ctx, col) {
+            if(this.correct === 0) {
+                var span = this.angle2 - this.angle - this.correct;
+
+                if((span > 6 && !this.clockwise)  || (span < -6 && this.clockwise)) {
+                    this.correct = this._correct;
+                }
+            }
 			ctx.beginPath();
 			ctx.strokeStyle = col;
 			ctx.lineWidth = this.radius*2;			
