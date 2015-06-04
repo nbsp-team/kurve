@@ -26,8 +26,8 @@ define([
         onLoadUrl: function(url) {
             this.qrCode = new QRCode('js-qr-container', {
                 text: url,
-                width: 200,
-                height: 200,
+                width: 220,
+                height: 220,
                 colorDark: "#000000",
                 colorLight: "#ffffff",
                 correctLevel: QRCode.CorrectLevel.H

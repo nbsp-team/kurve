@@ -197,8 +197,7 @@ define([
 			}
 			if(game_log) console.log('step');
 		},
-		onGameOver: function(msg) {
-            // TODO: Показать сообщение, с результатами и кнопками.
+		onGameOver: function() {
 			Api.closeConnection();
 			this.pause();
 		},

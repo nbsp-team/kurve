@@ -18,7 +18,7 @@ define([
         templateArg: Collect,
 
         initialize: function () {
-            this.listenTo(this.collection, 'add', this.onLoad);
+            this.listenTo(this.collection, 'scores_loaded', this.onLoad);
         },
 
         onLoad: function() {

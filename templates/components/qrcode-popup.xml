@@ -2,6 +2,11 @@
 
     <div class="cd-popup-container">
 
+        <div class="cd-popup-container__info-text">
+            Просканируйте данный QR-код для авторизации
+            вашего телефона в качестве контроллера
+        </div>
+
         <div class="cd-popup-container__qr-container" id="js-qr-container">
         </div>
 

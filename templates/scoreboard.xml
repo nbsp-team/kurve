@@ -1,33 +1,47 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
     <div class="title"> Рейтинги </div>
 
-    <ul class="rating-items-list">
-        <fest:for iterate="json.arg.models" index="i">
-            <li>
-                <div class="rating-item">
-                    <img src="{json.arg.models[i].get('avatar')}" class="rating-item__photo"/>
+    <fest:if test="!json.arg.models.length">
+        <div class="b-rating__empty-big-message">
+            Здесь пока пусто
+        </div>
 
-                    <div class="rating-item__name">
-                        <fest:value output="text">
-                            json.arg.models[i].get('first_name');
-                        </fest:value>
+        <div class="b-rating__empty-small-message">
+            У тебя есть шанс стать первым
+        </div>
 
-                        <fest:space/>
+    </fest:if>
 
-                        <fest:value output="text">
-                            json.arg.models[i].get('last_name');
-                        </fest:value>
+
+    <fest:if test="json.arg.models.length">
+        <ul class="rating-items-list">
+            <fest:for iterate="json.arg.models" index="i">
+                <li>
+                    <div class="rating-item">
+                        <img src="{json.arg.models[i].get('avatar')}" class="rating-item__photo"/>
+
+                        <div class="rating-item__name">
+                            <fest:value output="text">
+                                json.arg.models[i].get('first_name');
+                            </fest:value>
+
+                            <fest:space/>
+
+                            <fest:value output="text">
+                                json.arg.models[i].get('last_name');
+                            </fest:value>
+                        </div>
+
+                        <div class="rating-item__point">
+                            <fest:value output="text">
+                                json.arg.models[i].get('global_rating');
+                            </fest:value>
+                        </div>
                     </div>
-
-                    <div class="rating-item__point">
-                        <fest:value output="text">
-                            json.arg.models[i].get('global_rating');
-                        </fest:value>
-                    </div>
-                </div>
-            </li>
-        </fest:for>
-    </ul>
+                </li>
+            </fest:for>
+        </ul>
+    </fest:if>
 
     <a href="#" class="btn btn_red"> Назад </a>
 </fest:template>

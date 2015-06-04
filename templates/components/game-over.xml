@@ -1,0 +1,21 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
+
+    <div class="title">
+        Игра закончена
+    </div>
+
+    <div class="game-over">
+        <div class="game-over__text">
+            Набранное кол-во баллов:
+            <fest:value>
+
+            </fest:value>
+        </div>
+
+        <div class="game-over__buttons-block">
+            <div class="btn btn_blue js-ready-button"> Рассказать друзьям </div>
+            <a href="#room" class="btn btn_red"> Назад в комнату </a>
+        </div>
+    </div>
+
+</fest:template>

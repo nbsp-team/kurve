@@ -1,6 +1,7 @@
 define([
     'app',
     'tmpl/game',
+    'tmpl/components/game-over',
     'views/AbstractScreen',
     'models/Snake',
     'models/GameField',
@@ -9,6 +10,7 @@ define([
 ], function(
     app,
     tmpl,
+    gameOverTmpl,
     AbstractScreen,
     Snake,
     GameField,
@@ -38,7 +40,18 @@ define([
 
         onNewBonus:function(bonus) { this.field.onNewBonus(bonus); },
 
-        onGameOver: function(msg) { this.field.onGameOver(msg); },
+        onGameOver: function(msg) {
+            this.field.onGameOver(msg);
+
+            console.log("GAME OVER");
+            console.log(msg);
+            var gameOverContainer = $('.js_game-container');
+            gameOverContainer.html(gameOverTmpl({
+                    'app': app,
+                    'msg': msg
+                }
+            ));
+        },
 
         snakeUpdate: function(snake) { this.field.snakeUpdate(snake); },
 

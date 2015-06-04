@@ -1,7 +1,11 @@
 .cd-popup-container__qr-container {
-  height: 200px;
-  width: 200px;
-  margin: 30px auto;
+  height: 220px;
+  width: 220px;
+  margin: 0 auto;
+  margin: {
+    top: 25px;
+    bottom: 40px;
+  }
   display: block;
   overflow: hidden;
 }

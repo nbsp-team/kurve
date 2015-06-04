@@ -22,8 +22,8 @@ define([
                 },
 
                 successLoadingHandler: function(data) {
-                    console.log(data);
                     collection.set(data);
+                    collection.trigger("scores_loaded");
                 },
 
                 errorLoadingHandler: function(message) {
