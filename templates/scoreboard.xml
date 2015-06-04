@@ -1,39 +1,31 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
     <div class="title"> Рейтинги </div>
 
-    <table class="flat-table">
-        <tr>
-            <th class="flat-table__header-value"> Место </th>
-            <th class="flat-table__header-value"> Имя </th>
-            <th class="flat-table__header-value"> Рейтинг </th>
-        </tr>
-        <tbody>
+    <fest:for iterate="json.arg.models" index="i">
 
-            <fest:for iterate="json.arg.models" index="i">
-                <tr>
-                    <td class="flat-table__value">
-                        <fest:value output="text">
-                            i + 1
-                        </fest:value>
-                    </td>
+        <div class="game-rating-item">
+            <img src="{json.arg.models[i].get('avatar')}" class="game-rating-item__photo"/>
 
-                    <td class="flat-table__value">
-                        <fest:value output="text">
-                            json.arg.models[i].get('username');
-                        </fest:value>
-                    </td>
+            <div class="game-rating-item__name">
+                <fest:value output="text">
+                    json.arg.models[i].get('first_name');
+                </fest:value>
 
-                    <td class="flat-table__value">
-                        <fest:value output="text">
-                            json.arg.models[i].get('global_rating');
-                        </fest:value>
-                    </td>
-                </tr>
-            </fest:for>
-        </tbody>
-    </table>
+                <fest:space/>
 
+                <fest:value output="text">
+                    json.arg.models[i].get('last_name');
+                </fest:value>
+            </div>
 
+            <div class="game-rating-item__point">
+                <fest:value output="text">
+                    json.arg.models[i].get('global_rating');
+                </fest:value>
+            </div>
+        </div>
+
+    </fest:for>
 
     <a href="#" class="btn btn_red"> Назад </a>
 </fest:template>
