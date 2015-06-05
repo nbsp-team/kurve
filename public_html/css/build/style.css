@@ -118,6 +118,12 @@ body {
   margin-bottom: 50px; }
   .b-room .b-room__container-players {
     min-height: 400px; }
+  .b-room__help {
+    text-align: center;
+    font-family: arial;
+    color: #777;
+    margin-top: -10px;
+    margin-bottom: 15px; }
 
 .b-game {
   position: relative;
@@ -458,7 +464,7 @@ body {
   .game-rating-item__name {
     color: #444;
     text-overflow: ellipsis;
-    font-family: arial;
+    font-family: 'Open Sans', Arial;
     float: left;
     width: 60%;
     margin-left: 15px;
@@ -477,8 +483,9 @@ body {
     font-size: 20px;
     margin-right: 10px;
     color: #555;
-    font-family: arial;
-    line-height: 40px; }
+    font-family: 'Open Sans', Arial, serif;
+    line-height: 40px;
+    font-weight: 600; }
 
 .rating-item {
   width: 80%;

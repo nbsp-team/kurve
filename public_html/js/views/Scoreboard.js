@@ -7,17 +7,18 @@ define([
     app,
     tmpl,
     Abstract,
-    Collect
+    Scores
 ){
 
     var View = Abstract.extend({
 
         el: '.js-rating',
         template: tmpl,
-        collection: Collect,
-        templateArg: Collect,
+        collection: new Scores(),
+        templateArg: null,
 
         initialize: function () {
+            this.templateArg = this.collection;
             this.listenTo(this.collection, 'scores_loaded', this.onLoad);
         },
 
