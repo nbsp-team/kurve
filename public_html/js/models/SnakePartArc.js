@@ -18,7 +18,7 @@ define([
             this._correct = (clockwise)?2.0/r:-2.0/r;
             this.correct = 0;
 		},
-		applyUpdate: function(arc){
+		applyUpdate: function(arc) {
 		    this.update(arc.x, arc.y, arc.radius, arc.angle, arc.angle2, arc.lineRadius, arc.clockwise);
 
 		},
