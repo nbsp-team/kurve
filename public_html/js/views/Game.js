@@ -42,9 +42,6 @@ define([
         onGameOver: function(msg) {
             this.field.onGameOver(msg);
 
-            console.log("GAMEOVERGAMEOVERGAMEOVERGAMEOVERGAMEOVERGAMEOVERGAMEOVER");
-            console.log(msg);
-
             var players = msg.results;
             var selfPoints = 0;
 
@@ -100,23 +97,31 @@ define([
 
         keyDown: function (e) {
 
+            var Q_BUTTON = 81;
+            var W_BUTTON = 87;
+            var LEFT_BUTTON = 37;
+            var RIGHT_BUTTON = 39;
+
             switch(e.keyCode) {
                 case 32:
                     this.playPause();
                     break;
-                case 81:
+
+                case Q_BUTTON:
+                case LEFT_BUTTON:
                     if(this.leftRepeat) break;
                     this.leftRepeat = true;
                     Api.sendKeyEvent(true, false);
                     this.field.leftDown(this.myId);
                     e.preventDefault();
                     break;
-                case 87:
-                    if(this.rightRepeat) break;
 
-                    this.rightRepeat = true;
-                    Api.sendKeyEvent(false, false);
-                    this.field.rightDown(this.myId);
+                case W_BUTTON:
+                case RIGHT_BUTTON:
+                    if(this.leftRepeat) break;
+                    this.leftRepeat = true;
+                    Api.sendKeyEvent(true, false);
+                    this.field.leftDown(this.myId);
                     e.preventDefault();
                     break;
             }
