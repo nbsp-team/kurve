@@ -70,7 +70,7 @@ define([
             if(view.loginRequire == true &&
                 app.session.get('loggedIn') == false) {
                 this.navigateToMain();
-                //app.notify.notify("Вы должны быть авторизованны для перехода на эту страницу", 1);
+                app.notify.notify("Вы должны быть авторизованны для перехода на эту страницу", 'error');
             } else {
 
                 if (this.currentView != null) {
