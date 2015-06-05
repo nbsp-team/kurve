@@ -13415,6 +13415,8 @@ define('views/AbstractScreen',[
 ){
     var AbstractScreen = Backbone.View.extend({
 
+        loginRequire: false,
+
         dispose: function() {
             this.hide();
         },
@@ -13509,6 +13511,7 @@ define('views/Admin',[
 
     var View = AbstractScreen.extend({
 
+        loginRequire: true,
         el: '.b-admin',
         template: tmpl,
         templateArg: ServerStatus,
@@ -14259,7 +14262,6 @@ define('utils/api/ws/api_ws',[
         WS_URL: 'ws://' + location.host + '/socket/',
 
         READY_CODE: 3,
-        
         EVENT_CODE: 6,
         UPDATE_PATCH_CODE : 15,
         currentApi: null,
@@ -14292,7 +14294,8 @@ define('utils/api/ws/api_ws',[
         },
 
         onClose: function(code) {
-            console.log("CLOSE CODE: " + JSON.stringify(code));
+            console.log("CLOSE SOCKET:");
+            console.log(code);
         },
 
         onError: function(error) {
@@ -14856,6 +14859,7 @@ define('views/Game',[
 ){
     var View = AbstractScreen.extend({
 
+        loginRequire: true,
         el: '.b-game',
         template: tmpl,
 
@@ -15572,7 +15576,7 @@ define('views/Login',[
 
     return View;
 });
-define('tmpl/main',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<div class=\"title\">Меню</div>");try{__fest_if=json.app.session.get('loggedIn')}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<a href=\"#room\" class=\"btn btn_blue\">Начать</a><a href=\"#scoreboard\" class=\"btn btn_blue\">Рейтинги</a><div class=\"btn btn_blue js-logout\">Выйти</div>");}try{__fest_if=!json.app.session.get('loggedIn')}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<a href=\"#login\" class=\"btn btn_blue\">Войти</a><a href=\"#scoreboard\" class=\"btn btn_blue\">Рейтинги</a>");}__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
+define('tmpl/main',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<div class=\"logo\">Kurve</div><div class=\"menu-card\"><div class=\"title\">Меню</div>");try{__fest_if=json.app.session.get('loggedIn')}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<a href=\"#room\" class=\"btn btn_blue\">Начать</a><a href=\"#scoreboard\" class=\"btn btn_blue\">Рейтинги</a><div class=\"btn btn_blue js-logout\">Выйти</div>");}try{__fest_if=!json.app.session.get('loggedIn')}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<a href=\"#login\" class=\"btn btn_blue\">Войти</a><a href=\"#scoreboard\" class=\"btn btn_blue\">Рейтинги</a>");}__fest_buf+=("</div>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
 define('models/User',[
 ], function(
 ){
@@ -15794,6 +15798,7 @@ define('views/Room',[
 ){
     var View = AbstractScreen.extend({
 
+        loginRequire: true,
         el: '.js-room',
         playersContainer: null,
         template: tmpl,
@@ -15969,6 +15974,7 @@ define('views/Controller',[
 ){
     var View = AbstractScreen.extend({
 
+        loginRequire: true,
         el: '.b-controller',
         template: tmpl,
         templateArg: User,
@@ -16067,14 +16073,25 @@ define('views/ViewManager',[
 
         displayView: function(viewKey) {
 
-            if(this.currentView != null) {
-                this.currentView.dispose();
-            }
-
             var view = this.views[viewKey];
-            view.load();
 
-            this.currentView = view;
+            if(view.loginRequire == true &&
+                app.session.get('loggedIn') == false) {
+
+                if(this.currentView != null) {
+                    app.notify.notify("Вы должны быть авторизованны для перехода на эту страницу",
+                        app.notify.notify.ERROR_STATUS);
+                }
+                this.navigateToMain();
+
+            } else {
+
+                if (this.currentView != null) {
+                    this.currentView.dispose();
+                }
+                view.load();
+                this.currentView = view;
+            }
         },
 
         startGame: function(options) {
@@ -16400,6 +16417,8 @@ define('views/components/notify',[
 
     var Notify = Backbone.View.extend({
 
+        ERROR_STATUS: 'error',
+
         initialize: function () {
             this.listenTo(app.notify, 'notify', this.showMessage);
         },
@@ -16551,9 +16570,7 @@ define('models/Session',[
 });
 
 define('models/NotifyManager',[
-    'app'
 ], function(
-    app
 ){
 
     var NotifyManager = Backbone.Model.extend({

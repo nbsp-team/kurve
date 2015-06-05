@@ -32,7 +32,7 @@ define([
             },
 
             "config": {
-                "domain": "kurve.ml"
+                "domain": "127.0.0.1:9081"
             }
         };
 

@@ -1,4 +1,8 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:600,800,400&subset=latin,cyrillic);
+@font-face {
+  font-family: 'Ostrich-Sans-Rounded';
+  src: url("/../../fonts/ostrich-sans-rounded.woff") format("woff"), url("/../../fonts/ostrich-sans-rounded.ttf") format("truetype"); }
+
 * {
   margin: 0;
   padding: 0; }
@@ -12,7 +16,7 @@ body {
 .right {
   float: right; }
 
-.dashed, .b-admin:before, .b-room:before, .b-game__game-container:before, .b-game__ratings-card:before, .b-login:before, .b-menu:before, .b-rating:before, .b-register:before {
+.dashed, .menu-card:before, .b-admin:before, .b-room:before, .b-game__game-container:before, .b-game__ratings-card:before, .b-login:before, .b-rating:before, .b-register:before {
   content: '';
   position: absolute;
   z-index: -1;
@@ -51,6 +55,27 @@ body {
     box-shadow: 0 1px 0 0; }
   .btn:focus {
     outline: none; }
+
+.logo {
+  font-family: Ostrich-Sans-Rounded,serif;
+  font-size: 150px;
+  color: #3C93D5;
+  margin-top: 35px;
+  text-align: center; }
+
+.menu-card {
+  overflow: hidden;
+  margin-top: 10px;
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 2px 4px 0 rgba(50, 50, 50, 0.3);
+  width: 500px;
+  margin-left: 50%;
+  left: -250px;
+  border-radius: 5px;
+  z-index: 0;
+  padding-bottom: 27px;
+  margin-bottom: 50px; }
 
 .controller-btn {
   cursor: pointer;
@@ -163,20 +188,6 @@ body {
 .b-login {
   overflow: hidden;
   margin-top: 30px;
-  position: absolute;
-  background-color: white;
-  box-shadow: 0 2px 4px 0 rgba(50, 50, 50, 0.3);
-  width: 500px;
-  margin-left: 50%;
-  left: -250px;
-  border-radius: 5px;
-  z-index: 0;
-  padding-bottom: 27px;
-  margin-bottom: 50px; }
-
-.b-menu {
-  overflow: hidden;
-  margin-top: 50px;
   position: absolute;
   background-color: white;
   box-shadow: 0 2px 4px 0 rgba(50, 50, 50, 0.3);
