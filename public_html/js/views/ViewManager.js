@@ -69,18 +69,16 @@ define([
 
             if(view.loginRequire == true &&
                 app.session.get('loggedIn') == false) {
-
                 this.navigateToMain();
                 //app.notify.notify("Вы должны быть авторизованны для перехода на эту страницу", 1);
+            } else {
+
+                if (this.currentView != null) {
+                    this.currentView.dispose();
+                }
+                view.load();
+                this.currentView = view;
             }
-
-            if(this.currentView != null) {
-                this.currentView.dispose();
-            }
-
-            view.load();
-
-            this.currentView = view;
         },
 
         startGame: function(options) {
