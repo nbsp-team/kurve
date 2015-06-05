@@ -16,9 +16,9 @@
                 </fest:value>
             </div>
 
-            <div class="game-rating-item__point" style="color: {json.arg.models[i].get('points')};">
+            <div class="game-rating-item__point" style="color: {json.arg.models[i].get('color')};">
                 <fest:value output="text">
-                    json.arg.models[i].get('color');
+                    json.arg.models[i].get('points');
                 </fest:value>
             </div>
 
