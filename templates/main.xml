@@ -11,6 +11,6 @@
     <fest:if test="!json.app.session.get('loggedIn')">
         <a href="#login" class="btn btn_blue"> Войти </a>
         <a href="#scoreboard" class="btn btn_blue"> Рейтинги </a>
-    </fest:if>    
+    </fest:if>
 
 </fest:template>

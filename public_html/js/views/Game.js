@@ -31,7 +31,6 @@ define([
 
 			this.leftRepeat = false;
 			this.rightRepeat = false;
-            this.roundCounter = 1;
 
             this.gameScoresView = new GameScoresView();
         },
@@ -43,12 +42,22 @@ define([
         onGameOver: function(msg) {
             this.field.onGameOver(msg);
 
-            console.log("GAME OVER");
+            console.log("GAMEOVERGAMEOVERGAMEOVERGAMEOVERGAMEOVERGAMEOVERGAMEOVER");
             console.log(msg);
+
+            var players = msg.results;
+            var selfPoints = 0;
+
+            for(var i = 0; i < players.length; i++) {
+                if(app.session.user.get('user_id') == players[i].user_id) {
+                    selfPoints = players[i].points;
+                }
+            }
+
             var gameOverContainer = $('.js_game-container');
             gameOverContainer.html(gameOverTmpl({
                     'app': app,
-                    'msg': msg
+                    'points': selfPoints
                 }
             ));
         },
@@ -62,8 +71,11 @@ define([
 			this.field = new GameField(options);
             $(document).on('keydown', this.keyDown.bind(this));
             $(document).on('keyup', this.keyUp.bind(this));
+
+            console.log("ROUND");
+            console.log(options);
 			
-			this.field.start(this.roundCounter++);
+			this.field.start(options);
 		},
 
         keyEvent: function(isLeft, isUp, sender) {

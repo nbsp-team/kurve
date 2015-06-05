@@ -6,14 +6,14 @@
 
     <div class="game-over">
         <div class="game-over__text">
-            Набранное кол-во баллов:
-            <fest:value>
+            Вы набрали
+        </div>
 
-            </fest:value>
+        <div class="game-over__points js-points">
+            <fest:value> json.points </fest:value>
         </div>
 
         <div class="game-over__buttons-block">
-            <div class="btn btn_blue js-ready-button"> Рассказать друзьям </div>
             <a href="#room" class="btn btn_red"> Назад в комнату </a>
         </div>
     </div>

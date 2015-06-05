@@ -2,11 +2,11 @@
     <div class="b-controller__container">
 
         <div class="controller-btn js-button-left">
-            <div class="controller-btn__icon"> ◀ </div>
+            <div class="controller-btn__left-icon">  </div>
         </div>
 
         <div class="controller-btn js-button-right">
-            <div class="controller-btn__icon"> ▶ </div>
+            <div class="controller-btn__right-icon">  </div>
         </div>
 
     </div>
