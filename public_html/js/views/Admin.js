@@ -14,6 +14,7 @@ define([
 
     var View = AbstractScreen.extend({
 
+        loginRequire: true,
         el: '.b-admin',
         template: tmpl,
         templateArg: ServerStatus,

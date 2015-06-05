@@ -65,11 +65,19 @@ define([
 
         displayView: function(viewKey) {
 
+            var view = this.views[viewKey];
+
+            if(view.loginRequire == true &&
+                app.session.get('loggedIn') == false) {
+
+                this.navigateToMain();
+                //app.notify.notify("Вы должны быть авторизованны для перехода на эту страницу", 1);
+            }
+
             if(this.currentView != null) {
                 this.currentView.dispose();
             }
 
-            var view = this.views[viewKey];
             view.load();
 
             this.currentView = view;

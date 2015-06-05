@@ -11,6 +11,7 @@ define([
 ){
     var View = AbstractScreen.extend({
 
+        loginRequire: true,
         el: '.b-controller',
         template: tmpl,
         templateArg: User,

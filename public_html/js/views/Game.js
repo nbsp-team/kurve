@@ -19,6 +19,7 @@ define([
 ){
     var View = AbstractScreen.extend({
 
+        loginRequire: true,
         el: '.b-game',
         template: tmpl,
 
