@@ -18,7 +18,7 @@
 
             <div class="game-rating-item__point" style="color: {json.arg.models[i].get('points')};">
                 <fest:value output="text">
-                    json.arg.models[i].get('points');
+                    json.arg.models[i].get('color');
                 </fest:value>
             </div>
 
