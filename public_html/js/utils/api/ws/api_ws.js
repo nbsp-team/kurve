@@ -42,7 +42,7 @@ define([
         },
 
         onClose: function(code) {
-            console.log("CLOSE CODE: " + JSON.stringify(code));
+            console.log("CLOSE CODE: " + code);
         },
 
         onError: function(error) {
