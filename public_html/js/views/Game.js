@@ -108,6 +108,13 @@ define([
                     break;
 
                 case this.Q_BUTTON:
+                    if(this.leftRepeat) break;
+                    this.leftRepeat = true;
+                    Api.sendKeyEvent(true, false);
+                    this.field.leftDown(this.myId);
+                    e.preventDefault();
+                    break;
+
                 case this.LEFT_BUTTON:
                     if(this.leftRepeat) break;
                     this.leftRepeat = true;
@@ -117,6 +124,13 @@ define([
                     break;
 
                 case this.W_BUTTON:
+                    if(this.leftRepeat) break;
+                    this.leftRepeat = true;
+                    Api.sendKeyEvent(true, false);
+                    this.field.leftDown(this.myId);
+                    e.preventDefault();
+                    break;
+
                 case this.RIGHT_BUTTON:
                     if(this.leftRepeat) break;
                     this.leftRepeat = true;
@@ -132,6 +146,12 @@ define([
             switch(e.keyCode) {
 
                 case this.Q_BUTTON:
+                    this.leftRepeat = false;
+                    Api.sendKeyEvent(true, true);
+                    this.field.leftUp(this.myId);
+                    e.preventDefault();
+                    break;
+
                 case this.LEFT_BUTTON:
                     this.leftRepeat = false;
                     Api.sendKeyEvent(true, true);
@@ -140,6 +160,12 @@ define([
                     break;
 
                 case this.W_BUTTON:
+                    this.rightRepeat = false;
+                    Api.sendKeyEvent(false, true);
+                    this.field.rightUp(this.myId);
+                    e.preventDefault();
+                    break;
+
                 case this.RIGHT_BUTTON:
                     this.rightRepeat = false;
                     Api.sendKeyEvent(false, true);
