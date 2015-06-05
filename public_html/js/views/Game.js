@@ -93,22 +93,22 @@ define([
 					this.field.rightDown(sender);
 				}
 			}
-		},	
+		},
+
+        Q_BUTTON: 81,
+        W_BUTTON: 87,
+        LEFT_BUTTON: 37,
+        RIGHT_BUTTON: 39,
 
         keyDown: function (e) {
-
-            var Q_BUTTON = 81;
-            var W_BUTTON = 87;
-            var LEFT_BUTTON = 37;
-            var RIGHT_BUTTON = 39;
 
             switch(e.keyCode) {
                 case 32:
                     this.playPause();
                     break;
 
-                case Q_BUTTON:
-                case LEFT_BUTTON:
+                case this.Q_BUTTON:
+                case this.LEFT_BUTTON:
                     if(this.leftRepeat) break;
                     this.leftRepeat = true;
                     Api.sendKeyEvent(true, false);
@@ -116,8 +116,8 @@ define([
                     e.preventDefault();
                     break;
 
-                case W_BUTTON:
-                case RIGHT_BUTTON:
+                case this.W_BUTTON:
+                case this.RIGHT_BUTTON:
                     if(this.leftRepeat) break;
                     this.leftRepeat = true;
                     Api.sendKeyEvent(true, false);
@@ -130,13 +130,17 @@ define([
         keyUp: function(e) {
 
             switch(e.keyCode) {
-                case 81:
+
+                case this.Q_BUTTON:
+                case this.LEFT_BUTTON:
                     this.leftRepeat = false;
                     Api.sendKeyEvent(true, true);
                     this.field.leftUp(this.myId);
                     e.preventDefault();
                     break;
-                case 87:
+
+                case this.W_BUTTON:
+                case this.RIGHT_BUTTON:
                     this.rightRepeat = false;
                     Api.sendKeyEvent(false, true);
                     this.field.rightUp(this.myId);
