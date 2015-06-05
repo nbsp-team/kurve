@@ -3,6 +3,12 @@
   font-family: 'Ostrich-Sans-Rounded';
   src: url("/../../fonts/ostrich-sans-rounded.woff") format("woff"), url("/../../fonts/ostrich-sans-rounded.ttf") format("truetype"); }
 
+@font-face {
+  font-family: 'social-share-kit';
+  src: url("/../../fonts/social-share-kit.woff") format("woff"), url("/../../fonts/social-share-kit.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+
 * {
   margin: 0;
   padding: 0; }
@@ -66,7 +72,7 @@ body {
 .menu-card {
   overflow: hidden;
   margin-top: 10px;
-  position: absolute;
+  position: relative;
   background-color: white;
   box-shadow: 0 2px 4px 0 rgba(50, 50, 50, 0.3);
   width: 500px;
@@ -75,7 +81,7 @@ body {
   border-radius: 5px;
   z-index: 0;
   padding-bottom: 27px;
-  margin-bottom: 50px; }
+  margin-bottom: 20px; }
 
 .controller-btn {
   cursor: pointer;

@@ -5,6 +5,14 @@
     url('/../../fonts/ostrich-sans-rounded.ttf')  format('truetype');
 }
 
+@font-face {
+  font-family:'social-share-kit';
+  src: url('/../../fonts/social-share-kit.woff') format('woff'),
+       url('/../../fonts/social-share-kit.ttf') format('truetype');
+  font-weight:normal;
+  font-style:normal
+}
+
 * {
     margin: 0;
     padding: 0;
