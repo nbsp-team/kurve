@@ -2,8 +2,9 @@ define([
     "app",
     "models/SnakePartLine",
     "models/SnakePartArc",
-    'models/BonusEffects'
-], function(app, SnakePartLine, SnakePartArc, BonusEffects){
+    'models/BonusEffects',
+	'utils/BonusUtils'
+], function(app, SnakePartLine, SnakePartArc, BonusEffects, BonusUtils){
 	function Snake(){this.initialize();}
     Snake.prototype = {
 		defaultSpeed: 100,
@@ -167,6 +168,10 @@ define([
 			this.foreCtx.beginPath();
 			this.foreCtx.fillStyle = this.color;
 			this.foreCtx.arc(this.x, this.y, this.radius, 0, 2*Math.PI);
+
+			// Voloshin head
+			this.foreCtx.drawImage.apply(this.foreCtx,
+				BonusUtils.getBonusImageArgs(15, this.x, this.y));
 			
 			this.foreCtx.fill();
 			this.prevX = this.x; this.prevY = this.y; this.prevRadius = this.radius;
