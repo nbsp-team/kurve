@@ -42,7 +42,8 @@ define([
         },
 
         onClose: function(code) {
-            console.log("CLOSE CODE: " + code);
+            console.log("CLOSE SOCKET:");
+            console.log(code);
         },
 
         onError: function(error) {
