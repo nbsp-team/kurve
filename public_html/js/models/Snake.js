@@ -170,8 +170,8 @@ define([
 			this.foreCtx.arc(this.x, this.y, this.radius, 0, 2*Math.PI);
 
 			// Voloshin head
-			this.foreCtx.drawImage.apply(this.foreCtx,
-				BonusUtils.getBonusImageArgs(15, this.x, this.y));
+			//this.foreCtx.drawImage.apply(this.foreCtx,
+			//	BonusUtils.getBonusImageArgs(15, this.x, this.y));
 			
 			this.foreCtx.fill();
 			this.prevX = this.x; this.prevY = this.y; this.prevRadius = this.radius;
