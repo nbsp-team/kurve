@@ -102,6 +102,8 @@ define([
 
         keyDown: function (e) {
 
+            console.log("KEYUP: " + e.keyCode);
+
             switch(e.keyCode) {
 
                 case this.Q_BUTTON:
@@ -139,6 +141,8 @@ define([
 		},
 
         keyUp: function(e) {
+
+            console.log("KEYDOWN: " + e.keyCode);
 
             switch(e.keyCode) {
                 case this.Q_BUTTON:
