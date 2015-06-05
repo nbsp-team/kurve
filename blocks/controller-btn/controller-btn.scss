@@ -1,14 +1,14 @@
 .controller-btn {
+  cursor: pointer;
   position: relative;
-  display: table;
-  text-align: center;
   float: left;
   height: 100%;
   width: 50%;
 
   -webkit-user-select: none !important;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  @import "__icon/controller-btn__icon";
+  @import "__left-icon/__left-icon";
+  @import "__right-icon/__right-icon";
 
   &:active {
     background-color: #E0E0E0;

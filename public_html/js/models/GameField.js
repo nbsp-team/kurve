@@ -210,7 +210,7 @@ define([
 		stopPlaying: function(){
 		    this.playing = false;
 		},
-		start: function(roundCounter) {
+		start: function(options) {
 		    var that = this;
 		    var t = this.countdown;
 		    var f = function() {
@@ -221,12 +221,12 @@ define([
 		        }
 
 		        that.render();
-		        var h = 130;
-		        that.foreCtx.font = h + "px sans-serif";
+		        var h = 100;
+		        that.foreCtx.font = h + "px Open Sans";
 		        that.foreCtx.fillStyle = that.snakes[that.myId].color;
 		        var text;
 		        if(t == that.countdown) {
-		            text = "Round " + roundCounter + "/6"
+		            text = "Раунд " + (options.currentRound + 1) + " из " + options.roundNumber;
 		        } else {
 		            text = t;
 		        }
