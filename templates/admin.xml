@@ -41,8 +41,8 @@
         </tbody>
     </table>
 
-
-    <img src="https://chart.googleapis.com/chart?cht=p&chs=250x100&chd=t:60,40&chl=Hello|World"/>
+    <div class="subtitle"> Нагрузка на сервер </div>
+    <img src="https://chart.googleapis.com/chart?cht=p&chs=250x100&chd=t:60,40&chl=Hello|World" class="b-admin__chart"/>
 
     <a class="btn btn_red" id="shutdown"> Выключить сервер </a>
 
