@@ -3,8 +3,7 @@ define([
     'tmpl/admin',
     'views/AbstractScreen',
     'utils/api/api_admin',
-    'models/ServerStatus',
-    'googleCharts'
+    'models/ServerStatus'
 ], function(
     app,
     tmpl,
