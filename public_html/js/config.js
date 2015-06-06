@@ -30,6 +30,9 @@ require.config({
         },
         'qrcode': {
             deps: ['jquery']
+        },
+        'googleCharts': {
+            deps: ['jquery']
         }
     }
 });
