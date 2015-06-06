@@ -50,6 +50,13 @@
         </fest:value>
         %
     </div>
+    <div class="b-admin__field"> Выделенно памяти:
+        <fest:space/>
+        <fest:value output="text">
+            (json.arg.get("allocatedMemory") / 1024).toFixed(2)
+        </fest:value>
+        МБ
+    </div>
 
     <a class="btn btn_red" id="shutdown"> Выключить сервер </a>
 
