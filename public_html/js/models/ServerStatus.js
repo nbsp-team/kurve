@@ -13,7 +13,8 @@ define([
             "freeMemory": 0,
             "allocatedMemory": 0,
             "totalFreeMemory": 0,
-            "cpuLoad": 0
+            "cpuLoad": 0,
+            "rooms": []
         },
 
         update: function() {

@@ -19,25 +19,26 @@
     <table class="flat-table">
         <tr>
             <th class="flat-table__header-value"> # </th>
-            <th class="flat-table__header-value"> Участники </th>
+            <th class="flat-table__header-value"> Статус </th>
+            <th class="flat-table__header-value"> Игроки </th>
         </tr>
         <tbody>
 
-            <!--<fest:for iterate="json.arg.models" index="i">-->
-                    <!--<tr>-->
-                        <!--<td>-->
-                            <!--<fest:value output="text">-->
-                                <!--i + 1-->
-                            <!--</fest:value>-->
-                        <!--</td>-->
+            <fest:for iterate="json.arg.get('room')" index="i">
+                <tr>
+                    <td>
+                        <fest:value output="text">
+                            i + 1
+                        </fest:value>
+                    </td>
 
-                        <!--<td>-->
-                            <!--<fest:value output="text">-->
-                                <!--json.arg.rooms[i].get('username');-->
-                            <!--</fest:value>-->
-                        <!--</td>-->
-                    <!--</tr>-->
-            <!--</fest:for>-->
+                    <td>
+                        <fest:value output="text">
+                            json.arg.rooms[i][status];
+                        </fest:value>
+                    </td>
+                </tr>
+            </fest:for>
         </tbody>
     </table>
 
