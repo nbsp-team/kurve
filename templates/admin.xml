@@ -34,7 +34,7 @@
 
                     <td>
                         <fest:value output="text">
-                            json.arg.rooms[i].status;
+                            json.arg.get('rooms')[i].status;
                         </fest:value>
                     </td>
                 </tr>
