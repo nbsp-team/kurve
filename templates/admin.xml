@@ -42,7 +42,12 @@
     </table>
 
     <div class="subtitle"> Нагрузка на сервер </div>
-    <img src="https://chart.googleapis.com/chart?cht=p&chs=250x100&chd=t:100,{json.arg.get('cpuLoad'} * 100}&chl=Hello|World" class="b-admin__chart"/>
+
+    <div class="b-admin__field"> Загрузка CPU:
+        <fest:value output="text">
+            json.arg.get("cpuLoad")
+        </fest:value>
+    </div>
 
     <a class="btn btn_red" id="shutdown"> Выключить сервер </a>
 
