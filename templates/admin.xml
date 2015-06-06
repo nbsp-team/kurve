@@ -44,8 +44,9 @@
     <div class="subtitle"> Нагрузка на сервер </div>
 
     <div class="b-admin__field"> Загрузка CPU:
+        <fest:space/>
         <fest:value output="text">
-            json.arg.get("cpuLoad")
+            parseInt(json.arg.get("cpuLoad") * 100)
         </fest:value>
     </div>
 
