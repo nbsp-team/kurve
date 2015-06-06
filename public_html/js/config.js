@@ -10,8 +10,7 @@ require.config({
         syphon: "lib/backbone-syphon",
         notify: "lib/notify.min",
         qrcode: "lib/qrcode.min",
-        hex2rgb: "lib/hex2rgb",
-        googleCharts: "lib/google-charts"
+        hex2rgb: "lib/hex2rgb"
     },
     shim: {
         'underscore': {
@@ -29,9 +28,6 @@ require.config({
             deps: ['jquery']
         },
         'qrcode': {
-            deps: ['jquery']
-        },
-        'googleCharts': {
             deps: ['jquery']
         }
     }

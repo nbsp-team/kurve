@@ -41,6 +41,7 @@
         </tbody>
     </table>
 
+    <script src="/lib/google-charts.js"> </script>
     <script type="text/javascript">
 
         google.load('visualization', '1.0', {'packages':['corechart']});
