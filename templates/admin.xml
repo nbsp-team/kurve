@@ -24,7 +24,7 @@
         </tr>
         <tbody>
 
-            <fest:for iterate="json.arg.get('room')" index="i">
+            <fest:for iterate="json.arg.get('rooms')" index="i">
                 <tr>
                     <td>
                         <fest:value output="text">
