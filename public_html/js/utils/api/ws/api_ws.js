@@ -9,7 +9,6 @@ define([
         WS_URL: 'ws://' + location.host + '/socket/',
 
         READY_CODE: 3,
-        
         EVENT_CODE: 6,
         UPDATE_PATCH_CODE : 15,
         currentApi: null,
@@ -42,7 +41,8 @@ define([
         },
 
         onClose: function(code) {
-            console.log("CLOSE CODE: " + JSON.stringify(code));
+            console.log("CLOSE SOCKET:");
+            console.log(code);
         },
 
         onError: function(error) {

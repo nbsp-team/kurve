@@ -65,14 +65,25 @@ define([
 
         displayView: function(viewKey) {
 
-            if(this.currentView != null) {
-                this.currentView.dispose();
-            }
-
             var view = this.views[viewKey];
-            view.load();
 
-            this.currentView = view;
+            if(view.loginRequire == true &&
+                app.session.get('loggedIn') == false) {
+
+                if(this.currentView != null) {
+                    app.notify.notify("Вы должны быть авторизованны для перехода на эту страницу",
+                        app.notify.notify.ERROR_STATUS);
+                }
+                this.navigateToMain();
+
+            } else {
+
+                if (this.currentView != null) {
+                    this.currentView.dispose();
+                }
+                view.load();
+                this.currentView = view;
+            }
         },
 
         startGame: function(options) {

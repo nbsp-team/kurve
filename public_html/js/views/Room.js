@@ -15,6 +15,7 @@ define([
 ){
     var View = AbstractScreen.extend({
 
+        loginRequire: true,
         el: '.js-room',
         playersContainer: null,
         template: tmpl,

@@ -19,6 +19,7 @@ define([
 ){
     var View = AbstractScreen.extend({
 
+        loginRequire: true,
         el: '.b-game',
         template: tmpl,
 
@@ -41,9 +42,6 @@ define([
 
         onGameOver: function(msg) {
             this.field.onGameOver(msg);
-
-            console.log("GAMEOVERGAMEOVERGAMEOVERGAMEOVERGAMEOVERGAMEOVERGAMEOVER");
-            console.log(msg);
 
             var players = msg.results;
             var selfPoints = 0;
@@ -96,24 +94,31 @@ define([
 					this.field.rightDown(sender);
 				}
 			}
-		},	
+		},
+
+        Q_BUTTON: 81,
+        W_BUTTON: 87,
+        LEFT_BUTTON: 37,
+        RIGHT_BUTTON: 39,
 
         keyDown: function (e) {
 
+            console.log("KEYUP: " + e.keyCode);
+
             switch(e.keyCode) {
-                case 32:
-                    this.playPause();
-                    break;
-                case 81:
+
+                case this.Q_BUTTON:
+                case this.LEFT_BUTTON:
                     if(this.leftRepeat) break;
                     this.leftRepeat = true;
                     Api.sendKeyEvent(true, false);
                     this.field.leftDown(this.myId);
                     e.preventDefault();
                     break;
-                case 87:
-                    if(this.rightRepeat) break;
 
+                case this.W_BUTTON:
+                case this.RIGHT_BUTTON:
+                    if(this.rightRepeat) break;
                     this.rightRepeat = true;
                     Api.sendKeyEvent(false, false);
                     this.field.rightDown(this.myId);
@@ -124,14 +129,20 @@ define([
 
         keyUp: function(e) {
 
+            console.log("KEYDOWN: " + e.keyCode);
+
             switch(e.keyCode) {
-                case 81:
+
+                case this.Q_BUTTON:
+                case this.LEFT_BUTTON:
                     this.leftRepeat = false;
                     Api.sendKeyEvent(true, true);
                     this.field.leftUp(this.myId);
                     e.preventDefault();
                     break;
-                case 87:
+
+                case this.W_BUTTON:
+                case this.RIGHT_BUTTON:
                     this.rightRepeat = false;
                     Api.sendKeyEvent(false, true);
                     this.field.rightUp(this.myId);

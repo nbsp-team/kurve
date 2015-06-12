@@ -1,7 +1,5 @@
 define([
-    'app'
 ], function(
-    app
 ){
 
     var NotifyManager = Backbone.Model.extend({

@@ -1,4 +1,17 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:600,800,400&subset=latin,cyrillic);
+@font-face {
+  font-family: 'Ostrich-Sans-Rounded';
+  src: url('/../../fonts/ostrich-sans-rounded.woff') format('woff'),
+    url('/../../fonts/ostrich-sans-rounded.ttf')  format('truetype');
+}
+
+@font-face {
+  font-family:'social-share-kit';
+  src: url('/../../fonts/social-share-kit.woff') format('woff'),
+       url('/../../fonts/social-share-kit.ttf') format('truetype');
+  font-weight:normal;
+  font-style:normal
+}
 
 * {
     margin: 0;
@@ -34,6 +47,8 @@ body {
 }
 
 @import 'btn/btn';
+@import 'logo/logo';
+@import 'menu-card/menu-card';
 @import 'controller-btn/controller-btn';
 @import 'b-admin/b-admin';
 @import 'b-room/b-room';

@@ -19,27 +19,51 @@
     <table class="flat-table">
         <tr>
             <th class="flat-table__header-value"> # </th>
-            <th class="flat-table__header-value"> Участники </th>
+            <th class="flat-table__header-value"> Статус </th>
+            <th class="flat-table__header-value"> Кол-во игроков </th>
         </tr>
         <tbody>
 
-            <!--<fest:for iterate="json.arg.models" index="i">-->
-                    <!--<tr>-->
-                        <!--<td>-->
-                            <!--<fest:value output="text">-->
-                                <!--i + 1-->
-                            <!--</fest:value>-->
-                        <!--</td>-->
+            <fest:for iterate="json.arg.get('rooms')" index="i">
+                <tr>
+                    <td class="flat-table__value">
+                        <fest:value output="text">
+                            i + 1
+                        </fest:value>
+                    </td>
 
-                        <!--<td>-->
-                            <!--<fest:value output="text">-->
-                                <!--json.arg.rooms[i].get('username');-->
-                            <!--</fest:value>-->
-                        <!--</td>-->
-                    <!--</tr>-->
-            <!--</fest:for>-->
+                    <td class="flat-table__value">
+                        <fest:value output="text">
+                            json.arg.get('rooms')[i].status;
+                        </fest:value>
+                    </td>
+
+                    <td class="flat-table__value">
+                        <fest:value output="text">
+                            json.arg.get('rooms')[i].players.length;
+                        </fest:value>
+                    </td>
+                </tr>
+            </fest:for>
         </tbody>
     </table>
+
+    <div class="subtitle"> Нагрузка на сервер </div>
+
+    <div class="b-admin__field"> Загрузка CPU:
+        <fest:space/>
+        <fest:value output="text">
+            (json.arg.get("cpuLoad") * 100).toFixed(2)
+        </fest:value>
+        %
+    </div>
+    <div class="b-admin__field"> Выделенно памяти:
+        <fest:space/>
+        <fest:value output="text">
+            (json.arg.get("allocatedMemory") / 1024).toFixed(2)
+        </fest:value>
+        МБ
+    </div>
 
     <a class="btn btn_red" id="shutdown"> Выключить сервер </a>
 

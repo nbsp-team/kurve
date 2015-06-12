@@ -1,6 +1,8 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
 
     <div class="title"> Участники комнаты </div>
+    <div class="b-room__help"> Для управления змейкой, используйте стрелки или клавиши «Q» и «W» </div>
+
     <div class="b-room__container-players js-container-players"> </div>
     <div style="clear: both;"> </div>
     <div class="btn btn_blue js-ready-button"> Готов </div>

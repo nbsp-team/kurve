@@ -5,6 +5,8 @@ define([
 ){
     var AbstractScreen = Backbone.View.extend({
 
+        loginRequire: false,
+
         dispose: function() {
             this.hide();
         },
@@ -19,6 +21,8 @@ define([
         },
 
         render: function () {
+
+            console.log(this.templateArg);
 
             this.$el.html(this.template({
                     'app': app,

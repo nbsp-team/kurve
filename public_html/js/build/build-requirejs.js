@@ -12968,7 +12968,7 @@ define('app',[
             },
 
             "config": {
-                "domain": "kurve.ml"
+                "domain": "127.0.0.1:9081"
             }
         };
 
@@ -12976,13 +12976,15 @@ define('app',[
 
         return app;
     });
-define('tmpl/admin',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<div class=\"title\">Администрирование</div><div class=\"subtitle\">Состояние сервера</div><p class=\"b-admin__plain-info\">Количество пользователей: ");try{__fest_buf+=(json.arg.get("userCount"))}catch(e){__fest_log_error(e.message + "8");}__fest_buf+=("</p><p class=\"b-admin__plain-info\">Количество сессий: ");try{__fest_buf+=(json.arg.get("sessionCount"))}catch(e){__fest_log_error(e.message + "14");}__fest_buf+=("</p><div class=\"subtitle\">Список комнат</div><table class=\"flat-table\"><tr><th class=\"flat-table__header-value\">#</th><th class=\"flat-table__header-value\">Участники</th></tr><tbody></tbody></table><a class=\"btn btn_red\" id=\"shutdown\">Выключить сервер</a><a href=\"#\" class=\"btn btn_red\">Назад</a>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
+define('tmpl/admin',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<div class=\"title\">Администрирование</div><div class=\"subtitle\">Состояние сервера</div><p class=\"b-admin__plain-info\">Количество пользователей: ");try{__fest_buf+=(json.arg.get("userCount"))}catch(e){__fest_log_error(e.message + "8");}__fest_buf+=("</p><p class=\"b-admin__plain-info\">Количество сессий: ");try{__fest_buf+=(json.arg.get("sessionCount"))}catch(e){__fest_log_error(e.message + "14");}__fest_buf+=("</p><div class=\"subtitle\">Список комнат</div><table class=\"flat-table\"><tr><th class=\"flat-table__header-value\">#</th><th class=\"flat-table__header-value\">Участники</th></tr><tbody></tbody></table><script type=\"text\/javascript\" src=\"https:\/\/www.google.com\/jsapi\"></script><script type=\"text\/javascript\">google.load(\'visualization\', \'1.0\', {\'packages\':[\'corechart\']});\n\n        google.setOnLoadCallback(drawChart);\n\n        function drawChart() {\n\n            var data = new google.visualization.DataTable();\n            data.addColumn(\'string\', \'Topping\');\n            data.addColumn(\'number\', \'Slices\');\n            data.addRows([\n                [\'Mushrooms\', 3],\n                [\'Onions\', 1],\n                [\'Olives\', 1],\n                [\'Zucchini\', 1],\n                [\'Pepperoni\', 2]\n            ]);\n\n            var options = {\'title\':\'How Much Pizza I Ate Last Night\',\n                \'width\':400,\n                \'height\':300};\n\n            var chart = new google.visualization.PieChart(document.getElementById(\'chart_div\'));\n            chart.draw(data, options);\n        }</script><div id=\"chart_div\"></div><a class=\"btn btn_red\" id=\"shutdown\">Выключить сервер</a><a href=\"#\" class=\"btn btn_red\">Назад</a>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
 define('views/AbstractScreen',[
     'app'
 ], function(
     app
 ){
     var AbstractScreen = Backbone.View.extend({
+
+        loginRequire: false,
 
         dispose: function() {
             this.hide();
@@ -13027,7 +13029,12 @@ define('models/ServerStatus',[
 
         defaults: {
             "userCount": 0,
-            "sessionCount": 0
+            "sessionCount": 0,
+            "maxMemory": 0,
+            "freeMemory": 0,
+            "allocatedMemory": 0,
+            "totalFreeMemory": 0,
+            "cpuLoad": 0
         },
 
         update: function() {
@@ -13078,6 +13085,7 @@ define('views/Admin',[
 
     var View = AbstractScreen.extend({
 
+        loginRequire: true,
         el: '.b-admin',
         template: tmpl,
         templateArg: ServerStatus,
@@ -13193,7 +13201,7 @@ define('models/SnakePartArc',[
             this._correct = (clockwise)?2.0/r:-2.0/r;
             this.correct = 0;
 		},
-		applyUpdate: function(arc){
+		applyUpdate: function(arc) {
 		    this.update(arc.x, arc.y, arc.radius, arc.angle, arc.angle2, arc.lineRadius, arc.clockwise);
 
 		},
@@ -13567,8 +13575,8 @@ define('models/Snake',[
 			this.foreCtx.arc(this.x, this.y, this.radius, 0, 2*Math.PI);
 
 			// Voloshin head
-			this.foreCtx.drawImage.apply(this.foreCtx,
-				BonusUtils.getBonusImageArgs(15, this.x, this.y));
+			//this.foreCtx.drawImage.apply(this.foreCtx,
+			//	BonusUtils.getBonusImageArgs(15, this.x, this.y));
 			
 			this.foreCtx.fill();
 			this.prevX = this.x; this.prevY = this.y; this.prevRadius = this.radius;
@@ -13828,7 +13836,6 @@ define('utils/api/ws/api_ws',[
         WS_URL: 'ws://' + location.host + '/socket/',
 
         READY_CODE: 3,
-        
         EVENT_CODE: 6,
         UPDATE_PATCH_CODE : 15,
         currentApi: null,
@@ -13861,7 +13868,8 @@ define('utils/api/ws/api_ws',[
         },
 
         onClose: function(code) {
-            console.log("CLOSE CODE: " + JSON.stringify(code));
+            console.log("CLOSE SOCKET:");
+            console.log(code);
         },
 
         onError: function(error) {
@@ -13949,7 +13957,7 @@ define('models/Bonus',[
                             }
                             setTimeout(function(){
                                 for(var i = 0; i < snakes.length; i++){
-                                    if(true || i != eater_id) snakes[i].reverse();
+                                    if(i != eater_id) snakes[i].reverse();
                                 }
                             },5000 );
                         }
@@ -14324,7 +14332,7 @@ define('models/GameField',[
     return GameField;
 });
 
-define('tmpl/components/game-scoreboard',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;var i,__fest_to0,__fest_iterator0;try{__fest_iterator0=json.arg.models || [];__fest_to0=__fest_iterator0.length;}catch(e){__fest_iterator0=[];__fest_to0=0;__fest_log_error(e.message);}for(i=0;i<__fest_to0;i++){__fest_buf+=("<div class=\"game-rating-item\">");try{__fest_attrs[0]=__fest_escapeHTML(json.arg.models[i].get('avatar'))}catch(e){__fest_attrs[0]=""; __fest_log_error(e.message);}__fest_buf+=("<img src=\"" + __fest_attrs[0] + "\" class=\"game-rating-item__photo\"/><div class=\"game-rating-item__name\">");try{__fest_buf+=(json.arg.models[i].get('first_name'))}catch(e){__fest_log_error(e.message + "11");}__fest_buf+=(" ");try{__fest_buf+=(json.arg.models[i].get('last_name'))}catch(e){__fest_log_error(e.message + "15");}__fest_buf+=("</div><div class=\"game-rating-item__point\">");try{__fest_buf+=(json.arg.models[i].get('points'))}catch(e){__fest_log_error(e.message + "21");}__fest_buf+=("</div></div>");}__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
+define('tmpl/components/game-scoreboard',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;var i,__fest_to0,__fest_iterator0;try{__fest_iterator0=json.arg.models || [];__fest_to0=__fest_iterator0.length;}catch(e){__fest_iterator0=[];__fest_to0=0;__fest_log_error(e.message);}for(i=0;i<__fest_to0;i++){__fest_buf+=("<div class=\"game-rating-item\">");try{__fest_attrs[0]=__fest_escapeHTML(json.arg.models[i].get('avatar'))}catch(e){__fest_attrs[0]=""; __fest_log_error(e.message);}__fest_buf+=("<img src=\"" + __fest_attrs[0] + "\" class=\"game-rating-item__photo\"/><div class=\"game-rating-item__name\">");try{__fest_buf+=(json.arg.models[i].get('first_name'))}catch(e){__fest_log_error(e.message + "11");}__fest_buf+=(" ");try{__fest_buf+=(json.arg.models[i].get('last_name'))}catch(e){__fest_log_error(e.message + "15");}__fest_buf+=("</div>");try{__fest_attrs[0]=__fest_escapeHTML(json.arg.models[i].get('color'))}catch(e){__fest_attrs[0]=""; __fest_log_error(e.message);}__fest_buf+=("<div class=\"game-rating-item__point\" style=\"color: " + __fest_attrs[0] + ";\">");try{__fest_buf+=(json.arg.models[i].get('points'))}catch(e){__fest_log_error(e.message + "21");}__fest_buf+=("</div></div>");}__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
 define('models/GameScore',[
 ], function() {
     var Score = Backbone.Model.extend({
@@ -14425,6 +14433,7 @@ define('views/Game',[
 ){
     var View = AbstractScreen.extend({
 
+        loginRequire: true,
         el: '.b-game',
         template: tmpl,
 
@@ -14447,9 +14456,6 @@ define('views/Game',[
 
         onGameOver: function(msg) {
             this.field.onGameOver(msg);
-
-            console.log("GAMEOVERGAMEOVERGAMEOVERGAMEOVERGAMEOVERGAMEOVERGAMEOVER");
-            console.log(msg);
 
             var players = msg.results;
             var selfPoints = 0;
@@ -14502,24 +14508,31 @@ define('views/Game',[
 					this.field.rightDown(sender);
 				}
 			}
-		},	
+		},
+
+        Q_BUTTON: 81,
+        W_BUTTON: 87,
+        LEFT_BUTTON: 37,
+        RIGHT_BUTTON: 39,
 
         keyDown: function (e) {
 
+            console.log("KEYUP: " + e.keyCode);
+
             switch(e.keyCode) {
-                case 32:
-                    this.playPause();
-                    break;
-                case 81:
+
+                case this.Q_BUTTON:
+                case this.LEFT_BUTTON:
                     if(this.leftRepeat) break;
                     this.leftRepeat = true;
                     Api.sendKeyEvent(true, false);
                     this.field.leftDown(this.myId);
                     e.preventDefault();
                     break;
-                case 87:
-                    if(this.rightRepeat) break;
 
+                case this.W_BUTTON:
+                case this.RIGHT_BUTTON:
+                    if(this.rightRepeat) break;
                     this.rightRepeat = true;
                     Api.sendKeyEvent(false, false);
                     this.field.rightDown(this.myId);
@@ -14530,14 +14543,20 @@ define('views/Game',[
 
         keyUp: function(e) {
 
+            console.log("KEYDOWN: " + e.keyCode);
+
             switch(e.keyCode) {
-                case 81:
+
+                case this.Q_BUTTON:
+                case this.LEFT_BUTTON:
                     this.leftRepeat = false;
                     Api.sendKeyEvent(true, true);
                     this.field.leftUp(this.myId);
                     e.preventDefault();
                     break;
-                case 87:
+
+                case this.W_BUTTON:
+                case this.RIGHT_BUTTON:
                     this.rightRepeat = false;
                     Api.sendKeyEvent(false, true);
                     this.field.rightUp(this.myId);
@@ -15131,7 +15150,7 @@ define('views/Login',[
 
     return View;
 });
-define('tmpl/main',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<div class=\"title\">Меню</div>");try{__fest_if=json.app.session.get('loggedIn')}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<a href=\"#room\" class=\"btn btn_blue\">Начать</a><a href=\"#scoreboard\" class=\"btn btn_blue\">Рейтинги</a><div class=\"btn btn_blue js-logout\">Выйти</div>");}try{__fest_if=!json.app.session.get('loggedIn')}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<a href=\"#login\" class=\"btn btn_blue\">Войти</a><a href=\"#scoreboard\" class=\"btn btn_blue\">Рейтинги</a>");}__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
+define('tmpl/main',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<div class=\"logo\">Kurve</div><div class=\"menu-card\"><div class=\"title\">Меню</div>");try{__fest_if=json.app.session.get('loggedIn')}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<a href=\"#room\" class=\"btn btn_blue\">Начать</a><a href=\"#scoreboard\" class=\"btn btn_blue\">Рейтинги</a><div class=\"btn btn_blue js-logout\">Выйти</div>");}try{__fest_if=!json.app.session.get('loggedIn')}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<a href=\"#login\" class=\"btn btn_blue\">Войти</a><a href=\"#scoreboard\" class=\"btn btn_blue\">Рейтинги</a>");}__fest_buf+=("</div><div class=\"ssk-group ssk-count ssk-center\"><a href=\"\" class=\"ssk ssk-facebook\"></a><a href=\"\" class=\"ssk ssk-twitter\"></a><a href=\"\" class=\"ssk ssk-google-plus\"></a><a href=\"\" class=\"ssk ssk-vk\"></a><a href=\"\" class=\"ssk ssk-linkedin\"></a></div><script>SocialShareKit.init();</script>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
 define('models/User',[
 ], function(
 ){
@@ -15181,7 +15200,7 @@ define('views/Main',[
 
     return View;
 });
-define('tmpl/room',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<div class=\"title\">Участники комнаты</div><div class=\"b-room__container-players js-container-players\"></div><div style=\"clear: both;\"></div><div class=\"btn btn_blue js-ready-button\">Готов</div><div class=\"btn btn_red js-back-button\">Назад</div>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
+define('tmpl/room',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<div class=\"title\">Участники комнаты</div><div class=\"b-room__help\">Для управления змейкой, используйте стрелки или клавиши «Q» и «W»</div><div class=\"b-room__container-players js-container-players\"></div><div style=\"clear: both;\"></div><div class=\"btn btn_blue js-ready-button\">Готов</div><div class=\"btn btn_red js-back-button\">Назад</div>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
 define('models/Player',[
 ], function(){
 
@@ -15353,6 +15372,7 @@ define('views/Room',[
 ){
     var View = AbstractScreen.extend({
 
+        loginRequire: true,
         el: '.js-room',
         playersContainer: null,
         template: tmpl,
@@ -15477,7 +15497,7 @@ define('collections/Scores',[
         }
     });
 
-    return new Collection();
+    return Collection;
 });
 define('views/Scoreboard',[
     'app',
@@ -15488,17 +15508,18 @@ define('views/Scoreboard',[
     app,
     tmpl,
     Abstract,
-    Collect
+    Scores
 ){
 
     var View = Abstract.extend({
 
         el: '.js-rating',
         template: tmpl,
-        collection: Collect,
-        templateArg: Collect,
+        collection: new Scores(),
+        templateArg: null,
 
         initialize: function () {
+            this.templateArg = this.collection;
             this.listenTo(this.collection, 'scores_loaded', this.onLoad);
         },
 
@@ -15527,6 +15548,7 @@ define('views/Controller',[
 ){
     var View = AbstractScreen.extend({
 
+        loginRequire: true,
         el: '.b-controller',
         template: tmpl,
         templateArg: User,
@@ -15625,14 +15647,25 @@ define('views/ViewManager',[
 
         displayView: function(viewKey) {
 
-            if(this.currentView != null) {
-                this.currentView.dispose();
-            }
-
             var view = this.views[viewKey];
-            view.load();
 
-            this.currentView = view;
+            if(view.loginRequire == true &&
+                app.session.get('loggedIn') == false) {
+
+                if(this.currentView != null) {
+                    app.notify.notify("Вы должны быть авторизованны для перехода на эту страницу",
+                        app.notify.notify.ERROR_STATUS);
+                }
+                this.navigateToMain();
+
+            } else {
+
+                if (this.currentView != null) {
+                    this.currentView.dispose();
+                }
+                view.load();
+                this.currentView = view;
+            }
         },
 
         startGame: function(options) {
@@ -15958,6 +15991,8 @@ define('views/components/notify',[
 
     var Notify = Backbone.View.extend({
 
+        ERROR_STATUS: 'error',
+
         initialize: function () {
             this.listenTo(app.notify, 'notify', this.showMessage);
         },
@@ -16109,9 +16144,7 @@ define('models/Session',[
 });
 
 define('models/NotifyManager',[
-    'app'
 ], function(
-    app
 ){
 
     var NotifyManager = Backbone.Model.extend({

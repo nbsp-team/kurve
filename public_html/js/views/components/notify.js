@@ -8,6 +8,8 @@ define([
 
     var Notify = Backbone.View.extend({
 
+        ERROR_STATUS: 'error',
+
         initialize: function () {
             this.listenTo(app.notify, 'notify', this.showMessage);
         },

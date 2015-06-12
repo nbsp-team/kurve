@@ -1,16 +1,32 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
 
-    <div class="title"> Меню </div>
+    <div class="logo"> Kurve </div>
 
-    <fest:if test="json.app.session.get('loggedIn')">
-        <a href="#room" class="btn btn_blue"> Начать </a>
-        <a href="#scoreboard" class="btn btn_blue"> Рейтинги </a>
-        <div class="btn btn_blue js-logout"> Выйти </div>
-    </fest:if>
+    <div class="menu-card">
+        <div class="title"> Меню </div>
 
-    <fest:if test="!json.app.session.get('loggedIn')">
-        <a href="#login" class="btn btn_blue"> Войти </a>
-        <a href="#scoreboard" class="btn btn_blue"> Рейтинги </a>
-    </fest:if>
+        <fest:if test="json.app.session.get('loggedIn')">
+            <a href="#room" class="btn btn_blue"> Начать </a>
+            <a href="#scoreboard" class="btn btn_blue"> Рейтинги </a>
+            <div class="btn btn_blue js-logout"> Выйти </div>
+        </fest:if>
+
+        <fest:if test="!json.app.session.get('loggedIn')">
+            <a href="#login" class="btn btn_blue"> Войти </a>
+            <a href="#scoreboard" class="btn btn_blue"> Рейтинги </a>
+        </fest:if>
+    </div>
+
+    <div class="ssk-group ssk-count ssk-center">
+        <a href="" class="ssk ssk-facebook"> </a>
+        <a href="" class="ssk ssk-twitter"> </a>
+        <a href="" class="ssk ssk-google-plus"> </a>
+        <a href="" class="ssk ssk-vk"> </a>
+        <a href="" class="ssk ssk-linkedin"> </a>
+    </div>
+
+    <script>
+        SocialShareKit.init();
+    </script>
 
 </fest:template>

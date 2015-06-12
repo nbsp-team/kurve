@@ -1,4 +1,14 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:600,800,400&subset=latin,cyrillic);
+@font-face {
+  font-family: 'Ostrich-Sans-Rounded';
+  src: url("/../../fonts/ostrich-sans-rounded.woff") format("woff"), url("/../../fonts/ostrich-sans-rounded.ttf") format("truetype"); }
+
+@font-face {
+  font-family: 'social-share-kit';
+  src: url("/../../fonts/social-share-kit.woff") format("woff"), url("/../../fonts/social-share-kit.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+
 * {
   margin: 0;
   padding: 0; }
@@ -12,7 +22,7 @@ body {
 .right {
   float: right; }
 
-.dashed, .b-admin:before, .b-room:before, .b-game__game-container:before, .b-game__ratings-card:before, .b-login:before, .b-menu:before, .b-rating:before, .b-register:before {
+.dashed, .menu-card:before, .b-admin:before, .b-room:before, .b-game__game-container:before, .b-game__ratings-card:before, .b-login:before, .b-rating:before, .b-register:before {
   content: '';
   position: absolute;
   z-index: -1;
@@ -51,6 +61,27 @@ body {
     box-shadow: 0 1px 0 0; }
   .btn:focus {
     outline: none; }
+
+.logo {
+  font-family: Ostrich-Sans-Rounded,serif;
+  font-size: 150px;
+  color: #3C93D5;
+  margin-top: 35px;
+  text-align: center; }
+
+.menu-card {
+  overflow: hidden;
+  margin-top: 10px;
+  position: relative;
+  background-color: white;
+  box-shadow: 0 2px 4px 0 rgba(50, 50, 50, 0.3);
+  width: 500px;
+  margin-left: 50%;
+  left: -250px;
+  border-radius: 5px;
+  z-index: 0;
+  padding-bottom: 27px;
+  margin-bottom: 20px; }
 
 .controller-btn {
   cursor: pointer;
@@ -118,6 +149,12 @@ body {
   margin-bottom: 50px; }
   .b-room .b-room__container-players {
     min-height: 400px; }
+  .b-room__help {
+    text-align: center;
+    font-family: arial;
+    color: #777;
+    margin-top: -10px;
+    margin-bottom: 15px; }
 
 .b-game {
   position: relative;
@@ -157,20 +194,6 @@ body {
 .b-login {
   overflow: hidden;
   margin-top: 30px;
-  position: absolute;
-  background-color: white;
-  box-shadow: 0 2px 4px 0 rgba(50, 50, 50, 0.3);
-  width: 500px;
-  margin-left: 50%;
-  left: -250px;
-  border-radius: 5px;
-  z-index: 0;
-  padding-bottom: 27px;
-  margin-bottom: 50px; }
-
-.b-menu {
-  overflow: hidden;
-  margin-top: 50px;
   position: absolute;
   background-color: white;
   box-shadow: 0 2px 4px 0 rgba(50, 50, 50, 0.3);
@@ -458,7 +481,7 @@ body {
   .game-rating-item__name {
     color: #444;
     text-overflow: ellipsis;
-    font-family: arial;
+    font-family: 'Open Sans', Arial;
     float: left;
     width: 60%;
     margin-left: 15px;
@@ -477,8 +500,9 @@ body {
     font-size: 20px;
     margin-right: 10px;
     color: #555;
-    font-family: arial;
-    line-height: 40px; }
+    font-family: 'Open Sans', Arial, serif;
+    line-height: 40px;
+    font-weight: 600; }
 
 .rating-item {
   width: 80%;
