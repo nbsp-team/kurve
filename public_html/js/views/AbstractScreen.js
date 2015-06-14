@@ -22,6 +22,8 @@ define([
 
         render: function () {
 
+            console.log(this.templateArg);
+
             this.$el.html(this.template({
                     'app': app,
                     'arg': this.templateArg
