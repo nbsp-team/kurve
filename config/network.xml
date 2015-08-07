@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<configuration>
-    <network>
-        <port>9081</port>
-        <host>0.0.0.0</host>
-        <domain>kurve.ml</domain>
-    </network>
-</configuration>
