@@ -367,7 +367,7 @@ ws.onmessage = function (e) {
 
 ##### Получить список комнат
 ```
-POST /api/v1/rooms/
+GET /api/v1/rooms/
 ```
 Параметры (необязательно):
   - **offset** - смещение
