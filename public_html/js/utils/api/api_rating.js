@@ -15,6 +15,7 @@ define([
             loadRating: function() {
                 var def = $.Deferred();
                 var post = $.get(LOAD_RATING_URL);
+
                 post.done(function(data) {
                     if(data.error == null) {
                         def.resolve(data.response.rating);
@@ -22,9 +23,11 @@ define([
                         def.reject(data.error.description);
                     }
                 });
+
                 post.fail(function() {
                     def.reject("Ошибка подключения");
                 });
+
                 return def;
             }
         }
