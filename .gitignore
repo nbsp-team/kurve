@@ -1,6 +1,7 @@
 node_modules
 .sass-cache
 logs/
+config/
 
 ### Intellij ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm

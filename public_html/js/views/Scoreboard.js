@@ -2,12 +2,14 @@ define([
     'app',
     'tmpl/scoreboard',
     'views/AbstractScreen',
-    'collections/Scores'
+    'collections/Scores',
+    'collections/RoomList'
 ], function(
     app,
     tmpl,
     Abstract,
-    Scores
+    Scores,
+    RoomList
 ){
 
     var View = Abstract.extend({
@@ -28,6 +30,10 @@ define([
 
         load: function() {
             this.collection.fetch();
+
+            var lol = new RoomList();
+            console.log("qweqwe");
+            lol.fetch();
         }
     });
 

@@ -13289,6 +13289,7 @@ define('utils/api/api_rating',[
             loadRating: function() {
                 var def = $.Deferred();
                 var post = $.get(LOAD_RATING_URL);
+
                 post.done(function(data) {
                     if(data.error == null) {
                         def.resolve(data.response.rating);
@@ -13296,9 +13297,11 @@ define('utils/api/api_rating',[
                         def.reject(data.error.description);
                     }
                 });
+
                 post.fail(function() {
                     def.reject("Ошибка подключения");
                 });
+
                 return def;
             }
         }
@@ -13342,6 +13345,58 @@ define('utils/api/api_other',[
     })();
 });
 
+define('utils/api/api_room',[
+    'jquery'
+], function($) {
+
+    return (function() {
+
+        var GET_ROOMS_URL = '/api/v1/rooms/';
+        var CREATE_ROOM_URL = '/api/v1/rooms/create';
+
+        return {
+            getRooms: function() {
+                var def = $.Deferred();
+                var req = $.get(GET_ROOMS_URL);
+
+                req.done(function(data) {
+                    if(data.error == null) {
+                        def.resolve(data.response);
+                    } else {
+                        def.reject(data.error.description);
+                    }
+                });
+
+                req.fail(function() {
+                    def.reject("Ошибка подключения");
+                });
+                return def;
+            },
+
+            // type - private or public
+            createRoom: function(type) {
+                var def = $.Deferred();
+                var post = $.post(CREATE_ROOM_URL, {type: type});
+
+                post.done(function(data) {
+                    if(data.error == null) {
+                        def.resolve(data.response);
+                    } else {
+                        def.reject(data.error.description);
+                    }
+                });
+
+                post.fail(function() {
+                    def.reject("Ошибка подключения");
+                });
+                return def;
+            }
+        };
+    })();
+});
+
+
+
 define('utils/storage/form_storage',[], function() {
 
     return function(key) {
@@ -13373,6 +13428,7 @@ define('app',[
         "utils/api/api_auth",
         "utils/api/api_rating",
         "utils/api/api_other",
+        "utils/api/api_room",
         "utils/storage/form_storage"
     ],
     function(
@@ -13383,6 +13439,7 @@ define('app',[
         ApiAuth,
         ApiRating,
         ApiOther,
+        ApiRoom,
         FormStorage
     ) {
         var app = {
@@ -13390,7 +13447,8 @@ define('app',[
                 "auth": ApiAuth,
                 "admin": ApiAdmin,
                 "rating": ApiRating,
-                "other": ApiOther
+                "other": ApiOther,
+                "room": ApiRoom
             },
 
             "storage": {
@@ -13399,7 +13457,7 @@ define('app',[
             },
 
             "config": {
-                "domain": "kurve.ml"
+                "domain": "127.0.0.1:9081"
             }
         };
 
@@ -15933,16 +15991,94 @@ define('collections/Scores',[
 
     return Collection;
 });
+define('models/Room',[
+], function(){
+
+    var Room = Backbone.Model.extend({
+        defaults: {
+            "room_id": "",
+            "creation_date": 0,
+            "owner_user_id": "",
+            capacity: 0,
+            "players": []
+        }
+    });
+
+    return Room;
+});
+
+define('syncs/RoomsSync',[
+    'app'
+], function(
+    app
+) {
+
+    return function(method, collection, options) {
+
+        var methods = {
+
+            'read': {
+                send: function() {
+                    // Тут в зависимости от данных может быть что-то другое.
+                    this.loadData();
+                },
+
+                loadData: function() {
+                    console.log("start");
+                    app.api.room.getRooms().then(
+                        this.successLoadingHandler,
+                        this.errorLoadingHandler
+                    );
+                },
+
+                successLoadingHandler: function(data) {
+                    collection.set(data.rooms);
+                    console.log(collection);
+                    collection.trigger("rooms_load:ok");
+                },
+
+                errorLoadingHandler: function(message) {
+                    console.log("error");
+                    collection.trigger('ratingLoad:error', message);
+                }
+            },
+            'create': {},
+            'update': {},
+            'delete': {}
+        };
+
+        return methods[method].send();
+    };
+});
+
+define('collections/RoomList',[
+    'models/Room',
+    'syncs/RoomsSync'
+], function(
+    Room,
+    RoomsSync
+){
+    var Collection = Backbone.Collection.extend({
+        model: Room,
+        sync: RoomsSync,
+
+        initialize: function () {}
+    });
+
+    return Collection;
+});
 define('views/Scoreboard',[
     'app',
     'tmpl/scoreboard',
     'views/AbstractScreen',
-    'collections/Scores'
+    'collections/Scores',
+    'collections/RoomList'
 ], function(
     app,
     tmpl,
     Abstract,
-    Scores
+    Scores,
+    RoomList
 ){
 
     var View = Abstract.extend({
@@ -15963,6 +16099,10 @@ define('views/Scoreboard',[
 
         load: function() {
             this.collection.fetch();
+
+            var lol = new RoomList();
+            console.log("qweqwe");
+            lol.fetch();
         }
     });
 
