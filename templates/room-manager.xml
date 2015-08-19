@@ -22,13 +22,13 @@
 
                         <div class="room-item__name">
                             <fest:value output="text">
-                                json.arg.models[i].get('owner').first_name + " " + json.arg.models[i].get('owner').last_name;
+                                json.arg.models[i].get('name');
                             </fest:value>
 
                             <fest:space/>
 
                             <fest:value output="text">
-                                json.arg.models[i].get('creation_date');
+                                json.arg.models[i].get('owner').first_name + " " + json.arg.models[i].get('owner').last_name;
                             </fest:value>
                         </div>
 

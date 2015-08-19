@@ -29,10 +29,15 @@ define([
         },
 
         createRoom: function() {
+
+            var self = this;
+
             app.api.room.createRoom(this.model.toJSON()).then(
                 function(data) {
                     console.log(data);
+                    self.$el.removeClass('is-visible');
                 },
+
                 function(error) {
                     console.error(error);
                 }
