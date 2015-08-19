@@ -380,12 +380,19 @@ GET /api/v1/rooms/
     "error": null,
     "response": {
         "rooms": [{
-            "room_id": "m8agp4",
-            "creation_date": 1439143149489,
-            "owner_user_id": "55c79496d4c6708b76a858f1",
+            "room_id": "herrw5",
+            "creation_date": 1440002912258,
+            "capacity": 6,
+            "owner": {
+                "user_id": "55d4ae4330045f9f5396854d",
+                "first_name": "Gennaro",
+                "last_name": "Rempel",
+                "avatar": "http://api.adorable.io/avatars/200/d1d26415-0362-44c9-b395-71a14bd6eb82",
+                "global_rating": 0
+            },
             "players": []
         }, {
-            "room_id": "806793",
+            "room_id": "tr0a93",
             "creation_date": 1439143069415,
             "owner_user_id": "55c79496d4c6708b76a858f1",
             "players": []
