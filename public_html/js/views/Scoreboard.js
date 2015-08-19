@@ -30,10 +30,6 @@ define([
 
         load: function() {
             this.collection.fetch();
-
-            var lol = new RoomList();
-            console.log("qweqwe");
-            lol.fetch();
         }
     });
 

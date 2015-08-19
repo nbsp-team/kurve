@@ -1,7 +1,7 @@
-module.exports = function (grunt) {
+module.exports = function(grunt) {
 
     grunt.initConfig({
-     
+
         shell: {
             options: {
                 stdout: true,
@@ -23,10 +23,11 @@ module.exports = function (grunt) {
                     dest: 'public_html/js/tmpl'
                 }],
                 options: {
-                    template: function (data) {
+                    template: function(data) {
                         return grunt.template.process(
-                            'define(function () { return <%= contents %> ; });',
-                            {data: data}
+                            'define(function () { return <%= contents %> ; });', {
+                                data: data
+                            }
                         );
                     }
                 }
@@ -36,7 +37,7 @@ module.exports = function (grunt) {
             build: {
                 options: {
                     almond: true,
-                    baseUrl: "public_html/js",                    
+                    baseUrl: "public_html/js",
                     mainConfigFile: "public_html/js/config.js",
                     name: "main",
                     optimize: "none",
@@ -48,10 +49,10 @@ module.exports = function (grunt) {
             build: {
                 separator: ';\n',
                 src: [
-                      'public_html/js/lib/almond.js',
-                      'public_html/js/build/build-requirejs.js'
+                    'public_html/js/lib/almond.js',
+                    'public_html/js/build/build-requirejs.js'
                 ],
-                dest: 'public_html/js/build/build-concat.js'
+                dest: 'public_html/js/build/build.min.js'
             }
         },
         uglify: {
@@ -61,7 +62,7 @@ module.exports = function (grunt) {
                 }
             }
         },
-        
+
         concurrent: {
             target: ['shell:runServer'],
             options: {
@@ -72,19 +73,19 @@ module.exports = function (grunt) {
         clean: ["public_html/css/build"],
 
         sass: {
-			dist: {
-				options: {
-					update: true
-				},
-				files: [{
-					expand: true,
-					cwd: 'blocks',
-					src: ['project-styles.scss'],
-					dest: 'public_html/css/build/',
-					ext: '.css'
-				}]
-			}
-		},
+            dist: {
+                options: {
+                    update: true
+                },
+                files: [{
+                    expand: true,
+                    cwd: 'blocks',
+                    src: ['project-styles.scss'],
+                    dest: 'public_html/css/build/',
+                    ext: '.css'
+                }]
+            }
+        },
 
         concat_css: {
             all: {
@@ -103,24 +104,31 @@ module.exports = function (grunt) {
                     'public_html/css/build/style.min.css': ['public_html/css/build/style.css']
                 }
             }
+        },
+
+        watch: {
+            options: {
+                livereload: true,
+            },
+            files: ['**/*'],
+            tasks: ['dev'],
         }
     });
-    
+
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-shell');
     grunt.loadNpmTasks('grunt-fest');
-	grunt.loadNpmTasks('grunt-sass');
+    grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-concat-css');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-clean');
 
-    grunt.registerTask('default', ['clean', 'sass', 'concat_css', 'cssmin', 'fest', 'requirejs', 'concat', 'uglify', 'concurrent']);
+    grunt.registerTask('default', ['clean', 'sass', 'concat_css', 'cssmin', 'fest', 'requirejs', 'concat']);
+    grunt.registerTask('dev', ['clean', 'sass', 'concat_css', 'cssmin', 'fest', 'requirejs', 'concat', 'concurrent']);
     grunt.registerTask('build', ['clean', 'sass', 'concat_css', 'cssmin', 'fest', 'requirejs', 'concat', 'uglify', 'shell:buildServer']);
-    grunt.registerTask('buildAllAndRun', ['shell:buildServer', 'concurrent']);
-    grunt.registerTask('buildAndRun', ['shell:buildServer', 'shell:runServer']);
     grunt.registerTask('run', ['shell:runServer']);
 };

@@ -13376,6 +13376,7 @@ define('utils/api/api_room',[
             // type - private or public
             createRoom: function(type) {
                 var def = $.Deferred();
+                var type = type || "public";
                 var post = $.post(CREATE_ROOM_URL, {type: type});
 
                 post.done(function(data) {
@@ -15642,7 +15643,7 @@ define('views/Login',[
 
     return View;
 });
-define('tmpl/main',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<div class=\"logo\">Kurve</div><div class=\"menu-card\"><div class=\"title\">Меню</div>");try{__fest_if=json.app.session.get('loggedIn')}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<a href=\"#room\" class=\"btn btn_blue\">Начать</a><a href=\"#scoreboard\" class=\"btn btn_blue\">Рейтинги</a><div class=\"btn btn_blue js-logout\">Выйти</div>");}try{__fest_if=!json.app.session.get('loggedIn')}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<a href=\"#login\" class=\"btn btn_blue\">Войти</a><a href=\"#scoreboard\" class=\"btn btn_blue\">Рейтинги</a>");}__fest_buf+=("</div><div class=\"ssk-group ssk-count ssk-center\"><a href=\"\" class=\"ssk ssk-facebook\"></a><a href=\"\" class=\"ssk ssk-twitter\"></a><a href=\"\" class=\"ssk ssk-google-plus\"></a><a href=\"\" class=\"ssk ssk-vk\"></a><a href=\"\" class=\"ssk ssk-linkedin\"></a></div><script>SocialShareKit.init();</script>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
+define('tmpl/main',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<div class=\"logo\">Kurve</div><div class=\"menu-card\"><div class=\"title\">Меню</div>");try{__fest_if=json.app.session.get('loggedIn')}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<a href=\"#rooms\" class=\"btn btn_blue\">Начать</a><a href=\"#scoreboard\" class=\"btn btn_blue\">Рейтинги</a><div class=\"btn btn_blue js-logout\">Выйти</div>");}try{__fest_if=!json.app.session.get('loggedIn')}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<a href=\"#login\" class=\"btn btn_blue\">Войти</a><a href=\"#scoreboard\" class=\"btn btn_blue\">Рейтинги</a>");}__fest_buf+=("</div><div class=\"ssk-group ssk-count ssk-center\"><a href=\"\" class=\"ssk ssk-facebook\"></a><a href=\"\" class=\"ssk ssk-twitter\"></a><a href=\"\" class=\"ssk ssk-google-plus\"></a><a href=\"\" class=\"ssk ssk-vk\"></a><a href=\"\" class=\"ssk ssk-linkedin\"></a></div><script>SocialShareKit.init();</script>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
 define('models/User',[
 ], function(
 ){
@@ -15824,7 +15825,6 @@ define('views/components/room-player',[
             ));
             this.readyBlock = this.$el.children('.js-photo-container')
                 .children('.js-ready');
-
             var color = hexToRgb(this.model.get("color"));
 
             this.readyBlock.css(
@@ -15917,7 +15917,7 @@ define('views/Room',[
     return View;
 });
 
-define('tmpl/scoreboard',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<div class=\"title\">Рейтинги</div>");try{__fest_if=!json.arg.models.length}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<div class=\"b-rating__empty-big-message\">Здесь пока пусто</div><div class=\"b-rating__empty-small-message\">У тебя есть шанс стать первым</div>");}try{__fest_if=json.arg.models.length}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<ul class=\"rating-items-list\">");var i,__fest_to0,__fest_iterator0;try{__fest_iterator0=json.arg.models || [];__fest_to0=__fest_iterator0.length;}catch(e){__fest_iterator0=[];__fest_to0=0;__fest_log_error(e.message);}for(i=0;i<__fest_to0;i++){__fest_buf+=("<li><div class=\"rating-item\">");try{__fest_attrs[0]=__fest_escapeHTML(json.arg.models[i].get('avatar'))}catch(e){__fest_attrs[0]=""; __fest_log_error(e.message);}__fest_buf+=("<img src=\"" + __fest_attrs[0] + "\" class=\"rating-item__photo\"/><div class=\"rating-item__name\">");try{__fest_buf+=(json.arg.models[i].get('first_name'))}catch(e){__fest_log_error(e.message + "25");}__fest_buf+=(" ");try{__fest_buf+=(json.arg.models[i].get('last_name'))}catch(e){__fest_log_error(e.message + "31");}__fest_buf+=("</div><div class=\"rating-item__point\">");try{__fest_buf+=(json.arg.models[i].get('global_rating'))}catch(e){__fest_log_error(e.message + "37");}__fest_buf+=("</div></div></li>");}__fest_buf+=("</ul>");}__fest_buf+=("<a href=\"#\" class=\"btn btn_red\">Назад</a>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
+define('tmpl/room-manager',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<div class=\"title\">Комнаты</div>");try{__fest_if=!json.arg.models.length}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<div class=\"b-rating__empty-big-message\">Комнат пока нет</div><div class=\"b-rating__empty-small-message\">Создай новую комнату или попробуй обновить список</div>");}try{__fest_if=json.arg.models.length}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<ul class=\"rating-items-list\">");var i,__fest_to0,__fest_iterator0;try{__fest_iterator0=json.arg.models || [];__fest_to0=__fest_iterator0.length;}catch(e){__fest_iterator0=[];__fest_to0=0;__fest_log_error(e.message);}for(i=0;i<__fest_to0;i++){__fest_buf+=("<li><div class=\"rating-item\">");try{__fest_attrs[0]=__fest_escapeHTML(json.arg.models[i].get('avatar'))}catch(e){__fest_attrs[0]=""; __fest_log_error(e.message);}__fest_buf+=("<img src=\"" + __fest_attrs[0] + "\" class=\"rating-item__photo\"/><div class=\"rating-item__name\">");try{__fest_buf+=(json.arg.models[i].get('first_name'))}catch(e){__fest_log_error(e.message + "25");}__fest_buf+=(" ");try{__fest_buf+=(json.arg.models[i].get('last_name'))}catch(e){__fest_log_error(e.message + "31");}__fest_buf+=("</div><div class=\"rating-item__point\">");try{__fest_buf+=(json.arg.models[i].get('global_rating'))}catch(e){__fest_log_error(e.message + "37");}__fest_buf+=("</div></div></li>");}__fest_buf+=("</ul>");}__fest_buf+=("<a class=\"btn btn_blue js-create-public-room\">Создать комнату</a><a class=\"btn btn_blue js-create-private-room\">Приватная комната</a><a href=\"#\" class=\"btn btn_red\">Назад</a>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
 define('models/Score',[
 ], function(){
     var Score = Backbone.Model.extend({
@@ -16018,7 +16018,7 @@ define('syncs/RoomsSync',[
         var methods = {
 
             'read': {
-                send: function() {
+                execute: function() {
                     // Тут в зависимости от данных может быть что-то другое.
                     this.loadData();
                 },
@@ -16033,21 +16033,39 @@ define('syncs/RoomsSync',[
 
                 successLoadingHandler: function(data) {
                     collection.set(data.rooms);
-                    console.log(collection);
                     collection.trigger("rooms_load:ok");
                 },
 
                 errorLoadingHandler: function(message) {
-                    console.log("error");
-                    collection.trigger('ratingLoad:error', message);
+                    collection.trigger('rooms_load:error', message);
                 }
             },
-            'create': {},
+            'create': {
+                execute: function() {
+                    this.createPublicRoom();
+                },
+
+                createPublicRoom: function() {
+                    app.api.room.createRoom().then(
+                        this.successLoadingHandler,
+                        this.errorLoadingHandler
+                    );
+                },
+
+                successLoadingHandler: function(data) {
+                    collection.set(data.rooms);
+                    collection.trigger("room_create:ok");
+                },
+
+                errorLoadingHandler: function(message) {
+                    collection.trigger('room_create:error', message);
+                }
+            },
             'update': {},
             'delete': {}
         };
 
-        return methods[method].send();
+        return methods[method].execute();
     };
 });
 
@@ -16067,6 +16085,55 @@ define('collections/RoomList',[
 
     return Collection;
 });
+define('views/RoomManager',[
+    'app',
+    'tmpl/room-manager',
+    'views/AbstractScreen',
+    'collections/Scores',
+    'collections/RoomList'
+], function(
+    app,
+    tmpl,
+    Abstract,
+    Scores,
+    RoomList
+){
+
+    var View = Abstract.extend({
+
+        el: '.js-room-manager',
+        template: tmpl,
+        collection: new RoomList(),
+        templateArg: null,
+
+        events: {
+            'click .js-create-public-room' : 'createPublicRoom'
+        },
+
+        initialize: function () {
+            this.templateArg = this.collection;
+            this.listenTo(this.collection, 'rooms_load:ok', this.onLoad);
+            this.listenTo(this.collection, 'room_create:ok', this.load);
+            this.load();
+        },
+
+        createPublicRoom: function() {
+            this.collection.create();
+        },
+
+        onLoad: function() {
+            this.renderAndShow();
+        },
+
+        load: function() {
+            this.collection.fetch();
+            console.log(this.collection);
+        }
+    });
+
+    return View;
+});
+define('tmpl/scoreboard',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<div class=\"title\">Рейтинги</div>");try{__fest_if=!json.arg.models.length}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<div class=\"b-rating__empty-big-message\">Здесь пока пусто</div><div class=\"b-rating__empty-small-message\">У тебя есть шанс стать первым</div>");}try{__fest_if=json.arg.models.length}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<ul class=\"rating-items-list\">");var i,__fest_to0,__fest_iterator0;try{__fest_iterator0=json.arg.models || [];__fest_to0=__fest_iterator0.length;}catch(e){__fest_iterator0=[];__fest_to0=0;__fest_log_error(e.message);}for(i=0;i<__fest_to0;i++){__fest_buf+=("<li><div class=\"rating-item\">");try{__fest_attrs[0]=__fest_escapeHTML(json.arg.models[i].get('avatar'))}catch(e){__fest_attrs[0]=""; __fest_log_error(e.message);}__fest_buf+=("<img src=\"" + __fest_attrs[0] + "\" class=\"rating-item__photo\"/><div class=\"rating-item__name\">");try{__fest_buf+=(json.arg.models[i].get('first_name'))}catch(e){__fest_log_error(e.message + "25");}__fest_buf+=(" ");try{__fest_buf+=(json.arg.models[i].get('last_name'))}catch(e){__fest_log_error(e.message + "31");}__fest_buf+=("</div><div class=\"rating-item__point\">");try{__fest_buf+=(json.arg.models[i].get('global_rating'))}catch(e){__fest_log_error(e.message + "37");}__fest_buf+=("</div></div></li>");}__fest_buf+=("</ul>");}__fest_buf+=("<a href=\"#\" class=\"btn btn_red\">Назад</a>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
 define('views/Scoreboard',[
     'app',
     'tmpl/scoreboard',
@@ -16099,10 +16166,6 @@ define('views/Scoreboard',[
 
         load: function() {
             this.collection.fetch();
-
-            var lol = new RoomList();
-            console.log("qweqwe");
-            lol.fetch();
         }
     });
 
@@ -16160,6 +16223,7 @@ define('views/ViewManager',[
     'views/Login',
     'views/Main',
     'views/Room',
+    'views/RoomManager',
     'views/Scoreboard',
     'views/Controller',
     'app'
@@ -16169,6 +16233,7 @@ define('views/ViewManager',[
     Login,
     Main,
     Room,
+    RoomManager,
     Scoreboard,
     Controller,
     app
@@ -16181,6 +16246,7 @@ define('views/ViewManager',[
         LOGIN_VIEW: "login",
         MAIN_VIEW: "main",
         ROOM_VIEW: "room",
+        ROOM_MANAGER_VIEW: "room_manager",
         SCOREBOARD_VIEW: "scoreboard",
         CONTROLLER_VIEW: "controller",
 
@@ -16190,6 +16256,7 @@ define('views/ViewManager',[
             LOGIN_VIEW: null,
             MAIN_VIEW: null,
             ROOM_VIEW: null,
+            ROOM_MANAGER_VIEW: null,
             SCOREBOARD_VIEW: null,
             CONTROLLER_VIEW: null
         },
@@ -16203,6 +16270,7 @@ define('views/ViewManager',[
             this.views[this.LOGIN_VIEW] = new Login();
             this.views[this.MAIN_VIEW] = new Main();
             this.views[this.ROOM_VIEW] = new Room();
+            this.views[this.ROOM_MANAGER_VIEW] = new RoomManager();
             this.views[this.SCOREBOARD_VIEW] = new Scoreboard();
             this.views[this.CONTROLLER_VIEW] = new Controller();
 
@@ -16597,6 +16665,7 @@ define('router',[
         routes: {
             'scoreboard': 'scoreboardAction',
             'game': 'gameAction',
+            'rooms': 'roomManagerAction',
             'room': 'roomAction',
             'login': 'loginAction',
             'admin': 'adminAction',
@@ -16638,6 +16707,9 @@ define('router',[
         },
         roomAction: function () {
             this.showView(this.viewManager.ROOM_VIEW);
+        },
+        roomManagerAction: function () {
+            this.showView(this.viewManager.ROOM_MANAGER_VIEW);
         },
         loginAction: function () {
             this.showView(this.viewManager.LOGIN_VIEW);

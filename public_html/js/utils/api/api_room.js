@@ -29,6 +29,7 @@ define([
             // type - private or public
             createRoom: function(type) {
                 var def = $.Deferred();
+                var type = type || "public";
                 var post = $.post(CREATE_ROOM_URL, {type: type});
 
                 post.done(function(data) {

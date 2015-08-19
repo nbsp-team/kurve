@@ -13,6 +13,7 @@ define([
         routes: {
             'scoreboard': 'scoreboardAction',
             'game': 'gameAction',
+            'rooms': 'roomManagerAction',
             'room': 'roomAction',
             'login': 'loginAction',
             'admin': 'adminAction',
@@ -54,6 +55,9 @@ define([
         },
         roomAction: function () {
             this.showView(this.viewManager.ROOM_VIEW);
+        },
+        roomManagerAction: function () {
+            this.showView(this.viewManager.ROOM_MANAGER_VIEW);
         },
         loginAction: function () {
             this.showView(this.viewManager.LOGIN_VIEW);

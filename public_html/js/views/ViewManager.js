@@ -4,6 +4,7 @@ define([
     'views/Login',
     'views/Main',
     'views/Room',
+    'views/RoomManager',
     'views/Scoreboard',
     'views/Controller',
     'app'
@@ -13,6 +14,7 @@ define([
     Login,
     Main,
     Room,
+    RoomManager,
     Scoreboard,
     Controller,
     app
@@ -25,6 +27,7 @@ define([
         LOGIN_VIEW: "login",
         MAIN_VIEW: "main",
         ROOM_VIEW: "room",
+        ROOM_MANAGER_VIEW: "room_manager",
         SCOREBOARD_VIEW: "scoreboard",
         CONTROLLER_VIEW: "controller",
 
@@ -34,6 +37,7 @@ define([
             LOGIN_VIEW: null,
             MAIN_VIEW: null,
             ROOM_VIEW: null,
+            ROOM_MANAGER_VIEW: null,
             SCOREBOARD_VIEW: null,
             CONTROLLER_VIEW: null
         },
@@ -47,6 +51,7 @@ define([
             this.views[this.LOGIN_VIEW] = new Login();
             this.views[this.MAIN_VIEW] = new Main();
             this.views[this.ROOM_VIEW] = new Room();
+            this.views[this.ROOM_MANAGER_VIEW] = new RoomManager();
             this.views[this.SCOREBOARD_VIEW] = new Scoreboard();
             this.views[this.CONTROLLER_VIEW] = new Controller();
 

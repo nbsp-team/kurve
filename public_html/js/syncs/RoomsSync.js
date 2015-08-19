@@ -7,15 +7,13 @@ define([
     return function(method, collection, options) {
 
         var methods = {
-
             'read': {
-                send: function() {
+                execute: function() {
                     // Тут в зависимости от данных может быть что-то другое.
                     this.loadData();
                 },
 
                 loadData: function() {
-                    console.log("start");
                     app.api.room.getRooms().then(
                         this.successLoadingHandler,
                         this.errorLoadingHandler
@@ -36,6 +34,6 @@ define([
             'delete': {}
         };
 
-        return methods[method].send();
+        return methods[method].execute();
     };
 });
