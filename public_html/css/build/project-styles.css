@@ -22,7 +22,7 @@ body {
 .right {
   float: right; }
 
-.dashed, .menu-card:before, .b-admin:before, .b-room:before, .b-game__game-container:before, .b-game__ratings-card:before, .b-login:before, .b-rating:before, .b-register:before {
+.dashed, .menu-card:before, .b-admin:before, .b-room:before, .b-game__game-container:before, .b-game__ratings-card:before, .b-login:before, .b-rating:before, .b-register:before, .b-room-manager:before {
   content: '';
   position: absolute;
   z-index: -1;
@@ -346,6 +346,20 @@ body {
     display: inline-block;
     vertical-align: middle; }
 
+.b-room-manager {
+  overflow: hidden;
+  margin-top: 30px;
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 2px 4px 0 rgba(50, 50, 50, 0.3);
+  width: 800px;
+  margin-left: 50%;
+  left: -400px;
+  border-radius: 5px;
+  z-index: 0;
+  padding-bottom: 27px;
+  margin-bottom: 50px; }
+
 .card-player {
   width: 25%;
   float: left;
@@ -572,3 +586,45 @@ body {
   border-radius: 50%;
   line-height: 200px;
   font-size: 120px; }
+
+.room-item {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 10px;
+  overflow: hidden;
+  border-bottom: 1px solid #eee;
+  cursor: pointer; }
+  .room-item__name {
+    color: #444;
+    text-overflow: ellipsis;
+    font-family: arial;
+    float: left;
+    width: 60%;
+    margin-left: 15px;
+    font-size: 16px;
+    line-height: 40px;
+    white-space: nowrap;
+    overflow: hidden; }
+  .room-item__photo {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    float: left;
+    margin-left: 10px; }
+  .room-item__point {
+    float: right;
+    font-size: 20px;
+    margin-right: 10px;
+    color: #555;
+    font-family: arial;
+    line-height: 40px; }
+
+.room-item:hover {
+  background-color: #eee; }
+
+.room-items-list li {
+  display: block; }
+
+.room-items-list :last-child .room-item {
+  border-bottom: none; }

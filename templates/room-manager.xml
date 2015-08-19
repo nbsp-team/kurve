@@ -14,15 +14,15 @@
 
 
     <fest:if test="json.arg.models.length">
-        <ul class="rating-items-list">
+        <ul class="room-items-list">
             <fest:for iterate="json.arg.models" index="i">
                 <li>
-                    <div class="rating-item">
+                    <div class="room-item">
                         <img src="http://mozilla-ntu.github.io/slides/site/img/mike/aiga_waiting_room-512.png" class="rating-item__photo"/>
 
-                        <div class="rating-item__name">
+                        <div class="room-item__name">
                             <fest:value output="text">
-                                json.arg.models[i].get('room_id');
+                                json.arg.models[i].get('owner').first_name + " " + json.arg.models[i].get('owner').last_name;
                             </fest:value>
 
                             <fest:space/>
@@ -32,7 +32,11 @@
                             </fest:value>
                         </div>
 
-                        <div class="rating-item__point">
+                        <div class="room-item__point">
+                            <fest:value output="text">
+                                json.arg.models[i].get('players').length;
+                            </fest:value>
+                            /
                             <fest:value output="text">
                                 json.arg.models[i].get('capacity');
                             </fest:value>
@@ -43,8 +47,7 @@
         </ul>
     </fest:if>
 
-    <a class="btn btn_blue js-create-public-room"> Создать комнату </a>
-    <a class="btn btn_blue js-create-private-room"> Приватная комната </a>
+    <a class="btn btn_blue js-create-room"> Создать комнату </a>
 
     <a href="#" class="btn btn_red"> Назад </a>
 </fest:template>

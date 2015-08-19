@@ -10,7 +10,8 @@ require.config({
         syphon: "lib/backbone-syphon",
         notify: "lib/notify.min",
         qrcode: "lib/qrcode.min",
-        hex2rgb: "lib/hex2rgb"
+        hex2rgb: "lib/hex2rgb",
+        mvbind: "lib/mvbind"
     },
     shim: {
         'underscore': {
@@ -19,6 +20,9 @@ require.config({
         'backbone': {
             deps: ['underscore', 'jquery', 'jquery_mobile'],
             exports: 'Backbone'
+        },
+        'mvbind': {
+            deps: ['backbone']
         },
         'notify': {
             deps: ['jquery'],

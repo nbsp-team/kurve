@@ -27,10 +27,10 @@ define([
             },
 
             // type - private or public
-            createRoom: function(type) {
+            createRoom: function(data) {
                 var def = $.Deferred();
-                var type = type || "public";
-                var post = $.post(CREATE_ROOM_URL, {type: type});
+                data.type = data.type ? "private": "public";
+                var post = $.post(CREATE_ROOM_URL, data);
 
                 post.done(function(data) {
                     if(data.error == null) {

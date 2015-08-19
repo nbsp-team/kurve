@@ -2,12 +2,14 @@ define([
     'app',
     'tmpl/room-manager',
     'views/AbstractScreen',
+    'views/components/create-room-dialog',
     'collections/Scores',
     'collections/RoomList'
 ], function(
     app,
     tmpl,
     Abstract,
+    CreateRoomDialogView,
     Scores,
     RoomList
 ){
@@ -18,9 +20,10 @@ define([
         template: tmpl,
         collection: new RoomList(),
         templateArg: null,
+        createRoomDialogView: new CreateRoomDialogView(),
 
         events: {
-            'click .js-create-public-room' : 'createPublicRoom'
+            'click .js-create-room' : 'createRoom'
         },
 
         initialize: function () {
@@ -30,8 +33,9 @@ define([
             this.load();
         },
 
-        createPublicRoom: function() {
-            this.collection.createRoom("public");
+        createRoom: function() {
+            this.createRoomDialogView.showPopup();
+            //this.collection.createRoom("public");
         },
 
         onLoad: function() {

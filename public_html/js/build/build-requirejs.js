@@ -12943,10 +12943,10 @@ define('utils/api/api_room',[
             },
 
             // type - private or public
-            createRoom: function(type) {
+            createRoom: function(data) {
                 var def = $.Deferred();
-                var type = type || "public";
-                var post = $.post(CREATE_ROOM_URL, {type: type});
+                data.type = data.type ? "private": "public";
+                var post = $.post(CREATE_ROOM_URL, data);
 
                 post.done(function(data) {
                     if(data.error == null) {
@@ -15486,7 +15486,86 @@ define('views/Room',[
     return View;
 });
 
-define('tmpl/room-manager',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<div class=\"title\">Комнаты</div>");try{__fest_if=!json.arg.models.length}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<div class=\"b-rating__empty-big-message\">Комнат пока нет</div><div class=\"b-rating__empty-small-message\">Создай новую комнату или попробуй обновить список</div>");}try{__fest_if=json.arg.models.length}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<ul class=\"rating-items-list\">");var i,__fest_to0,__fest_iterator0;try{__fest_iterator0=json.arg.models || [];__fest_to0=__fest_iterator0.length;}catch(e){__fest_iterator0=[];__fest_to0=0;__fest_log_error(e.message);}for(i=0;i<__fest_to0;i++){__fest_buf+=("<li><div class=\"rating-item\"><img src=\"http:\/\/mozilla-ntu.github.io\/slides\/site\/img\/mike\/aiga_waiting_room-512.png\" class=\"rating-item__photo\"/><div class=\"rating-item__name\">");try{__fest_buf+=(json.arg.models[i].get('room_id'))}catch(e){__fest_log_error(e.message + "25");}__fest_buf+=(" ");try{__fest_buf+=(json.arg.models[i].get('creation_date'))}catch(e){__fest_log_error(e.message + "31");}__fest_buf+=("</div><div class=\"rating-item__point\">");try{__fest_buf+=(json.arg.models[i].get('capacity'))}catch(e){__fest_log_error(e.message + "37");}__fest_buf+=("</div></div></li>");}__fest_buf+=("</ul>");}__fest_buf+=("<a class=\"btn btn_blue js-create-public-room\">Создать комнату</a><a class=\"btn btn_blue js-create-private-room\">Приватная комната</a><a href=\"#\" class=\"btn btn_red\">Назад</a>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
+define('tmpl/room-manager',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<div class=\"title\">Комнаты</div>");try{__fest_if=!json.arg.models.length}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<div class=\"b-rating__empty-big-message\">Комнат пока нет</div><div class=\"b-rating__empty-small-message\">Создай новую комнату или попробуй обновить список</div>");}try{__fest_if=json.arg.models.length}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<ul class=\"room-items-list\">");var i,__fest_to0,__fest_iterator0;try{__fest_iterator0=json.arg.models || [];__fest_to0=__fest_iterator0.length;}catch(e){__fest_iterator0=[];__fest_to0=0;__fest_log_error(e.message);}for(i=0;i<__fest_to0;i++){__fest_buf+=("<li><div class=\"room-item\"><img src=\"http:\/\/mozilla-ntu.github.io\/slides\/site\/img\/mike\/aiga_waiting_room-512.png\" class=\"rating-item__photo\"/><div class=\"room-item__name\">");try{__fest_buf+=(json.arg.models[i].get('owner').first_name + " " + json.arg.models[i].get('owner').last_name)}catch(e){__fest_log_error(e.message + "25");}__fest_buf+=(" ");try{__fest_buf+=(json.arg.models[i].get('creation_date'))}catch(e){__fest_log_error(e.message + "31");}__fest_buf+=("</div><div class=\"room-item__point\">");try{__fest_buf+=(json.arg.models[i].get('players').length)}catch(e){__fest_log_error(e.message + "37");}__fest_buf+=("\/");try{__fest_buf+=(json.arg.models[i].get('capacity'))}catch(e){__fest_log_error(e.message + "41");}__fest_buf+=("</div></div></li>");}__fest_buf+=("</ul>");}__fest_buf+=("<a class=\"btn btn_blue js-create-room\">Создать комнату</a><a href=\"#\" class=\"btn btn_red\">Назад</a>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
+define('tmpl/components/create-room-dialog',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<div class=\"cd-popup-container\" style=\"padding: 80px; font-face: \'Open Sans\';\"><h2>Создание комнаты</h2><p><input class=\"js-room-name\" type=\"text\" placeholder=\"Имя комнаты\"/></p><p><label><input class=\"js-room-private\" type=\"checkbox\"/>Приватная комната</label></p><p><input class=\"js-room-create\" type=\"button\" value=\"Создать!!\"/></p><a class=\"cd-popup-close img-replace js-close-popup\">Close</a></div>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
+define('models/NewRoomBindModel',[
+], function(){
+
+    var RoomBindModel = Backbone.Model.extend({
+        defaults: {
+            "name": "",
+            "isPrivate": false
+        }
+    });
+
+    return RoomBindModel;
+});
+Backbone.View.prototype.mvbind=function(e){e=e||{},_.defaults(e,{source:"model"});var c,t,i,a,r=this.bind,n=this.model;for(var o in r)c=$(o,this.$el),t=c.prop("type"),i=c.attr("name")||"",a="[]"==i.substr(i.length-2),function(c,t,i,a,r){if(-1!=["text","number","textarea","date","radio","checkbox","hidden","select-one"].indexOf(t)){var n="";n=-1!=["radio","checkbox","select-one"].indexOf(t)?"change":"input",c.bind(n,function(){var e;switch(t){case"radio":e=c.filter(":checked").val();break;case"checkbox":r?(e=[],c.filter(":checked").each(function(){e.push($(this).val())})):e=c.prop("checked");break;default:r?(e=[],c.each(function(){e.push($(this).val())})):e=c.val()}a.set(i,e,{mvbind:!0})})}a.on("change:"+i,function(e,i,a){if(1!=a.mvbind)switch(t){case"radio":c.filter("[value="+i+"]").prop("checked",!0);break;case"checkbox":if(c.filter(":checked").prop("checked",!1),r)for(var n in i)c.filter("[value="+i[n]+"]").prop("checked",!0);else c.prop("checked",!!i);break;default:"undefined"==typeof t?c.html(i):c.val(i)}}),"model"==e.source?a.trigger("change:"+i,a,a.get(i),{}):c.trigger("change")}(c,t,r[o],n,a)};
+define("mvbind", ["backbone"], function(){});
+
+define('views/components/create-room-dialog',[
+    'app',
+    'tmpl/components/create-room-dialog',
+    'models/NewRoomBindModel',
+    'mvbind'
+], function(
+    app,
+    tmpl,
+    RoomBindModel,
+    mvbind
+){
+    var View = Backbone.View.extend({
+
+        el: '.cd-popup',
+        template: tmpl,
+        model: new RoomBindModel(),
+
+        events: {
+            'click': 'closePopup',
+            'click .js-room-create': 'createRoom'
+        },
+
+        bind:{
+            '.js-room-name': 'name',
+            '.js-room-private': 'isPrivate'
+        },
+
+        initialize: function() {
+        },
+
+        createRoom: function() {
+            app.api.room.createRoom(this.model.toJSON()).then(
+                function(data) {
+                    console.log(data);
+                },
+                function(error) {
+                    console.error(error);
+                }
+            );
+        },
+
+        showPopup: function() {
+            this.render();
+            this.mvbind();
+            this.$el.addClass('is-visible');
+        },
+
+        closePopup: function(event) {
+            if($(event.target).is('.js-close-popup') || $(event.target).is(this.el)) {
+                event.preventDefault();
+                this.$el.removeClass('is-visible');
+            }
+        },
+
+        render: function () {
+            $(this.el).html(this.template(
+                {}
+            ));
+        }
+    });
+
+    return View;
+});
 define('models/Score',[
 ], function(){
     var Score = Backbone.Model.extend({
@@ -15567,8 +15646,9 @@ define('models/Room',[
         defaults: {
             "room_id": "",
             "creation_date": 0,
-            "owner_user_id": "",
-            capacity: 0,
+            "owner": "",
+            "name": "",
+            "capacity": 0,
             "players": []
         }
     });
@@ -15654,12 +15734,14 @@ define('views/RoomManager',[
     'app',
     'tmpl/room-manager',
     'views/AbstractScreen',
+    'views/components/create-room-dialog',
     'collections/Scores',
     'collections/RoomList'
 ], function(
     app,
     tmpl,
     Abstract,
+    CreateRoomDialogView,
     Scores,
     RoomList
 ){
@@ -15670,9 +15752,10 @@ define('views/RoomManager',[
         template: tmpl,
         collection: new RoomList(),
         templateArg: null,
+        createRoomDialogView: new CreateRoomDialogView(),
 
         events: {
-            'click .js-create-public-room' : 'createPublicRoom'
+            'click .js-create-room' : 'createRoom'
         },
 
         initialize: function () {
@@ -15682,8 +15765,9 @@ define('views/RoomManager',[
             this.load();
         },
 
-        createPublicRoom: function() {
-            this.collection.createRoom("public");
+        createRoom: function() {
+            this.createRoomDialogView.showPopup();
+            //this.collection.createRoom("public");
         },
 
         onLoad: function() {

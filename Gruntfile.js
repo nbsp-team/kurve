@@ -108,10 +108,10 @@ module.exports = function(grunt) {
 
         watch: {
             options: {
-                livereload: true,
+                livereload: true
             },
             files: ['**/*'],
-            tasks: ['dev'],
+            tasks: ['dev']
         }
     });
 
