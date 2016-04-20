@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<configuration>
+    <mechanics>
+        <minPlayerNumber>2</minPlayerNumber>
+        <maxPlayerNumber>6</maxPlayerNumber>
+        <Snake>
+			<defaultSpeed>77</defaultSpeed>
+			<defaultTurnRadius>44</defaultTurnRadius>
+			<defaultWidth>8</defaultWidth>
+			<minPartLength>100</minPartLength>
+			<maxPartLength>300</maxPartLength>
+			<holeLength>20</holeLength>
+
+			<color>#F44336</color>
+			<color>#4CAF50</color>
+			<color>#2196F3</color>
+			<color>#673AB7</color>
+			<color>#E91E63</color>
+			<color>#9C27B0</color>
+		</Snake>
+		
+		<FPS>60</FPS>
+		<GameField>
+			<width>900</width>
+			<height>600</height>
+		</GameField>
+
+		<bonusRadius>24</bonusRadius>
+		<bonusSpawnProbability>240</bonusSpawnProbability>
+		<bonusProbabilities>
+			<probability>10</probability> <!-- SPEED_SELF -->
+			<probability>10</probability> <!-- THIN_SELF -->
+			<probability>10</probability> <!-- SLOW_SELF -->
+			<probability>8</probability> <!-- BIG_HOLE_SELF -->
+			<probability>8</probability> <!-- TRAVERSE_WALLS_SELF -->
+			<probability>10</probability> <!-- SHARP_CORNERS_SELF -->
+			<probability>8</probability> <!-- ERASE_SELF -->
+			<probability>12</probability> <!-- SPEED_ENEMY -->
+			<probability>12</probability> <!-- THICK_ENEMY -->
+			<probability>12</probability> <!-- SLOW_ENEMY -->
+			<probability>12</probability> <!-- REVERSE_ENEMY -->
+			<probability>12</probability> <!-- BIG_TURNS_ENEMY -->
+			<probability>8</probability> <!-- TRAVERSE_WALLS_ALL -->
+			<probability>1</probability> <!-- DEATH_ALL -->
+		</bonusProbabilities>
+
+		<gameStartCountdown>3</gameStartCountdown>
+    </mechanics>
+</configuration>

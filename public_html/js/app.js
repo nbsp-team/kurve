@@ -6,7 +6,6 @@ define([
         "utils/api/api_auth",
         "utils/api/api_rating",
         "utils/api/api_other",
-        "utils/api/api_room",
         "utils/storage/form_storage"
     ],
     function(
@@ -17,7 +16,6 @@ define([
         ApiAuth,
         ApiRating,
         ApiOther,
-        ApiRoom,
         FormStorage
     ) {
         var app = {
@@ -25,8 +23,7 @@ define([
                 "auth": ApiAuth,
                 "admin": ApiAdmin,
                 "rating": ApiRating,
-                "other": ApiOther,
-                "room": ApiRoom
+                "other": ApiOther
             },
 
             "storage": {
@@ -35,7 +32,7 @@ define([
             },
 
             "config": {
-                "domain": "127.0.0.1:9081"
+                "domain": "kurve.ml"
             }
         };
 

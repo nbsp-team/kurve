@@ -12858,7 +12858,6 @@ define('utils/api/api_rating',[
             loadRating: function() {
                 var def = $.Deferred();
                 var post = $.get(LOAD_RATING_URL);
-
                 post.done(function(data) {
                     if(data.error == null) {
                         def.resolve(data.response.rating);
@@ -12866,11 +12865,9 @@ define('utils/api/api_rating',[
                         def.reject(data.error.description);
                     }
                 });
-
                 post.fail(function() {
                     def.reject("Ошибка подключения");
                 });
-
                 return def;
             }
         }
@@ -12914,59 +12911,6 @@ define('utils/api/api_other',[
     })();
 });
 
-define('utils/api/api_room',[
-    'jquery'
-], function($) {
-
-    return (function() {
-
-        var GET_ROOMS_URL = '/api/v1/rooms/';
-        var CREATE_ROOM_URL = '/api/v1/rooms/create';
-
-        return {
-            getRooms: function() {
-                var def = $.Deferred();
-                var req = $.get(GET_ROOMS_URL);
-
-                req.done(function(data) {
-                    if(data.error == null) {
-                        def.resolve(data.response);
-                    } else {
-                        def.reject(data.error.description);
-                    }
-                });
-
-                req.fail(function() {
-                    def.reject("Ошибка подключения");
-                });
-                return def;
-            },
-
-            // type - private or public
-            createRoom: function(data) {
-                var def = $.Deferred();
-                data.type = data.type ? "private": "public";
-                var post = $.post(CREATE_ROOM_URL, data);
-
-                post.done(function(data) {
-                    if(data.error == null) {
-                        def.resolve(data.response);
-                    } else {
-                        def.reject(data.error.description);
-                    }
-                });
-
-                post.fail(function() {
-                    def.reject("Ошибка подключения");
-                });
-                return def;
-            }
-        };
-    })();
-});
-
-
-
 define('utils/storage/form_storage',[], function() {
 
     return function(key) {
@@ -12998,7 +12942,6 @@ define('app',[
         "utils/api/api_auth",
         "utils/api/api_rating",
         "utils/api/api_other",
-        "utils/api/api_room",
         "utils/storage/form_storage"
     ],
     function(
@@ -13009,7 +12952,6 @@ define('app',[
         ApiAuth,
         ApiRating,
         ApiOther,
-        ApiRoom,
         FormStorage
     ) {
         var app = {
@@ -13017,8 +12959,7 @@ define('app',[
                 "auth": ApiAuth,
                 "admin": ApiAdmin,
                 "rating": ApiRating,
-                "other": ApiOther,
-                "room": ApiRoom
+                "other": ApiOther
             },
 
             "storage": {
@@ -13027,7 +12968,7 @@ define('app',[
             },
 
             "config": {
-                "domain": "127.0.0.1:9081"
+                "domain": "kurve.ml"
             }
         };
 
@@ -15212,7 +15153,7 @@ define('views/Login',[
 
     return View;
 });
-define('tmpl/main',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<div class=\"logo\">Kurve</div><div class=\"menu-card\"><div class=\"title\">Меню</div>");try{__fest_if=json.app.session.get('loggedIn')}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<a href=\"#rooms\" class=\"btn btn_blue\">Начать</a><a href=\"#scoreboard\" class=\"btn btn_blue\">Рейтинги</a><div class=\"btn btn_blue js-logout\">Выйти</div>");}try{__fest_if=!json.app.session.get('loggedIn')}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<a href=\"#login\" class=\"btn btn_blue\">Войти</a><a href=\"#scoreboard\" class=\"btn btn_blue\">Рейтинги</a>");}__fest_buf+=("</div><div class=\"ssk-group ssk-count ssk-center\"><a href=\"\" class=\"ssk ssk-facebook\"></a><a href=\"\" class=\"ssk ssk-twitter\"></a><a href=\"\" class=\"ssk ssk-google-plus\"></a><a href=\"\" class=\"ssk ssk-vk\"></a><a href=\"\" class=\"ssk ssk-linkedin\"></a></div><script>SocialShareKit.init();</script>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
+define('tmpl/main',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<div class=\"logo\">Kurve</div><div class=\"menu-card\"><div class=\"title\">Меню</div>");try{__fest_if=json.app.session.get('loggedIn')}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<a href=\"#room\" class=\"btn btn_blue\">Начать</a><a href=\"#scoreboard\" class=\"btn btn_blue\">Рейтинги</a><div class=\"btn btn_blue js-logout\">Выйти</div>");}try{__fest_if=!json.app.session.get('loggedIn')}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<a href=\"#login\" class=\"btn btn_blue\">Войти</a><a href=\"#scoreboard\" class=\"btn btn_blue\">Рейтинги</a>");}__fest_buf+=("</div><div class=\"ssk-group ssk-count ssk-center\"><a href=\"\" class=\"ssk ssk-facebook\"></a><a href=\"\" class=\"ssk ssk-twitter\"></a><a href=\"\" class=\"ssk ssk-google-plus\"></a><a href=\"\" class=\"ssk ssk-vk\"></a><a href=\"\" class=\"ssk ssk-linkedin\"></a></div><script>SocialShareKit.init();</script>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
 define('models/User',[
 ], function(
 ){
@@ -15394,6 +15335,7 @@ define('views/components/room-player',[
             ));
             this.readyBlock = this.$el.children('.js-photo-container')
                 .children('.js-ready');
+
             var color = hexToRgb(this.model.get("color"));
 
             this.readyBlock.css(
@@ -15486,91 +15428,7 @@ define('views/Room',[
     return View;
 });
 
-define('tmpl/room-manager',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<div class=\"title\">Комнаты</div>");try{__fest_if=!json.arg.models.length}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<div class=\"b-rating__empty-big-message\">Комнат пока нет</div><div class=\"b-rating__empty-small-message\">Создай новую комнату или попробуй обновить список</div>");}try{__fest_if=json.arg.models.length}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<ul class=\"room-items-list\">");var i,__fest_to0,__fest_iterator0;try{__fest_iterator0=json.arg.models || [];__fest_to0=__fest_iterator0.length;}catch(e){__fest_iterator0=[];__fest_to0=0;__fest_log_error(e.message);}for(i=0;i<__fest_to0;i++){__fest_buf+=("<li><div class=\"room-item\"><img src=\"http:\/\/mozilla-ntu.github.io\/slides\/site\/img\/mike\/aiga_waiting_room-512.png\" class=\"rating-item__photo\"/><div class=\"room-item__name\">");try{__fest_buf+=(json.arg.models[i].get('name'))}catch(e){__fest_log_error(e.message + "25");}__fest_buf+=(" ");try{__fest_buf+=(json.arg.models[i].get('owner').first_name + " " + json.arg.models[i].get('owner').last_name)}catch(e){__fest_log_error(e.message + "31");}__fest_buf+=("</div><div class=\"room-item__point\">");try{__fest_buf+=(json.arg.models[i].get('players').length)}catch(e){__fest_log_error(e.message + "37");}__fest_buf+=("\/");try{__fest_buf+=(json.arg.models[i].get('capacity'))}catch(e){__fest_log_error(e.message + "41");}__fest_buf+=("</div></div></li>");}__fest_buf+=("</ul>");}__fest_buf+=("<a class=\"btn btn_blue js-create-room\">Создать комнату</a><a href=\"#\" class=\"btn btn_red\">Назад</a>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
-define('tmpl/components/create-room-dialog',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<div class=\"cd-popup-container\" style=\"padding: 80px; font-face: \'Open Sans\';\"><h2>Создание комнаты</h2><p><input class=\"js-room-name\" type=\"text\" placeholder=\"Имя комнаты\"/></p><p><label><input class=\"js-room-private\" type=\"checkbox\"/>Приватная комната</label></p><p><input class=\"js-room-create\" type=\"button\" value=\"Создать!!\"/></p><a class=\"cd-popup-close img-replace js-close-popup\">Close</a></div>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
-define('models/NewRoomBindModel',[
-], function(){
-
-    var RoomBindModel = Backbone.Model.extend({
-        defaults: {
-            "name": "",
-            "isPrivate": false
-        }
-    });
-
-    return RoomBindModel;
-});
-Backbone.View.prototype.mvbind=function(e){e=e||{},_.defaults(e,{source:"model"});var c,t,i,a,r=this.bind,n=this.model;for(var o in r)c=$(o,this.$el),t=c.prop("type"),i=c.attr("name")||"",a="[]"==i.substr(i.length-2),function(c,t,i,a,r){if(-1!=["text","number","textarea","date","radio","checkbox","hidden","select-one"].indexOf(t)){var n="";n=-1!=["radio","checkbox","select-one"].indexOf(t)?"change":"input",c.bind(n,function(){var e;switch(t){case"radio":e=c.filter(":checked").val();break;case"checkbox":r?(e=[],c.filter(":checked").each(function(){e.push($(this).val())})):e=c.prop("checked");break;default:r?(e=[],c.each(function(){e.push($(this).val())})):e=c.val()}a.set(i,e,{mvbind:!0})})}a.on("change:"+i,function(e,i,a){if(1!=a.mvbind)switch(t){case"radio":c.filter("[value="+i+"]").prop("checked",!0);break;case"checkbox":if(c.filter(":checked").prop("checked",!1),r)for(var n in i)c.filter("[value="+i[n]+"]").prop("checked",!0);else c.prop("checked",!!i);break;default:"undefined"==typeof t?c.html(i):c.val(i)}}),"model"==e.source?a.trigger("change:"+i,a,a.get(i),{}):c.trigger("change")}(c,t,r[o],n,a)};
-define("mvbind", ["backbone"], function(){});
-
-define('views/components/create-room-dialog',[
-    'app',
-    'tmpl/components/create-room-dialog',
-    'models/NewRoomBindModel',
-    'mvbind'
-], function(
-    app,
-    tmpl,
-    RoomBindModel,
-    mvbind
-){
-    var View = Backbone.View.extend({
-
-        el: '.cd-popup',
-        template: tmpl,
-        model: new RoomBindModel(),
-
-        events: {
-            'click': 'closePopup',
-            'click .js-room-create': 'createRoom'
-        },
-
-        bind:{
-            '.js-room-name': 'name',
-            '.js-room-private': 'isPrivate'
-        },
-
-        initialize: function() {
-        },
-
-        createRoom: function() {
-
-            var self = this;
-            
-            app.api.room.createRoom(this.model.toJSON()).then(
-                function(data) {
-                    console.log(data);
-                    self.$el.removeClass('is-visible');
-                },
-
-                function(error) {
-                    console.error(error);
-                }
-            );
-        },
-
-        showPopup: function() {
-            this.render();
-            this.mvbind();
-            this.$el.addClass('is-visible');
-        },
-
-        closePopup: function(event) {
-            if($(event.target).is('.js-close-popup') || $(event.target).is(this.el)) {
-                event.preventDefault();
-                this.$el.removeClass('is-visible');
-            }
-        },
-
-        render: function () {
-            $(this.el).html(this.template(
-                {}
-            ));
-        }
-    });
-
-    return View;
-});
+define('tmpl/scoreboard',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<div class=\"title\">Рейтинги</div>");try{__fest_if=!json.arg.models.length}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<div class=\"b-rating__empty-big-message\">Здесь пока пусто</div><div class=\"b-rating__empty-small-message\">У тебя есть шанс стать первым</div>");}try{__fest_if=json.arg.models.length}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<ul class=\"rating-items-list\">");var i,__fest_to0,__fest_iterator0;try{__fest_iterator0=json.arg.models || [];__fest_to0=__fest_iterator0.length;}catch(e){__fest_iterator0=[];__fest_to0=0;__fest_log_error(e.message);}for(i=0;i<__fest_to0;i++){__fest_buf+=("<li><div class=\"rating-item\">");try{__fest_attrs[0]=__fest_escapeHTML(json.arg.models[i].get('avatar'))}catch(e){__fest_attrs[0]=""; __fest_log_error(e.message);}__fest_buf+=("<img src=\"" + __fest_attrs[0] + "\" class=\"rating-item__photo\"/><div class=\"rating-item__name\">");try{__fest_buf+=(json.arg.models[i].get('first_name'))}catch(e){__fest_log_error(e.message + "25");}__fest_buf+=(" ");try{__fest_buf+=(json.arg.models[i].get('last_name'))}catch(e){__fest_log_error(e.message + "31");}__fest_buf+=("</div><div class=\"rating-item__point\">");try{__fest_buf+=(json.arg.models[i].get('global_rating'))}catch(e){__fest_log_error(e.message + "37");}__fest_buf+=("</div></div></li>");}__fest_buf+=("</ul>");}__fest_buf+=("<a href=\"#\" class=\"btn btn_red\">Назад</a>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
 define('models/Score',[
 ], function(){
     var Score = Backbone.Model.extend({
@@ -15644,162 +15502,16 @@ define('collections/Scores',[
 
     return Collection;
 });
-define('models/Room',[
-], function(){
-
-    var Room = Backbone.Model.extend({
-        defaults: {
-            "room_id": "",
-            "creation_date": 0,
-            "owner": "",
-            "name": "",
-            "capacity": 0,
-            "players": []
-        }
-    });
-
-    return Room;
-});
-
-define('syncs/RoomsSync',[
-    'app'
-], function(
-    app
-) {
-
-    return function(method, collection, options) {
-
-        var methods = {
-            'read': {
-                execute: function() {
-                    // Тут в зависимости от данных может быть что-то другое.
-                    this.loadData();
-                },
-
-                loadData: function() {
-                    app.api.room.getRooms().then(
-                        this.successLoadingHandler,
-                        this.errorLoadingHandler
-                    );
-                },
-
-                successLoadingHandler: function(data) {
-                    collection.set(data.rooms);
-                    collection.trigger("rooms_load:ok");
-                },
-
-                errorLoadingHandler: function(message) {
-                    collection.trigger('rooms_load:error', message);
-                }
-            },
-            'create': {},
-            'update': {},
-            'delete': {}
-        };
-
-        return methods[method].execute();
-    };
-});
-
-define('collections/RoomList',[
-    'app',
-    'models/Room',
-    'syncs/RoomsSync'
-], function(
-    app,
-    Room,
-    RoomsSync
-){
-    var Collection = Backbone.Collection.extend({
-        model: Room,
-        sync: RoomsSync,
-
-        initialize: function () {},
-
-        createRoom: function(type) {
-            app.api.room.createRoom(type).then(
-                this.successLoadingHandler.bind(this),
-                this.errorLoadingHandler.bind(this)
-            );
-        },
-
-        successLoadingHandler: function(data) {
-            console.log(this);
-            this.trigger("room_create:ok");
-        },
-
-        errorLoadingHandler: function(message) {
-            this.trigger('room_create:error', message);
-        }
-    });
-
-    return Collection;
-});
-define('views/RoomManager',[
-    'app',
-    'tmpl/room-manager',
-    'views/AbstractScreen',
-    'views/components/create-room-dialog',
-    'collections/Scores',
-    'collections/RoomList'
-], function(
-    app,
-    tmpl,
-    Abstract,
-    CreateRoomDialogView,
-    Scores,
-    RoomList
-){
-
-    var View = Abstract.extend({
-
-        el: '.js-room-manager',
-        template: tmpl,
-        collection: new RoomList(),
-        templateArg: null,
-        createRoomDialogView: new CreateRoomDialogView(),
-
-        events: {
-            'click .js-create-room' : 'createRoom'
-        },
-
-        initialize: function () {
-            this.templateArg = this.collection;
-            this.listenTo(this.collection, 'rooms_load:ok', this.onLoad);
-            this.listenTo(this.collection, 'room_create:ok', this.load);
-            this.load();
-        },
-
-        createRoom: function() {
-            this.createRoomDialogView.showPopup();
-            //this.collection.createRoom("public");
-        },
-
-        onLoad: function() {
-            this.renderAndShow();
-        },
-
-        load: function() {
-            this.collection.fetch();
-            console.log(this.collection);
-        }
-    });
-
-    return View;
-});
-define('tmpl/scoreboard',[],function () { return function (__fest_context){"use strict";var __fest_self=this,__fest_buf="",__fest_chunks=[],__fest_chunk,__fest_attrs=[],__fest_select,__fest_if,__fest_iterator,__fest_to,__fest_fn,__fest_html="",__fest_blocks={},__fest_params,__fest_element,__fest_debug_file="",__fest_debug_line="",__fest_debug_block="",__fest_htmlchars=/[&<>"]/g,__fest_htmlchars_test=/[&<>"]/,__fest_short_tags = {"area":true,"base":true,"br":true,"col":true,"command":true,"embed":true,"hr":true,"img":true,"input":true,"keygen":true,"link":true,"meta":true,"param":true,"source":true,"wbr":true},__fest_element_stack = [],__fest_htmlhash={"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"},__fest_jschars=/[\\'"\/\n\r\t\b\f<>]/g,__fest_jschars_test=/[\\'"\/\n\r\t\b\f<>]/,__fest_jshash={"\"":"\\\"","\\":"\\\\","/":"\\/","\n":"\\n","\r":"\\r","\t":"\\t","\b":"\\b","\f":"\\f","'":"\\'","<":"\\u003C",">":"\\u003E"},___fest_log_error;if(typeof __fest_error === "undefined"){___fest_log_error = (typeof console !== "undefined" && console.error) ? function(){return Function.prototype.apply.call(console.error, console, arguments)} : function(){};}else{___fest_log_error=__fest_error};function __fest_log_error(msg){___fest_log_error(msg+"\nin block \""+__fest_debug_block+"\" at line: "+__fest_debug_line+"\nfile: "+__fest_debug_file)}function __fest_replaceHTML(chr){return __fest_htmlhash[chr]}function __fest_replaceJS(chr){return __fest_jshash[chr]}function __fest_extend(dest, src){for(var i in src)if(src.hasOwnProperty(i))dest[i]=src[i];}function __fest_param(fn){fn.param=true;return fn}function __fest_call(fn, params,cp){if(cp)for(var i in params)if(typeof params[i]=="function"&&params[i].param)params[i]=params[i]();return fn.call(__fest_self,params)}function __fest_escapeJS(s){if (typeof s==="string") {if (__fest_jschars_test.test(s))return s.replace(__fest_jschars,__fest_replaceJS);} else if (typeof s==="undefined")return "";return s;}function __fest_escapeHTML(s){if (typeof s==="string") {if (__fest_htmlchars_test.test(s))return s.replace(__fest_htmlchars,__fest_replaceHTML);} else if (typeof s==="undefined")return "";return s;}var json=__fest_context;__fest_buf+=("<div class=\"title\">Рейтинги</div>");try{__fest_if=!json.arg.models.length}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<div class=\"b-rating__empty-big-message\">Здесь пока пусто</div><div class=\"b-rating__empty-small-message\">У тебя есть шанс стать первым</div>");}try{__fest_if=json.arg.models.length}catch(e){__fest_if=false;__fest_log_error(e.message);}if(__fest_if){__fest_buf+=("<ul class=\"rating-items-list\">");var i,__fest_to0,__fest_iterator0;try{__fest_iterator0=json.arg.models || [];__fest_to0=__fest_iterator0.length;}catch(e){__fest_iterator0=[];__fest_to0=0;__fest_log_error(e.message);}for(i=0;i<__fest_to0;i++){__fest_buf+=("<li><div class=\"rating-item\">");try{__fest_attrs[0]=__fest_escapeHTML(json.arg.models[i].get('avatar'))}catch(e){__fest_attrs[0]=""; __fest_log_error(e.message);}__fest_buf+=("<img src=\"" + __fest_attrs[0] + "\" class=\"rating-item__photo\"/><div class=\"rating-item__name\">");try{__fest_buf+=(json.arg.models[i].get('first_name'))}catch(e){__fest_log_error(e.message + "25");}__fest_buf+=(" ");try{__fest_buf+=(json.arg.models[i].get('last_name'))}catch(e){__fest_log_error(e.message + "31");}__fest_buf+=("</div><div class=\"rating-item__point\">");try{__fest_buf+=(json.arg.models[i].get('global_rating'))}catch(e){__fest_log_error(e.message + "37");}__fest_buf+=("</div></div></li>");}__fest_buf+=("</ul>");}__fest_buf+=("<a href=\"#\" class=\"btn btn_red\">Назад</a>");__fest_to=__fest_chunks.length;if (__fest_to) {__fest_iterator = 0;for (;__fest_iterator<__fest_to;__fest_iterator++) {__fest_chunk=__fest_chunks[__fest_iterator];if (typeof __fest_chunk==="string") {__fest_html+=__fest_chunk;} else {__fest_fn=__fest_blocks[__fest_chunk.name];if (__fest_fn) __fest_html+=__fest_call(__fest_fn,__fest_chunk.params,__fest_chunk.cp);}}return __fest_html+__fest_buf;} else {return __fest_buf;}} ; });
 define('views/Scoreboard',[
     'app',
     'tmpl/scoreboard',
     'views/AbstractScreen',
-    'collections/Scores',
-    'collections/RoomList'
+    'collections/Scores'
 ], function(
     app,
     tmpl,
     Abstract,
-    Scores,
-    RoomList
+    Scores
 ){
 
     var View = Abstract.extend({
@@ -15877,7 +15589,6 @@ define('views/ViewManager',[
     'views/Login',
     'views/Main',
     'views/Room',
-    'views/RoomManager',
     'views/Scoreboard',
     'views/Controller',
     'app'
@@ -15887,7 +15598,6 @@ define('views/ViewManager',[
     Login,
     Main,
     Room,
-    RoomManager,
     Scoreboard,
     Controller,
     app
@@ -15900,7 +15610,6 @@ define('views/ViewManager',[
         LOGIN_VIEW: "login",
         MAIN_VIEW: "main",
         ROOM_VIEW: "room",
-        ROOM_MANAGER_VIEW: "room_manager",
         SCOREBOARD_VIEW: "scoreboard",
         CONTROLLER_VIEW: "controller",
 
@@ -15910,7 +15619,6 @@ define('views/ViewManager',[
             LOGIN_VIEW: null,
             MAIN_VIEW: null,
             ROOM_VIEW: null,
-            ROOM_MANAGER_VIEW: null,
             SCOREBOARD_VIEW: null,
             CONTROLLER_VIEW: null
         },
@@ -15924,7 +15632,6 @@ define('views/ViewManager',[
             this.views[this.LOGIN_VIEW] = new Login();
             this.views[this.MAIN_VIEW] = new Main();
             this.views[this.ROOM_VIEW] = new Room();
-            this.views[this.ROOM_MANAGER_VIEW] = new RoomManager();
             this.views[this.SCOREBOARD_VIEW] = new Scoreboard();
             this.views[this.CONTROLLER_VIEW] = new Controller();
 
@@ -16319,7 +16026,6 @@ define('router',[
         routes: {
             'scoreboard': 'scoreboardAction',
             'game': 'gameAction',
-            'rooms': 'roomManagerAction',
             'room': 'roomAction',
             'login': 'loginAction',
             'admin': 'adminAction',
@@ -16361,9 +16067,6 @@ define('router',[
         },
         roomAction: function () {
             this.showView(this.viewManager.ROOM_VIEW);
-        },
-        roomManagerAction: function () {
-            this.showView(this.viewManager.ROOM_MANAGER_VIEW);
         },
         loginAction: function () {
             this.showView(this.viewManager.LOGIN_VIEW);

@@ -29,6 +29,7 @@ define([
             ));
             this.readyBlock = this.$el.children('.js-photo-container')
                 .children('.js-ready');
+
             var color = hexToRgb(this.model.get("color"));
 
             this.readyBlock.css(

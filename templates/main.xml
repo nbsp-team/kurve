@@ -6,7 +6,7 @@
         <div class="title"> Меню </div>
 
         <fest:if test="json.app.session.get('loggedIn')">
-            <a href="#rooms" class="btn btn_blue"> Начать </a>
+            <a href="#room" class="btn btn_blue"> Начать </a>
             <a href="#scoreboard" class="btn btn_blue"> Рейтинги </a>
             <div class="btn btn_blue js-logout"> Выйти </div>
         </fest:if>
