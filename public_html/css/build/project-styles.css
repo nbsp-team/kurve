@@ -133,10 +133,6 @@ body {
   margin-bottom: 50px; }
   .b-admin__plain-info {
     text-align: center; }
-  .b-admin__field {
-    font-family: 'Open Sans';
-    text-align: center;
-    color: #555; }
 
 .b-room {
   overflow: hidden;
@@ -400,7 +396,6 @@ body {
   margin: 0 auto;
   font-family: Arial, sans-serif;
   font-size: 17px;
-  margin-bottom: 30px;
   overflow: auto; }
   .flat-table__header-value {
     background-color: #3498DB;
